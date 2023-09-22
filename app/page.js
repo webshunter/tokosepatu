@@ -13,7 +13,7 @@ export default function Home() {
   })
 
   let yh = [];
-  for (let index = 0; index < 100; index++) {
+  for (let index = 0; index < 52; index++) {
     yh.push({
       data: index
     })
