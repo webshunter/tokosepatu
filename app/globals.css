@@ -19,3 +19,8 @@
 body{
   padding-top: 50px;
 }
+
+.grid-content{
+  display: grid;
+  grid-template-columns: auto 400px;
+}
