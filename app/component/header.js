@@ -5,14 +5,32 @@ import buttonJual from "./buttonJual"
 import btn from '../component/button2.svg';
 import Image from "next/image"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
+import { signIn, signOut, useSession } from "next-auth/react";
+
+const ButtonLogin = () => {
+    const { data: session } = useSession();
+
+    if(session && session.user){
+        return (<>
+            <h1 className="mx-4">{session.user.name}</h1>
+            <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => signOut() }>Log Out</Button>
+        </>)
+    }
+
+    return (<>
+        <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => props.setOpenModal('default')  }>Login/ Daftar</Button>
+    </>)
+}
 
 export const Header = function(){
+
+    const {data: session} = useSession();
 
     const [openModal, setOpenModal] = useState ();
     const props = { openModal, setOpenModal };
 
     const daftar = () =>{
-        alert('ok')
+        signIn();
     }
 
     useEffect(()=>{
@@ -29,7 +47,7 @@ export const Header = function(){
                     <input placeholder="Seach..." className="h-[45px] px-2 text-[1.3rem] text-gray-700" />
                     <button className="p-2 h-[45px] bg-blue-900">GO</button>
                 </div>
-                <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => props.setOpenModal('default')}>Login/ Daftar</Button>
+                <ButtonLogin />
             </div>
         </nav>
         <nav className="px-10 py-2 shadow-md text-gray-600">
