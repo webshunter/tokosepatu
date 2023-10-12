@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { signIn, signOut, useSession } from "next-auth/react";
 
-const ButtonLogin = () => {
+const ButtonLogin = ({props}) => {
     const { data: session } = useSession();
 
     if(session && session.user){
@@ -47,7 +47,7 @@ export const Header = function(){
                     <input placeholder="Seach..." className="h-[45px] px-2 text-[1.3rem] text-gray-700" />
                     <button className="p-2 h-[45px] bg-blue-900">GO</button>
                 </div>
-                <ButtonLogin />
+                <ButtonLogin props={props} />
             </div>
         </nav>
         <nav className="px-10 py-2 shadow-md text-gray-600">
