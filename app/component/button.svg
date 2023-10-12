@@ -1,0 +1,15 @@
+<svg width="140" height="60" xmlns="http://www.w3.org/2000/svg">
+ <g id="Layer_1">
+  <title>Layer 1</title>
+  <g id="svg_9">
+   <rect fill="#083734" stroke="#000" stroke-width="0" x="4.77106" y="1.71893" width="130.45787" height="56.56215" id="svg_8" rx="8"/>
+   <rect fill="#7DD8B5" stroke="#000" stroke-width="0" x="10.01675" y="6.50845" width="119.96651" height="46.98307" id="svg_7" rx="6"/>
+   <g id="svg_3">
+    <rect fill="#0E353B" stroke="#000" x="16.42548" y="-0.07262" width="4.48598" height="24.11212" id="svg_1" stroke-width="0" rx="2" transform="matrix(0, 1.30532, -1.30532, 0, 51.2408, 5.63162)"/>
+    <rect fill="#0E353B" stroke="#000" x="32.67076" y="14.26295" width="5.85566" height="31.4741" id="svg_2" stroke-width="0" rx="2"/>
+   </g>
+   <text fill="#0E353B" stroke="#000" stroke-width="0" x="32.18573" y="-2.26361" id="svg_4" font-size="24" font-family="'Roboto Mono'" text-anchor="start" xml:space="preserve" font-weight="bold" transform="matrix(1.07601, 0, 0, 1.07601, 23.4931, 42.101)">JUAL</text>
+  </g>
+ </g>
+
+</svg>
