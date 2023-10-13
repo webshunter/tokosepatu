@@ -50,12 +50,12 @@ export const Header = function(){
                 <ButtonLogin props={props} />
             </div>
         </nav>
-        <nav className="px-10 py-2 bg-white shadow-md text-gray-600">
+        {/* <nav className="px-10 py-2 bg-white shadow-md text-gray-600">
             <button className="pr-5">SEMUA KATEGORI</button>
             <Link className="pr-5 text-[14px]" href="/">Property</Link>
             <Link className="pr-5 text-[14px]" href="/">Rumah KPR</Link>
             <Link className="pr-5 text-[14px]" href="/">KPR</Link>
-        </nav>
+        </nav> */}
 
         
         <Modal show={props.openModal === 'default'} size="md" onClose={() => props.setOpenModal(undefined)}>
