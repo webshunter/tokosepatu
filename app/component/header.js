@@ -6,6 +6,7 @@ import btn from '../component/button2.svg';
 import Image from "next/image"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { signIn, signOut, useSession } from "next-auth/react";
+import { postData } from "../library/post";
 
 const ButtonLogin = ({props}) => {
     const { data: session } = useSession();
@@ -34,10 +35,8 @@ export const Header = function(){
     }
 
     useEffect(()=>{
-        fetch('/api/hello').then(function(res){
-            return res.json()
-        }).then(function(x){
-            console.log(x)
+        postData('/pages/api/signup', session).then(function(res){
+            console.log(res)
         })
     })
 
