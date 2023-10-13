@@ -14,6 +14,7 @@
     "eslint-config-next": "13.5.1",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
+    "jquery": "^3.7.1",
     "next": "13.5.1",
     "next-auth": "^4.23.2",
     "postcss": "8.4.30",
