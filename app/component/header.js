@@ -45,7 +45,7 @@ export const Header = function(){
             <div className="w-[calc(100vw-320px)] flex items-center justify-end absolute right-[30px] h-[60px] top-[10px]">
                 <div className="flex justify-end overflow-hidden rounded-md">
                     <input placeholder="Seach..." className="h-[45px] px-2 text-[1.3rem] text-gray-700" />
-                    <button className="p-2 h-[45px] bg-blue-900">GO</button>
+                    <button className="p-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
                 <ButtonLogin props={props} />
             </div>
