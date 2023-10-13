@@ -14,8 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <link rel="icon" href="/rumahjocom.ico" size="any" />
-      <body className="bg-gray-200">
+      <link rel="icon" href="/favicon.png" type='png' sizes="any" />
+      <body className={inter.className}>
         <Providers>
           <Header />
             {children}
