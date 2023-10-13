@@ -74,8 +74,8 @@ export default function PostListing() {
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             >
                 <option selected></option>
-                {rows.map(function (i) {
-                    return <option value="{i}">{i}</option>;
+                {rows.map(function (i, x) {
+                    return <option key={x} value="{i}">{i}</option>;
                 })}
                 <option value="11">&gt;10</option>
             </select>
@@ -91,8 +91,8 @@ export default function PostListing() {
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             >
                 <option selected></option>
-                {rows.map(function (i) {
-                    return <option value="{i}">{i}</option>;
+                {rows.map(function (i, x) {
+                    return <option key={x} value="{i}">{i}</option>;
                 })}
                 <option value="11">&gt;10</option>
             </select>
