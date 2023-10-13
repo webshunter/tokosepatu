@@ -34,7 +34,11 @@ export const Header = function(){
     }
 
     useEffect(()=>{
-
+        fetch('/api/hello').then(function(res){
+            return res.json()
+        }).then(function(x){
+            console.log(x)
+        })
     })
 
     return (<>
