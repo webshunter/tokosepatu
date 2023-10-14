@@ -19,7 +19,7 @@ const ButtonLogin = ({props}) => {
     }
 
     return (<>
-        <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => props.setOpenModal('default')  }>Login/ Daftar</Button>
+        <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => signIn()  }>Login/ Daftar</Button>
     </>)
 }
 
@@ -35,7 +35,26 @@ export const Header = function(){
     }
 
     useEffect(()=>{
-        postData('/pages/api/signup', session).then(function(res){
+
+
+        const ori = function(){
+            let ori = location.host;
+            if(ori == 'localhost:3000'){
+                return 'http://localhost:5000';
+            }
+            if (ori == 'rumahjo.vercel.app'){
+                return 'https://rumahjo.vercel.app';
+            }
+            if (ori == 'rumahjo.com'){
+                return 'https://rumahjo.com';
+            }
+            return '';
+        }
+
+        postData(ori() +'/data/simpan/user', {
+            uniqid: 'ID-USER-'+Date.now(),
+            data: session
+        }).then(function(res){
             console.log(res)
         })
     })
