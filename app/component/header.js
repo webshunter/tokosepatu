@@ -46,7 +46,7 @@ export const Header = function(){
                 return 'https://apirumahjo.vercel.app';
             }
             if (ori == 'rumahjo.com'){
-                return 'https://rumahjo.com';
+                return 'https://apirumahjo.vercel.app';
             }
             return '';
         }
