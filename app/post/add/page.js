@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import { Header } from "@/app/component/header";
 import { ImageUpload } from '@/app/component/ImageUploadMass';
+import { postData } from '@/app/library/post';
+import upload from '@/app/library/upload';
+
 
 export default function PostListing() {
     const [lbangun, setLBangun] = useState("");
@@ -17,14 +20,13 @@ export default function PostListing() {
 
     useEffect(()=>{
         setTimeout(()=>{
-            console.log('ok')
             document.querySelector('input#apartement').click();
             document.getElementById('cert1').click();
         },10)
     })
 
 
-    const simpanData = function(e){
+    const simpanData = async function(e){
         e.preventDefault();
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
@@ -42,9 +44,33 @@ export default function PostListing() {
                 nama: w.alt
             });
         })
-        console.log(dataImage)
+        
+        let di = [];
+        
         formProps.galery = dataImage;
-        console.log(formProps)
+
+        const ori = function () {
+            let ori = location.host;
+            if (ori == 'localhost:3000') {
+                return 'http://localhost:5000';
+            }
+            if (ori == 'rumahjo.vercel.app') {
+                return 'https://apirumahjo.vercel.app';
+            }
+            if (ori == 'rumahjo.com') {
+                return 'https://apirumahjo.vercel.app';
+            }
+            return '';
+        }
+
+        let b64Data = btoa(JSON.stringify(formProps))
+
+        upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
+            console.log(b)
+        });
+
+        // here unnecessary - just for testing if it can be read from local storage
+
     }
 
     var rows = [], i = 0, len = 10;
@@ -56,6 +82,7 @@ export default function PostListing() {
             <label htmlFor="type" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                 Tipe<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
+            <input type='hidden' name='uniqid' className='none' defaultValue={'produk-'+Date.now()}></input>
             <ul className="grid w-full gap-6 md:grid-cols-2">
                 <li>
                     <input type="radio" 

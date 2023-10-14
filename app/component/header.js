@@ -38,8 +38,6 @@ export const Header = function(){
     }
 
     useEffect(()=>{
-
-
         const ori = function(){
             let ori = location.host;
             if(ori == 'localhost:3000'){
@@ -53,7 +51,6 @@ export const Header = function(){
             }
             return '';
         }
-
         postData(ori() +'/data/simpan/user', {
             uniqid: 'ID-USER-'+Date.now(),
             data: session
