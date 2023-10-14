@@ -4,6 +4,7 @@ import { Header } from "@/app/component/header";
 import { ImageUpload } from '@/app/component/ImageUploadMass';
 
 export default function PostListing() {
+    const [type, setLType] = useState("");
     const [lbangun, setLBangun] = useState("");
     const [ltanah, setLTanah] = useState("");
     const [ktidur, setKTidur] = useState("");
@@ -14,18 +15,32 @@ export default function PostListing() {
     const [deskrisi, setDeskrisi] = useState("");
     const [price, setPrice] = useState("");
 
+
+    const simpanData = function(e){
+        e.preventDefault();
+        console.log(e.target);
+        const formData = new FormData(e.target);
+        const formProps = Object.fromEntries(formData);
+        console.log(formProps)
+    }
+
     var rows = [], i = 0, len = 10;
     while (++i <= len) rows.push(i);
   
     return (
-        <form className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
+        <form onSubmitCapture={simpanData} onSubmit={simpanData} className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
             <h1 className="text-2xl font-bold dark:text-gray-50">Pasang Iklan Anda</h1>
             <label htmlFor="type" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                 Tipe<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
             <ul className="grid w-full gap-6 md:grid-cols-2">
                 <li>
-                    <input type="radio" id="apartement" name="type" value="0" className="hidden peer" required/>
+                    <input type="radio" 
+                    id="apartement" 
+                    name="type" 
+                    value="0" 
+                    className="hidden peer" 
+                    required/>
                     <label for="apartement" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
                         <div className="block">
                             <div className="w-full">Apartemen</div>
@@ -33,8 +48,17 @@ export default function PostListing() {
                     </label>
                 </li>
                 <li>
-                    <input type="radio" id="rumah" name="type" value="1" className="hidden peer"/>
-                    <label for="rumah" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <input 
+                        type="radio" 
+                        id="rumah" 
+                        name="type" 
+                        value="1" 
+                        className="hidden peer"
+                    />
+                    <label 
+                        for="rumah" 
+                        className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                        >
                         <div className="block">
                             <div className="w-full">Rumah</div>
                         </div>
