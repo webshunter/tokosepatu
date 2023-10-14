@@ -43,7 +43,7 @@ export const Header = function(){
                 return 'http://localhost:5000';
             }
             if (ori == 'rumahjo.vercel.app'){
-                return 'https://rumahjo.vercel.app';
+                return 'https://apirumahjo.vercel.app';
             }
             if (ori == 'rumahjo.com'){
                 return 'https://rumahjo.com';
