@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { Header } from "@/app/component/header";
+import { ImageUpload } from '@/app/component/ImageUploadMass';
 
 export default function PostListing() {
     const [lbangun, setLBangun] = useState("");
@@ -207,7 +208,9 @@ export default function PostListing() {
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
             <h1 className="text-xl font-bold dark:text-gray-50 pt-8">Unggah hingga 20 foto</h1>
-            
+            <ImageUpload />
+            <h1 className="text-xl font-bold dark:text-gray-50 pt-8">Konfirmasikan lokasi iklan Anda</h1>
+
             <div className="flex flex-row items-center justify-start">
               <button
                 type="submit"
