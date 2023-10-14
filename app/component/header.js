@@ -67,9 +67,12 @@ export const Header = function(){
             <div className="w-[calc(100vw-320px)] flex items-center justify-end absolute right-[30px] h-[60px] top-[10px]">
                 <div className="flex justify-end overflow-hidden rounded-md">
                     <input placeholder="Seach..." className="h-[45px] px-2 text-[1.3rem] text-gray-700" />
-                    <button className="p-2 h-[45px] bg-yellow-400">GO</button>
+                    <button className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
                 <ButtonLogin props={props} />
+                <a href="/post/add" className="h-[45px] w-[45px] rounded-md text-[1.8rem] overflow-hidden flex justify-center items-center p-0 border-[2px] border-yellow-400">
+                    <span className="block">+</span>
+                </a>
             </div>
         </nav>
         {/* <nav className="px-10 py-2 bg-white shadow-md text-gray-600">
