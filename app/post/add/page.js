@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from "@/app/component/header";
 import { ImageUpload } from '@/app/component/ImageUploadMass';
 
@@ -15,6 +15,15 @@ export default function PostListing() {
     const [price, setPrice] = useState("");
 
 
+    useEffect(()=>{
+        setTimeout(()=>{
+            console.log('ok')
+            document.querySelector('input#apartement').click();
+            document.getElementById('cert1').click();
+        },10)
+    })
+
+
     const simpanData = function(e){
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -24,10 +33,17 @@ export default function PostListing() {
         if (formProps.judul === ""){
             alert("judul tidak boleh kosong");
         } 
+        if (formProps.judul === ""){
+            alert("judul tidak boleh kosong");
+        } 
         image.map(function(w){
-            dataImage.push(w.src);
+            dataImage.push({
+                data: w.src,
+                nama: w.alt
+            });
         })
         console.log(dataImage)
+        formProps.galery = dataImage;
         console.log(formProps)
     }
 
