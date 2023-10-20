@@ -60,16 +60,18 @@ export const Header = function(){
     })
 
     return (<>
-        <nav className="fixed top-0 z-[999] h-[85px] w-[100vw] bg-indigo-950 text-white px-10 py-2">
-            <Link href="/">
+        <nav className="fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-10 py-2">
+            <Link className="flex justify-center items-center md:block" href="/">
                 <img src="/rumahjocom.png" className="w-[200px] pt-3"></img>
             </Link>
-            <div className="w-[calc(100vw-320px)] flex items-center justify-end absolute right-[30px] h-[60px] top-[10px]">
+            <div className="w-full md:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] h-[60px] top-[10px]">
                 <div className="flex justify-end overflow-hidden rounded-md">
-                    <input placeholder="Seach..." className="h-[45px] px-2 text-[1.3rem] text-gray-700" />
+                    <input placeholder="Seach..." className="w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700" />
                     <button className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
-                <ButtonLogin props={props} />
+                <div className="hidden md:flex min-w-[320px] w-[320px] justify-center items-center">
+                    <ButtonLogin props={props} />
+                </div>
             </div>
         </nav>
         {/* <nav className="px-10 py-2 bg-white shadow-md text-gray-600">
@@ -78,7 +80,6 @@ export const Header = function(){
             <Link className="pr-5 text-[14px]" href="/">Rumah KPR</Link>
             <Link className="pr-5 text-[14px]" href="/">KPR</Link>
         </nav> */}
-
         
         <Modal show={props.openModal === 'default'} size="md" onClose={() => props.setOpenModal(undefined)}>
             <Modal.Header></Modal.Header>
