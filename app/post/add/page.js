@@ -52,13 +52,13 @@ export default function PostListing() {
         const ori = function () {
             let ori = location.host;
             if (ori == 'localhost:3000') {
-                return 'http://localhost:5000';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.vercel.app') {
-                return 'https://apirumahjo.vercel.app';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.com') {
-                return 'https://apirumahjo.vercel.app';
+                return 'https://app.rumahjo.com';
             }
             return '';
         }
@@ -68,7 +68,6 @@ export default function PostListing() {
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
             console.log(b)
         });
-
         // here unnecessary - just for testing if it can be read from local storage
 
     }
