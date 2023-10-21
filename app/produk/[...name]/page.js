@@ -28,10 +28,12 @@ export default function Page({params}) {
                         {arrImage.map((s, i)=>{
                             return (
                                 <li key={i}>
-                                    <img
-                                        alt="..."
-                                        src={'https://app.rumahjo.com/'+s.image}
-                                    />
+                                    <div className="flex justify-center">
+                                        <img
+                                            alt="..."
+                                            src={'https://app.rumahjo.com/'+s.image}
+                                        />
+                                    </div>
                                 </li>
                             )
                         })}
@@ -70,7 +72,7 @@ export default function Page({params}) {
                         </div>
                         <hr></hr>
                         <div className="mb-2 px-5 text-[14px] text-gray-700">
-                            {data.deskripsi}
+                            {data.deskrisi}
                         </div>
                     </div>
                 </div>
