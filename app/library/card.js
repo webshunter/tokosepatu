@@ -3,7 +3,7 @@ import Link from "next/link"
 import { formatRupiah } from "./rupiah"
 
 export const ProdukCard = function({data}){
-    let { key, uniqid, price, judul, image:images} = data
+    let { key, uniqid, price, judul, image:images, slug} = data
     return (<>
         <div key={key} className="relative bg=gray-200 w-full">
             <button className="p-1 md:p-2 z-10 shadow-md rounded-md inline-block absolute bg-white top-2 right-2">
@@ -11,7 +11,7 @@ export const ProdukCard = function({data}){
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
             </button>
-            <Link href="produk/rumah-indah-permai-malang" className="w-full">
+            <Link href={"produk/" + slug} className="w-full">
                 <div className="rounded overflow-hidden shadow-lg relative">
                     <img className="w-full" src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
                     <div className="px-2 bg-yellow-400 mt-2">
