@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='mx-10 my-5 '>
+      <div className='mx-4 md:mx-10 my-5 '>
         <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
           <img
               alt="..."
