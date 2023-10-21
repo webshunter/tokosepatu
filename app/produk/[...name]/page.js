@@ -4,6 +4,24 @@ import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
 
+String.prototype.capitalize = function () {
+    // Memeriksa apakah string kosong
+    if (this.length === 0) {
+        return this;
+    }
+
+    // Memecah string menjadi array kata
+    const words = this.split(' ');
+
+    // Mengkapitalisasi setiap kata
+    const capitalizedWords = words.map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+
+    // Menggabungkan kata-kata yang sudah di-kapitalisasi
+    return capitalizedWords.join(' ');
+}
+
 export default function Page({params}) {
     const [arrImage,SetArrImage] = useState([]);
     const [data,SetData] = useState({});
@@ -50,7 +68,7 @@ export default function Page({params}) {
                             Penjual terverifikasi
                         </button>
                     </div>
-                    <h1 className="text-[1.3rem] font-bold">{data.judul}</h1>
+                    <h1 className="text-[1.3rem] font-bold">{data.judul.capitalize()}</h1>
                     <p className="py-2 text-[14px]">Luas dan nyaman untuk keluarga.</p>
                     <div className="grid grid-cols-2 text-gray-700 text-[12px] text-center mt-2">
                         <div className="border-x-[1px] border-gray-400 px-2">{data.ktidur} kamar</div>
