@@ -1,10 +1,24 @@
 "use client"
 import { Header } from "@/app/component/header";
 import { Carousel } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { formatRupiah } from "@/app/library/rupiah";
 
 export default function Page({params}) {
+    const [arrImage,SetArrImage] = useState([]);
+    const [data,SetData] = useState({});
 
     let [slug] = params.name; 
+    useEffect(()=>{
+        (async function(){
+            let data = await fetch('https://app.rumahjo.com/data/produk/produk-1697852315969-rumah-purnama-ancol')
+            let {data:dataJson, image:dataImage} = await data.json();
+            let [dataArray] = dataJson;
+            SetArrImage(dataImage)
+            console.log(dataArray)
+            SetData(dataArray)
+        })();
+    },[SetArrImage])
 
     return (<>
         <Header />
@@ -12,18 +26,16 @@ export default function Page({params}) {
             <div className="max-w-[calc(100%-450px)] bg-yellow-100">
                 <div className="bg-white shadow-md p-5 rounded-xm">
                 <Carousel className="h-[320px] bg-gray-700">
-                    <img
-                        alt="..."
-                        src="https://img.iproperty.com.my/angel-legacy/1110x624-crop/static/2020/12/1.-Desain-Rumah-Minimalis-dengan-Atap-Pelana.jpg"
-                    />
-                    <img
-                        alt="..."
-                        src="https://img.iproperty.com.my/angel-legacy/1110x624-crop/static/2020/12/1.-Desain-Rumah-Minimalis-dengan-Atap-Pelana.jpg"
-                    />
-                    <img
-                        alt="..."
-                        src="https://img.iproperty.com.my/angel-legacy/1110x624-crop/static/2020/12/1.-Desain-Rumah-Minimalis-dengan-Atap-Pelana.jpg"
-                    />
+                        {arrImage.map((s, i)=>{
+                            return (
+                                <li key={i}>
+                                    <img
+                                        alt="..."
+                                        src={'https://app.rumahjo.com/'+s.image}
+                                    />
+                                </li>
+                            )
+                        })}
                     </Carousel>
                 </div>
             </div>
@@ -37,16 +49,15 @@ export default function Page({params}) {
                             Penjual terverifikasi
                         </button>
                     </div>
-                    <h1 className="text-[1.3rem] font-bold">Rumah Tidar</h1>
+                    <h1 className="text-[1.3rem] font-bold">{data.judul}</h1>
                     <p className="py-2 text-[14px]">Luas dan nyaman untuk keluarga.</p>
-                    <div className="grid grid-cols-3 text-gray-700 text-[12px] text-center mt-2">
-                        <div className="border-x-[1px] border-gray-400 px-2">3 kamar</div>
-                        <div className="px-2">2 kamar mandi</div>
-                        <div className="border-x-[1px] border-gray-400 px-2">2 kamar tamu</div>
+                    <div className="grid grid-cols-2 text-gray-700 text-[12px] text-center mt-2">
+                        <div className="border-x-[1px] border-gray-400 px-2">{data.ktidur} kamar</div>
+                        <div className="px-2">{data.kmandi} kamar mandi</div>
                     </div>
                 </div>
                 <div className="rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
-                    <h1 className="text-[2rem] font-bold">Rp 200.000.000</h1>
+                    <h1 className="text-[2rem] font-bold">{formatRupiah(data.price)}</h1>
                     <button className="w-full bg-gray-700 text-white px-8 py-3 rounded-md text-[1.3rem] mt-[20px]">Buat Penawaran</button>
                 </div>
             </div>
@@ -60,24 +71,7 @@ export default function Page({params}) {
                         </div>
                         <hr></hr>
                         <div className="mb-2 px-5 text-[14px] text-gray-700">
-                            <p>Dijual Rumah Second, Single House. Lokasi Strategis. Dekat Pondok Indah.</p>
-                            <p>LB.: 275m2</p>
-                            <p>KT : 3 + 1</p>
-                            <p>
-                                KM : 3 + 1
-                            </p>
-                            <p>
-                                Garasi : 1 mobil
-                            </p>
-                            <p>
-                                Carport : 1 mobil
-                            </p>
-                            <p>
-                                SHM
-                            </p>
-                            <p>
-                                Harga : 5.1M nego
-                            </p>
+                            {data.deskripsi}
                         </div>
                     </div>
                 </div>
