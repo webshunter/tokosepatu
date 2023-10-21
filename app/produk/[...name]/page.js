@@ -7,11 +7,10 @@ import { formatRupiah } from "@/app/library/rupiah";
 export default function Page({params}) {
     const [arrImage,SetArrImage] = useState([]);
     const [data,SetData] = useState({});
-
     let [slug] = params.name; 
     useEffect(()=>{
         (async function(){
-            let data = await fetch('https://app.rumahjo.com/data/produk/produk-1697852315969-rumah-purnama-ancol')
+            let data = await fetch('https://app.rumahjo.com/data/produk/' + slug)
             let {data:dataJson, image:dataImage} = await data.json();
             let [dataArray] = dataJson;
             SetArrImage(dataImage)
