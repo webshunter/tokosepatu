@@ -68,7 +68,7 @@ export default function PostListing() {
         let b64Data = btoa(JSON.stringify(formProps))
 
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
-            console.log(b)
+            setVisible(visible);
         });
         // here unnecessary - just for testing if it can be read from local storage
 
