@@ -61,9 +61,17 @@ export const Header = function(){
 
     return (<>
         <nav className="fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-10 py-2">
-            <Link className="flex justify-center items-center md:block" href="/">
-                <img src="/rumahjocom.png" className="w-[200px] pt-3"></img>
-            </Link>
+            <div className="flex flex-wrap items-center justify-between mx-auto">
+                <Link className="flex md:justify-center md:items-center md:block" href="/">
+                    <img src="/rumahjocom.png" className="w-[200px] pt-1 md:pt-3"></img>
+                </Link>
+                <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-yellow-400 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                    <span className="sr-only">Open main menu</span>
+                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
             <div className="w-full md:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] h-[60px] top-[10px]">
                 <div className="flex justify-end overflow-hidden rounded-md">
                     <input placeholder="Seach..." className="w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700" />
