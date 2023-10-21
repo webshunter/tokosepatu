@@ -32,7 +32,6 @@ export default function Page({params}) {
             let {data:dataJson, image:dataImage} = await data.json();
             let [dataArray] = dataJson;
             SetArrImage(dataImage)
-            console.log(dataArray)
             SetData(dataArray)
         })();
     },[SetArrImage])
