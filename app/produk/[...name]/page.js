@@ -68,7 +68,7 @@ export default function Page({params}) {
                             Penjual terverifikasi
                         </button>
                     </div>
-                    <h1 className="text-[1.3rem] font-bold">{data.judul.capitalize()}</h1>
+                    <h1 className="text-[1.3rem] font-bold">{data.judul != undefined ? data.judul.capitalize() : data.judul}</h1>
                     <p className="py-2 text-[14px]">Luas dan nyaman untuk keluarga.</p>
                     <div className="grid grid-cols-2 text-gray-700 text-[12px] text-center mt-2">
                         <div className="border-x-[1px] border-gray-400 px-2">{data.ktidur} kamar</div>

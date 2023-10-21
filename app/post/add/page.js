@@ -26,6 +26,9 @@ export default function PostListing() {
         },10)
     })
 
+    const summerChange = function(){
+
+    }
 
     const simpanData = async function(e){
         e.preventDefault();
@@ -69,6 +72,7 @@ export default function PostListing() {
 
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
             setVisible(visible);
+            location.href = "/"
         });
         // here unnecessary - just for testing if it can be read from local storage
 
