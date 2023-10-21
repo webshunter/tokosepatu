@@ -76,7 +76,7 @@ export default function Page({params}) {
                     </div>
                 </div>
                 <div className="rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
-                    <h1 className="text-[2rem] font-bold">{formatRupiah(data.price)}</h1>
+                    <h1 className="text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price): "Rp 0"}</h1>
                     <button className="w-full bg-gray-700 text-white px-8 py-3 rounded-md text-[1.3rem] mt-[20px]">Buat Penawaran</button>
                 </div>
             </div>
