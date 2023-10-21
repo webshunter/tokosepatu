@@ -17,7 +17,6 @@ String.prototype.capitalize = function () {
     const capitalizedWords = words.map(word => {
         return word.charAt(0).toUpperCase() + word.slice(1);
     });
-
     // Menggabungkan kata-kata yang sudah di-kapitalisasi
     return capitalizedWords.join(' ');
 }

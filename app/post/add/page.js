@@ -6,7 +6,7 @@ import { postData } from '@/app/library/post';
 import upload from '@/app/library/upload';
 import "@fortawesome/fontawesome-svg-core/styles.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faBuilding} from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faChevronLeft, faBuilding} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 export default function PostListing() {
@@ -21,15 +21,53 @@ export default function PostListing() {
     const [price, setPrice] = useState("");
     const [visible, setVisible] = useState("");
 
+    const data = [
+        {
+            id: "01",
+            text: "Dijual: Rumah & Apartement"
+        }
+        ,{
+            id: "02",
+            text: "Disewakan: Rumah & Apartement"
+        }
+        ,{
+            id: "03",
+            text: "Tanah"
+        }
+        ,{
+            id: "04",
+            text: "Indekos"
+        }
+        ,{
+            id: "05",
+            text: "Dijual: Bangunan Komersil"
+        }
+        ,{
+            id: "07",
+            text: "Disewakan: Bangunan Komersil"
+        }
+    ]
+
+    function _id(id) {
+        return document.getElementById(id);
+    }
+
+    function backFunc(){
+        _id('kategori').style.display = 'block';
+        _id('kategori2').style.display = 'none';
+    }
 
     useEffect(()=>{
         setTimeout(()=>{
+
+
             document.querySelector('input#apartement').click();
             document.getElementById('cert1').click();
             Array.from(document.querySelectorAll('.property')).forEach(function(g){
                 g.onclick = function(){
                     let data = this.dataset.nilai;
-                    console.log(data)
+                    _id('kategori').style.display = 'none';
+                    _id('kategori2').style.display = 'block';
                 }
             })
         },10)
@@ -126,29 +164,20 @@ export default function PostListing() {
             </div>
             <div id="kategori2" style={{display:"none"}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
                 <div className='py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
-                    <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
+                    <button onClick={backFunc} type="button" className='px-5' style={{fontSize: '16px'}}>
                         <FontAwesomeIcon
-                            icon={faTimes}
+                            icon={faChevronLeft}
                             style={{ fontSize: 20, color: "black" }}
                         />
-                    </Link><h1 className='inline-block px-2'>Mau jual apa hari ini?</h1>
+                    </button><h1 className='inline-block px-2'>Pilih Kategori</h1>
                 </div>
                 <div className='h-[calc(100vh-50px)]'>
-                    <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
-                        <button type="button" data-nilai="0" className='property text-center p-2 shadow-md'>
-                            <FontAwesomeIcon
-                                icon={faBuilding}
-                                style={{ fontSize: 25, color: "black" }}
-                            />
-                            <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
-                        </button>
-                        <button type="button" data-nilai="1" className='property text-center p-2 shadow-md'>
-                            <FontAwesomeIcon
-                                icon={faBuilding}
-                                style={{ fontSize: 25, color: "black" }}
-                            />
-                            <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan</h1>
-                        </button>
+                    <div className="grid p-5 grid-cols-1 md:grid-cols-1">
+                        {data.map((q, i)=>{
+                            return (<li className='list-none' key={i}>
+                                <button type='button' style={{borderBottom: '1px solid #ddd'}} className='w-full text-left px-5 py-3'>{q.text}</button>
+                            </li>)
+                        })}
                     </div>
                 </div>
             </div>
