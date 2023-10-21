@@ -105,22 +105,6 @@ export default function Page({params}) {
                 </div>
             </div>
             <div className="side-content">
-                <div className="relative mb-2">
-                    <div className=" rounded-sm shadow-xl bg-white w-full py-3 ">
-                        <div className="mb-2 px-5">
-                            <button className="block w-full relative">
-                                <h1 className="float-right w-[calc(100%-60px)] text-gray-700 text-left text-[1.3rem] font-bold mt-2">Syariah Property</h1>
-                                <div className="rounded-[50%] border-gray-700 border-[2px] bg-gray-700 w-[50px] h-[50px] overflow-hidden flex items-center justify-center">
-                                    <img className="h-full" src="https://forged4x4.com/wp-content/uploads/2021/07/hateMugs_6.jpg"></img>
-                                </div>
-                            </button>
-                            <button className="w-full border-gray-700 border-[2px] bg-white-700 text-gray-700 px-8 py-2 rounded-md font-bold text-[1.1rem] mt-[20px]">Chat dengan penjualan</button>
-                            <div className="text-center mt-2">
-                                *** *** ***<button className="mx-2">Tampilkan Nomor</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div className="relative mb-5">
                     <div className=" rounded-sm shadow-xl bg-white w-full py-3 ">
                         <div className="mb-2 px-5">
