@@ -39,27 +39,25 @@ export default function Page({params}) {
 
     return (<>
         <Header />
-        <div className="relative my-5 mx-[50px]">
-            <div className="max-w-[calc(100%-450px)] bg-yellow-100">
-                <div className="bg-white shadow-md p-5 rounded-xm">
+        <div className="grid-content mx-[50px] gap-2 md:gap-[50px] mt-5">
+            <div className="bg-white shadow-md mb-2 p-5 rounded-xm">
                 <Carousel className="h-[320px] bg-gray-700">
-                        {arrImage.map((s, i)=>{
-                            return (
-                                <li key={i}>
-                                    <div className="flex justify-center">
-                                        <img
-                                            alt="..."
-                                            src={'https://app.rumahjo.com/'+s.image}
-                                        />
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </Carousel>
-                </div>
+                    {arrImage.map((s, i) => {
+                        return (
+                            <li key={i}>
+                                <div className="flex justify-center">
+                                    <img
+                                        alt="..."
+                                        src={'https://app.rumahjo.com/' + s.image}
+                                    />
+                                </div>
+                            </li>
+                        )
+                    })}
+                </Carousel>
             </div>
-            <div className="h-[200px] absolute grid gap-5 top-0 right-0 ">
-                <div className=" rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
+            <div>
+                <div className=" rounded-sm shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
                     <div className="mb-2">
                         <button className="bg-yellow-400 p-2 rounded-md text-white">
                             HIGHTLIGHT
@@ -75,8 +73,8 @@ export default function Page({params}) {
                         <div className="px-2">{data.kmandi} kamar mandi</div>
                     </div>
                 </div>
-                <div className=" rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
-                    <div style={{display:'grid', gridTemplateColumns: '80px auto'}}>
+                <div className="mt-5 rounded-sm shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
+                    <div style={{ display: 'grid', gridTemplateColumns: '80px auto' }}>
                         <div className="h-[80px]">
                             <img src="https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg"></img>
                         </div>
@@ -85,14 +83,14 @@ export default function Page({params}) {
                         </div>
                     </div>
                     <div>
-                        <button className="p-2 mt-3 mb-2 text-center w-full" style={{borderRadius: '10px', border: "2px solid #333"}}>Chat Dengan Penjual</button>
+                        <button className="p-2 mt-3 mb-2 text-center w-full" style={{ borderRadius: '10px', border: "2px solid #333" }}>Chat Dengan Penjual</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="grid-content mx-[50px] gap-[50px]">
+        <div className="grid-content mx-[50px] gap-2 md:gap-[50px] mt-5 mb-5">
             <div className="content-area">
-                <div className="relative mb-10">
+                <div className="relative mb-2">
                     <div className=" rounded-sm shadow-xl bg-white w-full py-3 ">
                         <div className="mb-2 px-5">
                             <h1 className="text-gray-400 text-[1.3rem] font-bold">Deskripsi</h1>
@@ -105,7 +103,7 @@ export default function Page({params}) {
                 </div>
             </div>
             <div className="side-content">
-                <div className="relative mb-5">
+                <div className="relative mb-2">
                     <div className=" rounded-sm shadow-xl bg-white w-full py-3 ">
                         <div className="mb-2 px-5">
                             <h1 className="w-[calc(100%-60px)] text-gray-700 text-left text-[1.3rem] font-bold mt-2">Lokasi iklan</h1>

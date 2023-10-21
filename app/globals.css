@@ -24,3 +24,10 @@ body{
   display: grid;
   grid-template-columns: auto 400px;
 }
+
+@media screen and (max-width: 600px) {
+  .grid-content {
+      display: grid;
+      grid-template-columns: auto;
+    }
+}

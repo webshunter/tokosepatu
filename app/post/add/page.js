@@ -4,7 +4,10 @@ import { Header } from "@/app/component/header";
 import { ImageUpload } from '@/app/component/ImageUploadMass';
 import { postData } from '@/app/library/post';
 import upload from '@/app/library/upload';
-
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faBuilding} from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 export default function PostListing() {
     const [lbangun, setLBangun] = useState("");
@@ -23,6 +26,12 @@ export default function PostListing() {
         setTimeout(()=>{
             document.querySelector('input#apartement').click();
             document.getElementById('cert1').click();
+            Array.from(document.querySelectorAll('.property')).forEach(function(g){
+                g.onclick = function(){
+                    let data = this.dataset.nilai;
+                    console.log(data)
+                }
+            })
         },10)
     })
 
@@ -87,6 +96,62 @@ export default function PostListing() {
             <label htmlFor="type" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                 Tipe<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
+            <div id="kategori" className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                    <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            style={{ fontSize: 20, color: "black" }}
+                        />
+                    </Link><h1 className='inline-block px-2'>Mau jual apa hari ini?</h1>
+                </div>
+                <div className='h-[calc(100vh-50px)]'>
+                    <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
+                        <button type="button" data-nilai="0" className='property text-center p-2 shadow-md'>
+                            <FontAwesomeIcon
+                                icon={faBuilding}
+                                style={{ fontSize: 25, color: "black" }}
+                            />
+                            <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
+                        </button>
+                        <button type="button" data-nilai="1" className='property text-center p-2 shadow-md'>
+                            <FontAwesomeIcon
+                                icon={faBuilding}
+                                style={{ fontSize: 25, color: "black" }}
+                            />
+                            <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan</h1>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="kategori2" style={{display:"none"}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                    <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
+                        <FontAwesomeIcon
+                            icon={faTimes}
+                            style={{ fontSize: 20, color: "black" }}
+                        />
+                    </Link><h1 className='inline-block px-2'>Mau jual apa hari ini?</h1>
+                </div>
+                <div className='h-[calc(100vh-50px)]'>
+                    <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
+                        <button type="button" data-nilai="0" className='property text-center p-2 shadow-md'>
+                            <FontAwesomeIcon
+                                icon={faBuilding}
+                                style={{ fontSize: 25, color: "black" }}
+                            />
+                            <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
+                        </button>
+                        <button type="button" data-nilai="1" className='property text-center p-2 shadow-md'>
+                            <FontAwesomeIcon
+                                icon={faBuilding}
+                                style={{ fontSize: 25, color: "black" }}
+                            />
+                            <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan</h1>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <input type='hidden' name='uniqid' className='none' defaultValue={'produk-'+Date.now()}></input>
             <ul className="grid w-full gap-6 md:grid-cols-2">
                 <li>
