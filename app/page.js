@@ -31,15 +31,15 @@ export default function Home() {
         <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
           <img
               alt="..."
-              src="https://scontent-cgk1-1.xx.fbcdn.net/v/t39.30808-6/272992589_115122914406451_9172091399930498802_n.jpg?stp=dst-jpg_s960x960&_nc_cat=106&ccb=1-7&_nc_sid=52f669&_nc_ohc=AmwldY2LA6cAX-MHDIy&_nc_ht=scontent-cgk1-1.xx&oh=00_AfCbzjC8yoiDsJpoNrjGWiW3z1U3pJ1NEl0NFEshGd6USQ&oe=652C53BA"
+              src="/banner.jpg"
           />
           <img
               alt="..."
-              src="https://scontent-cgk1-1.xx.fbcdn.net/v/t39.30808-6/272992589_115122914406451_9172091399930498802_n.jpg?stp=dst-jpg_s960x960&_nc_cat=106&ccb=1-7&_nc_sid=52f669&_nc_ohc=AmwldY2LA6cAX-MHDIy&_nc_ht=scontent-cgk1-1.xx&oh=00_AfCbzjC8yoiDsJpoNrjGWiW3z1U3pJ1NEl0NFEshGd6USQ&oe=652C53BA"
+              src="/banner.jpg"
           />
           <img
               alt="..."
-              src="https://scontent-cgk1-1.xx.fbcdn.net/v/t39.30808-6/272992589_115122914406451_9172091399930498802_n.jpg?stp=dst-jpg_s960x960&_nc_cat=106&ccb=1-7&_nc_sid=52f669&_nc_ohc=AmwldY2LA6cAX-MHDIy&_nc_ht=scontent-cgk1-1.xx&oh=00_AfCbzjC8yoiDsJpoNrjGWiW3z1U3pJ1NEl0NFEshGd6USQ&oe=652C53BA"
+              src="/banner.jpg"
           />
         </Carousel>
       </div>
