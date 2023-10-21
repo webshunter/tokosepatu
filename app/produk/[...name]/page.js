@@ -58,7 +58,7 @@ export default function Page({params}) {
                     </Carousel>
                 </div>
             </div>
-            <div className="h-[360px] absolute grid gap-5 top-0 right-0 ">
+            <div className="h-[200px] absolute grid gap-5 top-0 right-0 ">
                 <div className=" rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
                     <div className="mb-2">
                         <button className="bg-yellow-400 p-2 rounded-md text-white">
@@ -68,16 +68,25 @@ export default function Page({params}) {
                             Penjual terverifikasi
                         </button>
                     </div>
-                    <h1 className="text-[1.3rem] font-bold">{data.judul != undefined ? data.judul.capitalize() : data.judul}</h1>
-                    <p className="py-2 text-[14px]">Luas dan nyaman untuk keluarga.</p>
+                    <h1 className="text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price) : "Rp 0"}</h1>
+                    <h1 className="text-[1rem]">{data.judul != undefined ? data.judul.capitalize() : data.judul}</h1>
                     <div className="grid grid-cols-2 text-gray-700 text-[12px] text-center mt-2">
                         <div className="border-x-[1px] border-gray-400 px-2">{data.ktidur} kamar</div>
                         <div className="px-2">{data.kmandi} kamar mandi</div>
                     </div>
                 </div>
-                <div className="rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
-                    <h1 className="text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price): "Rp 0"}</h1>
-                    <button className="w-full bg-gray-700 text-white px-8 py-3 rounded-md text-[1.3rem] mt-[20px]">Buat Penawaran</button>
+                <div className=" rounded-sm shadow-xl bg-white w-[400px] px-5 py-3 ">
+                    <div style={{display:'grid', gridTemplateColumns: '80px auto'}}>
+                        <div className="h-[80px]">
+                            <img src="https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg"></img>
+                        </div>
+                        <div className="flex items-center p-2">
+                            <h1 className="text-2xl">Rumah Jo</h1>
+                        </div>
+                    </div>
+                    <div>
+                        <button className="p-2 mt-3 mb-2 text-center w-full" style={{borderRadius: '10px', border: "2px solid #333"}}>Chat Dengan Penjual</button>
+                    </div>
                 </div>
             </div>
         </div>
