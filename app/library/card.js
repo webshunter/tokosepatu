@@ -1,23 +1,25 @@
 import Image from "next/image"
 import Link from "next/link"
+import { formatRupiah } from "./rupiah"
 
-export const ProdukCard = function(){
+export const ProdukCard = function({data}){
+    let { key, uniqid, price, judul, image:images} = data
     return (<>
-        <div className="relative bg=gray-200 w-full">
-            <button class="p-1 md:p-2 z-10 shadow-md rounded-md inline-block absolute bg-white top-2 right-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-current hover:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <div key={key} className="relative bg=gray-200 w-full">
+            <button className="p-1 md:p-2 z-10 shadow-md rounded-md inline-block absolute bg-white top-2 right-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 fill-current hover:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
             </button>
             <Link href="produk/rumah-indah-permai-malang" className="w-full">
                 <div className="rounded overflow-hidden shadow-lg relative">
-                    <img className="w-full" src="https://img.iproperty.com.my/angel-legacy/1110x624-crop/static/2020/12/1.-Desain-Rumah-Minimalis-dengan-Atap-Pelana.jpg" alt="Sunset in the mountains"></img>
+                    <img className="w-full" src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
                     <div className="px-2 bg-yellow-400 mt-2">
                         <div className="bg-white">
                             <div className="px-2 md:px-6 py-2">
-                                <div className="font-bold text-[12px] md:text-[1.2rem] mb-2 text-ellipsis truncate ...">Rp 200.000.000</div>
+                                <div className="font-bold text-[12px] md:text-[1.2rem] mb-2 text-ellipsis truncate ...">{formatRupiah(price)}</div>
                                 <p className="text-[13px] text-gray-700 text-base truncate ...">
-                                    Dijual rumah kpr murah di dusun gldakan...
+                                    {judul}
                                 </p>
                             </div>
                             <div className="mx-2 md:px-4 py-2 text-[9px]  md:text-[12px]">

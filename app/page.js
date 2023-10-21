@@ -6,11 +6,17 @@ import { Carousel } from "flowbite-react";
 
 export default function Home() {
 
+  const [dataListing, setDataListing] = useState([]);
+
   const [card, addCard] = useState([]);
 
   useEffect(()=>{
-
-  })
+    (async function(){
+      let data = await fetch('https://app.rumahjo.com/data/listing/0/100');
+      data = await data.json();
+      setDataListing(data);
+    })()
+  },[setDataListing])
 
   let yh = [];
   for (let index = 0; index < 12; index++) {
@@ -41,10 +47,13 @@ export default function Home() {
         <h1 className='text-2xl'>Rekomendasi baru</h1>
       </div>
       <div className="mx-4 mt-2 md:mx-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-        {yh.map((y, i) => {
-          return (<>
-            <ProdukCard key={i} />
-          </>)
+        {dataListing.map((y, i) => {
+          y.key = i;
+          return (
+          <li className="list-none" key={i}>
+            <ProdukCard data={y}/>
+          </li>
+          )
         })}
       </div>
       <div className='text-center mt-10 mb-5'>

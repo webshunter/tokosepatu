@@ -16,6 +16,7 @@ export default function PostListing() {
     const [judul, setJudul] = useState("");
     const [deskrisi, setDeskrisi] = useState("");
     const [price, setPrice] = useState("");
+    const [visible, setVisible] = useState("");
 
 
     useEffect(()=>{
