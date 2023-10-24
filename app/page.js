@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='mx-4 md:mx-10 my-5 '>
+      <div className='my-5 '>
         <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
           <img
               alt="..."
@@ -43,10 +43,10 @@ export default function Home() {
           />
         </Carousel>
       </div>
-      <div className='mx-4 md:mx-10'>
+      <div className='mx-[20px] xl:mx-[60px]'>
         <h1 className='text-2xl'>Rekomendasi baru</h1>
       </div>
-      <div className="mx-4 mt-2 md:mx-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
         {dataListing.map((y, i) => {
           y.key = i;
           return (

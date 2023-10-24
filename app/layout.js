@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.png" type='png' sizes="any" />
-      <body style={{overflowX:'hidden'}} className="pt-[125px] md:pt-[80px] bg-gray-200">
+      <body style={{overflowX:'hidden'}} className="pt-[100px] md:pt-[60px] bg-gray-100">
         <Providers>
           <Header />
             {children}
