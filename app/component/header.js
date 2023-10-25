@@ -15,9 +15,9 @@ const ButtonLogin = ({props}) => {
         return (<>
             <h1 className="mx-4">{session.user.name}</h1>
             <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => signOut() }>Log Out</Button>
-            <a href="/post/add" className="h-[45px] w-[45px] rounded-md text-[1.8rem] overflow-hidden flex justify-center items-center p-0 border-[2px] border-yellow-400">
+            <Link href="/post/add" className="h-[45px] w-[45px] rounded-md text-[1.8rem] overflow-hidden flex justify-center items-center p-0 border-[2px] border-yellow-400">
                 <span className="block">+</span>
-            </a>
+            </Link>
         </>)
     }
 
