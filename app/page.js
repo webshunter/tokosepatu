@@ -11,9 +11,15 @@ export default function Home() {
   const [card, addCard] = useState([]);
 
   useEffect(()=>{
+
+    if(localStorage.getItem('produkstart') != undefined){
+      setDataListing(JSON.parse(localStorage.getItem('produkstart')));
+    }
+
     (async function(){
       let data = await fetch('https://app.rumahjo.com/data/listing/0/100');
       data = await data.json();
+      localStorage.setItem('produkstart', JSON.stringify(data));
       setDataListing(data);
     })()
   },[setDataListing])
