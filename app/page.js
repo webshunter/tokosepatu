@@ -11,7 +11,7 @@ export default function Home() {
   const [card, addCard] = useState([]);
 
   useEffect(()=>{
-
+    document.getElementById('search').value = '';
     if(localStorage.getItem('produkstart') != undefined){
       setDataListing(JSON.parse(localStorage.getItem('produkstart')));
     }

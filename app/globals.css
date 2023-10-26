@@ -31,3 +31,8 @@ body{
       grid-template-columns: auto;
     }
 }
+
+.search-menus{
+  display: grid;
+  grid-template-columns: 240px auto;
+}
