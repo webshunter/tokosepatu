@@ -17,7 +17,7 @@ export default function Home() {
     }
 
     (async function(){
-      let data = await fetch('https://app.rumahjo.com/data/listing/0/100');
+      let data = await fetch('https://app.rumahjo.com/data/listing/0/20');
       data = await data.json();
       localStorage.setItem('produkstart', JSON.stringify(data));
       setDataListing(data);
