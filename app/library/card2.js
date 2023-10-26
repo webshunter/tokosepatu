@@ -17,7 +17,7 @@ export const ProdukCard = function ({ data }) {
             </label>
             <Link href={"/produk/" + slug} className="w-full">
                 <div style={{ border: '1px solid #aaa' }} className="flex md:block rounded bg-white overflow-hidden shadow-lg relative">
-                    <div className="w-[120px] min-w-[120px] max-w-[120px] md:min-w-full md:max-w-full md:w-full p-2 flex items-start justify-center h-[100px] md:h-[250px] lg:h-[150px] xl:h-[200px] overflow-hidden">
+                    <div className="w-[120px] min-w-[120px] max-w-[120px] md:min-w-full md:max-w-full md:w-full p-2 flex items-start justify-center h-[100px] md:h-[180px] lg:h-[150px] xl:h-[140px] overflow-hidden">
                         <img className="w-full w-auto block " src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
                     </div>
                     <div className="w-[calc(100%-120px)] md:w-auto px-auto md:px-2 md:bg-yellow-400 mt-2">

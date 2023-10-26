@@ -61,18 +61,52 @@ export default function Search({params}) {
                                 </li>
                             </ul>
                         </li>
-                        <li className='font-bold'>LOKASI</li>
-                        <li className='font-bold'>HARGA</li>
-                        <li className='font-bold'>TIPE</li>
-                        <li className='font-bold'>LUAS BANGUNAN</li>
-                        <li className='font-bold'>
+                        <li>
+                            <h1 className='font-bold'>LOKASI</h1>
+                            <p>Wagir, malang</p>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>HARGA</h1>
+                            <p>Pilih dari rentang</p>
+                            <div className='py-2 pl-2 w-[100px]' style={{display:'grid', gridTemplateColumns:'auto auto auto auto'}}>
+                                <input className='h-[30px] inline-block w-[80px]' type='number' placeholder='min' />
+                                <div className='flex items-center px-1'>sampai</div>
+                                <input className='h-[30px] inline-block w-[80px]' type='number' placeholder='maks' />
+                                <div>
+                                    <button className='h-[30px] flex items-center px-2 rounded bg-gray-300 ml-2'>simpan</button>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>TIPE</h1>
+                            <p>Pilih dari pilihan di bawah</p>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>LUAS BANGUNAN</h1>
+                            <p>Pilih dari rentang</p>
                             <MultiRangeSlider min={0} max={10000} />
                         </li>
-                        <li className='font-bold'>KAMAR TIDUR</li>
-                        <li className='font-bold'>KAMAR MANDI</li>
-                        <li className='font-bold'>LUAS TANAH</li>
-                        <li className='font-bold'>SERTIFIKASI</li>
-                        <li className='font-bold'>LANTAI</li>
+                        <li>
+                            <h1 className='font-bold'>KAMAR TIDUR</h1>
+                            <p>Pilih dari pilihan di bawah</p>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>KAMAR MANDI</h1>
+                            <p>Pilih dari pilihan di bawah</p>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>LUAS TANAH</h1>
+                            <p>Pilih dari rentang</p>
+                            <MultiRangeSlider min={0} max={10000} />
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>SERTIFIKASI</h1>
+                            <p>Pilih dari pilihan di bawah</p>
+                        </li>
+                        <li>
+                            <h1 className='font-bold'>LANTAI</h1>
+                            <p>Pilih dari pilihan di bawah</p>
+                        </li>
                     </ul>
                 </div>
                 <div>
