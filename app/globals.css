@@ -37,3 +37,24 @@ body{
   margin-left: 30px;
   grid-template-columns: 300px auto;
 }
+
+input{
+  margin-top: 5px;
+  margin-bottom: 10px;;
+  display: block;
+  width: 100%;
+}
+
+textarea{
+  margin-top: 5px;
+  margin-bottom: 10px;;
+  display: block;
+  width: 100%;
+}
+
+select{
+  margin-top: 5px;
+  margin-bottom: 10px;;
+  display: block;
+  width: 100%;
+}
