@@ -208,5 +208,12 @@ export default function Page({params}) {
                 </div>
             </div>
         </div>
+        <div className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
+            <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
+                <div className="pb-[16px]">
+                    <h3 className="text-[20px] font-bold text-gray-800">Iklan Terkait</h3>
+                </div>
+            </div>
+        </div>
     </>)
 }
