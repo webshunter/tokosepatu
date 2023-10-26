@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Carousel } from "flowbite-react";
 import { ProdukCard } from '@/app/library/card2';
 import { capitalize } from '@/app/library/global';
+import Link from 'next/link';
+import MultiRangeSlider from '@/app/component/multiRangeSlider/MultiRangeSlider';
 
 export default function Search({params}) {
     let [slug] = params.name; 
@@ -41,8 +43,37 @@ export default function Search({params}) {
                 <h1 className={`py-[20px] font-bold text-gray-900 block text-[1.2rem]`}>{nama} - RumahJo Cara Tepat Jual Cepat</h1>
             </div>
             <div className='search-menus'>
-                <div>
-
+                <div className='px-5'>
+                    <ul className='text-gray-750'>
+                        <li className='font-bold'>Kategori</li>
+                        <li>
+                            <ul className='ml-4'>
+                                <li>Properti</li>
+                                <li>
+                                    <ul className='ml-4'>
+                                        <li>
+                                            <Link href={``}>Rumah ( {0} )</Link>
+                                        </li>
+                                        <li>
+                                            <Link href={``}>Tanah ( {0} )</Link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li className='font-bold'>LOKASI</li>
+                        <li className='font-bold'>HARGA</li>
+                        <li className='font-bold'>TIPE</li>
+                        <li className='font-bold'>LUAS BANGUNAN</li>
+                        <li className='font-bold'>
+                            <MultiRangeSlider min={0} max={10000} />
+                        </li>
+                        <li className='font-bold'>KAMAR TIDUR</li>
+                        <li className='font-bold'>KAMAR MANDI</li>
+                        <li className='font-bold'>LUAS TANAH</li>
+                        <li className='font-bold'>SERTIFIKASI</li>
+                        <li className='font-bold'>LANTAI</li>
+                    </ul>
                 </div>
                 <div>
                     <div className='mx-[20px] xl:mx-[60px]'>
