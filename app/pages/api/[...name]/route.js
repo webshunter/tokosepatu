@@ -1,6 +1,7 @@
 // app/api/route.js
 import { NextResponse, NextRequest } from "next/server";
 import mysql from 'mysql2/promise';
+import { func } from "prop-types";
 
 function paramsToObject(req) {
     let reqq = req.nextUrl.searchParams.entries()
@@ -11,17 +12,22 @@ function paramsToObject(req) {
     }
     let limitation = {}
     let condition = {}
+    let having = {}
     Object.keys(result).forEach((s,i)=>{
         if(s == 'limit' || s == 'start'){
             limitation[s] = result[s];
-        }else{
+        }else if(s == 'd' ){
+            having['judul'] = result[s];
+            having['deskrisi'] = result[s];
+        } else {
             condition[s] = result[s];
         }
     })
 
     return {
         limitation: limitation,
-        condition: condition
+        condition: condition,
+        having: having
     };
 }
 
@@ -32,6 +38,7 @@ export async function GET(req, Response) {
     console.log(params)
 
     let {limit, start} = params.limitation;
+    
 
     const connection = await mysql.createConnection({
         host: '202.157.177.241',
@@ -41,7 +48,15 @@ export async function GET(req, Response) {
     });
     try{
         const query = `SELECT a.*, b.image FROM listing a
-        LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY uniqid LIMIT ${start}, ${limit}`
+        LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY uniqid ${(function(){
+            let d = Object.keys(params.having);
+            if(d.length > 0){
+                return ` HAVING ${d.map((c)=>{
+                    return ` ${c} LIKE "%${params.having[c]}%" `;
+                }).join(' OR ')} LIMIT ${start}, ${limit} `
+            }
+            return ""; 
+        })()}`
         const value = [];
         const [data] = await connection.query(query);
         connection.end();
