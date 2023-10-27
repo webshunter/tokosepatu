@@ -28,7 +28,7 @@ export default function Search({params}) {
             localStorage.setItem('produkstartsearch', JSON.stringify(data.message));
             setDataListing(data.message);
         })()
-    }, [setDataListing, setNama])
+    }, [setDataListing, setNama, slug])
 
     let yh = [];
     for (let index = 0; index < 12; index++) {
