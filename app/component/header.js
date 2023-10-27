@@ -9,6 +9,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { postData } from "../library/post";
 import { encode } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
+import { func } from "prop-types";
 
 const ButtonLogin = ({props}) => {
     const { data: session } = useSession();
@@ -63,6 +64,10 @@ export const Header = function(){
         signIn();
     }
 
+    const searchButton = function(){
+        goSeach(document.getElementById("search").value)
+    }
+
     const goSeach = function(value){
         value = encodeURI( value.toLowerCase().replace(/\ /g, '-') )
         console.log(value)
@@ -115,7 +120,7 @@ export const Header = function(){
             <div className="w-full md:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] h-[60px] top-[10px]">
                 <div className="flex justify-end overflow-hidden rounded-md">
                     <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700" />
-                    <button className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
+                    <button onClick={searchButton} className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
                 <div className="hidden md:flex min-w-[320px] w-[320px] justify-center items-center">
                     <ButtonLogin props={props} />
