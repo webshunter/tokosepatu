@@ -79,13 +79,13 @@ export const Header = function(){
         const ori = function(){
             let ori = location.host;
             if(ori == 'localhost:3000'){
-                return 'http://localhost:5000';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.vercel.app'){
-                return 'https://apirumahjo.vercel.app';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.com'){
-                return 'https://apirumahjo.vercel.app';
+                return 'https://app.rumahjo.com';
             }
             return '';
         }

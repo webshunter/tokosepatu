@@ -18,15 +18,15 @@ export default function Search({params}) {
         let search = decodeURI(getSlug).replace(/\-/g, ' ');
         document.getElementById('search').value = search;
         setNama(capitalize(search))
-        if (localStorage.getItem('produkstart') != undefined) {
-            setDataListing(JSON.parse(localStorage.getItem('produkstart')));
+        if (localStorage.getItem('produkstartsearch') != undefined) {
+            setDataListing(JSON.parse(localStorage.getItem('produkstartsearch')));
         }
 
         (async function () {
-            let data = await fetch('https://app.rumahjo.com/data/listing/0/100');
+            let data = await fetch(`http://localhost:3000/pages/api/produk?limit=10&start=0`);
             data = await data.json();
-            localStorage.setItem('produkstart', JSON.stringify(data));
-            setDataListing(data);
+            localStorage.setItem('produkstartsearch', JSON.stringify(data.message));
+            setDataListing(data.message);
         })()
     }, [setDataListing, setNama])
 
