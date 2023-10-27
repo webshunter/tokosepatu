@@ -1,9 +1,6 @@
 // app/api/route.js
-import { Query } from "./sql";
 import { NextResponse, NextRequest } from "next/server";
 import mysql from 'mysql2/promise';
-import { func, object } from "prop-types";
-import { param } from "jquery";
 
 function paramsToObject(req) {
     let reqq = req.nextUrl.searchParams.entries()
