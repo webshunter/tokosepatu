@@ -3,6 +3,7 @@ import { Header } from "@/app/component/header";
 import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
+import Map from 'react-map-gl';
 
 String.prototype.capitalize = function () {
     // Memeriksa apakah string kosong
@@ -25,6 +26,9 @@ export default function Page({params}) {
     const [arrImage,SetArrImage] = useState([]);
     const [data,SetData] = useState({});
     let [slug] = params.name; 
+    // [latitude,longitude]
+    let maps = ["-7.9828022","112.6069727"];
+
     useEffect(()=>{
         (async function(){
             let data = await fetch('https://app.rumahjo.com/data/produk/' + slug)
@@ -191,9 +195,8 @@ export default function Page({params}) {
                         <h3 className="text-[20px] font-bold text-gray-800 mb-[20px]">Lokasi Iklan</h3>
                     </div>
                     <div>
-                        <div className="rounded-[5px] my-[10px]">
-                            <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--GHQL6--p--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/yduq2igpl888jzg495wh.png"></img>
-                        </div>
+                        <iframe 
+                            src={`https://www.google.com/maps?q=${maps.join(",")}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div className="relative w-[100%] shadow-xl md:shadow-none bg-white md:bg-transparent overflow-hidden border-t border-gray-400 md:border-0 rounded-[4px]">

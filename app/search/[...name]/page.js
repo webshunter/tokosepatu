@@ -7,6 +7,7 @@ import { capitalize } from '@/app/library/global';
 import Link from 'next/link';
 import MultiRangeSlider from '@/app/component/multiRangeSlider/MultiRangeSlider';
 
+
 export default function Search({params}) {
     let [slug] = params.name; 
     const [nama, setNama] = useState('');
