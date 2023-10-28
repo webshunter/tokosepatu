@@ -137,7 +137,7 @@ export default function PostListing() {
                     <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
                         <button data-nilai="0" onClick={(w)=>{
                             backFunc(2);
-                        }} type="button" data-nilai="0" className='text-center p-2 shadow-md'>
+                        }} type="button" className='text-center p-2 shadow-md'>
                             <FontAwesomeIcon
                                 icon={faBuilding}
                                 style={{ fontSize: 25, color: "black" }}
@@ -146,7 +146,7 @@ export default function PostListing() {
                         </button>
                         <button data-nilai="1" onClick={(w) => {
                             backFunc(2);
-                        }} type="button" data-nilai="1" className='text-center p-2 shadow-md'>
+                        }} type="button" className='text-center p-2 shadow-md'>
                             <FontAwesomeIcon
                                 icon={faBuilding}
                                 style={{ fontSize: 25, color: "black" }}
@@ -230,7 +230,7 @@ export default function PostListing() {
                 </div>
                 <div className='px-5'>
                     <h1 className="text-sm dark:text-gray-50 pt-8">Price</h1>
-                    <input type="text"
+                    <input
                         value={price}
                         onChange={(e) => {
                             setPrice(e.target.value);
