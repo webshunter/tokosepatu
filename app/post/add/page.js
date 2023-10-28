@@ -1,28 +1,18 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { Header } from "@/app/component/header";
-import { ImageUpload } from '@/app/component/ImageUploadMass';
-import { postData } from '@/app/library/post';
 import upload from '@/app/library/upload';
 import "@fortawesome/fontawesome-svg-core/styles.css"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronLeft, faBuilding} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import facility from '../../wilayah/facility.json';
-import { func } from 'prop-types';
 import { useRouter } from 'next/navigation';
+import { FormPost } from './form';
+import { ImageUpload } from "@/app/component/ImageUploadMass";
 
 export default function PostListing() {
     const route = useRouter();
-    const [lbangun, setLBangun] = useState("");
-    const [ltanah, setLTanah] = useState("");
-    const [ktidur, setKTidur] = useState("");
-    const [kmandi, setKMandi] = useState("");
-    const [lantai, setLantai] = useState("");
-    const [alamat, setAlamat] = useState("");
-    const [judul, setJudul] = useState("");
-    const [deskrisi, setDeskrisi] = useState("");
     const [price, setPrice] = useState("");
+
     const [visible, setVisible] = useState("");
 
     const data = [
@@ -56,38 +46,18 @@ export default function PostListing() {
         return document.getElementById(id);
     }
 
-    function backFunc(){
-        _id('kategori').style.display = 'block';
-        _id('kategori2').style.display = 'none';
-        _id('kategori3').style.display = 'none';
-    }
-    function backFunc2(){
-        _id('kategori').style.display = 'none';
-        _id('kategori2').style.display = 'block';
-        _id('kategori3').style.display = 'none';
+    function backFunc(a = 1, b = 6){
+        for (let v = 1; v <= b; v++) {
+            if(a == v){
+                _id('kategori' + v).style.display = 'block';
+            }else{
+                _id('kategori' + v).style.display = 'none';
+            }
+        }
     }
 
     useEffect(()=>{
-        setTimeout(()=>{
-            document.querySelector('input#apartement').click();
-            document.getElementById('cert1').click();
-            Array.from(document.querySelectorAll('.property')).forEach(function(g){
-                g.onclick = function(){
-                    let data = this.dataset.nilai;
-                    _id('kategori').style.display = 'none';
-                    _id('kategori2').style.display = 'block';
-                    _id('kategori3').style.display = 'none';
-                }
-            })
-            Array.from(document.querySelectorAll('.kategori')).forEach(function(g){
-                g.onclick = function(){
-                    let data = this.dataset.nilai;
-                    _id('kategori').style.display = 'none';
-                    _id('kategori2').style.display = 'none';
-                    _id('kategori3').style.display = 'block';
-                }
-            })
-        },10)
+        
     }, []);
 
     const summerChange = function(){
@@ -147,9 +117,6 @@ export default function PostListing() {
         });
         // here unnecessary - just for testing if it can be read from local storage
     }
-
-    var rows = [], i = 0, len = 10;
-    while (++i <= len) rows.push(i);
   
     return (
         <form onSubmit={simpanData} className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
@@ -157,8 +124,8 @@ export default function PostListing() {
             <label htmlFor="type" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                 Tipe<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
-            <div id="kategori" className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
-                <div className='py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+            <div id="kategori1" style={{ paddingTop: '60px', overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='fixed top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
                     <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
                         <FontAwesomeIcon
                             icon={faTimes}
@@ -168,14 +135,18 @@ export default function PostListing() {
                 </div>
                 <div className='h-[calc(100vh-50px)]'>
                     <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
-                        <button type="button" data-nilai="0" className='property text-center p-2 shadow-md'>
+                        <button data-nilai="0" onClick={(w)=>{
+                            backFunc(2);
+                        }} type="button" data-nilai="0" className='text-center p-2 shadow-md'>
                             <FontAwesomeIcon
                                 icon={faBuilding}
                                 style={{ fontSize: 25, color: "black" }}
                             />
                             <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
                         </button>
-                        <button type="button" data-nilai="1" className='property text-center p-2 shadow-md'>
+                        <button data-nilai="1" onClick={(w) => {
+                            backFunc(2);
+                        }} type="button" data-nilai="1" className='text-center p-2 shadow-md'>
                             <FontAwesomeIcon
                                 icon={faBuilding}
                                 style={{ fontSize: 25, color: "black" }}
@@ -185,20 +156,24 @@ export default function PostListing() {
                     </div>
                 </div>
             </div>
-            <div id="kategori2" style={{display:"none"}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
-                <div className='py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
-                    <button onClick={backFunc} type="button" className='px-5' style={{fontSize: '16px'}}>
+            <div id="kategori2" style={{ paddingTop: '60px', display: "none", overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='fixed top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                    <button onClick={(w) => {
+                        backFunc(1);
+                    }} type="button" className='px-5' style={{fontSize: '16px'}}>
                         <FontAwesomeIcon
                             icon={faChevronLeft}
                             style={{ fontSize: 20, color: "black" }}
                         />
-                    </button><h1 className='inline-block px-2'>Pilih Kategori</h1>
+                    </button><h1 className='inline-block px-2'>Properti</h1>
                 </div>
                 <div className='h-[calc(100vh-50px)]'>
                     <div className="grid p-5 grid-cols-1 md:grid-cols-1">
                         {data.map((q, i)=>{
                             return (<li className='list-none' key={i}>
-                                <button type='button' data-nilai={q.id} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
+                                <button onClick={(w) => {
+                                    backFunc(3);
+                                }} type='button' data-nilai={q.id} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
                             </li>)
                         })}
                     </div>
@@ -206,224 +181,104 @@ export default function PostListing() {
             </div>
             <div id="kategori3" style={{paddingTop:'60px',display:"none", overflowY:'scroll'}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
                 <div className='fixed top-0 bg-white w-full py-2 h-[50px] flex items-center' style={{ borderBottom: '1px solid #ddd' }}>
-                    <button onClick={backFunc2} type="button" className='px-5' style={{ fontSize: '16px' }}>
+                    <button onClick={(w) => {
+                        backFunc(2);
+                    }} type="button" className='px-5' style={{ fontSize: '16px' }}>
                         <FontAwesomeIcon
                             icon={faChevronLeft}
                             style={{ fontSize: 20, color: "black" }}
                         />
-                    </button><h1 className='inline-block px-2'>Pilih Kategori</h1>
+                    </button><h1 className='inline-block px-2'>Include Some Details</h1>
                 </div>
                 <div className='px-5'>
-                    <input type='hidden' name='uniqid' className='none' defaultValue={'produk-'+Date.now()}></input>
-                    <ul className="p-3 grid w-full gap-6 grid-cols-2">
-                        <li>
-                            <input type="radio" 
-                            id="apartement" 
-                            name="type" 
-                            value="0" 
-                            className="hidden peer" 
-                            required/>
-                            <label htmlFor="apartement" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
-                                <div className="block">
-                                    <div className="w-full">Apartemen</div>
-                                </div>
-                            </label>
-                        </li>
-                        <li>
-                            <input 
-                                type="radio" 
-                                id="rumah" 
-                                name="type" 
-                                value="1" 
-                                className="hidden peer"
-                            />
-                            <label 
-                                htmlFor="rumah" 
-                                className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                >
-                                <div className="block">
-                                    <div className="w-full">Rumah</div>
-                                </div>
-                            </label>
-                        </li>
-                    </ul>
-                    <label htmlFor="lbangun" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Luas Bangunan<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <input type="number"
-                        value={lbangun}
-                        onChange={(e) => {
-                            setLBangun(e.target.value);
-                        }}
-                        name="lbangun"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    />
-                    <label htmlFor="ltanah" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Luas Tanah<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <input type="number"
-                        value={ltanah}
-                        onChange={(e) => {
-                            setLTanah(e.target.value);
-                        }}
-                        name="ltanah"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    />
-                    <label htmlFor="ktidur" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Kamar Tidur<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <select
-                        value={ktidur}
-                        onChange={(e) => {
-                            setKTidur(e.target.value);
-                        }}
-                        name="ktidur"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    >
-                        <option value=""></option>
-                        {rows.map(function (i, x) {
-                            return <option key={x} value={i}>{i}</option>;
-                        })}
-                        <option value={11}>&gt;10</option>
-                    </select>
-                    <label htmlFor="kmandi" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Kamar Mandi<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <select
-                        value={kmandi}
-                        onChange={(e) => {
-                            setKMandi(e.target.value);
-                        }}
-                        name="kmandi"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    >
-                        <option value=""></option>
-                        {rows.map(function (i, x) {
-                            return <option key={x} value={i}>{i}</option>;
-                        })}
-                        <option value={11}>&gt;10</option>
-                    </select>
-                    <label htmlFor="lantai" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Lantai<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <input type="number"
-                        value={lantai}
-                        onChange={(e) => {
-                            setLantai(e.target.value);
-                        }}
-                        name="lantai"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    />
-                    <label htmlFor="facility" className="text-gray-500 font-light mt-8 dark:text-gray-50">Fasilitas</label>
-                    <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                        {facility.data.map((d,i)=>{
-                            return (
-                                <li key={i} className="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                                    <div className="flex items-center pl-3">
-                                        <input name="facility" id={d.toLowerCase().replace(/\ /g,'-')+i} type="checkbox" value={d} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"/>
-                                        <label htmlFor={d.toLowerCase().replace(/\ /g,'-')+i} className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{d}</label>
-                                    </div>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                    <label htmlFor="cert" className="text-gray-500 font-light mt-8 dark:text-gray-50">Sertifikat</label>
-                    <ul className="grid w-full gap-3 md:grid-cols-3">
-                        <li>
-                            <input type="radio" id="cert1" name="cert" value="1" className="hidden peer" required/>
-                            <label htmlFor="cert1" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
-                                <div className="block">
-                                    <div className="w-full">SHM - Sertifikat Hak Milik</div>
-                                </div>
-                            </label>
-                        </li>
-                        <li>
-                            <input type="radio" id="cert2" name="cert" value="2" className="hidden peer"/>
-                            <label htmlFor="cert2" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div className="block">
-                                    <div className="w-full">HGB - Hak Guna Bangun</div>
-                                </div>
-                            </label>
-                        </li>
-                        <li>
-                            <input type="radio" id="cert3" name="cert" value="3" className="hidden peer"/>
-                            <label htmlFor="cert3" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <div className="block">
-                                    <div className="w-full">Lainnya (PPJB, Girik, Adat, dll)</div>
-                                </div>
-                            </label>
-                        </li>
-                    </ul>
-                    <label htmlFor="alamat" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Alamat
-                    </label>
-                    <input type="text"
-                        value={alamat}
-                        onChange={(e) => {
-                            setAlamat(e.target.value);
-                        }}
-                        name="alamat"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    />
-                    <label htmlFor="judul" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Judul Iklan<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
-                    <input type="text"
-                        value={judul}
-                        onChange={(e) => {
-                            setJudul(e.target.value);
-                        }}
-                        name="judul"
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    />
-                    <label htmlFor="deskrisi" className="text-gray-500 font-light mt-8 dark:text-gray-50">
-                        Deskripsi<span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                        name="deskrisi"
-                        value={deskrisi}
-                        onChange={(e) => {
-                            setDeskrisi(e.target.value);
-                        }}
-                        className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
-                    ></textarea>
-                    <h1 className="text-xl font-bold dark:text-gray-50 pt-8">Tentukan Harga</h1>
-                    <label htmlFor="price" className="text-gray-500 font-light mt-4 dark:text-gray-50">
-                        Harga<span className="text-red-500 dark:text-gray-50">*</span>
-                    </label>
+                    <FormPost />
+                    <button onClick={(w) => {
+                        backFunc(4);
+                    }} type='button' className='w-full bg-gray-950 text-white py-3 rounded-md'>Next</button>
+                </div>
+            </div>
+            <div id="kategori4" style={{paddingTop:'60px',display:"none", overflowY:'scroll'}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='fixed top-0 bg-white w-full py-2 h-[50px] flex items-center' style={{ borderBottom: '1px solid #ddd' }}>
+                    <button onClick={(w) => {
+                        backFunc(3);
+                    }} type="button" className='px-5' style={{ fontSize: '16px' }}>
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            style={{ fontSize: 20, color: "black" }}
+                        />
+                    </button><h1 className='inline-block px-2'>Upload Your Photos</h1>
+                </div>
+                <div className='px-5'>
+                    <ImageUpload />
+                </div>
+                <div className='w-full fixed bottom-0'>
+                    <button onClick={(w) => {
+                        backFunc(5);
+                    }} className='w-full flex items-center justify-center bg-gray-950 text-white h-[50px]' type='button'>Next</button>
+                </div>
+            </div>
+            <div id="kategori5" style={{paddingTop:'60px',display:"none", overflowY:'scroll'}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='fixed top-0 bg-white w-full py-2 h-[50px] flex items-center' style={{ borderBottom: '1px solid #ddd' }}>
+                    <button onClick={(w) => {
+                        backFunc(4);
+                    }} type="button" className='px-5' style={{ fontSize: '16px' }}>
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            style={{ fontSize: 20, color: "black" }}
+                        />
+                    </button><h1 className='inline-block px-2'>Set Your Price</h1>
+                </div>
+                <div className='px-5'>
+                    <h1 className="text-sm dark:text-gray-50 pt-8">Price</h1>
                     <input type="text"
                         value={price}
                         onChange={(e) => {
                             setPrice(e.target.value);
                         }}
+                        type='number'
                         name="price"
                         className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
                     />
-                    <h1 className="text-xl font-bold dark:text-gray-50 pt-8">Unggah hingga 20 foto</h1>
-                    <ImageUpload />
-                    <h1 className="text-xl font-bold dark:text-gray-50 pt-8">Konfirmasikan lokasi iklan Anda</h1>
-
-                    <div className="flex flex-row items-center justify-start">
-                        <button
-                            type="submit"
-                            className="px-10 mt-8 py-2 bg-[#130F49] text-gray-50 font-light rounded-md text-lg flex flex-row items-center"
+                </div>
+                <div className='w-full fixed bottom-0'>
+                    <button onClick={(w) => {
+                        backFunc(6);
+                    }} className='w-full flex items-center justify-center bg-gray-950 text-white h-[50px]' type='button'>Next</button>
+                </div>
+            </div>
+            <div id="kategori6" style={{ paddingTop: '60px', paddingBottom: '60px', display:"none", overflowY:'scroll'}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <div className='fixed top-0 bg-white w-full py-2 h-[50px] flex items-center' style={{ borderBottom: '1px solid #ddd' }}>
+                    <button onClick={(w) => {
+                        backFunc(5);
+                    }} type="button" className='px-5' style={{ fontSize: '16px' }}>
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            style={{ fontSize: 20, color: "black" }}
+                        />
+                    </button><h1 className='inline-block px-2'>Confirm Your Location</h1>
+                </div>
+                <div className='px-5'>
+                </div>
+                <div className="fixed bottom-0 w-full flex flex-row items-center justify-start">
+                    <button
+                        type="submit"
+                        className="px-10 w-full mt-8 py-2 bg-[#130F49] text-gray-50 font-light rounded-md text-lg flex flex-row  justify-center items-center"
+                    >
+                        Submit
+                        <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        className="text-cyan-500 ml-2"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
                         >
-                            Submit
-                            <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            className="text-cyan-500 ml-2"
+                        <path
+                            d="M9.00967 5.12761H11.0097C12.1142 5.12761 13.468 5.89682 14.0335 6.8457L16.5089 11H21.0097C21.562 11 22.0097 11.4477 22.0097 12C22.0097 12.5523 21.562 13 21.0097 13H16.4138L13.9383 17.1543C13.3729 18.1032 12.0191 18.8724 10.9145 18.8724H8.91454L12.4138 13H5.42485L3.99036 15.4529H1.99036L4.00967 12L4.00967 11.967L2.00967 8.54712H4.00967L5.44417 11H12.5089L9.00967 5.12761Z"
                             fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                            >
-                            <path
-                                d="M9.00967 5.12761H11.0097C12.1142 5.12761 13.468 5.89682 14.0335 6.8457L16.5089 11H21.0097C21.562 11 22.0097 11.4477 22.0097 12C22.0097 12.5523 21.562 13 21.0097 13H16.4138L13.9383 17.1543C13.3729 18.1032 12.0191 18.8724 10.9145 18.8724H8.91454L12.4138 13H5.42485L3.99036 15.4529H1.99036L4.00967 12L4.00967 11.967L2.00967 8.54712H4.00967L5.44417 11H12.5089L9.00967 5.12761Z"
-                                fill="currentColor"
-                            />
-                            </svg>
-                        </button>
-                    </div>
+                        />
+                        </svg>
+                    </button>
                 </div>
             </div>
             <div className="fixed z-[2050] h-full w-full bg-white opacity-75" style={{display: visible ? 'block' : 'none'}}>
