@@ -12,14 +12,9 @@ export default function Home() {
 
   useEffect(()=>{
     document.getElementById('search').value = '';
-    if(localStorage.getItem('produkstart') != undefined){
-      setDataListing(JSON.parse(localStorage.getItem('produkstart')));
-    }
-
     (async function(){
-      let data = await fetch(`http://localhost:3000/pages/api/produk?limit=10&start=0`);
+      let data = await fetch(`/pages/api/produk?limit=10&start=0`);
       data = await data.json();
-      localStorage.setItem('produkstart', JSON.stringify(data.message));
       setDataListing(data.message);
     })()
   },[setDataListing])
