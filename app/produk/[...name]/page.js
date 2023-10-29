@@ -31,11 +31,14 @@ export default function Page({params}) {
 
     useEffect(()=>{
         (async function(){
-            let data = await fetch('https://app.rumahjo.com/data/produk/' + slug)
-            let {data:dataJson, image:dataImage} = await data.json();
+            let dataf = await fetch('/api/produk?slug=' + slug)
+            let {message:data} = await dataf.json();
+            let [ dataImage, dataJson ] = data;
             let [dataArray] = dataJson;
-            SetArrImage(dataImage)
-            SetData(dataArray)
+            SetArrImage(dataImage);
+            SetData(dataArray);
+            console.log("-----")
+            console.log(dataArray)
         })();
     },[SetArrImage])
 
@@ -109,12 +112,11 @@ export default function Page({params}) {
                                             <span className="text-gray-500">Fasilitas</span>
                                         </div>
                                         <div className="flex basis-[50%] md:basis-[75%] flex-wrap" note="loop dari kolom facility atau tabel facility">
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">Garden</span>
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">PAM</span>
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">Gordyn</span>
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">Telephone</span>
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">Carport</span>
-                                            <span className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">Garasi</span>
+                                            <ul>
+                                                {data.facility ? data.facility.split(',').map((d,i)=>{
+                                                    return <li key={i} className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">{d}</li>
+                                                }) : ""}
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +173,7 @@ export default function Page({params}) {
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
                                 <a href={"/profile/"+data.uid_user}>
-                                    <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800">Rumah Jo</div>
+                                    <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800">{data.fullname}</div>
                                     <span className="absolute top-[50%] right-0" style={{transform:"translateY(-50%)"}}>
                                         <svg className="w-[18px] h-[18px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path></svg>
                                     </span>
@@ -187,7 +189,7 @@ export default function Page({params}) {
                             <svg className="w-[26px] h-[26px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M784.555 852.395c-331.435-14.635-598.315-281.515-612.949-612.949l149.973-59.989 91.691 183.424-70.997 35.499v26.453c0 141.653 115.243 256.896 256.896 256.896h26.453l11.861-23.637 23.68-47.36 183.381 91.733-59.989 149.931zM918.101 643.456l-256.939-128.469-57.472 19.2-30.037 60.032c-74.069-11.093-132.736-69.803-143.872-143.872l60.075-30.037 19.157-57.429-128.427-256.939-54.187-20.608-214.187 85.632-26.88 39.808c0 401.365 326.571 727.893 727.936 727.893l39.765-26.88 85.632-214.187-20.608-54.187z"></path></svg>
                         </span>
                         <div>** *** ****</div>
-                        <div className="mx-[8px] cursor-pointer" style={{color:"#6c99ff",textDecoration:"underline"}}>Tampilkan nomor</div>
+                        <button className="mx-[8px] cursor-pointer" style={{color:"#6c99ff",textDecoration:"underline"}}>Tampilkan nomor</button>
                     </div>
                 </div>
                 <div className="mt-2 md:mt-5 rounded-sm  md:rounded-md shadow-xl bg-white w-full md-w-[400px] px-5 py-3 ">
@@ -196,14 +198,14 @@ export default function Page({params}) {
                     </div>
                     <div>
                         <iframe 
-                            src={`https://www.google.com/maps?q=${maps.join(",")}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            src={`https://www.google.com/maps?q=${maps.join(",")}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
                 <div className="relative w-[100%] shadow-xl md:shadow-none bg-white md:bg-transparent overflow-hidden border-t border-gray-400 md:border-0 rounded-[4px]">
                     <div className="p-[20px] md:px-0">
                         <div>
-                            <div className="flex justify-between text-[14px]">
-                                <strong>ID IKLAN 861736852</strong>
+                            <div className="flex justify-between items-center text-[14px]">
+                                <strong>ID IKLAN {data.uniqid ? data.uniqid.split('-')[1]:""}</strong>
                                 <strong>LAPORKAN IKLAN INI</strong>
                             </div>
                         </div>

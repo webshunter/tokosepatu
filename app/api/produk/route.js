@@ -49,19 +49,28 @@ export async function GET(req, Response) {
     try{
         const query = `SELECT a.*, b.image, c.fullname FROM listing a
         LEFT JOIN user c ON c.email = a.email
-        LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY uniqid ${(function(){
-            let d = Object.keys(params.having);
+        LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
+        ${(function(){
+            let d = Object.keys(params.condition);
             if(d.length > 0){
-                return ` HAVING ${d.map((c)=>{
-                    return ` ${c} LIKE "%${params.having[c]}%" `;
-                }).join(' OR ')} LIMIT ${start}, ${limit} `
+                return ` WHERE ${d.map((c)=>{
+                    return ` ${c} = "${params.condition[c]}" `;
+                }).join(' OR ')} LIMIT 1 `
             }
             return ""; 
         })()}`
         const value = [];
         const [data] = await connection.query(query);
+        const [dataRender] = data;
+        let dataimg = [];
+        if(dataRender){
+            let uniqid = dataRender.uniqid;
+            let getImage = `SELECT * FROM gallery WHERE uid_listing = "${uniqid}"`;
+            let [getData] = await connection.query(getImage);
+            dataimg = getData;
+        }
         connection.end();
-        return NextResponse.json({ message: data });
+        return NextResponse.json({ message: [dataimg, data] });
     }catch(error){
         return NextResponse.json({ status:500,message: error.message });
     }
