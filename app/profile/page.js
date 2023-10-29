@@ -49,7 +49,7 @@ export default function Profile() {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden md:block w-full my-[26px]">
+                    <div className="w-full my-[26px]">
                         <div className="w-auto">
                             <div className="text-center">
                                 <a href={"profile/edit"} className="h-[48px] w-full bg-indigo-950 hover:bg-indigo-750 inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md" style={{color:"rgb(250 204 21)"}}>
