@@ -150,7 +150,16 @@ export default function EditProfile() {
         </div>
     { popupVisible && (
         <div onClick={closePopUp}>
-            <div className="items-end fixed z-50 flex justify-center bg-[rgba(0,0,0,.8)]" style={{top:"0",left:"0",bottom:"0",right:"0",transform:"translateZ(0)"}}></div>
+            <div className="items-end fixed z-[9999] flex justify-center bg-[rgba(0,0,0,.8)]" style={{top:"0",left:"0",bottom:"0",right:"0",transform:"translateZ(0)"}}>
+                <div className="bg-white absolute" style={{padding:"16px 16px 8px",bottom:"0",left:"0",right:"0"}}>
+                    <button className="px-[10px] mb-[10px] border-2 border-yellow-400 h-[40px] w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                        <span>Unggah</span>
+                    </button>
+                    <button className="px-[10px] mb-[10px] border-2 border-red-500 bg-red-500 text-white h-[40px] w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                        <span>Hapus</span>
+                    </button>
+                </div>
+            </div>
         </div>
     )}
     </>)
