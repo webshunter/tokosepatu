@@ -166,11 +166,11 @@ export default function Page({params}) {
                 <div className="mt-2 md:mt-5 rounded-sm  md:rounded-md shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
                     <div className="flex flex-col">
                         <div className="flex max-w-[100%] items-center">
-                            <a href={"profil/"+data.uid_user} className="relative">
+                            <a href={"/profile/"+data.uid_user} className="relative">
                                 <figure className="relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]"></figure>
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
-                                <a href={"profil/"+data.uid_user}>
+                                <a href={"/profile/"+data.uid_user}>
                                     <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800">Rumah Jo</div>
                                     <span className="absolute top-[50%] right-0" style={{transform:"translateY(-50%)"}}>
                                         <svg className="w-[18px] h-[18px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path></svg>
