@@ -33,12 +33,12 @@ const AddMenu = ({props}) => {
     const { data: session } = useSession();
     if (session && session.user) {
         return (<>
-            <a href="/post/add" data-tooltip-target="tooltip-new" type="button" className="inline-flex items-center justify-center w-10 h-10 font-medium bg-indigo-950 rounded-full hover:bg-indigo-750 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+            <Link href="/post/add" data-tooltip-target="tooltip-new" type="button" className="inline-flex items-center justify-center w-10 h-10 font-medium bg-indigo-950 rounded-full hover:bg-indigo-750 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
                 <svg className="w-4 h-4 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
                 </svg>
                 <span className="sr-only">New item</span>
-            </a>
+            </Link>
         </>)
     } else {
         return (<>
