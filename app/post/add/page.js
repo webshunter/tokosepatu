@@ -125,7 +125,7 @@ export default function PostListing() {
                 Tipe<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
             <div id="kategori1" style={{ paddingTop: '60px', overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
-                <div className='fixed top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                <div className='fixed w top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
                     <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
                         <FontAwesomeIcon
                             icon={faTimes}
@@ -157,7 +157,7 @@ export default function PostListing() {
                 </div>
             </div>
             <div id="kategori2" style={{ paddingTop: '60px', display: "none", overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
-                <div className='fixed top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                <div className='fixed w-full top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
                     <button onClick={(w) => {
                         backFunc(1);
                     }} type="button" className='px-5' style={{fontSize: '16px'}}>
