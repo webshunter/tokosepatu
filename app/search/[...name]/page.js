@@ -20,7 +20,7 @@ export default function Search({params}) {
         document.getElementById('search').value = search;
         setNama(capitalize(search));
         (async function () {
-            let data = await fetch(`http://localhost:3000/pages/api/produk?limit=10&start=0&d=${search}`);
+            let data = await fetch(`/pages/api/produk?limit=10&start=0&d=${search}`);
             data = await data.json();
             setDataListing(data.message);
         })()

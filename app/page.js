@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(()=>{
     document.getElementById('search').value = '';
     (async function(){
-      let data = await fetch(`http://localhost:3000/pages/api/produk?limit=10&start=0`);
+      let data = await fetch(`/pages/api/produk?limit=10&start=0`);
       data = await data.json();
       setDataListing(data.message);
     })()
