@@ -98,7 +98,7 @@ export const Header = function(){
             uniqid: 'ID-USER-'+Date.now(),
             data: session
         }).then(function(res){
-            console.log(res)
+            // console.log(res)
         })
     })
 

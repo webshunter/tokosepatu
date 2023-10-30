@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import facility from '../../wilayah/facility.json';
 
+
+
 export const FormPost = () => {
     const [lbangun, setLBangun] = useState("");
     const [ltanah, setLTanah] = useState("");

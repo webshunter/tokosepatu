@@ -8,12 +8,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormPost } from './form';
 import { ImageUpload } from "@/app/component/ImageUploadMass";
+import { dataWilayah } from "@/app/library/loadJson";
+import { func } from 'prop-types';
+const wilayah = dataWilayah();
 
 export default function PostListing() {
     const route = useRouter();
     const [price, setPrice] = useState("");
 
     const [visible, setVisible] = useState("");
+    const [kota, setKota] = useState([]);
+    const [kecamatan, setKecamatan] = useState([]);
+
+    const provinsiChange = function(event){
+        let getVal = event.target.value;
+        console.log(getVal);
+    }
+
+    const kotaChange = function(event){
+        let getVal = event.target.value;
+        console.log(getVal);
+    }
 
     const data = [
         {
@@ -258,6 +273,24 @@ export default function PostListing() {
                     </button><h1 className='inline-block px-2'>Confirm Your Location</h1>
                 </div>
                 <div className='px-5'>
+                    <select onChange={provinsiChange}>
+                        <option key={0} value={""}>Pilih Provinsi</option>
+                        {wilayah.provinsi.map(function(w, i){
+                            return <option key={i+1} value={w.id}>{w.name}</option>
+                        })}
+                    </select>
+                    <select onChange={kotaChange}>
+                        <option key={0} value={""}>Pilih Kota</option>
+                        {kota.map(function(w, i){
+                            return <option key={i+1} value={w.id}>{w.name}</option>
+                        })}
+                    </select>
+                    <select onChange={kotaChange}>
+                        <option key={0} value={""}>Pilih Kecamatan</option>
+                        {kecamatan.map(function(w, i){
+                            return <option key={i+1} value={w.id}>{w.name}</option>
+                        })}
+                    </select>
                 </div>
                 <div className="fixed bottom-0 w-full flex flex-row items-center justify-start">
                     <button
