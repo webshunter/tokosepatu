@@ -22,12 +22,15 @@ export default function PostListing() {
 
     const provinsiChange = function(event){
         let getVal = event.target.value;
-        console.log(getVal);
+        let DataKota = wilayah.getGroupKota(getVal);
+        console.log(DataKota)
+        setKota(DataKota);
     }
 
     const kotaChange = function(event){
         let getVal = event.target.value;
-        console.log(getVal);
+        let dataKecamatan = wilayah.getGroupKecamatan(getVal);
+        setKecamatan(dataKecamatan);
     }
 
     const data = [
@@ -273,19 +276,19 @@ export default function PostListing() {
                     </button><h1 className='inline-block px-2'>Confirm Your Location</h1>
                 </div>
                 <div className='px-5'>
-                    <select onChange={provinsiChange}>
+                    <select name='prov' onChange={provinsiChange}>
                         <option key={0} value={""}>Pilih Provinsi</option>
                         {wilayah.provinsi.map(function(w, i){
                             return <option key={i+1} value={w.id}>{w.name}</option>
                         })}
                     </select>
-                    <select onChange={kotaChange}>
+                    <select name="kota" onChange={kotaChange}>
                         <option key={0} value={""}>Pilih Kota</option>
                         {kota.map(function(w, i){
                             return <option key={i+1} value={w.id}>{w.name}</option>
                         })}
                     </select>
-                    <select onChange={kotaChange}>
+                    <select name='kec'>
                         <option key={0} value={""}>Pilih Kecamatan</option>
                         {kecamatan.map(function(w, i){
                             return <option key={i+1} value={w.id}>{w.name}</option>
