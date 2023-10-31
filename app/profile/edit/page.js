@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getFips } from 'crypto';
+import { Button, Modal } from 'flowbite-react';
 
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
@@ -11,6 +12,9 @@ export default function EditProfile() {
     const [telp, setTelp] = useState("");
     const [password, setPassword] = useState("");
     const [dataResponse, setDataresponse] = useState(null);
+    const [uniqId, setUniqId] = useState(null);
+    const [openModal, setOpenModal] = useState();
+    const props = { openModal, setOpenModal };
     const openPopUp = () => {
         setPopUpVisible(true);
     };
@@ -32,8 +36,23 @@ export default function EditProfile() {
             , telp: telp
             , fullname: fullname
             , about: about
+            , uniqid: uniqId
         }
         console.log(data);
+        fetch('/api/update/profile', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((res)=>{
+            return res.json();
+        })
+        .then((res)=>{
+            props.setOpenModal('dismissible')
+            console.log(res)
+        })
     }
 
     const { data: session } = useSession();
@@ -46,6 +65,7 @@ export default function EditProfile() {
             })
             .then((res)=>{
                 let [data] = res.message;
+                setUniqId(data.uniqid)
                 setName(data.fullname)
                 setEmail(data.email)
                 setAbout(data.about)
@@ -55,6 +75,21 @@ export default function EditProfile() {
     }
 
     return (<>
+        <Modal dismissible show={props.openModal === 'dismissible'} onClose={() => props.setOpenModal(undefined)}>
+            <Modal.Header>Success</Modal.Header>
+            <Modal.Body>
+                <div className="space-y-6">
+                    <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        Data telah diupdate
+                    </p>
+                </div>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button color="gray" onClick={() => props.setOpenModal(undefined)}>
+                    Tutup
+                </Button>
+            </Modal.Footer>
+        </Modal>
         <div className="grid grid-cols-6 gap-4">
             <div className="col-start-auto md:col-start-2 col-span-6 md:col-span-4 mt-5">
                 <div className="bg-white shadow-md md:mb-2 px-5 md:p-5 rounded-xm">
