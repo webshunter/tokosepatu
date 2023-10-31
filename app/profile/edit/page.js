@@ -100,34 +100,44 @@ export default function EditProfile() {
                         <div className="text-[16px] leading-[24px] font-bold py-[8px] text-gray-800 border-0 md:border-t border-gray-400">Informasi Dasar</div>
                         <div className="pb-[16px]">
                             <div className="flex items-center md:flex-row md:justify-start box-border flex-wrap">
-                                <div className="basis-[27.5%] md:basis-[15%]">
-                                    <figure className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]">
-                                        <div onClick={openPopUp} className="flex md:hidden absolute bottom-0 left-0 right-0 bg-[rgba(0,47,52,.7)] h-[32px] justify-center items-center cursor-pointer">
-                                            <svg className="w-[24px] h-[24px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M670.72 128l42.667 128h182.613l42.667 42.667v554.667l-42.667 42.667h-768l-42.667-42.667v-554.667l42.667-42.667h182.613l42.667-128h317.44zM609.28 213.333h-194.56l-42.667 128h-201.387v469.333h682.667v-469.333h-201.387l-42.667-128zM512 341.333c117.632 0 213.333 95.701 213.333 213.333s-95.701 213.333-213.333 213.333-213.333-95.701-213.333-213.333 95.701-213.333 213.333-213.333zM512 426.667c-70.613 0-128 57.387-128 128s57.387 128 128 128 128-57.387 128-128-57.387-128-128-128z"></path></svg>
+                                <div style={{display:"none"}}>
+                                    <div className="basis-[27.5%] md:basis-[15%]">
+                                        <figure className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]">
+                                            <div onClick={openPopUp} className="flex md:hidden absolute bottom-0 left-0 right-0 bg-[rgba(0,47,52,.7)] h-[32px] justify-center items-center cursor-pointer">
+                                                <svg className="w-[24px] h-[24px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M670.72 128l42.667 128h182.613l42.667 42.667v554.667l-42.667 42.667h-768l-42.667-42.667v-554.667l42.667-42.667h182.613l42.667-128h317.44zM609.28 213.333h-194.56l-42.667 128h-201.387v469.333h682.667v-469.333h-201.387l-42.667-128zM512 341.333c117.632 0 213.333 95.701 213.333 213.333s-95.701 213.333-213.333 213.333-213.333-95.701-213.333-213.333 95.701-213.333 213.333-213.333zM512 426.667c-70.613 0-128 57.387-128 128s57.387 128 128 128 128-57.387 128-128-57.387-128-128-128z"></path></svg>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                    <div className="hidden md:block basis-[22.5%] pr-2">
+                                        <div className="relative">
+                                            <div className="flex flex-row flex-wrap items-start relative">
+                                                <div className="items-center flex w-full">
+                                                    <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                                        <span>Unggah</span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </figure>
-                                </div>
-                                <div className="hidden md:block basis-[22.5%] pr-2">
-                                    <div className="relative">
-                                        <div className="flex flex-row flex-wrap items-start relative">
-                                            <div className="items-center flex w-full">
-                                                <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
-                                                    <span>Unggah</span>
-                                                </button>
+                                    </div>
+                                    <div className="hidden md:block basis-[22.5%] pl-2">
+                                        <div className="relative">
+                                            <div className="flex flex-row flex-wrap items-start relative">
+                                                <div className="items-center flex w-full">
+                                                    <button className="border-2 h-[48px] border-red-500 bg-red-500 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                                        <span>Hapus</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="hidden md:block basis-[22.5%] pl-2">
-                                    <div className="relative">
-                                        <div className="flex flex-row flex-wrap items-start relative">
-                                            <div className="items-center flex w-full">
-                                                <button className="border-2 h-[48px] border-red-500 bg-red-500 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
-                                                    <span>Hapus</span>
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div className="" note="Nanti di hapus kalau sudah bisa upload foto">
+                                    <div className="basis-[27.5%] md:basis-[15%]">
+                                        <figure className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]">
+                                            
+                                        </figure>
                                     </div>
+                                    <div className="hidden md:block basis-[45%] pr-2"></div>
                                 </div>
                                 <div className="basis-[72.5%] md:basis-[60%] pl-[16px] md:pl-0 flex flex-row items-start flex-wrap">
                                     <div className="flex w-full items-center">

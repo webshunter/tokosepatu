@@ -112,11 +112,11 @@ export default function Page({params}) {
                                             <span className="text-gray-500">Fasilitas</span>
                                         </div>
                                         <div className="flex basis-[50%] md:basis-[75%] flex-wrap" note="loop dari kolom facility atau tabel facility">
-                                            <ul>
+                                            
                                                 {data.facility ? data.facility.split(',').map((d,i)=>{
-                                                    return <li key={i} className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">{d}</li>
+                                                    return <span key={i} className="basis-[100%] md:basis-[33.33333%] text-left text-gray-800">{d}</span>
                                                 }) : ""}
-                                            </ul>
+                                            
                                         </div>
                                     </div>
                                 </div>
