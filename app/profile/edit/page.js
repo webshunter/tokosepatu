@@ -18,6 +18,7 @@ export default function EditProfile() {
     const openPopUp = () => {
         setPopUpVisible(true);
     };
+    
     const closePopUp = () => {
         setPopUpVisible(false);
     };
@@ -38,7 +39,6 @@ export default function EditProfile() {
             , about: about
             , uniqid: uniqId
         }
-        console.log(data);
         fetch('/api/update/profile', {
             method: 'POST',
             headers: {
@@ -60,7 +60,8 @@ export default function EditProfile() {
     
     if (!dataResponse){
         if(session){
-            let email = session.user.email
+            let email = session.user.email;
+            console.log(session);
             setDataresponse(1);
             fetch('/api/user?email='+email)
                 .then((res)=>{

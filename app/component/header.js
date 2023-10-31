@@ -1,22 +1,39 @@
 "use client"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import buttonJual from "./buttonJual"
-import btn from '../component/button2.svg';
-import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { postData } from "../library/post";
 import { encode } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
-import { func } from "prop-types";
+import { useOutsideClick } from "../library/outclick";
 
 const ButtonLogin = ({props}) => {
+    const route = useRouter();
+    const ref = useOutsideClick(() => {
+        setVisible(null)
+    });
     const { data: session } = useSession();
+    const [visible, setVisible] = useState()
+
+    console.log(session)
 
     if(session && session.user){
         return (<>
-            <h1 className="mx-4">{session.user.name}</h1>
+            <div className="relative">
+                <button onClick={()=>{
+                    visible? setVisible(null) : setVisible(1);
+                }} className="h-[50px] overflow-hidden rounded-[50px]">
+                    <img className="h-[50px] w-[50px]" src={session.user.image}></img>
+                </button>
+                <div ref={ref} style={{visibility:visible?'visible':'hidden'}} className="absolute top-[60px] right-[0] rounded text-gray-950 px-4 py-2 shadow-xl bg-white w-[320px]">
+                    <h1>{session.user.name}</h1>
+                    <button onClick={()=>{
+                        route.push('/profile');
+                        setVisible(null)
+                    }} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Lihat dan Edit Profil</button>
+                </div>
+            </div>
             <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => signOut() }>Log Out</Button>
             <Link href="/post/add" className="h-[45px] w-[45px] rounded-md text-[1.8rem] overflow-hidden flex justify-center items-center p-0 border-[2px] border-yellow-400">
                 <span className="block">+</span>

@@ -1,7 +1,28 @@
 "use client"
 import { useState } from 'react';
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Profile() {
+    const [dataResponse, setDataresponse] = useState(null);
+    const [nama, setNama] = useState(null)
+    const { data: session } = useSession();
+
+    if (!dataResponse) {
+        if (session) {
+            let email = session.user.email;
+            console.log(session);
+            setDataresponse(1);
+            fetch('/api/user?email=' + email)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((res) => {
+                    let [data] = res.message;
+                    setNama(data.fullname)
+                })
+        }
+    }
+
     return (<>
     <div className='my-5 bg-white'>
         <div className="pt-5 mx-[20px] xl:mx-[60px]">
@@ -14,7 +35,7 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="flex items-center overflow-hidden whitespace-nowrap text-ellipsis">
-                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">Profile Saya</span>
+                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">{nama?nama:""}</span>
                         </div>
                         <div className="flex flex-col">
                             <div className="my-[20px]">
