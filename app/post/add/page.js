@@ -19,6 +19,7 @@ export default function PostListing() {
     const [visible, setVisible] = useState("");
     const [kota, setKota] = useState([]);
     const [kecamatan, setKecamatan] = useState([]);
+    const [properti, setProperti] = useState("Dijual: Rumah & Apartement")
 
     const provinsiChange = function(event){
         let getVal = event.target.value;
@@ -64,8 +65,19 @@ export default function PostListing() {
         return document.getElementById(id);
     }
 
-    function backFunc(a = 1, b = 6){
+
+    const propertiChange = function(kode, nilai){
+        if(nilai){
+            setProperti(nilai)
+        }
+    }
+
+
+    function backFunc(a = 1, b = 6, nilai){
         for (let v = 1; v <= b; v++) {
+            if(v == 2){
+                propertiChange(v, nilai)
+            }
             if(a == v){
                 _id('kategori' + v).style.display = 'block';
             }else{
@@ -162,19 +174,18 @@ export default function PostListing() {
                             />
                             <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
                         </button>
-                        <button data-nilai="1" onClick={(w) => {
-                            backFunc(2);
-                        }} type="button" className='text-center p-2 shadow-md'>
+                        <button data-nilai="1" type="button" className='text-center p-2 shadow-md'>
                             <FontAwesomeIcon
                                 icon={faBuilding}
                                 style={{ fontSize: 25, color: "black" }}
                             />
-                            <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan</h1>
+                            <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan (Coming Soon)</h1>
                         </button>
                     </div>
                 </div>
             </div>
             <div id="kategori2" style={{ paddingTop: '60px', display: "none", overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
+                <input type='hidden' name='slug2' value={properti}  />
                 <div className='fixed w-full top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
                     <button onClick={(w) => {
                         backFunc(1);
@@ -190,8 +201,9 @@ export default function PostListing() {
                         {data.map((q, i)=>{
                             return (<li className='list-none' key={i}>
                                 <button onClick={(w) => {
-                                    backFunc(3);
-                                }} type='button' data-nilai={q.id} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
+                                    let nilai = w.target.dataset.nilai
+                                    backFunc(3, 6, nilai);
+                                }} type='button' data-nilai={q.text} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
                             </li>)
                         })}
                     </div>

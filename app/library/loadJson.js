@@ -68,6 +68,32 @@ export const dataWilayah = function(){
             }
             return null;
         }
+        ,getKota: function (id) {
+            let kota = this.kota;
+            let [dataProv] = kota.cond(id, 'id')
+            if(dataProv){
+                return {
+                    id: dataProv.id,
+                    nama: dataProv.name,
+                    lat: dataProv.latitude,
+                    long: dataProv.longitude,
+                }
+            }
+            return null;
+        }
+        ,getKecamatan: function (id) {
+            let kecamatan = this.kecamatan;
+            let [dataProv] = kecamatan.cond(id, 'id')
+            if(dataProv){
+                return {
+                    id: dataProv.id,
+                    nama: dataProv.name,
+                    lat: dataProv.latitude,
+                    long: dataProv.longitude,
+                }
+            }
+            return null;
+        }
         , getGroupKota: function (idprov) {
             let provinsi = this.kota;
             let dataKota = provinsi.cond(idprov, 'province_id')

@@ -190,9 +190,6 @@ export const Header = function(){
             <Modal.Header></Modal.Header>
             <Modal.Body>
                 <div className="space-y-6">
-                    <button onClick={daftar} className="border-[2px] text-[1.1rem] cursor-pointer rounded-md border-black p-2 w-full">
-                        Login/Daftar dengan telepone
-                    </button>
                     <button onClick={daftar} className="border-[1px] text-[1.1rem] cursor-pointer text-gray-700 rounded-md border-gray-400 p-2 w-full">
                         Login/Daftar dengan Google
                     </button>
