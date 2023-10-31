@@ -57,21 +57,25 @@ export default function EditProfile() {
 
     const { data: session } = useSession();
 
+    
     if (!dataResponse){
-        setDataresponse(1);
-        fetch('/api/user?email=rumahjo123@gmail.com')
-            .then((res)=>{
-                return res.json()
-            })
-            .then((res)=>{
-                let [data] = res.message;
-                setUniqId(data.uniqid)
-                setName(data.fullname)
-                setEmail(data.email)
-                setAbout(data.about)
-                setPassword(data.password)
-                setTelp(data.telp)
-            })
+        if(session){
+            let email = session.user.email
+            setDataresponse(1);
+            fetch('/api/user?email='+email)
+                .then((res)=>{
+                    return res.json()
+                })
+                .then((res)=>{
+                    let [data] = res.message;
+                    setUniqId(data.uniqid)
+                    setName(data.fullname)
+                    setEmail(data.email)
+                    setAbout(data.about)
+                    setPassword(data.password)
+                    setTelp(data.telp)
+                })
+        }
     }
 
     return (<>
