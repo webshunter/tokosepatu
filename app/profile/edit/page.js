@@ -1,15 +1,59 @@
 "use client"
 import { useEffect, useState } from 'react';
+import { signIn, signOut, useSession } from "next-auth/react";
+import { getFips } from 'crypto';
 
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
+    const [fullname, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [about, setAbout] = useState("");
+    const [telp, setTelp] = useState("");
+    const [password, setPassword] = useState("");
+    const [dataResponse, setDataresponse] = useState(null);
     const openPopUp = () => {
         setPopUpVisible(true);
     };
     const closePopUp = () => {
         setPopUpVisible(false);
     };
-    const [fullname, setName] = useState("");
+
+    const warning = function(text){
+        alert(text);
+        throw 'stop action';
+    }
+
+    const submitAction = function(){
+        telp?telp:warning('Telp wajib diisi');
+        password?password:warning('Password wajib diisi');
+        let data = {
+            password: password
+            , email: email
+            , telp: telp
+            , fullname: fullname
+            , about: about
+        }
+        console.log(data);
+    }
+
+    const { data: session } = useSession();
+
+    if (!dataResponse){
+        setDataresponse(1);
+        fetch('/api/user?email=rumahjo123@gmail.com')
+            .then((res)=>{
+                return res.json()
+            })
+            .then((res)=>{
+                let [data] = res.message;
+                setName(data.fullname)
+                setEmail(data.email)
+                setAbout(data.about)
+                setPassword(data.password)
+                setTelp(data.telp)
+            })
+    }
+
     return (<>
         <div className="grid grid-cols-6 gap-4">
             <div className="col-start-auto md:col-start-2 col-span-6 md:col-span-4 mt-5">
@@ -54,7 +98,7 @@ export default function EditProfile() {
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                             <input type="text"
-                                            value={fullname}
+                                            value={fullname?fullname:''}
                                             onChange={(e) => {
                                                 setName(e.target.value);
                                             }}
@@ -69,7 +113,9 @@ export default function EditProfile() {
                                 <div className="basis-[100%] md:basis-[60%] flex flex-row items-start flex-wrap my-4">
                                     <div className="flex w-full items-center">
                                         <div className="grow">
-                                            <textarea rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tentang saya (opsional)"></textarea>
+                                            <textarea rows="4" onChange={(e)=>{
+                                                setAbout(e.target.value)
+                                            }} value={about?about:''} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tentang saya (opsional)"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -82,6 +128,10 @@ export default function EditProfile() {
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                                 <input type="text"
+                                                value={telp?telp:''}
+                                                onChange={(e) => {
+                                                    setTelp(e.target.value)
+                                                }}
                                                     name="telp" placeholder="+6281234567890"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 />
@@ -99,7 +149,9 @@ export default function EditProfile() {
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                                 <input type="text"
-                                                    name="email" placeholder="Email"
+                                                name="email" onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                }} value={email?email:""} placeholder="Email"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 />
                                         </div>
@@ -116,6 +168,10 @@ export default function EditProfile() {
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                                 <input type="password"
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value)
+                                                }}
+                                                value={password?password:""}
                                                     name="password" placeholder="Password"
                                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                 />
@@ -136,7 +192,7 @@ export default function EditProfile() {
                                 <div className="relative">
                                     <div className="flex flex-row flex-wrap items-start relative">
                                         <div className="items-center flex w-full">
-                                            <button type="submit" className="border-2 h-[48px] border-yellow-400 bg-indigo-950 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                            <button onClick={submitAction} type="submit" className="border-2 h-[48px] border-yellow-400 bg-indigo-950 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
                                                 <span>Simpan Perubahan</span>
                                             </button>
                                         </div>

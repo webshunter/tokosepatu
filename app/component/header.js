@@ -54,15 +54,13 @@ const AddMenu = ({props}) => {
 
 export const Header = function(){
     const route = useRouter();
-
     const {data: session} = useSession();
-
     const [openModal, setOpenModal] = useState ();
     const props = { openModal, setOpenModal };
-
     const daftar = () =>{
         signIn();
     }
+    const [callUser, setCallUser] = useState(null);
 
     const searchButton = function(){
         goSeach(document.getElementById("search").value)
@@ -80,27 +78,31 @@ export const Header = function(){
         }
     }
 
-    useEffect(()=>{
-        const ori = function(){
-            let ori = location.host;
-            if(ori == 'localhost:3000'){
-                return 'https://app.rumahjo.com';
-            }
-            if (ori == 'rumahjo.vercel.app'){
-                return 'https://app.rumahjo.com';
-            }
-            if (ori == 'rumahjo.com'){
-                return 'https://app.rumahjo.com';
-            }
-            return '';
+    const ori = function(){
+        let ori = location.host;
+        if(ori == 'localhost:3000'){
+            return 'https://app.rumahjo.com';
         }
-        postData(ori() +'/data/simpan/user', {
-            uniqid: 'ID-USER-'+Date.now(),
-            data: session
-        }).then(function(res){
-            // console.log(res)
-        })
-    })
+        if (ori == 'rumahjo.vercel.app'){
+            return 'https://app.rumahjo.com';
+        }
+        if (ori == 'rumahjo.com'){
+            return 'https://app.rumahjo.com';
+        }
+        return '';
+    }
+
+    if(session){
+        if(!callUser){
+            setCallUser(1);
+            postData(ori() +'/data/simpan/user', {
+                uniqid: 'ID-USER-'+Date.now(),
+                data: session
+            }).then(function(res){
+                console.log(res)
+            })
+        }
+    }
 
     return (<>
         <nav className="fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-4 md:px-10 py-2">
