@@ -89,7 +89,7 @@ export default function Search({params}) {
             <section>
                 <div className='my-5 bg-white'>
                     <div className="pt-5 px-4 md:px-10">
-                        <div className="grid grid-cols-4 gap-4">
+                        <div className="grid w-full grid-cols-4 gap-4">
                             <div className="col-span-4 md:col-span-1">
                                 <div className="hidden md:block w-full">
                                     <div style={{margin:"8px 16px 0 0"}}>
