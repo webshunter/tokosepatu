@@ -47,9 +47,11 @@ export async function GET(req, Response) {
         database: 'rjo'
     });
     try{
-        const query = `SELECT a.*, b.image, c.fullname FROM listing a
+        const query = `
+        SELECT a.*, b.image, c.fullname FROM listing a
         LEFT JOIN user c ON c.email = a.email
-        LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY uniqid ${(function(){
+        LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
+        GROUP BY uniqid ${(function(){
             let d = Object.keys(params.having);
             if(d.length > 0){
                 return ` HAVING ${d.map((c)=>{

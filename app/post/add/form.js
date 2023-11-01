@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import facility from '../../wilayah/facility.json';
-
-
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export const FormPost = () => {
     const [lbangun, setLBangun] = useState("");
@@ -12,6 +11,28 @@ export const FormPost = () => {
     const [alamat, setAlamat] = useState("");
     const [judul, setJudul] = useState("");
     const [deskrisi, setDeskrisi] = useState("");
+    const [dataResponse, setDataresponse] = useState(null);
+    const [uid, setUid] = useState(null);
+    const [email, setEmail] = useState(null);
+    const { data: session } = useSession();
+
+    if (!dataResponse) {
+        if (session) {
+            let email = session.user.email;
+            console.log(session);
+            setDataresponse(1);
+            fetch('/api/user?email=' + email)
+                .then((res) => {
+                    return res.json()
+                })
+                .then((res) => {
+                    let [data] = res.message;
+                    console.log(data.uniqid)
+                    setUid(data.uniqid)
+                    setEmail(data.email)
+                })
+        }
+    }
 
     var rows = [], i = 0, len = 10;
     while (++i <= len) rows.push(i);
@@ -23,6 +44,8 @@ export const FormPost = () => {
 
     return (<>
         <input type='hidden' name='uniqid' className='none' defaultValue={'produk-' + Date.now()}></input>
+        <input type='hidden' name='uid_user' className='none' value={uid?uid:""}></input>
+        <input type='hidden' name='email' className='none' value={email?email:""}></input>
         <ul className="p-3 grid w-full gap-6 grid-cols-2">
             <li>
                 <input type="radio"
