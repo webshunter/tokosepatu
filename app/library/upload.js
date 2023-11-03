@@ -13,7 +13,7 @@ const slicing = function (string, a = 1000) {
 }
 
 
-async function uploadFileInChunks(file, url) {
+async function uploadFileInChunks(file, url, funcpro, funcres) {
     const chunkSize = 1024 * 1024; // 1MB chunks (adjust as needed)
     let start = 0;
     let size = file.size;
@@ -39,6 +39,8 @@ async function uploadFileInChunks(file, url) {
         start = end;
         end = Math.min(start + chunkSize, file.size);
     }
+    funcpro(size);
+    funcres(size);
 }
 
 async function uploadChunk(formData, url) {
@@ -62,7 +64,7 @@ const upload = function (url = '/admin/upload', path = '', name = 'data.post', d
     let dataBlob = new Blob([rendr], {
         type: 'text/plain'
     })
-    uploadFileInChunks(dataBlob, url);
+    uploadFileInChunks(dataBlob, url, funcpro, funcres);
 }
 
 export default upload;
