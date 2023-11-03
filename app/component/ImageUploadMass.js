@@ -1,5 +1,71 @@
 import React, { useState } from 'react';
 
+function convertToWebP(file, maxWidth, maxHeight) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        let width = img.width;
+        let height = img.height;
+
+        // Mengatur ukuran gambar
+        if (width > maxWidth || height > maxHeight) {
+          const aspectRatio = width / height;
+
+          if (width > maxWidth) {
+            width = maxWidth;
+            height = width / aspectRatio;
+          }
+
+          if (height > maxHeight) {
+            height = maxHeight;
+            width = height * aspectRatio;
+          }
+        }
+
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Konversi ke format WebP
+        canvas.toBlob(function (blob) {
+          if (!blob) {
+            reject(new Error('Konversi ke format WebP gagal'));
+          } else {
+            resolve( blob );
+          }
+        }, 'image/webp', 0.8); // Kualitas gambar, dalam hal ini, 0.8
+      };
+
+      img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = function () {
+      const base64String = reader.result.split(',')[1]; // Mengambil bagian base64 saja
+      resolve(base64String);
+    };
+
+    reader.onerror = function (error) {
+      reject(error);
+    };
+
+    reader.readAsDataURL(blob);
+  });
+}
+
 export const ImageUpload = () => {
         const [selectedImages, setSelectedImages] = useState([]);
       
@@ -24,8 +90,9 @@ export const ImageUpload = () => {
 
           let filesbaru = [];
           for await (const result of files ){
-            let b64 = await getBase64(result);
-            filesbaru.push(b64);
+            let webp = await convertToWebP(result, 720, 720);
+            let b64s = await blobToBase64(webp);
+            filesbaru.push('data:image/webp;base64,'+b64s);
           }
 
       
@@ -60,6 +127,7 @@ export const ImageUpload = () => {
                     style={{ maxWidth: '100px', maxHeight: '100px' }}
                   />
                   <button
+                    type='button'
                     onClick={() => handleRemoveImage(index)}
                     style={{ position: 'absolute', top: '0', right: '0', backgroundColor: 'rgba(0,47,52,0.64)' }}
                   >
