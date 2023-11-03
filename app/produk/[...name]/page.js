@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
 import Map from 'react-map-gl';
 import { dataWilayah } from "@/app/library/loadJson";
+import { DateLabel } from "@/app/library/dateLabel";
 
 const wilayah = dataWilayah();
 
@@ -32,6 +33,8 @@ export default function Page({params}) {
     // [latitude,longitude]
     let maps = ["-7.9828022","112.6069727"];
 
+    let log = new Date().toString();
+
     useEffect(()=>{
         (async function(){
             let dataf = await fetch('/api/produk?slug=' + slug)
@@ -43,11 +46,14 @@ export default function Page({params}) {
             console.log("-----")
             console.log(dataArray)
         })();
-    },[SetArrImage])
-    const dataKecamatan = wilayah.getKecamatan(data.kec);
-    const dataKota = wilayah.getKota(data.kota);
-    const dataProvinsi = wilayah.getProvinsi(data.prov);
-
+    },[SetArrImage]);
+    const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
+    const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
+    const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
+    const lat = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).lat);
+    const long = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).long);
+    log = data.userlog;
+    maps = [lat, long];
     return (<>
         <Header />
 
@@ -164,10 +170,12 @@ export default function Page({params}) {
                     <h1 className="block text-[14px] text-gray-500" style={{fontWeight:"400", margin:"0 0 16px",lineHeight:"24px"}}>{data.judul != undefined ? data.judul.capitalize() : data.judul}</h1>
                     <div className="flex md:border-t-0 border-t border-gray-400 pt-[8px]" style={{alignItems:"center",justifyContent:"space-between"}}>
                         <div className="text-[12px]">
-                            <span className="text-ellipsis overflow-hidden text-gray-600 capitalize">{(data.kec==""?"":dataKecamatan.nama.toLowerCase()+", ")+(data.kota==""?"":dataKota.nama.toLowerCase()+", ")+(data.prov==""?"":dataProvinsi.nama.toLowerCase())}</span>
+                        <span className="text-ellipsis overflow-hidden text-gray-600 capitalize">{(kec==""?"":kec.toLowerCase()+", ")+(kota==""?"":kota.toLowerCase()+", ")+(prov==""?"":prov.toLowerCase())}</span>
                         </div>
                         <div className="text-right min-w-[70px] text-[12px]">
-                            <span className="text-gray-600">4 hari yang lalu</span>
+                            <span className="text-gray-600">
+                                { DateLabel(log) }
+                            </span>
                         </div>
                     </div>
                 </div>
