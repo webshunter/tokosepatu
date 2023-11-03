@@ -14,7 +14,7 @@ const slicing = function (string, a = 1000) {
 
 
 async function uploadFileInChunks(file, url, funcpro, funcres) {
-    const chunkSize = 1024 * 1024; // 1MB chunks (adjust as needed)
+    const chunkSize = (1024 * 1024) * 3; // 1MB chunks (adjust as needed)
     let start = 0;
     let size = file.size;
     let end = Math.min(chunkSize, file.size);
