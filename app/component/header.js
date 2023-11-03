@@ -16,8 +16,6 @@ const ButtonLogin = ({props}) => {
     const { data: session } = useSession();
     const [visible, setVisible] = useState()
 
-    console.log(session)
-
     if(session && session.user){
         return (<>
             <div className="relative">
