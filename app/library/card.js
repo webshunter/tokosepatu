@@ -1,9 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import { formatRupiah } from "./rupiah"
+import { dataWilayah } from "@/app/library/loadJson";
+
+const wilayah = dataWilayah();
 
 export const ProdukCard = function({data}){
-    let { hightlight, key, uniqid, price, judul, image:images, slug} = data
+    let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota } = data
+    const dataKecamatan = wilayah.getKecamatan(kec);
+    const dataKota = wilayah.getKota(kota);
     return (<>
         <div key={key} className="relative bg-gray-200 w-full">
             <button className="p-1 md:p-2 z-10 shadow-md rounded-[50%] inline-block absolute bg-white top-4 right-4">
@@ -17,20 +22,20 @@ export const ProdukCard = function({data}){
             </label>
             <Link href={"/produk/" + slug} className="w-full">
                 <div style={{border:'1px solid #aaa'}} className="rounded bg-white overflow-hidden shadow-lg relative">
-                    <div className="p-2 flex items-start justify-center h-[100px] md:h-[250px] lg:h-[150px] xl:h-[200px] overflow-hidden">
+                    <div className="p-2 flex items-start justify-center h-[111px] md:h-[250px] lg:h-[150px] xl:h-[200px] overflow-hidden">
                         <img className="w-full w-auto block " src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
                     </div>
-                    <div className="px-2 bg-yellow-400 mt-2">
+                    <div className="pl-2 bg-yellow-400 mt-2">
                         <div className="bg-white">
-                            <div className="px-2 md:px-6 py-2">
+                            <div className="px-2 md:px-[14px] py-2">
                                 <div className="font-bold text-[12px] md:text-[1.2rem] mb-2 text-ellipsis truncate ...">{formatRupiah(price)}</div>
                                 <p className="text-[13px] text-gray-700 text-base truncate ...">
                                     {judul}
                                 </p>
                             </div>
-                            <div className="mx-2 md:px-4 py-2 text-[9px]  md:text-[12px]">
-                                <p className="inline-block float-right w-[50px] md:w-[80px] text-right">HARI INI</p>
-                                <p className="max-w-[calc(100%-50px)] md:max-w-[calc(100%-80px)]  truncate ...">Pasar Minggu, Jakarta Selatan</p>
+                            <div className="px-2 md:px-[14px] py-2 text-[9px]  md:text-[12px]">
+                                <p className="text-[10px] inline-block float-right w-[50px] md:w-[80px] text-right">HARI INI</p>
+                                <p className="text-[10px] max-w-[calc(100%-50px)] md:max-w-[calc(100%-80px)]  truncate ...">{(kec==""?"":dataKecamatan.nama+", ")+(kota==""?"":dataKota.nama)}</p>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,9 @@ import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
 import Map from 'react-map-gl';
+import { dataWilayah } from "@/app/library/loadJson";
+
+const wilayah = dataWilayah();
 
 String.prototype.capitalize = function () {
     // Memeriksa apakah string kosong
@@ -41,6 +44,9 @@ export default function Page({params}) {
             console.log(dataArray)
         })();
     },[SetArrImage])
+    const dataKecamatan = wilayah.getKecamatan(data.kec);
+    const dataKota = wilayah.getKota(data.kota);
+    const dataProvinsi = wilayah.getProvinsi(data.prov);
 
     return (<>
         <Header />
@@ -135,7 +141,7 @@ export default function Page({params}) {
                             </div>
                         </div>
                         <h3 className="text-[20px] font-bold text-gray-800 pt-[20px] border-t border-gray-400">Deskripsi</h3>
-                        <div className="my-[16px] font-normal not-italic text-[14px] leading-[20px] text-gray-800" style={{fontStretch:"normal"}}>
+                        <div className="my-[16px] font-normal not-italic text-[14px] leading-[20px] text-gray-800" style={{fontStretch:"normal",whiteSpace:"pre-line"}}>
                             {data.deskrisi}
                         </div>
                     </div>
@@ -158,7 +164,7 @@ export default function Page({params}) {
                     <h1 className="block text-[14px] text-gray-500" style={{fontWeight:"400", margin:"0 0 16px",lineHeight:"24px"}}>{data.judul != undefined ? data.judul.capitalize() : data.judul}</h1>
                     <div className="flex md:border-t-0 border-t border-gray-400 pt-[8px]" style={{alignItems:"center",justifyContent:"space-between"}}>
                         <div className="text-[12px]">
-                            <span className="ovetext-ellipsis overflow-hidden text-gray-600">Lowokwaru, Malang Kota, Jawa Timur</span>
+                            <span className="text-ellipsis overflow-hidden text-gray-600 capitalize">{(data.kec==""?"":dataKecamatan.nama.toLowerCase()+", ")+(data.kota==""?"":dataKota.nama.toLowerCase()+", ")+(data.prov==""?"":dataProvinsi.nama.toLowerCase())}</span>
                         </div>
                         <div className="text-right min-w-[70px] text-[12px]">
                             <span className="text-gray-600">4 hari yang lalu</span>
@@ -173,7 +179,7 @@ export default function Page({params}) {
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
                                 <a href={"/profile/"+data.uid_user}>
-                                    <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800">{data.fullname}</div>
+                                    <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800 h-[25px]">{data.fullname}</div>
                                     <span className="absolute top-[50%] right-0" style={{transform:"translateY(-50%)"}}>
                                         <svg className="w-[18px] h-[18px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path></svg>
                                     </span>
