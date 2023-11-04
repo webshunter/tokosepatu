@@ -32,12 +32,36 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function Page({params}) {
     const [arrImage, SetArrImage] = useState([]);
     const [data,SetData] = useState({});
+    const [youtube, setYoutube] = useState(null);
     let [slug] = params.name; 
     // [latitude,longitude]
     let maps = ["-7.9828022","112.6069727"];
     let log = new Date().toString();
     
     useEffect(()=>{
+        
+        function ambilIdVideo(url) {
+            var splitUrl = url.split("v=");
+            if (splitUrl.length > 1) {
+                var videoId = splitUrl[1];
+                var ampersandPosition = videoId.indexOf('&');
+                if (ampersandPosition !== -1) {
+                    videoId = videoId.substring(0, ampersandPosition);
+                }
+                return videoId;
+            } else {
+                return "Tautan YouTube tidak valid";
+            }
+        }
+        function ambilIdDariYouTubeShort(url) {
+            var idShort = null;
+            var shortPattern = /\/shorts\/([a-zA-Z0-9_-]{11})/;
+            var match = url.match(shortPattern);
+            if (match !== null) {
+                idShort = match[1];
+            }
+            return idShort;
+        }
         const loadData = async function(){
             const data = await fetch('/api/produk?slug=' + slug, fetcher);
             const produk = await data.json();
@@ -46,10 +70,19 @@ export default function Page({params}) {
                 let [dataArray] = dataJson;
                 SetArrImage(dataImage);
                 SetData(dataArray);
+                let detectYoutube = dataArray.deskrisi.split(" ");
+                detectYoutube.forEach(function(x){
+                    if (x.indexOf('youtube.com') != -1 && x.indexOf('youtube.com/shorts/')){
+                        let getid = x.split('youtube.com/shorts/')[1].split('?')[0];
+                        setYoutube(ambilIdDariYouTubeShort(x));
+                    } else if (x.indexOf('youtube.com') != -1){
+                        setYoutube( ambilIdVideo(x) );
+                    }
+                });
             }
         }
         loadData();
-    },[]);
+    }, [setYoutube]);
 
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
@@ -151,6 +184,12 @@ export default function Page({params}) {
                             </div>
                         </div>
                         <h3 className="text-[20px] font-bold text-gray-800 pt-[20px] border-t border-gray-400">Deskripsi</h3>
+                        {
+                        youtube? 
+                                <iframe width="420" height="345" src={`https://www.youtube.com/embed/` + youtube}>
+                            </iframe>
+                            : <></>
+                        }
                         <div className="my-[16px] font-normal not-italic text-[14px] leading-[20px] text-gray-800" style={{fontStretch:"normal",whiteSpace:"pre-line"}}>
                             {data.deskrisi}
                         </div>
