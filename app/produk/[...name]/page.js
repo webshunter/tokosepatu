@@ -60,6 +60,7 @@ export default function Page({params}) {
                 return "Tautan YouTube tidak valid";
             }
         }
+
         function ambilIdDariYouTubeShort(url) {
             var idShort = null;
             var shortPattern = /\/shorts\/([a-zA-Z0-9_-]{11})/;
@@ -69,6 +70,7 @@ export default function Page({params}) {
             }
             return idShort;
         }
+
         const loadData = async function(){
             const data = await fetch('/api/produk?slug=' + slug, fetcher);
             const produk = await data.json();
@@ -86,8 +88,16 @@ export default function Page({params}) {
                     }
                 });
             }
+            // Array.from(document.querySelectorAll('.image-click'))
+            // .forEach((x)=>{
+            //     x.addEventListener('click', ()=>{
+            //         console.log('click')
+            //     },false)
+            // })
         }
         loadData();
+
+
     }, [setYoutube]);
 
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
@@ -116,11 +126,6 @@ export default function Page({params}) {
                             <li key={i}>
                                 <div className="flex justify-center items-center ">
                                     <img
-                                        onClick={(e) => {
-                                            let src = e.target.src;
-                                            console.log(src);
-                                            setVisible(1);
-                                        }}
                                         className="h-[100%]"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
@@ -138,17 +143,20 @@ export default function Page({params}) {
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured"/>
                     <span>Highlight</span>
                 </label>
-                <Carousel className="h-[50vh] bg-black">
+                <Carousel onClick={(index)=>{
+                    if(index.target.tagName == "IMG"){
+                        let indexKey = index.target.dataset.key;
+                        setVisible(index);
+                        console.log(indexKey)
+                    }
+                }} onSlideChange={(index) => console.log('onSlideChange()', index)} className="h-[50vh] bg-black">
                     {arrImage.map((s, i) => {
                         return (
-                            <li key={i}>
+                            <li className="image-click"
+                                key={i}>
                                 <div className="flex justify-center items-center ">
                                     <img
-                                        onClick={(e)=>{
-                                            let src = e.target.src;
-                                            console.log(src);
-                                            setVisible(1);
-                                        }}
+                                        data-key={i}
                                         className="h-[50vh]"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
