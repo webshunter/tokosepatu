@@ -1,5 +1,4 @@
 "use client"
-import { Header } from "@/app/component/header";
 import { Carousel } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
@@ -7,6 +6,10 @@ import Map from 'react-map-gl';
 import { dataWilayah } from "@/app/library/loadJson";
 import { DateLabel } from "@/app/library/dateLabel";
 import useSWR, { SWRConfig } from 'swr'
+import { useOutsideClick } from "@/app/library/outclick"; 
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const wilayah = dataWilayah();
 
@@ -30,6 +33,10 @@ String.prototype.capitalize = function () {
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Page({params}) {
+    const [visible, setVisible] = useState()
+    const ref = useOutsideClick(() => {
+        setVisible(null)
+    });
     const [arrImage, SetArrImage] = useState([]);
     const [data,SetData] = useState({});
     const [youtube, setYoutube] = useState(null);
@@ -91,8 +98,40 @@ export default function Page({params}) {
     log = data.userlog;
     maps = [lat, long];
     return (<>
-        <Header />
-
+        <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background:"rgba(0, 0, 0, 0.5)"}}>
+            <div className="absolute rounded bg-white z-[9] cursor-pointer top-[40px] right-[40px]">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    height="2em"
+                    width="2em"
+                >
+                    <path d="M13.41 12l4.3-4.29a1 1 0 10-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 00-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 000 1.42 1 1 0 001.42 0l4.29-4.3 4.29 4.3a1 1 0 001.42 0 1 1 0 000-1.42z" />
+                </svg>
+            </div>
+            <div ref={ref} className="w-[100vw] h-[100vh] bg-white shadow-lg rounded">
+                <Carousel className="h-[100%] bg-black">
+                    {arrImage.map((s, i) => {
+                        return (
+                            <li key={i}>
+                                <div className="flex justify-center items-center ">
+                                    <img
+                                        onClick={(e) => {
+                                            let src = e.target.src;
+                                            console.log(src);
+                                            setVisible(1);
+                                        }}
+                                        className="h-[100%]"
+                                        alt="..."
+                                        src={'https://app.rumahjo.com/' + s.image}
+                                    />
+                                </div>
+                            </li>
+                        )
+                    })}
+                </Carousel>
+            </div>
+        </div>
         <div className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
             <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
                 <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{fontWeight:"400", height:"20px", justifyContent:"center", position:"absolute", textTransform:"uppercase",zIndex:"2",letterSpacing:".5504px"}}>
@@ -105,6 +144,11 @@ export default function Page({params}) {
                             <li key={i}>
                                 <div className="flex justify-center items-center ">
                                     <img
+                                        onClick={(e)=>{
+                                            let src = e.target.src;
+                                            console.log(src);
+                                            setVisible(1);
+                                        }}
                                         className="h-[50vh]"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
