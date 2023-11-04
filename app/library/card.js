@@ -23,8 +23,11 @@ export const ProdukCard = function({data}){
             </label>
             <Link href={"/produk/" + slug} className="w-full">
                 <div style={{border:'1px solid #aaa'}} className="rounded bg-white overflow-hidden shadow-lg relative">
+                    <figure className="hidden p-2 overflow-hidden relative box-border bg-inherit h-[160px]">
+                        <img className="max-h-full block m-auto w-full object-cover" src={`https://app.rumahjo.com/` + images}></img>
+                    </figure>
                     <div className="p-2 flex items-start justify-center h-[111px] md:h-[250px] lg:h-[150px] xl:h-[200px] overflow-hidden">
-                        <img className="w-full w-auto block " src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
+                        <img className="max-h-full block m-auto w-full object-cover" src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
                     </div>
                     <div className="pl-2 bg-yellow-400 mt-2">
                         <div className="bg-white">
@@ -35,8 +38,8 @@ export const ProdukCard = function({data}){
                                 </p>
                             </div>
                             <div className="flex justify-between px-2 md:px-[14px] py-2 text-[9px]  md:text-[12px]">
-                                <p className="text-[10px] max-w-[calc(100%-50px)] md:max-w-[70%]  truncate ...">{(kec==""?"":dataKecamatan.nama+", ")+(kota==""?"":dataKota.nama)}</p>
-                                <p className="text-[10px] inline-block float-right text-right">{ DateLabel(userlog).toUpperCase() }</p>
+                                <p className="text-[10px] max-w-full md:max-w-[70%]  truncate ...">{(kec==""?"":dataKecamatan.nama+", ")+(kota==""?"":dataKota.nama)}</p>
+                                <p className="hidden md:block text-[10px] inline-block float-right text-right">{ DateLabel(userlog).toUpperCase() }</p>
                             </div>
                         </div>
                     </div>
