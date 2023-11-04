@@ -2,13 +2,29 @@
 import { Header } from "@/app/component/header";
 import { useEffect, useState } from "react";
 import { ProdukCard } from '@/app/library/card2';
+import { JoinDate } from '@/app/library/joinDate';
 
-export default function Profile() {
+
+export default function Profile({params}) {
+    let [slug] = params.name;  
+    const [nama, setNama] = useState(null)
     const [dataListing, setDataListing] = useState([]);
 
     const [card, addCard] = useState([]);
 
+    let join = new Date().toString();
+
     useEffect(() => {
+
+        fetch('/api/user?uniqid=' + slug)
+            .then((res) => {
+                return res.json()
+            })
+            .then((res) => {
+                let [data] = res.message;
+                setNama(data.fullname);
+                join = data.tgldaftar;
+            })
 
         if (localStorage.getItem('produkstart') != undefined) {
             setDataListing(JSON.parse(localStorage.getItem('produkstart')));
@@ -40,14 +56,14 @@ export default function Profile() {
                             </div>
                         </div>
                         <div className="flex items-center overflow-hidden whitespace-nowrap text-ellipsis">
-                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">Rumah Jo</span>
+                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">{nama?nama:""}</span>
                         </div>
                         <div className="flex flex-col">
                             <div className="my-[20px]">
                                 <div className="flex items-center">
                                     <svg className="w-[16px] h-[16px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M341.579 85.3359V127.981H683.211V85.3359H768.619V127.981H895.963L938.667 170.669V895.981L895.963 938.669H128.038L85.3335 895.981V170.669L128.038 127.981H256.15V85.3359H341.579ZM853.259 426.648H170.742V853.315H853.259V426.648ZM320.221 511.988C355.601 511.988 384.277 540.66 384.277 575.988C384.277 611.337 355.601 639.988 320.221 639.988C284.84 639.988 256.165 611.337 256.165 575.988C256.165 540.66 284.84 511.988 320.221 511.988ZM256.15 213.315H170.742V341.336H853.259V213.315H768.619V255.981L725.915 298.648L683.211 255.981V213.315H341.579V255.981L298.875 298.648L256.15 255.981V213.315Z"></path></svg>
                                     <div className="m-[4px] ml-[5px]">
-                                        <span>Anggota sejak Nov 2016</span>
+                                        <span>Anggota sejak {JoinDate(join)}</span>
                                     </div>
                                 </div>
                                 <div className="flex items-center">
