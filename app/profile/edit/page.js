@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getFips } from 'crypto';
 import { Button, Modal } from 'flowbite-react';
+import ValidasiLogin from '@/app/component/loginvalidasi';
 
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
@@ -80,6 +81,7 @@ export default function EditProfile() {
     }
 
     return (<>
+        <ValidasiLogin>
         <Modal dismissible show={props.openModal === 'dismissible'} onClose={() => props.setOpenModal(undefined)}>
             <Modal.Header>Success</Modal.Header>
             <Modal.Body>
@@ -268,5 +270,6 @@ export default function EditProfile() {
             </div>
         </div>
     )}
+        </ValidasiLogin>
     </>)
 }
