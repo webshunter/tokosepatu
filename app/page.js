@@ -34,15 +34,15 @@ export default function LoadData(props) {
           <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
             <img
               alt="..."
-              src="/banner.jpg"
+              src="/g12.png"
             />
             <img
               alt="..."
-              src="/banner.jpg"
+              src="/g12.png"
             />
             <img
               alt="..."
-              src="/banner.jpg"
+              src="/g12.png"
             />
           </Carousel>
         </div>
@@ -70,15 +70,15 @@ export default function LoadData(props) {
         <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
           <img
             alt="..."
-            src="/banner.jpg"
+            src="/g12.png"
           />
           <img
             alt="..."
-            src="/banner.jpg"
+            src="/g12.png"
           />
           <img
             alt="..."
-            src="/banner.jpg"
+            src="/g12.png"
           />
         </Carousel>
       </div>
