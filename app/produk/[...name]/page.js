@@ -6,6 +6,7 @@ import { formatRupiah } from "@/app/library/rupiah";
 import Map from 'react-map-gl';
 import { dataWilayah } from "@/app/library/loadJson";
 import { DateLabel } from "@/app/library/dateLabel";
+import useSWR, { SWRConfig } from 'swr'
 
 const wilayah = dataWilayah();
 
@@ -26,27 +27,28 @@ String.prototype.capitalize = function () {
     return capitalizedWords.join(' ');
 }
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
 export default function Page({params}) {
-    const [arrImage,SetArrImage] = useState([]);
+    const [arrImage, SetArrImage] = useState([]);
     const [data,SetData] = useState({});
     let [slug] = params.name; 
+    const { data: produk } = useSWR('/api/produk?slug=' + slug, fetcher)
     // [latitude,longitude]
+    console.log(produk)
     let maps = ["-7.9828022","112.6069727"];
 
     let log = new Date().toString();
-
+    
     useEffect(()=>{
-        (async function(){
-            let dataf = await fetch('/api/produk?slug=' + slug)
-            let {message:data} = await dataf.json();
-            let [ dataImage, dataJson ] = data;
+        if (produk){
+            let [dataImage, dataJson] = produk.message;
             let [dataArray] = dataJson;
             SetArrImage(dataImage);
             SetData(dataArray);
-            console.log("-----")
-            console.log(dataArray)
-        })();
-    },[SetArrImage]);
+        }
+    },[]);
+
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
     const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
