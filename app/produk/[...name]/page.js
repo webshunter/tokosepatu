@@ -72,8 +72,7 @@ export default function Page({params}) {
                 SetData(dataArray);
                 let detectYoutube = dataArray.deskrisi.split(" ");
                 detectYoutube.forEach(function(x){
-                    if (x.indexOf('youtube.com') != -1 && x.indexOf('youtube.com/shorts/')){
-                        let getid = x.split('youtube.com/shorts/')[1].split('?')[0];
+                    if (x.indexOf('youtube.com') != -1 && x.indexOf('youtube.com/shorts/') != -1){
                         setYoutube(ambilIdDariYouTubeShort(x));
                     } else if (x.indexOf('youtube.com') != -1){
                         setYoutube( ambilIdVideo(x) );
