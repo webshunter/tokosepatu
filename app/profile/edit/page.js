@@ -4,7 +4,6 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { getFips } from 'crypto';
 import { Button, Modal } from 'flowbite-react';
 import ValidasiLogin from '@/app/component/loginvalidasi';
-
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
     const [fullname, setName] = useState("");
@@ -19,16 +18,13 @@ export default function EditProfile() {
     const openPopUp = () => {
         setPopUpVisible(true);
     };
-    
     const closePopUp = () => {
         setPopUpVisible(false);
     };
-
     const warning = function(text){
         alert(text);
         throw 'stop action';
     }
-
     const submitAction = function(){
         telp?telp:warning('Telp wajib diisi');
         password?password:warning('Password wajib diisi');
@@ -55,10 +51,7 @@ export default function EditProfile() {
             console.log(res)
         })
     }
-
     const { data: session } = useSession();
-
-    
     if (!dataResponse){
         if(session){
             let email = session.user.email;
@@ -79,7 +72,6 @@ export default function EditProfile() {
                 })
         }
     }
-
     return (<>
         <ValidasiLogin>
         <Modal dismissible show={props.openModal === 'dismissible'} onClose={() => props.setOpenModal(undefined)}>

@@ -43,6 +43,7 @@
     "react-summernote": "^2.0.2",
     "serverless-mysql": "^1.5.5",
     "summernote": "^0.8.20",
+    "swr": "^2.2.4",
     "tailwindcss": "3.3.3",
     "tls": "^0.0.1"
   },
