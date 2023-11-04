@@ -80,7 +80,6 @@ export default function PostListing() {
         return document.getElementById(id);
     }
 
-
     const propertiChange = function(kode, data){
         if(data){
             let cek = dataStatus.cond(data.status, 'val');
@@ -103,7 +102,6 @@ export default function PostListing() {
     }
 
     const hiddenForm = function(v){
-        console.log(v);
         Array.from(document.querySelectorAll('div[data-shows]'))
         .forEach((dom)=>{
             dom.dataset.shows.indexOf(v.form) != -1 ? dom.style.display = 'block' : dom.style.display = 'none';
@@ -155,6 +153,15 @@ export default function PostListing() {
         let di = [];
         
         formProps.galery = dataImage;
+        formProps.facility = Array.from(document.querySelectorAll('input[name="facility"]')).map((r) => {
+            return r.checked ? r.value : null;
+        }).filter((r) => {
+            if (r != null) {
+                return r;
+            }
+        }).join(",");
+
+        console.log(formProps);
 
         const ori = function () {
             let ori = location.host;
