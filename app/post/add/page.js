@@ -41,32 +41,38 @@ export default function PostListing() {
         {
             id: "01",
             text: "Dijual: Rumah & Apartement",
-            status: 1
+            status: 1,
+            form: 'rumah'
         }
         ,{
             id: "02",
             text: "Disewakan: Rumah & Apartement",
-            status: 2
+            status: 2,
+            form:'rumah'
         }
         ,{
             id: "03",
             text: "Tanah",
-            status:'-'
+            status:'-',
+            form:'tanah'
         }
         ,{
             id: "04",
             text: "Indekos",
-            status:0
+            status:0,
+            form: 'indekos'
         }
         ,{
             id: "05",
             text: "Dijual: Bangunan Komersil",
-            status:1
+            status:1,
+            form:'bangunan'
         }
         ,{
             id: "07",
             text: "Disewakan: Bangunan Komersil",
-            status:2
+            status:2,
+            form:'bangunan'
         }
     ]
 
@@ -97,7 +103,12 @@ export default function PostListing() {
     }
 
     const hiddenForm = function(v){
-        console.log(v)
+        console.log(v);
+        Array.from(document.querySelectorAll('div[data-shows]'))
+        .forEach((dom)=>{
+            dom.dataset.shows.indexOf(v.form) != -1 ? dom.style.display = 'block' : dom.style.display = 'none';
+        })
+        v.nilai.toLowerCase()
     }
 
     function backFunc(a = 1, b = 6, nilai){
@@ -230,7 +241,7 @@ export default function PostListing() {
                                 <button onClick={(w) => {
                                     let nilai = w.target.dataset
                                     backFunc(3, 6, nilai);
-                                }} type='button' data-status={q.status} data-nilai={q.text} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
+                                }} type='button' data-form={q.form} data-status={q.status} data-nilai={q.text} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
                             </li>)
                         })}
                     </div>
