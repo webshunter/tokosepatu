@@ -65,17 +65,14 @@ export default function LoadData(props) {
     return <>
       <div className='my-5 '>
         <Carousel className="h-[240px] bg-gray-200 md:h-[420px]">
-          <img
-            alt="..."
-            src="/g12.png"
-          />
-          <img
-            alt="..."
-            src="/g12.png"
-          />
-          <img
-            alt="..."
-            src="/g12.png"
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              backgroundImage: 'url("/g12.png")'
+            }}
           />
         </Carousel>
       </div>
