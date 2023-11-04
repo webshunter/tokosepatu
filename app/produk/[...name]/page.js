@@ -33,20 +33,22 @@ export default function Page({params}) {
     const [arrImage, SetArrImage] = useState([]);
     const [data,SetData] = useState({});
     let [slug] = params.name; 
-    const { data: produk } = useSWR('/api/produk?slug=' + slug, fetcher)
     // [latitude,longitude]
-    console.log(produk)
     let maps = ["-7.9828022","112.6069727"];
-
     let log = new Date().toString();
     
     useEffect(()=>{
-        if (produk){
-            let [dataImage, dataJson] = produk.message;
-            let [dataArray] = dataJson;
-            SetArrImage(dataImage);
-            SetData(dataArray);
+        const loadData = async function(){
+            const data = await fetch('/api/produk?slug=' + slug, fetcher);
+            const produk = await data.json();
+            if (produk){
+                let [dataImage, dataJson] = produk.message;
+                let [dataArray] = dataJson;
+                SetArrImage(dataImage);
+                SetData(dataArray);
+            }
         }
+        loadData();
     },[]);
 
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
