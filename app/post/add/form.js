@@ -2,6 +2,21 @@ import { useState, useEffect } from "react";
 import facility from '../../wilayah/facility.json';
 import { signIn, signOut, useSession } from "next-auth/react";
 
+export const dataStatus = [
+    {
+        val:0,
+        text: 'indekos'
+    },
+    {
+        val:1,
+        text: 'dijual'
+    },
+    {
+        val:2,
+        text: 'disewakan'
+    },
+];
+
 export const FormPost = () => {
     const [lbangun, setLBangun] = useState("");
     const [ltanah, setLTanah] = useState("");
@@ -196,6 +211,60 @@ export const FormPost = () => {
             name="alamat"
             className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
         />
+        <div data-hidden="indekos">
+            <label htmlFor="judul" className="text-gray-500 font-light mt-8 dark:text-gray-50">
+                Type<span className="text-red-500 dark:text-gray-50">*</span>
+            </label>
+            <ul className="p-3 grid w-full gap-6 grid-cols-2">
+                <li>
+                    <input type="radio"
+                        id="dijual"
+                        name="status"
+                        value="1"
+                        className="hidden peer"
+                        required />
+                    <label htmlFor="dijual" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <div className="block">
+                            <div className="w-full">Dijual</div>
+                        </div>
+                    </label>
+                </li>
+                <li>
+                    <input
+                        type="radio"
+                        id="disewakan"
+                        name="status"
+                        value="2"
+                        className="hidden peer"
+                    />
+                    <label
+                        htmlFor="disewakan"
+                        className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                        <div className="block">
+                            <div className="w-full">Disewakan</div>
+                        </div>
+                    </label>
+                </li>
+                <li style={{display:'none'}}>
+                    <input
+                        type="radio"
+                        id="indekos"
+                        name="status"
+                        value="0"
+                        className="hidden peer"
+                    />
+                    <label
+                        htmlFor="indekos"
+                        className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                        <div className="block">
+                            <div className="w-full"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
         <label htmlFor="judul" className="text-gray-500 font-light mt-8 dark:text-gray-50">
             Judul Iklan<span className="text-red-500 dark:text-gray-50">*</span>
         </label>

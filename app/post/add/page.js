@@ -6,9 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronLeft, faBuilding} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FormPost } from './form';
+import { FormPost, dataStatus } from './form';
 import { ImageUpload } from "@/app/component/ImageUploadMass";
 import { dataWilayah } from "@/app/library/loadJson";
+import { Helper } from '@/app/library/prototype';
+
+Helper();
 
 const wilayah = dataWilayah();
 
@@ -37,27 +40,33 @@ export default function PostListing() {
     const data = [
         {
             id: "01",
-            text: "Dijual: Rumah & Apartement"
+            text: "Dijual: Rumah & Apartement",
+            status: 1
         }
         ,{
             id: "02",
-            text: "Disewakan: Rumah & Apartement"
+            text: "Disewakan: Rumah & Apartement",
+            status: 2
         }
         ,{
             id: "03",
-            text: "Tanah"
+            text: "Tanah",
+            status:'-'
         }
         ,{
             id: "04",
-            text: "Indekos"
+            text: "Indekos",
+            status:0
         }
         ,{
             id: "05",
-            text: "Dijual: Bangunan Komersil"
+            text: "Dijual: Bangunan Komersil",
+            status:1
         }
         ,{
             id: "07",
-            text: "Disewakan: Bangunan Komersil"
+            text: "Disewakan: Bangunan Komersil",
+            status:2
         }
     ]
 
@@ -66,12 +75,30 @@ export default function PostListing() {
     }
 
 
-    const propertiChange = function(kode, nilai){
-        if(nilai){
-            setProperti(nilai)
+    const propertiChange = function(kode, data){
+        if(data){
+            let cek = dataStatus.cond(data.status, 'val');
+            if(cek.length > 0){
+                let {text} = cek[0];
+                let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
+                dataHidden.forEach((c)=>{
+                    c.style.display = 'none';
+                })
+                document.getElementById(text).click();
+            }else{
+                let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
+                dataHidden.forEach((c)=>{
+                    c.style.display = 'block';
+                })
+            }
+            setProperti(data.nilai)
+            hiddenForm(data)
         }
     }
 
+    const hiddenForm = function(v){
+        console.log(v)
+    }
 
     function backFunc(a = 1, b = 6, nilai){
         for (let v = 1; v <= b; v++) {
@@ -201,9 +228,9 @@ export default function PostListing() {
                         {data.map((q, i)=>{
                             return (<li className='list-none' key={i}>
                                 <button onClick={(w) => {
-                                    let nilai = w.target.dataset.nilai
+                                    let nilai = w.target.dataset
                                     backFunc(3, 6, nilai);
-                                }} type='button' data-nilai={q.text} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
+                                }} type='button' data-status={q.status} data-nilai={q.text} style={{ borderBottom: '1px solid #ddd' }} className='kategori w-full text-left px-5 py-3'>{q.text}</button>
                             </li>)
                         })}
                     </div>
