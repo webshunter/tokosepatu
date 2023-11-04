@@ -40,6 +40,7 @@
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
     "react-map-gl": "^7.1.6",
+    "react-share-social": "^0.1.55",
     "react-summernote": "^2.0.2",
     "serverless-mysql": "^1.5.5",
     "summernote": "^0.8.20",

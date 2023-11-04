@@ -99,12 +99,13 @@ export default function Page({params}) {
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured"/>
                     <span>Highlight</span>
                 </label>
-                <Carousel className="h-[320px] bg-black">
+                <Carousel className="h-[50vh] bg-black">
                     {arrImage.map((s, i) => {
                         return (
                             <li key={i}>
-                                <div className="flex justify-center">
+                                <div className="flex justify-center items-center ">
                                     <img
+                                        className="h-[50vh]"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
                                     />
@@ -253,6 +254,7 @@ export default function Page({params}) {
                         <h3 className="text-[20px] font-bold text-gray-800 mb-[20px]">Lokasi Iklan</h3>
                     </div>
                     <div>
+                        
                         <iframe 
                             src={`https://www.google.com/maps?q=${maps.join(",")}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                     </div>
