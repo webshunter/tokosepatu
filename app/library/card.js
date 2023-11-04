@@ -2,11 +2,12 @@ import Image from "next/image"
 import Link from "next/link"
 import { formatRupiah } from "./rupiah"
 import { dataWilayah } from "@/app/library/loadJson";
+import { DateLabel } from "@/app/library/dateLabel";
 
 const wilayah = dataWilayah();
 
 export const ProdukCard = function({data}){
-    let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota } = data
+    let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota, userlog } = data
     const dataKecamatan = wilayah.getKecamatan(kec);
     const dataKota = wilayah.getKota(kota);
     return (<>
@@ -33,9 +34,9 @@ export const ProdukCard = function({data}){
                                     {judul}
                                 </p>
                             </div>
-                            <div className="px-2 md:px-[14px] py-2 text-[9px]  md:text-[12px]">
-                                <p className="text-[10px] inline-block float-right w-[50px] md:w-[80px] text-right">HARI INI</p>
-                                <p className="text-[10px] max-w-[calc(100%-50px)] md:max-w-[calc(100%-80px)]  truncate ...">{(kec==""?"":dataKecamatan.nama+", ")+(kota==""?"":dataKota.nama)}</p>
+                            <div className="flex justify-between px-2 md:px-[14px] py-2 text-[9px]  md:text-[12px]">
+                                <p className="text-[10px] max-w-[calc(100%-50px)] md:max-w-[70%]  truncate ...">{(kec==""?"":dataKecamatan.nama+", ")+(kota==""?"":dataKota.nama)}</p>
+                                <p className="text-[10px] inline-block float-right text-right">{ DateLabel(userlog).toUpperCase() }</p>
                             </div>
                         </div>
                     </div>

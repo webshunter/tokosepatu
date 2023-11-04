@@ -14,6 +14,10 @@ const formatDate = (dateString) => {
         return nama[date.getMonth()];
     }
 
+    const day = date.getDate();
+    const month = bulanIndo(date);
+    const newday = day < 10 ? `0${day}` : day;
+
     if (diffInMilliseconds < 60 * 60 * 100) {
         return 'BARU SAJA';
     }
@@ -31,8 +35,13 @@ const formatDate = (dateString) => {
         return `${dayAgo} HARI YANG LALU`;
     }
 
-    const option = {day: 'numeric', month: 'numeric',  year: 'numeric' };
-    return date.toLocaleDateString('en-US', option);
+    if (date.getFullYear() === now.getFullYear()) {
+        return `${newday} ${month}`;
+    } else {
+        const year = date.getFullYear();
+        const option = { year: 'numeric', month: 'short', day: 'numeric' };
+        return `${newday} ${month} ${year}`;
+    }
 }
 
 export function DateLabel(dateString) {
