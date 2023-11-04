@@ -30,7 +30,7 @@ const formatDate = (dateString) => {
         return 'HARI INI';
     }
     
-    if (diffInMilliseconds < 8 * 24 * 60 * 60 * 1000) {
+    if (diffInMilliseconds < 6 * 24 * 60 * 60 * 1000) {
         const dayAgo = Math.floor(diffInMilliseconds / (24 * 60 * 60 * 1000));
         return `${dayAgo} HARI YANG LALU`;
     }
