@@ -31,7 +31,7 @@ const formatDate = (dateString) => {
     }
     
     if (diffInMilliseconds < 7 * 24 * 60 * 60 * 1000) {
-        const dayAgo = Math.floor(diffInMilliseconds / (24 * 60 * 60 * 1000));
+        const dayAgo = Math.floor(diffInMilliseconds / (1 * 24 * 60 * 60 * 1000));
         return `${dayAgo} HARI YANG LALU`;
     }
 
