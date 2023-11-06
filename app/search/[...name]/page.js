@@ -201,11 +201,11 @@ export default function Search({params}) {
                                                                     <div className="my-[12px]">
                                                                         <div className="flex items-center">
                                                                             <input name="type" id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                                                            <label for="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Apartemen</label>
+                                                                            <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Apartemen</label>
                                                                         </div>
                                                                         <div className="flex items-center">
                                                                             <input name="type" id="checked-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                                            <label for="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rumah</label>
+                                                                            <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rumah</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -273,15 +273,15 @@ export default function Search({params}) {
                                                                     <div className="my-[12px]">
                                                                         <div className="flex items-center">
                                                                             <input name="cert" id="default-checkbox" type="checkbox" value="1" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                                                                            <label for="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">SHM - Sertifikat Hak Milik</label>
+                                                                            <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">SHM - Sertifikat Hak Milik</label>
                                                                         </div>
                                                                         <div className="flex items-center">
                                                                             <input name="cert" id="checked-checkbox" type="checkbox" value="2" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                                            <label for="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">HGB - Hak Guna Bangun</label>
+                                                                            <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">HGB - Hak Guna Bangun</label>
                                                                         </div>
                                                                         <div className="flex items-center">
                                                                             <input name="cert" id="checked-checkbox" type="checkbox" value="3" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                                                            <label for="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lainnya (PPJB, Girik, Adat, dll)</label>
+                                                                            <label htmlFor="checked-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Lainnya (PPJB, Girik, Adat, dll)</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>

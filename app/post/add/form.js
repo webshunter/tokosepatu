@@ -25,6 +25,7 @@ export const FormPost = () => {
     const [lantai, setLantai] = useState("");
     const [alamat, setAlamat] = useState("");
     const [judul, setJudul] = useState("");
+    const [hadap, setHadap] = useState("");
     const [deskrisi, setDeskrisi] = useState("");
     const [dataResponse, setDataresponse] = useState(null);
     const [uid, setUid] = useState(null);
@@ -172,6 +173,22 @@ export const FormPost = () => {
                 })}
                 <option value={11}>&gt;10</option>
             </select>
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
+        </div>
+
+        {/* hadap */}
+        <div data-shows="bangunan,rumah" style={{display:'none'}}>
+            <label htmlFor="hadap" className="text-gray-500 font-light mt-8 dark:text-gray-50">
+                Hadap<span className="text-red-500 dark:text-gray-50">*</span>
+            </label>
+            <input type="text"
+                value={hadap}
+                onChange={(e) => {
+                    setHadap(e.target.value);
+                }}
+                name="hadap"
+                className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
+            />
             <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 

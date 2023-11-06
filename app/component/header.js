@@ -83,7 +83,6 @@ export const Header = function(){
 
     const goSeach = function(value){
         value = encodeURI( value.toLowerCase().replace(/\ /g, '-') )
-        console.log(value)
         route.push('/search/q-'+value)
     }
 
@@ -114,7 +113,6 @@ export const Header = function(){
                 uniqid: 'ID-USER-'+Date.now(),
                 data: session
             }).then(function(res){
-                console.log(res)
             })
         }
     }
