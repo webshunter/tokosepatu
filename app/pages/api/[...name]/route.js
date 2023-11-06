@@ -59,7 +59,7 @@ export async function GET(req, Response) {
                 }).join(' OR ')} LIMIT ${start}, ${limit} `
             }
             return ""; 
-        })()}`
+        })()} ORDER BY uniqid DESC`
         const value = [];
         const [data] = await connection.query(query);
         connection.end();

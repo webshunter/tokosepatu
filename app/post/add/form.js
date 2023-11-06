@@ -96,6 +96,7 @@ export const FormPost = () => {
                     </label>
                 </li>
             </ul>
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
         {/* luas bangunan */}
@@ -111,6 +112,7 @@ export const FormPost = () => {
                 name="lbangun"
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
         {/* luas tanah */}
@@ -126,6 +128,7 @@ export const FormPost = () => {
                 name="ltanah"
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
         {/* kamar tidur */}
@@ -147,6 +150,7 @@ export const FormPost = () => {
                 })}
                 <option value={11}>&gt;10</option>
             </select>
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
         {/* kamr mandi */}
@@ -168,6 +172,7 @@ export const FormPost = () => {
                 })}
                 <option value={11}>&gt;10</option>
             </select>
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
         {/* lantai */}
@@ -317,6 +322,7 @@ export const FormPost = () => {
                 name="judul"
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">Panjang minimum harus 15 karakter harap edit kolom.</p>
         </div>
 
         {/* deskripsi */}
@@ -332,6 +338,7 @@ export const FormPost = () => {
                 }}
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             ></textarea>
+            <p className="info-danger mb-2 text-red-700 px-2 italic hidden">Panjang minimum harus 20 karakter harap edit kolom.</p>
         </div>
         
     </>)

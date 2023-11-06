@@ -110,7 +110,37 @@ export default function PostListing() {
         v.nilai.toLowerCase()
     }
 
+    function validasiProperty(v){
+        const formid = document.getElementById("formid");
+        const formData = new FormData(formid);
+        const formProps = Object.fromEntries(formData);
+
+        let fileds = ["lbangun","ltanah", "ktidur", "kmandi", "judul", "deskrisi"]
+        let cek = 0;
+        fileds.forEach((data)=>{
+            console.log('fields ',data)
+            console.log(formProps[data])
+            if(formProps[data] == ""){
+                cek++;
+            }
+        });
+        console.log(cek)
+        if(cek > 0){
+            backFunc(3);
+            Array.from(document.querySelectorAll(".info-danger"))
+            .forEach((h)=>{
+                h.style.display = 'block';
+            })
+        }else{
+            Array.from(document.querySelectorAll(".info-danger"))
+            .forEach((h)=>{
+                h.style.display = 'none';
+            })
+        };
+    }
+
     function backFunc(a = 1, b = 6, nilai){
+        let activeBefore = a;
         for (let v = 1; v <= b; v++) {
             if(v == 2){
                 propertiChange(v, nilai)
@@ -120,6 +150,9 @@ export default function PostListing() {
             }else{
                 _id('kategori' + v).style.display = 'none';
             }
+        }
+        if(activeBefore == 4){
+            validasiProperty(3)
         }
     }
 
@@ -133,7 +166,6 @@ export default function PostListing() {
 
     const simpanData = async function(e){
         e.preventDefault();
-        setVisible(!visible);
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
         const image = Array.from(e.target.querySelectorAll('img'))
@@ -153,6 +185,7 @@ export default function PostListing() {
         
         let di = [];
         
+        formProps.price = formProps.price.number();
         formProps.galery = dataImage;
         formProps.facility = Array.from(document.querySelectorAll('input[name="facility"]')).map((r) => {
             return r.checked ? r.value : null;
@@ -186,7 +219,25 @@ export default function PostListing() {
             }
         })
 
-        let b64Data = btoa(JSON.stringify(formProps))
+        let b64Data = btoa(JSON.stringify(formProps));
+
+
+        // validasi
+        let fileds = ["prov", "kota", "kec"];
+        let cek = 0;
+        fileds.forEach((data) => {
+            if (formProps[data] == "") {
+                cek++;
+            }
+        });
+
+        if (cek > 0) {
+            alert("Pastikan lokasi sudah terisi dengan benar");
+            throw "stop upload";            
+        }
+        
+        setVisible(!visible);
+
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
             setVisible(visible);
             route.push("/");
@@ -196,13 +247,13 @@ export default function PostListing() {
   
     return (
         <ValidasiLogin>
-            <form onSubmit={simpanData} className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
+            <form id="formid" onSubmit={simpanData} className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
                 <h1 className="text-2xl font-bold dark:text-gray-50">Pasang Iklan Anda</h1>
                 <label htmlFor="type" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                     Tipe<span className="text-red-500 dark:text-gray-50">*</span>
                 </label>
                 <div id="kategori1" style={{ paddingTop: '60px', overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
-                    <div className='fixed w top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
+                    <div className='fixed w-full top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
                         <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
                             <FontAwesomeIcon
                                 icon={faTimes}
@@ -308,13 +359,14 @@ export default function PostListing() {
                     <div className='px-5'>
                         <h1 className="text-sm dark:text-gray-50 pt-8">Price</h1>
                         <input
-                            value={price}
+                            value={price.number(2).currency()}
                             onChange={(e) => {
-                                setPrice(e.target.value);
+                                let h = e.target.value.number().toString();
+                                setPrice(h);
                             }}
-                            type='number'
+                            type='text'
                             name="price"
-                            className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
+                            className="bg-transparent text-right border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
                         />
                     </div>
                     <div className='w-full fixed bottom-0'>

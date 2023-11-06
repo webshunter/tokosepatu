@@ -30,6 +30,7 @@ String.prototype.capitalize = function () {
     return capitalizedWords.join(' ');
 }
 
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export default function Page({params}) {
@@ -57,7 +58,7 @@ export default function Page({params}) {
                 }
                 return videoId;
             } else {
-                return "Tautan YouTube tidak valid";
+                return "";
             }
         }
 
@@ -69,6 +70,28 @@ export default function Page({params}) {
                 idShort = match[1];
             }
             return idShort;
+        }
+
+        function ambilKodeYouTube(link) {
+            var kode = '';
+            var url = new URL(link);
+            if (url.hostname === 'youtu.be') {
+                kode = url.pathname.slice(1);
+                if (kode.includes('?')) {
+                    kode = kode.substring(0, kode.indexOf('?'));
+                }
+            } else if (url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com') {
+                if (url.search) {
+                    var params = new URLSearchParams(url.search);
+                    kode = params.get('v');
+                } else {
+                    kode = url.pathname.slice(1);
+                    if (kode === 'watch') {
+                        kode = url.searchParams.get('v');
+                    }
+                }
+            }
+            return kode;
         }
 
         const loadData = async function(){
@@ -83,17 +106,15 @@ export default function Page({params}) {
                 detectYoutube.forEach(function(x){
                     if (x.indexOf('youtube.com') != -1 && x.indexOf('youtube.com/shorts/') != -1){
                         setYoutube(ambilIdDariYouTubeShort(x));
-                    } else if (x.indexOf('youtube.com') != -1){
-                        setYoutube( ambilIdVideo(x) );
+                    } else if (x.indexOf('youtube.com') != -1 || x.indexOf('youtu.be') != -1){
+                        if (ambilIdVideo(x) != ''){
+                            setYoutube( ambilIdVideo(x) );
+                        }else{
+                            setYoutube( ambilKodeYouTube(x) );
+                        }
                     }
                 });
             }
-            // Array.from(document.querySelectorAll('.image-click'))
-            // .forEach((x)=>{
-            //     x.addEventListener('click', ()=>{
-            //         console.log('click')
-            //     },false)
-            // })
         }
         loadData();
 
@@ -147,9 +168,8 @@ export default function Page({params}) {
                     if(index.target.tagName == "IMG"){
                         let indexKey = index.target.dataset.key;
                         setVisible(index);
-                        console.log(indexKey)
                     }
-                }} onSlideChange={(index) => console.log('onSlideChange()', index)} className="h-[50vh] bg-black">
+                }} className="h-[50vh] bg-black">
                     {arrImage.map((s, i) => {
                         return (
                             <li className="image-click"
