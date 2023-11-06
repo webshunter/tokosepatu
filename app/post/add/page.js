@@ -115,7 +115,22 @@ export default function PostListing() {
         const formData = new FormData(formid);
         const formProps = Object.fromEntries(formData);
 
-        let fileds = ["lbangun","ltanah", "ktidur", "kmandi", "judul", "deskrisi"]
+        let fileds = ["lbangun","ltanah", "ktidur", "kmandi", "judul", "deskrisi"];
+        
+        if(formProps.slug2.toLowerCase().indexOf("tanah") != -1){
+            fileds = ["ltanah", "judul", "deskrisi"];
+        }
+
+        if(formProps.slug2.toLowerCase().indexOf("bangunan") != -1){
+            fileds = ["lbangun", "judul", "deskrisi"];
+        }
+
+        if(formProps.slug2.toLowerCase().indexOf("indekos") != -1){
+            fileds = ["lbangun", "kmandi", "judul", "deskrisi"];
+        }
+
+        console.log(fileds)
+
         let cek = 0;
         fileds.forEach((data)=>{
             console.log('fields ',data)
@@ -235,7 +250,7 @@ export default function PostListing() {
             alert("Pastikan lokasi sudah terisi dengan benar");
             throw "stop upload";            
         }
-        
+
         setVisible(!visible);
 
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
