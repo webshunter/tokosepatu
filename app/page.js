@@ -9,12 +9,12 @@ import { useEffect, useState } from 'react';
 import { Carousel } from "flowbite-react";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
-  const { data} = useSWR('/pages/api/produk?limit=10&start=0', fetcher)
+  const { data} = useSWR('/pages/api/produk?limit=21&start=0', fetcher)
   const [dataListing, setDataListing] = useState([]);
   useEffect(() => {
     document.getElementById('search').value = '';
     (async function () {
-      let data = await fetch(`/pages/api/produk?limit=10&start=0`);
+      let data = await fetch(`/pages/api/produk?limit=21&start=0`);
       data = await data.json();
     })()
   }, [setDataListing])
