@@ -41,7 +41,7 @@ export default function Profile({params}) {
             let data = await fetch('/pages/api/produk?limit=21&start=0&uid_user=' + slug);
             data = await data.json();
             localStorage.setItem('produkstart', JSON.stringify(data));
-            setDataListing(data);
+            setDataListing(data.message);
         })()
     }, [setDataListing])
 
@@ -129,14 +129,14 @@ export default function Profile({params}) {
                 </div>
                 <div className="col-span-4 md:col-span-3">
                     <div className="mt-[10px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
-                        {dataListing.map((y, i) => {
+                        {Array.isArray(dataListing)? dataListing.map((y, i) => {
                             y.key = i;
                             return (
                                 <li className="list-none" key={i}>
                                     <ProdukCard data={y} />
                                 </li>
                             )
-                        })}
+                        }) : <></>}
                     </div>
                 </div>
             </div>
