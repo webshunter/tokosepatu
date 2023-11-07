@@ -38,7 +38,7 @@ export default function Profile({params}) {
         }
 
         (async function () {
-            let data = await fetch('https://app.rumahjo.com/data/listing/0/100/' + slug);
+            let data = await fetch('/pages/api/produk?limit=21&start=0&uid_user=' + slug);
             data = await data.json();
             localStorage.setItem('produkstart', JSON.stringify(data));
             setDataListing(data);
