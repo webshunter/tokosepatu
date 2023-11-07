@@ -35,7 +35,6 @@ function paramsToObject(req) {
 export async function GET(req, Response) {
     // create the connection to database
     let params = await paramsToObject(req);
-    console.log(params)
 
     let {limit, start} = params.limitation;
     const connection = await mysql.createConnection({
@@ -110,7 +109,6 @@ Array.prototype.ToUpdate = function (table = 'test', wht = 'kode') {
 export async function POST(req) {
     let body = await req.json();
     let update = [body].ToUpdate('user', 'uniqid');
-    console.log(update)
     const connection = await mysql.createConnection({
         host: '202.157.177.241',
         user: 'adminjo',

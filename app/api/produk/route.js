@@ -35,7 +35,6 @@ function paramsToObject(req) {
 export async function GET(req, Response) {
     // create the connection to database
     let params = await paramsToObject(req);
-    console.log(params)
 
     let {limit, start} = params.limitation;
     

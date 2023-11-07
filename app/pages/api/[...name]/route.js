@@ -35,10 +35,8 @@ function paramsToObject(req) {
 export async function GET(req, Response) {
     // create the connection to database
     let params = await paramsToObject(req);
-    console.log(params)
 
     let {limit, start} = params.limitation;
-    console.log(limit);
 
     const connection = await mysql.createConnection({
         host: '202.157.177.241',
@@ -54,7 +52,7 @@ export async function GET(req, Response) {
         ${(function () {
             let d = Object.keys(params.condition);
             if (d.length > 0) {
-                return ` HAVING ${d.map((c) => {
+                return ` WHERE ${d.map((c) => {
                     return ` ${c} = "${params.condition[c]}" `;
                 }).join(' OR ')}  `
             }
@@ -70,7 +68,6 @@ export async function GET(req, Response) {
             return ""; 
             })()} ORDER BY uniqid DESC  LIMIT ${start}, ${limit}`
         const value = [];
-        console.log(query)
         const [data] = await connection.query(query);
         connection.end();
         return NextResponse.json({ message: data });
