@@ -9,18 +9,20 @@ import MultiRangeSlider from '@/app/component/multiRangeSlider/MultiRangeSlider'
 import RadioSelect from '@/app/component/radioSelect/RadioSelect';
 
 export default function Search({params}) {
-    let [slug] = params.name; 
+    let slug = params.name; 
     const [nama, setNama] = useState('');
     const [dataListing, setDataListing] = useState([]);
     const [card, addCard] = useState([]);
 
     useEffect(() => {
-        let [status, getSlug] = slug.split('q-');
+        let seachSlug = slug.shift();
+        let [status, getSlug] = seachSlug.split('q-');
+        console.log(slug);
         let search = decodeURI(getSlug).replace(/\-/g, ' ');
         document.getElementById('search').value = search;
         setNama(capitalize(search));
         (async function () {
-            let data = await fetch(`/pages/api/produk?limit=21&start=0&d=${search}`);
+            let data = await fetch(`/pages/api/produk?limit=21&start=0&kmandi=4&d=${search}`);
             data = await data.json();
             setDataListing(data.message);
         })()
