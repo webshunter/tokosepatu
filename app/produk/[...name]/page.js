@@ -223,6 +223,12 @@ export default function Page({params}) {
                                 </div>
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
+                                        <span className="max-w-[50%] text-gray-500">Hadap</span>
+                                        <span className="basis-[50%] text-left text-gray-800">{data.hadap?data.hadap:"-"}</span>
+                                    </div>
+                                </div>
+                                <div className="basis-[100%] md:basis-[50%]">
+                                    <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Lantai</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.lantai}</span>
                                     </div>
