@@ -7,12 +7,16 @@ import { JoinDate } from '@/app/library/joinDate';
 
 export default function Profile({params}) {
     let [slug] = params.name;  
-    const [nama, setNama] = useState(null)
+    const [nama, setNama] = useState(null);
+    const [about, setAbout] = useState(null);
+    const [avatar, setAvatar] = useState(null);
     const [dataListing, setDataListing] = useState([]);
 
     const [card, addCard] = useState([]);
 
     let join = new Date().toString();
+
+    let src = ""
 
     useEffect(() => {
 
@@ -23,6 +27,9 @@ export default function Profile({params}) {
             .then((res) => {
                 let [data] = res.message;
                 setNama(data.fullname);
+                setAbout(data.about);
+                
+                setAvatar(data.avatar);
                 join = data.tgldaftar;
             })
 
@@ -31,7 +38,7 @@ export default function Profile({params}) {
         }
 
         (async function () {
-            let data = await fetch('https://app.rumahjo.com/data/listing/0/100');
+            let data = await fetch('https://app.rumahjo.com/data/listing/0/100/' + slug);
             data = await data.json();
             localStorage.setItem('produkstart', JSON.stringify(data));
             setDataListing(data);
@@ -52,11 +59,17 @@ export default function Profile({params}) {
                     <div className="block w-full">
                         <div className="flex md:block ml-auto mr-auto w-full md:w-[50%]">
                             <div className="relative " style={{width:"fit-content"}}>
-                                <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]"></figure>
+                                { avatar ? 
+                                (
+                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('https://ui-avatars.com/api/?name=${nama}&bold=true&background=1e1b4b&color=ffe50c&size=250')`}}></figure>
+                                ) :
+                                (
+                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('https://ui-avatars.com/api/?name=${nama}&bold=true&background=1e1b4b&color=ffe50c&size=250')`}}></figure>
+                                ) }
                             </div>
                         </div>
                         <div className="flex items-center overflow-hidden whitespace-nowrap text-ellipsis">
-                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">{nama?nama:""}</span>
+                            <span className="text-[20px] leading-[30px] capitalize w-full font-bold">{nama?nama:"UserJo"}</span>
                         </div>
                         <div className="flex flex-col">
                             <div className="my-[20px]">
@@ -66,12 +79,14 @@ export default function Profile({params}) {
                                         <span>Anggota sejak {JoinDate(join)}</span>
                                     </div>
                                 </div>
+                                { about ? (
                                 <div className="flex items-center">
                                     <svg className="w-[16px] h-[16px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M512 938.664C276.736 938.664 85.3331 747.261 85.3331 511.997C85.3331 276.733 276.736 85.3307 512 85.3307C747.264 85.3307 938.667 276.733 938.667 511.997C938.667 747.261 747.264 938.664 512 938.664ZM512 853.331C700.202 853.331 853.333 700.2 853.333 511.997C853.333 323.795 700.202 170.664 512 170.664C323.797 170.664 170.666 323.795 170.666 511.997C170.666 700.2 323.797 853.331 512 853.331ZM512 383.997C488.448 383.997 469.333 364.883 469.333 341.331C469.333 317.779 488.448 298.664 512 298.664C535.552 298.664 554.667 317.779 554.667 341.331C554.667 364.883 535.552 383.997 512 383.997ZM512 725.331L469.333 682.664V469.331L512 426.664L554.667 469.331V682.664L512 725.331Z"></path></svg>
                                     <div className="m-[4px] ml-[5px]">
                                         <span>Kami menyediakan rumah siap huni</span>
                                     </div>
                                 </div>
+                                ) : ("") }
                             </div>
                             <div className="mt-1">
                                 <span>Pengguna terverifikasi dengan</span>
