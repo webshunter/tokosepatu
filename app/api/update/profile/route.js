@@ -110,9 +110,9 @@ export async function POST(req) {
     let body = await req.json();
     let update = [body].ToUpdate('user', 'uniqid');
     const connection = await mysql.createConnection({
-        host: '202.157.177.241',
-        user: 'adminjo',
-        password: 'ValidJO$5758$',
+        host: '193.203.167.219',
+        user: 'rumahjo',
+        password: 'rumahjo$123$',
         database: 'rjo'
     });
     const [data] = await connection.query(update);
