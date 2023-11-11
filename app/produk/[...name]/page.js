@@ -194,7 +194,7 @@ export default function Page({params}) {
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Tipe</span>
-                                        <span className="basis-[50%] text-left text-gray-800">{(data.type==='0' ? 'Rumah' : 'Apartemen')}</span>
+                                        <span className="basis-[50%] text-left text-gray-800">{(data.type==='1' ? 'Rumah' : 'Apartemen')}</span>
                                     </div>
                                 </div>
                                 <div className="basis-[100%] md:basis-[50%]">
