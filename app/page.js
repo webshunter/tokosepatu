@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { ProdukCard } from './library/card';
 import { useEffect, useState } from 'react';
 import { Carousel } from "flowbite-react";
+import { Toolbar } from "./component/toolbar";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
   const { data } = useSWR('/pages/api/produk?limit=21&start=0', fetcher)
@@ -38,15 +39,16 @@ export default function LoadData(props) {
                 height:'100%',
                 backgroundRepeat:'no-repeat',
                 backgroundSize: 'cover',
-                backgroundImage: 'url("/g12.png")'
+                backgroundImage: 'url("/Designer.png")'
               }}
             />
           </Carousel>
         </div>
-        <div className='mx-[20px] xl:mx-[60px]'>
+        <Toolbar />
+        <div className='px-4 md:px-10'>
           <h1 className='text-2xl'>Rekomendasi baru</h1>
         </div>
-        <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+        <div className="px-4 mt-[10px] md:px-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
           {data.message.map((y, i) => {
             y.key = i;
             return (
@@ -71,15 +73,16 @@ export default function LoadData(props) {
               height: '100%',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
-              backgroundImage: 'url("/g12.png")'
+              backgroundImage: 'url("/Designer.png")'
             }}
           />
         </Carousel>
       </div>
-      <div className='mx-[20px] xl:mx-[60px]'>
+      <Toolbar />
+      <div className='px-4 md:px-10'>
         <h1 className='text-2xl'>Rekomendasi baru</h1>
       </div>
-      <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+      <div className="px-4 md:px-10 mt-[10px] md:px-10 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
           {loader.map((y, i) => {
             return (
               <li className="list-none" key={i}>

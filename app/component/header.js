@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import Image from 'next/image'
 import { useEffect, useRef, useState } from "react"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -22,7 +23,7 @@ const ButtonLogin = ({props}) => {
                 <button onClick={()=>{
                     visible? setVisible(null) : setVisible(1);
                 }} className="h-[50px] overflow-hidden rounded-[50px]">
-                    <img className="h-[50px] w-[50px]" src={session.user.image}></img>
+                    <Image src={session.user.image} alt="" width={50} height={50} />
                 </button>
                 <div ref={ref} style={{visibility:visible?'visible':'hidden'}} className="absolute top-[60px] right-[0] rounded text-gray-950 px-4 py-2 shadow-xl bg-white w-[320px]">
                     <h1>{session.user.name}</h1>
@@ -118,10 +119,10 @@ export const Header = function(){
     }
 
     return (<>
-        <nav style={{borderBottom:'2px solid white'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-4 md:px-10 py-2">
+        <nav style={{borderBottom:'2px solid #F9CC0B'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-4 md:px-10 py-2">
             <div className="flex flex-wrap items-center justify-between mx-auto">
                 <Link className="flex md:justify-center md:items-center md:block" href="/">
-                    <img src="/logo.png" className="h-[45px] md:h-[53px] pt-1 md:pt-3"></img>
+                    <img src="/logo.png" alt="Rumahjo - Rumah Jasa Online" className="h-[45px] md:h-[53px] pt-1 md:pt-3"></img>
                 </Link>
                 <div className="md:hidden " id="menuLocation" style={{flexGrow:"1", maxWidth:"calc(100% - 100px)"}}>
                     <div className="flex" style={{justifyContent:"flex-end"}}>
@@ -144,54 +145,36 @@ export const Header = function(){
         </nav>
         <div className="fixed md:hidden z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
             <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
-                <button data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                <Link href="/" data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                     </svg>
                     <span className="sr-only">Home</span>
-                </button>
-                <div id="tooltip-home" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Home
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
+                </Link>
                 <button data-tooltip-target="tooltip-wallet" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                    <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z"/>
-                        <path d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z"/>
+                    <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+                            <path d="M575 2351 c-60 -10 -125 -50 -163 -101 l-35 -45 829 -5 829 -5 56 -26 c76 -36 129 -86 170 -161 l34 -63 3 -578 3 -577 28 14 c47 25 99 91 116 149 14 48 15 130 13 633 l-3 579 -30 54 c-32 57 -67 90 -131 118 -36 17 -96 18 -859 19 -451 1 -838 -1 -860 -5z"/>
+                            <path d="M290 2091 c-50 -16 -89 -41 -124 -83 -66 -76 -66 -78 -66 -703 0 -646 -1 -635 80 -715 63 -64 117 -80 267 -80 l113 0 0 -33 c0 -18 -7 -58 -16 -88 -13 -43 -27 -65 -75 -110 -64 -61 -73 -89 -36 -114 29 -19 152 -6 246 26 125 43 246 150 302 269 l23 49 506 3 c496 3 506 3 545 25 53 28 99 78 124 133 20 44 21 63 21 631 0 418 -3 596 -12 620 -19 58 -67 115 -121 145 l-52 29 -850 2 c-467 1 -861 -2 -875 -6z"/>
+                        </g>
                     </svg>
-                    <span className="sr-only">Wallet</span>
+                    <span className="sr-only">Obrolan</span>
                 </button>
-                <div id="tooltip-wallet" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Wallet
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
                 <div className="flex items-center justify-center">
                     <AddMenu props={props} />
                 </div>
-                <div id="tooltip-new" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Create new item
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
                 <button data-tooltip-target="tooltip-settings" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                    <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
+                    <svg className="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
-                    <span className="sr-only">Settings</span>
+                    <span className="sr-only">Favorit</span>
                 </button>
-                <div id="tooltip-settings" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Settings
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
                 <button data-tooltip-target="tooltip-profile" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
                     </svg>
                     <span className="sr-only">Profile</span>
                 </button>
-                <div id="tooltip-profile" role="tooltip" className="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Profile
-                    <div className="tooltip-arrow" data-popper-arrow></div>
-                </div>
             </div>
         </div>
         {/* <nav className="px-10 py-2 bg-white shadow-md text-gray-600">

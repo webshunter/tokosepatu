@@ -58,3 +58,92 @@ select{
   display: block;
   width: 100%;
 }
+
+#tablist .tabs-home::-webkit-scrollbar {
+  height:0;
+}
+
+@media screen and (min-width:768px) {
+  #tablist .tabs-home::-webkit-scrollbar {
+    height:2px;
+  }
+}
+
+#tablist .tabs-home__button {
+  background-color:transparent;
+  border:0;
+  font-family:'Museo Sans',sans-serif;
+  width:105px;
+  height:33px;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-align-items:center;
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+  -webkit-box-pack:center;
+  -webkit-justify-content:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+  color:rgb(249,204,11);
+  font-weight:500;
+  line-height:17px;
+  padding:8px;
+  font-size:14px;
+}
+
+@media screen and (max-width:768px) {
+  #tablist .tabs-home__button {
+    font-weight:500;
+    font-size:14px;
+    line-height:17px;
+  }
+}
+
+@media screen and (min-width:768px) {
+  #tablist .tabs-home__button {
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto;
+  }
+}
+
+#tablist .tabs-home__button:first-child {
+  padding-left:0;
+}
+
+#tablist .button--active {
+  color:white;
+  border-bottom:2px solid #fff;
+  font-weight:700;
+}
+
+.ui-atomic-button {
+  align-items:center;
+  cursor:pointer;
+  display:inline-flex;
+  height:2rem;
+  line-height:inherit;
+  outline:0;
+  text-align:center;
+  text-decoration:none;
+  white-space:nowrap;
+  font-family:museo sans,sans-serif;
+  padding-left:1rem;
+  padding-right:1rem;
+  background:transparent;
+  font-size:14px;
+  border-radius:.25rem;
+  border-left:0 solid #000;
+  border-right:0 solid #000;
+  border-top:0 solid #000;
+  border-bottom:0 solid #000;
+  font-weight:500;
+  background-color: #2951a3;
+  margin-right: 12px;
+  margin: 5px;
+  border-radius: 8px;
+  transition: background .2s;
+}
