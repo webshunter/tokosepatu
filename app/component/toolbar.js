@@ -49,7 +49,7 @@ export const Toolbar = function () {
                                         </div>
                                     </div>
                                 </div>
-                                <button className="ui-atomic-button px-1 md:px-[50px]">
+                                <button className="ui-atomic-button px-1 md:px-[50px] bg-yellow-400">
                                     <span className="text-white">Cari</span>
                                 </button>
                             </div>
