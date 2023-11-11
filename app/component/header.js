@@ -121,7 +121,7 @@ export const Header = function(){
         <nav style={{borderBottom:'2px solid white'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-indigo-950 text-white px-4 md:px-10 py-2">
             <div className="flex flex-wrap items-center justify-between mx-auto">
                 <Link className="flex md:justify-center md:items-center md:block" href="/">
-                    <img src="/logo.png" className="w-[200px] pt-1 md:pt-2"></img>
+                    <img src="/logo.png" className="h-[45px] md:h-[53px] pt-1 md:pt-3"></img>
                 </Link>
                 <div className="md:hidden " id="menuLocation" style={{flexGrow:"1", maxWidth:"calc(100% - 100px)"}}>
                     <div className="flex" style={{justifyContent:"flex-end"}}>
