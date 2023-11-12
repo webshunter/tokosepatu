@@ -9,6 +9,7 @@ import useSWR, { SWRConfig } from 'swr'
 import { useOutsideClick } from "@/app/library/outclick"; 
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Iframe from "react-iframe";
 
 
 const wilayah = dataWilayah();
@@ -33,7 +34,7 @@ String.prototype.capitalize = function () {
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-export default function Page({params}) {
+export default function produk({params}) {
     const [visible, setVisible] = useState()
     const ref = useOutsideClick(() => {
         setVisible(null)
@@ -41,9 +42,9 @@ export default function Page({params}) {
     const [arrImage, SetArrImage] = useState([]);
     const [data,SetData] = useState({});
     const [youtube, setYoutube] = useState(null);
+    const [maps, setMaps] = useState(null);
     let [slug] = params.name; 
     // [latitude,longitude]
-    let maps = ["-7.9828022","112.6069727"];
     let log = new Date().toString();
     
     useEffect(()=>{
@@ -114,6 +115,10 @@ export default function Page({params}) {
                         }
                     }
                 });
+                const lat = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).lat);
+                const long = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).long);
+                const mapsRender = [lat, long];
+                setMaps(mapsRender.join(","))
             }
         }
         loadData();
@@ -124,10 +129,7 @@ export default function Page({params}) {
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
     const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
-    const lat = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).lat);
-    const long = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).long);
     log = data.userlog;
-    maps = [lat, long];
     return (<>
         <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background:"rgba(0, 0, 0, 0.5)"}}>
             <div className="absolute rounded bg-white z-[9] cursor-pointer top-[40px] right-[40px]">
@@ -332,9 +334,23 @@ export default function Page({params}) {
                         <h3 className="text-[20px] font-bold text-gray-800 mb-[20px]">Lokasi Iklan</h3>
                     </div>
                     <div>
-                        
-                        <iframe 
-                            src={`https://www.google.com/maps?q=${maps.join(",")}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        {/* <iframe 
+                            src={`https://www.google.com/maps?q=${maps}&hl=es;z%3D14&amp&output=embed`} style={{width:"100%", height:"250px", border:0}} 
+                            allowFullScreen="" 
+                            loading="lazy" 
+                            referrerPolicy="no-referrer-when-downgrade">
+                            </iframe> */}
+                        {
+                            maps? 
+                            <Iframe url={`https://www.google.com/maps?q=${maps}&hl=es;z%3D14&amp&output=embed`}
+                                width="100%"
+                                height="320px"
+                                id=""
+                                className=""
+                                display="block"
+                                position="relative" />
+                            : <></>
+                        }
                     </div>
                 </div>
                 <div className="relative w-[100%] shadow-xl md:shadow-none bg-white md:bg-transparent overflow-hidden border-t border-gray-400 md:border-0 rounded-[4px]">
