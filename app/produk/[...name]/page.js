@@ -115,8 +115,8 @@ export default function produk({params}) {
                         }
                     }
                 });
-                const lat = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).lat);
-                const long = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).long);
+                const lat = (wilayah.getKecamatan(dataArray.kec) === null ? "" : wilayah.getKecamatan(dataArray.kec).lat);
+                const long = (wilayah.getKecamatan(dataArray.kec) === null ? "" : wilayah.getKecamatan(dataArray.kec).long);
                 const mapsRender = [lat, long];
                 setMaps(mapsRender.join(","))
             }
