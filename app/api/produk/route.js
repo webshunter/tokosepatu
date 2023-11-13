@@ -46,7 +46,7 @@ export async function GET(req, Response) {
         database: 'rjo'
     });
     try{
-        const query = `SELECT a.*, b.image, c.fullname FROM listing a
+        const query = `SELECT a.*, b.image, c.fullname, c.telp phone FROM listing a
         LEFT JOIN user c ON c.email = a.email
         LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
         ${(function(){

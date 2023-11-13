@@ -10,6 +10,7 @@ import { useOutsideClick } from "@/app/library/outclick";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Iframe from "react-iframe";
+import StickyButton from "@/app/component/sticky";
 
 
 const wilayah = dataWilayah();
@@ -372,5 +373,6 @@ export default function Produk({params}) {
                 </div>
             </div>
         </div>
+        <StickyButton />
     </>)
 }
