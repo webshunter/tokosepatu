@@ -24,7 +24,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
                 return {
                     title: getData.judul,
                     openGraph: {
-                        images: [],
+                        images: ['https://app.rumahjo.com/' + getData.image],
                     },
                 }
             }
