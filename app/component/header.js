@@ -24,7 +24,11 @@ const ButtonLogin = ({props}) => {
                 <button onClick={()=>{
                     visible? setVisible(null) : setVisible(1);
                 }} className="h-[50px] overflow-hidden rounded-[50px]">
-                    <Image src={session.user.image} alt="" width={50} height={50} />
+                    {session?
+                        <img src={session.user.image} alt="" width={50} height={50} /> 
+                            :
+                        <></>
+                    }
                 </button>
                 <div ref={ref} style={{visibility:visible?'visible':'hidden'}} className="absolute top-[60px] right-[0] rounded text-gray-950 px-4 py-2 shadow-xl bg-white w-[320px]">
                     <h1>{session.user.name}</h1>
