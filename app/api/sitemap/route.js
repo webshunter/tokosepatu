@@ -118,59 +118,45 @@ export async function GET(req, Response) {
         const [parent, xmldata] = parentData;
         console.log(xmldata);
         const pathLoc = path.join('public','sitemap.xml');
-        let parentXml = `
-        <?xml version="1.0" encoding="UTF-8"?>
-        <urlset
-            xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-        <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-        <url>
-        <loc>http://rumahjo.com/</loc>
-        <lastmod>2023-11-13T15:48:38+00:00</lastmod>
-        </url>
-        ${parent.map(function(m){
-            return  `
-            <url>
-                <loc>http://rumahjo.com/${m.url}</loc>
-                <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
-            </url>
-            `
-        }).join('')}
-
-        </urlset>
-        `;
+        let parentXml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>http://rumahjo.com/main.xml</loc>
+    </sitemap>
+${parent.map(function (m) {
+    return `
+    <sitemap>
+        <loc>http://rumahjo.com/${m.url}</loc>
+    </sitemap>
+    `
+}).join('')}
+</sitemapindex>
+`;
         fs.writeFileSync(pathLoc, parentXml,'utf8');
-
         for (let dataPar of parent){
             let getData = xmldata.cond(dataPar.uid_user, 'uid_user');
             let fileNama = path.join('public', 'map-' + dataPar.uid_user + '.xml' );
-            let fileData = `
-            <?xml version="1.0" encoding="UTF-8"?>
-            <urlset
-                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-            <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+            let fileData = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-            <url>
-            <loc>http://rumahjo.com/</loc>
-            <lastmod>2023-11-13T15:48:38+00:00</lastmod>
-            </url>
-            ${getData.map(function (m) {
-                return `
-                <url>
-                    <loc>http://rumahjo.com/${m.url}</loc>
-                    <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
-                </url>
-                `
-            }).join('')}
-
-            </urlset>
-            `;
+<url>
+<loc>http://rumahjo.com/</loc>
+<lastmod>2023-11-13T15:48:38+00:00</lastmod>
+</url>
+${getData.map(function (m) {
+    return `
+    <url>
+        <loc>http://rumahjo.com/${m.url}</loc>
+        <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
+    </url>
+    `
+}).join('')}
+</urlset>`;
             fs.writeFileSync(fileNama, fileData);
         }
 
