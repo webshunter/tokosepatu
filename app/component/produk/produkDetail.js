@@ -171,10 +171,10 @@ export default function ProdukDetail(props) {
                         return (
                             <li className="image-click"
                                 key={i}>
-                                <div className="flex justify-center items-center ">
+                                <div style={{ backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundSize:'contain', backgroundImage: `url("https://app.rumahjo.com/` + s.image +`")`}} className="flex h-[50vh] justify-center items-center ">
                                     <img
                                         data-key={i}
-                                        className="h-[50vh]"
+                                        className="hidden h-[50vh]"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
                                     />
