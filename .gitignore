@@ -39,3 +39,6 @@ next-env.d.ts
 
 # sitemap
 public/sitemap.xml
+
+# all xml file
+*.xml

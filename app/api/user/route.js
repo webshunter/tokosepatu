@@ -41,7 +41,8 @@ export async function GET(req, Response) {
         host: '193.203.167.219',
         user: 'rumahjo',
         password: 'rumahjo$123$',
-        database: 'rjo'
+        database: 'rjo',
+        multipleStatements: true
     });
     try{
         const query = `SELECT * FROM user  
