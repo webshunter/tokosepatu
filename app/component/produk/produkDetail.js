@@ -155,7 +155,7 @@ export default function ProdukDetail(props) {
                 </Carousel>
             </div>
         </div>
-        <div className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
+        <div style={{overflowX:'hidden'}} className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
             <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
                 <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
@@ -174,7 +174,7 @@ export default function ProdukDetail(props) {
                                 <div style={{ backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundSize:'contain', backgroundImage: `url("https://app.rumahjo.com/` + s.image +`")`}} className="flex h-[50vh] justify-center items-center ">
                                     <img
                                         data-key={i}
-                                        className="hidden h-[50vh]"
+                                        className="hidden"
                                         alt="..."
                                         src={'https://app.rumahjo.com/' + s.image}
                                     />
@@ -261,7 +261,7 @@ export default function ProdukDetail(props) {
                         <h3 className="text-[20px] font-bold text-gray-800 pt-[20px] border-t border-gray-400">Deskripsi</h3>
                         {
                             youtube ?
-                                <iframe width="420" height="345" src={`https://www.youtube.com/embed/` + youtube}>
+                                <iframe style={{width:"300px", height:'245px'}} src={`https://www.youtube.com/embed/` + youtube}>
                                 </iframe>
                                 : <></>
                         }
@@ -271,8 +271,8 @@ export default function ProdukDetail(props) {
                     </div>
                 </section>
             </div>
-            <div>
-                <div className=" rounded-sm md:rounded-md shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
+            <div className="w-[100%]">
+                <div className=" rounded-sm md:rounded-md shadow-xl bg-white w-full max-w-full  md-w-[400px] px-5 py-3 ">
                     <div className="flex mb-[4px]" style={{ alignItems: "center", justifyContent: "space-between" }}>
                         <span className="flex text-[20px] md:text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price) : "Rp 0"}</span>
                         <div className="flex">
@@ -299,7 +299,7 @@ export default function ProdukDetail(props) {
                 </div>
                 <div className="mt-2 md:mt-5 rounded-sm  md:rounded-md shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
                     <div className="flex flex-col">
-                        <div className="flex max-w-[100%] items-center">
+                        <div className="flex w-[calc(100%-40px)] items-center">
                             <a href={"/profile/" + data.uid_user} className="relative">
                                 <figure className="relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]"></figure>
                             </a>
