@@ -9,6 +9,7 @@ import { encode } from "next-auth/jwt";
 import { useRouter } from "next/navigation";
 import { useOutsideClick } from "../library/outclick";
 import { usePathname } from 'next/navigation'
+import WaVerify from "./verifikasi/waverify";
 
 const ButtonLogin = ({props}) => {
     const route = useRouter();
@@ -23,7 +24,7 @@ const ButtonLogin = ({props}) => {
             <div className="relative">
                 <button onClick={()=>{
                     visible? setVisible(null) : setVisible(1);
-                }} className="h-[50px] overflow-hidden rounded-[50px]">
+                }} className="h-[50px] mx-2 overflow-hidden rounded-[50px]">
                     {session?
                         <img src={session.user.image} alt="" width={50} height={50} /> 
                             :
@@ -31,16 +32,59 @@ const ButtonLogin = ({props}) => {
                     }
                 </button>
                 <div ref={ref} style={{visibility:visible?'visible':'hidden'}} className="absolute top-[60px] right-[0] rounded text-gray-950 px-4 py-2 shadow-xl bg-white w-[320px]">
-                    <h1>{session.user.name}</h1>
+                    <div style={{gridGap:'10px', display:'grid', gridTemplateColumns:'80px auto'}}>
+                        <div style={{overflow:'hidden', borderRadius:'50%', display:'inline-block'}}>
+                            {session ?
+                                <img src={session.user.image} alt="" width={80} height={80} />
+                                :
+                                <></>
+                            }
+                        </div>
+                        <h1 className="flex items-center text-[20px] font-bold my-2">{session.user.name}</h1>
+                    </div>
                     <button onClick={()=>{
                         route.push('/profile');
                         setVisible(null)
                     }} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Lihat dan Edit Profil</button>
+                    <WaVerify />
+                    <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Iklan Saya</button>
+                    <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Beli Paket Bisnis</button>
+                    <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Paket yang Dibeli & Penagihan</button>
+                    <button onClick={() => signOut()} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Log Out</button>
                 </div>
             </div>
-            <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => signOut() }>Log Out</Button>
-            <Link href="/post/add" className="h-[45px] w-[45px] rounded-md text-[1.8rem] overflow-hidden flex justify-center items-center p-0 border-[2px] border-yellow-400">
-                <span className="block">+</span>
+            <Link href="/post/add" className="relative flex items-center justify-center">
+                <svg width="104" height="45" className="_20oLV" viewBox="0 0 1603 768">
+                    <path
+                        d="M434.442 16.944h718.82c202.72 0 367.057 164.337 367.057 367.058s-164.337 367.057-367.057 367.057h-718.82c-202.721 0-367.058-164.337-367.058-367.058S231.721 16.943 434.442 16.943z"
+                        fill="#ffffff"
+                    ></path>
+                    <path
+                        d="M427.241 669.489c-80.917 0-158.59-25.926-218.705-73.004l-.016-.014C139.407 542.352 99.766 464.914 99.766 383.997c0-41.07 9.776-80.712 29.081-117.797 25.058-48.139 64.933-89.278 115.333-118.966l-52.379-67.581c-64.73 38.122-115.955 90.98-148.159 152.845C18.8 280.243 6.201 331.224 6.201 383.997c0 104.027 50.962 203.61 139.799 273.175h.016c77.312 60.535 177.193 93.887 281.22 93.887h299.699l25.138-40.783-25.138-40.783H427.237z"
+                        fill="#ffaaaa"
+                    ></path>
+                    <path
+                        d="M1318.522 38.596c-45.72-14.369-93.752-21.658-142.762-21.658H427.249c-84.346 0-165.764 21.683-235.441 62.713l3.118 51.726 49.245 15.865c54.16-31.895 117.452-48.739 183.073-48.739h748.511c38.159 0 75.52 5.657 111.029 16.829 44.91 14.111 86.594 37.205 120.526 66.792l66.163-57.68c-43.616-38.01-97.197-67.703-154.957-85.852z"
+                        fill="#aaffaa"
+                    ></path>
+                    <path
+                        d="M1473.479 124.453l-55.855 9.91-10.307 47.76c61.844 53.929 95.92 125.617 95.92 201.88a251.85 251.85 0 01-11.214 74.363c-38.348 124.311-168.398 211.129-316.262 211.129H726.949l25.121 40.783-25.121 40.783h448.812c190.107 0 357.303-111.638 406.613-271.498a323.69 323.69 0 0014.423-95.559c0-98.044-43.805-190.216-123.317-259.551z"
+                        fill="#aaaaff"
+                    ></path>
+                </svg>
+                <svg
+                    className="absolute"
+                    width="20"
+                    height="20"
+                    fillRule="evenodd"
+                    data-aut-id="icon"
+                    viewBox="0 0 1024 1024"
+                >
+                    <path
+                        d="M414.898 123.739v291.218H123.68l-97.014 97.014 97.014 97.131h291.218v291.16l97.073 97.071 97.073-97.071v-291.16h291.16l97.131-97.131-97.131-97.014h-291.16V123.739l-97.073-97.073z"
+                        className="rui-lquEm"
+                    ></path>
+                </svg>
             </Link>
         </>)
     }
@@ -153,7 +197,7 @@ export const Header = function(){
                     <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700" />
                     <button onClick={searchButton} className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
-                <div className="hidden md:flex min-w-[320px] w-[320px] justify-center items-center">
+                <div className="hidden md:flex min-w-[200px] w-[200px] justify-center items-center">
                     <ButtonLogin props={props} />
                 </div>
             </div>
