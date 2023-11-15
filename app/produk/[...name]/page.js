@@ -22,7 +22,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
             if(data.length > 0){
                 let [getData] = data;
                 return {
-                    title: getData.judul,
+                    title: getData.judul +' - RumahJo',
                     description: getData.deskrisi,
                     openGraph: {
                         images: ['https://app.rumahjo.com/' + getData.image],
