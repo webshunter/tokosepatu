@@ -51,6 +51,54 @@ function ubahFormatTanggal(tanggal) {
     return tanggalFormatBaru;
 }
 
+Array.prototype.cond = function (search = '', name = '') {
+    if (search != '') {
+        if (typeof search == 'number') {
+            search = search.toString().toLowerCase();
+        } else {
+            search = search.toLowerCase();
+        }
+
+        var data = this;
+        return data.filter(function (dat) {
+            if (typeof dat == 'object') {
+                var g = dat[name];
+                var numcek = 0;
+                if (g != null) {
+                    if (typeof g == 'number') {
+                        g = g.toString().toLowerCase();
+                    } else {
+                        g = g.toLowerCase();
+                    }
+                    if (numcek == 0) {
+                        if (g == search) {
+                            numcek = 1;
+                        }
+                    }
+                }
+                if (numcek == 1) {
+                    return dat;
+                }
+            } else {
+                if (dat != null) {
+                    if (typeof dat == 'number') {
+                        var dats = dat.toString().toLowerCase();
+                        if (dats == search) {
+                            return dat
+                        }
+                    } else {
+                        if (dat.toLowerCase() == search) {
+                            return dat
+                        }
+                    }
+                }
+            }
+        })
+    } else {
+        return [];
+    }
+}
+
 // Handles GET requests to /api
 export async function GET(req, Response) {
     // create the connection to database
@@ -63,8 +111,8 @@ export async function GET(req, Response) {
     });
     try{
         const query = `
-        SELECT concat('map-',uid_user,'.xml') url, max(userlog) log FROM listing GROUP BY uid_user;
-        SELECT uid_user, concat('produk/', slug) url, userlog FROM listing
+        SELECT uid_user, concat('map-',uid_user,'.xml') url, max(userlog) log FROM listing GROUP BY uid_user;
+        SELECT uid_user, concat('produk/', slug) url, userlog log FROM listing
         `
         const [parentData] = await connection.query(query);
         const [parent, xmldata] = parentData;
@@ -95,6 +143,37 @@ export async function GET(req, Response) {
         </urlset>
         `;
         fs.writeFileSync(pathLoc, parentXml,'utf8');
+
+        for (let dataPar of parent){
+            let getData = xmldata.cond(dataPar.uid_user, 'uid_user');
+            let fileNama = path.join('public', 'map-' + dataPar.uid_user + '.xml' );
+            let fileData = `
+            <?xml version="1.0" encoding="UTF-8"?>
+            <urlset
+                xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+            <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+            <url>
+            <loc>http://rumahjo.com/</loc>
+            <lastmod>2023-11-13T15:48:38+00:00</lastmod>
+            </url>
+            ${getData.map(function (m) {
+                return `
+                <url>
+                    <loc>http://rumahjo.com/${m.url}</loc>
+                    <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
+                </url>
+                `
+            }).join('')}
+
+            </urlset>
+            `;
+            fs.writeFileSync(fileNama, fileData);
+        }
+
         const value = [];
         return NextResponse.json({ message: "created" });
     }catch(error){
