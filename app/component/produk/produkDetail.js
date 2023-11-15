@@ -162,7 +162,7 @@ export default function ProdukDetail(props) {
                     <span>Highlight</span>
                 </label>
                 <Carousel onClick={(index) => {
-                    if (index.target.tagName == "IMG") {
+                    if (index.target.tagName == "DIV") {
                         let indexKey = index.target.dataset.key;
                         setVisible(index);
                     }
