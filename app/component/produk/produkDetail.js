@@ -127,7 +127,7 @@ export default function ProdukDetail(props) {
     log = data.userlog;
     return (<>
         <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background: "rgba(0, 0, 0, 0.5)" }}>
-            <div className="absolute rounded bg-white z-[9] cursor-pointer top-[40px] right-[40px]">
+            <div className="absolute rounded bg-white z-[9] cursor-pointer top-5 right-5 md:top-[40px] md:right-[40px]">
                 <svg
                     viewBox="0 0 24 24"
                     fill="currentColor"
@@ -155,8 +155,8 @@ export default function ProdukDetail(props) {
                 </Carousel>
             </div>
         </div>
-        <div style={{overflowX:'hidden'}} className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
-            <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
+        <div className="grid px-0 md:px-10 grid-cols-3 gap-2">
+            <div className="col-span-3 md:col-span-2 bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
                 <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
                     <span>Highlight</span>
@@ -271,7 +271,7 @@ export default function ProdukDetail(props) {
                     </div>
                 </section>
             </div>
-            <div className="w-[100%]">
+            <div className="col-span-3 md:col-span-1">
                 <div className=" rounded-sm md:rounded-md shadow-xl bg-white w-full max-w-full  md-w-[400px] px-5 py-3 ">
                     <div className="flex mb-[4px]" style={{ alignItems: "center", justifyContent: "space-between" }}>
                         <span className="flex text-[20px] md:text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price) : "Rp 0"}</span>
@@ -359,11 +359,11 @@ export default function ProdukDetail(props) {
                     </div>
                 </div>
             </div>
-        </div>
-        <div className="grid-content md:mx-[50px] gap-2 md:gap-[50px] mt-5">
-            <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
-                <div className="pb-[16px]">
-                    <h3 className="text-[20px] font-bold text-gray-800">Iklan Terkait</h3>
+            <div className="col-span-3 md:col-span-2 gap-2 md:gap-[50px] mt-5">
+                <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
+                    <div className="pb-[16px]">
+                        <h3 className="text-[20px] font-bold text-gray-800">Iklan Terkait</h3>
+                    </div>
                 </div>
             </div>
         </div>
