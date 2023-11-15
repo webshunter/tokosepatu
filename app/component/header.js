@@ -86,9 +86,6 @@ export const Header = function(){
     }
     
     useEffect(function(){
-
-        console.log(pathName);
-
         pathName === '/'?setHiddenSearch(1): setHiddenSearch(null);
         pathName.indexOf('produk/') != -1 ? setHiddenMenus(1) : setHiddenMenus(null);
         // cari tinggi navbar       
