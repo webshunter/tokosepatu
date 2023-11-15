@@ -79,15 +79,20 @@ export const Header = function(){
     const [openModal, setOpenModal] = useState ();
     const props = { openModal, setOpenModal };
     const [hiddenSearch, setHiddenSearch] = useState(null);
+    const [hiddenMenus, setHiddenMenus] = useState(null);
     const pathName = usePathname()
     const daftar = () =>{
         signIn();
     }
     
     useEffect(function(){
+
+        console.log(pathName);
+
         pathName === '/'?setHiddenSearch(1): setHiddenSearch(null);
+        pathName.indexOf('produk/') != -1 ? setHiddenMenus(1) : setHiddenMenus(null);
         // cari tinggi navbar       
-    }, [pathName])
+    }, [pathName, setHiddenMenus, setHiddenSearch])
 
     const [callUser, setCallUser] = useState(null);
 
@@ -156,6 +161,7 @@ export const Header = function(){
                 </div>
             </div>
         </nav>
+        {!hiddenMenus?
         <div className="fixed md:hidden z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
             <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
                 <Link href="/" data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
@@ -190,6 +196,9 @@ export const Header = function(){
                 </button>
             </div>
         </div>
+        :
+        <></>
+        }
         {/* <nav className="px-10 py-2 bg-white shadow-md text-gray-600">
             <button className="pr-5">SEMUA KATEGORI</button>
             <Link className="pr-5 text-[14px]" href="/">Property</Link>
