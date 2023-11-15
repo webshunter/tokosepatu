@@ -121,12 +121,12 @@ export async function GET(req, Response) {
         let parentXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>http://rumahjo.com/main.xml</loc>
+        <loc>https://rumahjo.com/main.xml</loc>
     </sitemap>
 ${parent.map(function (m) {
     return `
     <sitemap>
-        <loc>http://rumahjo.com/${m.url}</loc>
+        <loc>https://rumahjo.com/${m.url}</loc>
     </sitemap>
     `
 }).join('')}
@@ -146,7 +146,7 @@ ${parent.map(function (m) {
 ${getData.map(function (m) {
     return `
     <url>
-        <loc>http://rumahjo.com/${m.url}</loc>
+        <loc>https://rumahjo.com/${m.url}</loc>
         <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
     </url>
     `
