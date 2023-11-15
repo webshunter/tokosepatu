@@ -111,7 +111,7 @@ export async function GET(req, Response) {
     });
     try{
         const query = `
-        SELECT uid_user, concat('map-',uid_user,'.xml') url, max(userlog) log FROM listing GROUP BY uid_user;
+        SELECT uid_user, concat('map-',uid_user,'.xml') url, min(userlog) log FROM listing GROUP BY uid_user;
         SELECT uid_user, concat('produk/', slug) url, userlog log FROM listing
         `
         const [parentData] = await connection.query(query);
