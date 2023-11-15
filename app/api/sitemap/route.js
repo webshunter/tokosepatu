@@ -143,11 +143,6 @@ ${parent.map(function (m) {
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-<url>
-<loc>http://rumahjo.com/</loc>
-<lastmod>2023-11-13T15:48:38+00:00</lastmod>
-</url>
 ${getData.map(function (m) {
     return `
     <url>
