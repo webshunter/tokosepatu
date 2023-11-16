@@ -56,9 +56,18 @@ export async function GET(req, Response) {
             return ""; 
         })()}`
         const value = [];
-        const [data] = await connection.query(query);
+        const [datas] = await connection.query(query);
+        let [data] = datas;
         connection.end();
-        return NextResponse.json({ message:  data });
+        return NextResponse.json({ message:  [{
+            uniqid: data.uniqid,
+            fullname: data.fullname,
+            email: data.email,
+            tgldaftar: data.tgldaftar,
+            about: data.about,
+            telp: data.telp,
+            avatar: data.avatar,
+        }] });
     }catch(error){
         return NextResponse.json({ status:500,message: error.message });
     }
