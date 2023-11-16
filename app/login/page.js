@@ -64,7 +64,7 @@ export default function Login() {
                                 <div>
                                     <p className="font-medium leading-6 text-[14px]">Nomor Telepon atau Email</p>
                                     <div className="mb-[16px]">
-                                        <input className="rounded px-[16px] py-[10px] w-full border border-inherit" placeholder="Masukan Nomor Telepon atau Email"></input>
+                                        <input className="rounded px-[16px] py-[10px] w-full border border-inherit" placeholder="Masukan Nomor Telepon"></input>
                                     </div>
                                 </div>
                                 <p className="font-medium leading-6 text-[14px] pointer text-indigo-800 underline mb-[24px]">Lupa Password?</p>
