@@ -90,7 +90,7 @@ const ButtonLogin = ({props}) => {
     }
 
     return (<>
-        <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => props.setOpenModal('default')  }>Login/ Daftar</Button>
+        <Button className="bg-transparent border-[1px] mx-2 border-white" onClick={() => route.push('/login')  }>Login/ Daftar</Button>
     </>)
 }
 
