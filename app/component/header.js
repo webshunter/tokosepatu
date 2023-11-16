@@ -122,7 +122,7 @@ export const Header = function(){
     const {data: session} = useSession();
     const [openModal, setOpenModal] = useState ();
     const props = { openModal, setOpenModal };
-    const [hiddenSearch, setHiddenSearch] = useState(null);
+    const [hiddenSearch, setHiddenSearch] = useState(1);
     const [hiddenMenus, setHiddenMenus] = useState(null);
     const pathName = usePathname()
     const daftar = () =>{
