@@ -7,6 +7,7 @@ const WaVerify = (props) => {
     return <>
         <button onClick={()=>{
             route.push('/waverify')
+            setVisible(null)
         }} className="block rounded bg-yellow-500 w-full text-white p-2 ">Verify WA</button>
     </>
 }

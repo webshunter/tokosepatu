@@ -48,7 +48,10 @@ const ButtonLogin = ({verify,props}) => {
                     }} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Lihat dan Edit Profil</button>
                     {!verify ?
                         <>
-                            <WaVerify />
+                            <button onClick={() => {
+                                route.push('/waverify')
+                                setVisible(null)
+                            }} className="block rounded bg-yellow-500 w-full text-white p-2 ">Verify WA</button>
                         </>
                         :
                         <></>
