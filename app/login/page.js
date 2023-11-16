@@ -24,7 +24,7 @@ export default function Login() {
 
     if (session){
         return (<div className='my-5 bg-white'>
-            <div>Anda sudah login</div>
+            <div className='flex justify-center items-center py-10'>Anda sudah login</div>
         </div>);
     }else{
         return (<>
