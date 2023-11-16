@@ -11,7 +11,7 @@ import { useOutsideClick } from "../library/outclick";
 import { usePathname } from 'next/navigation'
 import WaVerify from "./verifikasi/waverify";
 
-const ButtonLogin = ({props}) => {
+const ButtonLogin = ({verify,props}) => {
     const route = useRouter();
     const ref = useOutsideClick(() => {
         setVisible(null)
@@ -46,7 +46,13 @@ const ButtonLogin = ({props}) => {
                         route.push('/profile');
                         setVisible(null)
                     }} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Lihat dan Edit Profil</button>
-                    <WaVerify />
+                    {!verify ?
+                        <>
+                            <WaVerify />
+                        </>
+                        :
+                        <></>
+                    }
                     <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Iklan Saya</button>
                     <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Beli Paket Bisnis</button>
                     <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Paket yang Dibeli & Penagihan</button>
@@ -124,6 +130,7 @@ export const Header = function(){
     const props = { openModal, setOpenModal };
     const [hiddenSearch, setHiddenSearch] = useState(1);
     const [hiddenMenus, setHiddenMenus] = useState(null);
+    const [phoneVerified, setPhoneVerified] = useState(1);
     const pathName = usePathname()
     const daftar = () =>{
         signIn();
@@ -172,7 +179,14 @@ export const Header = function(){
             postData(ori() +'/data/simpan/user', {
                 uniqid: 'ID-USER-'+Date.now(),
                 data: session
-            }).then(function(res){
+            })
+            .then(function(res){
+                let [data] = res;
+                if(data.telp && data.telp != ""){
+                    setPhoneVerified(1);
+                }else{
+                    setPhoneVerified(null);
+                }
             })
         }
     }
@@ -198,7 +212,7 @@ export const Header = function(){
                     <button onClick={searchButton} className="px-4 py-2 h-[45px] bg-yellow-400">GO</button>
                 </div>
                 <div className="hidden md:flex min-w-[200px] w-[200px] justify-center items-center">
-                    <ButtonLogin props={props} />
+                    <ButtonLogin verify={phoneVerified} props={props} />
                 </div>
             </div>
         </nav>
