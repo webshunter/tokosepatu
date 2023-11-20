@@ -70,6 +70,7 @@ export default function Login() {
                         !hidden ?
                             <div>
                                 <PhoneInput
+                                    defaultCountry="ID"
                                     placeholder="Enter phone number"
                                     value={value}
                                     onChange={setValue} />

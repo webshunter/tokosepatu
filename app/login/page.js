@@ -67,6 +67,7 @@ export default function Login() {
                                     <p className="font-medium leading-6 text-[14px]">Nomor Telepon</p>
                                     <div className="block mb-[16px]">
                                         <PhoneInput
+                                            defaultCountry="ID"
                                             placeholder="Enter phone number"
                                             value={value}
                                             onChange={setValue} />
@@ -93,23 +94,7 @@ export default function Login() {
                     {`
                     nav .w-full .flex.justify-end {
                         display: none;
-                    }
-                    .PhoneInput{
-                        position: relative;
-                        display: flex;
-                    }
-
-                    .PhoneInput .PhoneInputCountryIcon{
-                        width: 30px;
-                        position: absolute;
-                        top: -20px;
-                        right: 0px;
-                    }
-
-                    .PhoneInput .PhoneInputCountry{
-                        width: 180px;
-                        z-index: 2;
-                    }
+                    }                    
                     `}
                 </style>
             </>

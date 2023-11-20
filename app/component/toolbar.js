@@ -11,11 +11,11 @@ export const Toolbar = function () {
     })
 
     return(<>
-    <div className="px-4 md:px-10">
-        <div className="relative flex justify-center items-center h-full md:h-4">
-            <div className="absolute bottom-0 md:bottom-20 rounded-lg bg-indigo-950 md:bg-indigo-950/[.9] overflow-hidden shadow-lg relative w-full md:w-[750px]">
+    <div className="px-4 md:px-10 mb-2 md:mb-4">
+        <div className="flex justify-center items-center h-full">
+            <div className="rounded-lg bg-indigo-950 md:bg-indigo-950/[.9] overflow-hidden shadow-lg w-full md:w-[750px]">
                 <div className="w-full p-4">
-                    <div><p className="mb-2.5 text-white text-[24px] text-center">Jual Beli Properti Jadi Mudah</p></div>
+                    <div><p className="mb-2.5 text-white text-[24px] text-center">Temukan Kemudahan di rumahjo.com</p></div>
                 </div>
                 <div className="mb-2">
                     <div id="tablist">
@@ -26,7 +26,7 @@ export const Toolbar = function () {
                         </div>
                     </div>
                 </div>
-                <div className="w-full px-6 pb-10">
+                <div className="w-full px-6 pb-5">
                     <div className="p-0 m-auto">
                         <div className="relative flex h-[40px] w-full">
                             <div className="flex absolute w-full bg-white border border-current rounded-lg">
@@ -53,62 +53,40 @@ export const Toolbar = function () {
                                     <span className="text-white">Cari</span>
                                 </button>
                             </div>
+                        </div>                        
+                        <div className="grid grid-cols-5 gap-4 items-center pt-3 text-white">
+                            <div>
+                                <Link href="/1" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
+                                    <Image className="relative" src="/toolbar/carikan-properti.svg" alt="Cari Properti di Rumahjo" width={40} height={40} />
+                                    <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link href="/2" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
+                                    <Image className="relative" src="/toolbar/cari-agen.svg" alt="Cari Agen di Rumahjo" width={40} height={40} />
+                                    <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Cari Agen</span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link href="/3" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
+                                    <Image className="relative" src="/toolbar/simulasi-kpr.svg" alt="Simulasi KPR di Rumahjo" width={40} height={40} />
+                                    <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Simulasi KPR</span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link href="/3" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
+                                    <Image className="relative" src="/toolbar/explore-area.svg" alt="Explore Area di Rumahjo" width={40} height={40} />
+                                    <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Explore Area</span>
+                                </Link>
+                            </div>
+                            <div>
+                                <Link href="/4" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
+                                    <Image className="relative" src="/toolbar/quick-menu-others-icon.svg" alt="Lainnya di Rumahjo" width={40} height={40} />
+                                    <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Lainnya</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div className="px-4 md:px-10 py-4 md:py-5">
-        <div className="rounded-lg bg-white overflow-hidden shadow-lg relative pb-4 md:pb-0">
-            <div className="grid grid-cols-4 md:grid-cols-8 gap-4 items-center">
-                <div>
-                    <Link href="/1" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/carikan-properti.svg" alt="Cari Properti di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/2" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/cari-agen.svg" alt="Cari Agen di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Cari Agen</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/3" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/simulasi-kpr.svg" alt="Simulasi KPR di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Simulasi KPR</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/4" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/pindah-kpr.svg" alt="Pindah KPR di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Pindah KPR</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/5" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/iklankan-properti.svg" alt="Iklankan Properti di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Iklankan Properti</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/6" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/explore-area.svg" alt="Explore Area di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Explore Area</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/7" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/jual-propertimu.svg" alt="Jual Propertimu di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Jual Propertimu</span>
-                    </Link>
-                </div>
-                <div>
-                    <Link href="/8" className="flex flex-col gap-3 h-[100px] no-underline items-center px-[8px] py-[16px]">
-                        <Image className="relative" src="/toolbar/quick-menu-others-icon.svg" alt="Lainnya di Rumahjo" width={40} height={40} />
-                        <span className="font-bold text-center leading-4 text-[12px] md:text-[14px]">Lainnya</span>
-                    </Link>
                 </div>
             </div>
         </div>
