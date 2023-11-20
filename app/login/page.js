@@ -4,9 +4,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Header } from "@/app/component/header";
 import { useEffect, useState } from "react";
+import PhoneInput from 'react-phone-number-input';
 
 export default function Login() {
     const { data: session } = useSession();
+    const [value, setValue] = useState(null);
     const route = useRouter();
     const [showForm, setShowForm] = useState(null);
 
@@ -62,9 +64,12 @@ export default function Login() {
                             </div>
                             <form className="p-[16px]">
                                 <div>
-                                    <p className="font-medium leading-6 text-[14px]">Nomor Telepon atau Email</p>
-                                    <div className="mb-[16px]">
-                                        <input className="rounded px-[16px] py-[10px] w-full border border-inherit" placeholder="Masukan Nomor Telepon"></input>
+                                    <p className="font-medium leading-6 text-[14px]">Nomor Telepon</p>
+                                    <div className="block mb-[16px]">
+                                        <PhoneInput
+                                            placeholder="Enter phone number"
+                                            value={value}
+                                            onChange={setValue} />
                                     </div>
                                 </div>
                                 <p className="font-medium leading-6 text-[14px] pointer text-indigo-800 underline mb-[24px]">Lupa Password?</p>
@@ -88,6 +93,22 @@ export default function Login() {
                     {`
                     nav .w-full .flex.justify-end {
                         display: none;
+                    }
+                    .PhoneInput{
+                        position: relative;
+                        display: flex;
+                    }
+
+                    .PhoneInput .PhoneInputCountryIcon{
+                        width: 30px;
+                        position: absolute;
+                        top: -20px;
+                        right: 0px;
+                    }
+
+                    .PhoneInput .PhoneInputCountry{
+                        width: 180px;
+                        z-index: 2;
                     }
                     `}
                 </style>
