@@ -55,7 +55,7 @@ export default function Login() {
                     <div className="px-0 md:px-10 py-0 md:py-10 grid grid-cols-3 gap-6">
                         <div className="hidden md:block col-span-2">
                             <div className="block w-full h-full rounded">
-                                <img className="block h-full w-full rounded-[20px]" src="/bannerlogin.png" ></img>
+                                <img className="block h-full w-full rounded-[20px]" src="/bannerlogin.jpeg" ></img>
                             </div>
                         </div>
                         <div className="col-span-3 md:col-span-1 shadow-none md:shadow-lg rounded-none md:rounded-[20px] p-0 md:p-[32px]">
