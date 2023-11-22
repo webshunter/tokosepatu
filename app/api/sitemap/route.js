@@ -122,11 +122,15 @@ export async function GET(req, Response) {
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
         <loc>https://rumahjo.com/main.xml</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
     </sitemap>
 ${parent.map(function (m) {
     return `
     <sitemap>
         <loc>https://rumahjo.com/${m.url}</loc>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
     </sitemap>
     `
 }).join('')}
@@ -148,6 +152,8 @@ ${getData.map(function (m) {
     <url>
         <loc>https://rumahjo.com/${m.url}</loc>
         <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
     </url>
     `
 }).join('')}
