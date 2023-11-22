@@ -57,20 +57,20 @@ export default function Login() {
             :
             <>
                 <div className="my-5 bg-white">
-                    <div className="px-0 md:px-[111px] py-0 md:py-10 grid grid-cols-7 gap-6">
+                    <div className="px-0 md:px-10 lg:px-[111px] py-0 md:py-10 grid grid-cols-7 gap-6">
                         <div className="hidden md:block col-span-4">
                             <div className="block w-full h-full rounded">
                                 <img className="block h-full w-full rounded-[20px]" src="/bannerlogin.png" ></img>
                             </div>
                         </div>
-                        <div className="col-span-3 md:col-span-3 shadow-none md:shadow-lg rounded-none md:rounded-[20px] p-0 md:p-[32px]">
-                            <div className="md:border-b md:border-slate-300 shadow-xl md:shadow-none p-4 md:p-[16px]">
+                        <div className="col-span-7 md:col-span-3 shadow-none md:shadow-lg rounded-none md:rounded-[20px] p-0 md:p-[16px] lg:p-[32px]">
+                            <div className="md:border-b md:border-slate-300 shadow-xl md:shadow-none p-4 md:p-[8px] lg:p-[16px]">
                                 <div className="font-bold">Login/Register</div>
                             </div>
-                            <form className="p-[16px]">
+                            <form className="p-[8px] lg:p-[16px]">
                                 <div>
                                     <p className="font-medium leading-6 text-[14px]">Nomor Telepon</p>
-                                    <div className="block mb-[16px]">
+                                    <div className="block mb-[8px] md:mb-0 lg:mb-[16px]">
                                         <PhoneInput
                                             defaultCountry="ID"
                                             placeholder="Enter phone number"
@@ -78,14 +78,14 @@ export default function Login() {
                                             onChange={setValue} />
                                     </div>
                                 </div>
-                                <p className="font-medium leading-6 text-[14px] pointer text-indigo-800 underline mb-[24px]">Lupa Password?</p>
-                                <button className="bg-indigo-950 text-white rounded-lg w-full text-[16px] mb-[16px] h-10">Selanjutnya</button>
-                                <div className="flex w-full gap-4 mb-[16px] items-center">
+                                <p className="font-medium leading-6 text-[14px] pointer text-indigo-800 underline mb-[12px] lg:mb-[24px]">Lupa Password?</p>
+                                <button className="bg-indigo-950 text-white rounded-lg w-full text-[16px] mb-[8px] lg:mb-[16px] h-10">Selanjutnya</button>
+                                <div className="flex w-full gap-4 mb-[8px] lg:mb-[16px] items-center">
                                     <hr className="border-b w-full" />
                                     <p className="w-full whitespace-nowrap text-gray-500 text-[14px]">Atau gunakan dengan akun</p>
                                     <hr className="border-b w-full" />
                                 </div>
-                                    <button type='button' onClick={() => signIn()} className="rounded-lg w-full text-[16px] mb-[16px] h-10 flex relative items-center text-center px-4 border border-slate-400 cursor-pointer">
+                                    <button type='button' onClick={() => signIn()} className="rounded-lg w-full text-[16px] mb-[8px] lg:mb-[16px] h-10 flex relative items-center text-center px-4 border border-slate-400 cursor-pointer">
                                     <span className="flex absolute items-center mr-[.25rem]">
                                         <Image src="https://storage.googleapis.com/core-asset/static/images/assets/icon-google.svg" width={24} height={24} alt="Login with Google" />
                                     </span>
