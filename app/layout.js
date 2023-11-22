@@ -15,6 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <meta name="robots" content="index, follow" />
       <link rel="icon" href="/icon.png" type='png' sizes="any" />
       <body style={{overflowX:'hidden'}} className="pt-[40px] md:pt-[60px] bg-gray-50">
         <AlertContain>
