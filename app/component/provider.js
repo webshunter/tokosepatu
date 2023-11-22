@@ -9,7 +9,7 @@ const Providers = ({children}) => {
 
     useEffect(()=>{
         if(p==='production'){
-            if (window.location.protocol.indexOf('http:') != 'http' && window.location.hostname === 'rumahjo.com'){
+            if (window.location.protocol.indexOf('http:') != -1 && window.location.hostname === 'rumahjo.com'){
                 window.location.href = 'https://rumahjo.com/';
             }
         }
