@@ -38,10 +38,10 @@ export async function GET(req, Response) {
 
     let {limit, start} = params.limitation;
     const connection = await mysql.createConnection({
-        host: '202.157.177.241',
-        user: 'adminjo',
-        password: 'ValidJO$5758$',
-        database: 'rjo'
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_BASE
     });
     try{
         const query = `SELECT * FROM user  
