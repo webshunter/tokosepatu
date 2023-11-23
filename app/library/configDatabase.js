@@ -1,4 +1,4 @@
-const statusDev = process.env.NODE_ENV;
+const statusDev = process.env.POSISI;
 
 export const DB_CONF = statusDev == 'development' || statusDev == 'test'  ? {
     host: '103.152.118.236',

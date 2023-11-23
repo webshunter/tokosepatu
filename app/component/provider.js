@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 
 const Providers = ({children}) => {
 
-    let p = process.env.NODE_ENV
+    let p = process.env.POSISI
 
     useEffect(()=>{
         console.log(p);
