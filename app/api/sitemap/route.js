@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise';
 import { func } from "prop-types";
 import fs from 'fs';
 import path from 'path';
+import { DB_CONF } from "@/app/library/configDatabase";
 
 function paramsToObject(req) {
     let reqq = req.nextUrl.searchParams.entries()
@@ -102,13 +103,7 @@ Array.prototype.cond = function (search = '', name = '') {
 // Handles GET requests to /api
 export async function GET(req, Response) {
     // create the connection to database
-    const connection = await mysql.createConnection({
-        host: '193.203.167.219',
-        user: 'rumahjo',
-        password: 'rumahjo$123$',
-        database: 'rjo',
-        multipleStatements: true
-    });
+    const connection = await mysql.createConnection(DB_CONF);
     try{
         const query = `
         SELECT uid_user, concat('map-',uid_user,'.xml') url, min(userlog) log FROM listing GROUP BY uid_user;

@@ -2,6 +2,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import mysql from 'mysql2/promise';
 import { func } from "prop-types";
+import { DB_CONF } from "@/app/library/configDatabase";
 
 function paramsToObject(req) {
     let reqq = req.nextUrl.searchParams.entries()
@@ -38,12 +39,7 @@ export async function GET(req, Response) {
 
     let {limit, start} = params.limitation;
 
-    const connection = await mysql.createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_BASE
-    });
+    const connection = await mysql.createConnection(DB_CONF);
     try{
         const query = `
         SELECT a.*, b.image, c.fullname FROM listing a

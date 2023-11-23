@@ -2,6 +2,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import mysql from 'mysql2/promise';
 import { func } from "prop-types";
+import { DB_CONF } from "@/app/library/configDatabase";
 
 function paramsToObject(req) {
     let reqq = req.nextUrl.searchParams.entries()
@@ -37,12 +38,7 @@ export async function GET(req, Response) {
     let params = await paramsToObject(req);
 
     let {limit, start} = params.limitation;
-    const connection = await mysql.createConnection({
-        host: '202.157.177.241',
-        user: 'adminjo',
-        password: 'ValidJO$5758$',
-        database: 'rjo'
-    });
+    const connection = await mysql.createConnection(DB_CONF);
     try{
         const query = `SELECT * FROM user  
         ${(function(){
@@ -109,12 +105,7 @@ Array.prototype.ToUpdate = function (table = 'test', wht = 'kode') {
 export async function POST(req) {
     let body = await req.json();
     let update = [body].ToUpdate('user', 'uniqid');
-    const connection = await mysql.createConnection({
-        host: '193.203.167.219',
-        user: 'rumahjo',
-        password: 'rumahjo$123$',
-        database: 'rjo'
-    });
+    const connection = await mysql.createConnection(DB_CONF);
     const [data] = await connection.query(update);
     return NextResponse.json({ message: data });
 }
