@@ -1,20 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+const statusDev = process.env.NODE_ENV;
 
-const statusDev = process.env.POSISI;
-
-const file = path.join('config.json');
-
-let statusConfig = null;
-
-if(fs.existsSync(file)){
-    let dataJson = JSON.parse(fs.readFileSync(file,'utf8'));
-    if (dataJson.status === 'production'){
-        statusConfig = true;
-    }
-}
-
-const DB_CONF = !statusConfig  ? {
+export const DB_CONF = statusDev == 'development' || statusDev == ''  ? {
     host: '103.152.118.236',
     user: 'gugus',
     password: 'gugus$111$g',
@@ -27,5 +13,3 @@ const DB_CONF = !statusConfig  ? {
     database: 'rjo',
     multipleStatements: true
 };
-
-export { DB_CONF, statusConfig }
