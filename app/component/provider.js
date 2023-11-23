@@ -3,8 +3,8 @@ const { SessionProvider } = require("next-auth/react");
 
 import React, { useEffect } from "react";
 
-const Providers = ({children}) => {
 
+const Providers = ({children}) => {
     const p = process.env.NODE_ENV
     
     useEffect(()=>{
