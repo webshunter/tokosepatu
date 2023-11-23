@@ -129,8 +129,6 @@ export default function PostListing() {
             fileds = ["lbangun", "kmandi", "judul", "deskrisi"];
         }
 
-        console.log(fileds)
-
         let cek = 0;
         fileds.forEach((data)=>{
             console.log('fields ',data)
@@ -172,7 +170,6 @@ export default function PostListing() {
     }
 
     useEffect(()=>{
-        
     }, []);
 
     const summerChange = function(){
@@ -210,15 +207,13 @@ export default function PostListing() {
             }
         }).join(",");
 
-        console.log(formProps);
-
         const ori = function () {
             let ori = location.host;
             if (ori == 'localhost:3000') {
-                return 'https://app.rumahjo.com';
+                return 'https://api-jo.indowebs.my.id/';
             }
             if (ori == 'rumahjo.vercel.app') {
-                return 'https://app.rumahjo.com';
+                return 'https://api-jo.indowebs.my.id/';
             }
             if (ori == 'rumahjo.com') {
                 return 'https://app.rumahjo.com';

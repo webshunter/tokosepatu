@@ -14,7 +14,7 @@ if(fs.existsSync(filePath)){
 
 const statusDev = process.env.NODE_ENV;
 
-export const DB_CONF = !statusFile  ? {
+const DB_CONF = !statusFile  ? {
     host: '103.152.118.236',
     user: 'gugus',
     password: 'gugus$111$g',
@@ -27,3 +27,5 @@ export const DB_CONF = !statusFile  ? {
     database: 'rjo',
     multipleStatements: true
 };
+
+export { DB_CONF, statusFile as statusProduction}

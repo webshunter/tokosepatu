@@ -5,6 +5,7 @@ import Providers from './component/provider'
 import { Header } from './component/header';
 import { Footer } from './component/footer';
 import AlertContain from './component/provideralert';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
@@ -13,6 +14,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <meta name="robots" content="index, follow" />
