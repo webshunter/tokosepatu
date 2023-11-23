@@ -51,3 +51,6 @@ public/sitemap.xml
 
 # html remove
 public/*.html
+
+# json config
+config.json
