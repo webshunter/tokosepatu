@@ -1,6 +1,6 @@
 const statusDev = process.env.NODE_ENV;
 
-export const DB_CONF = statusDev == 'development' ? {
+export const DB_CONF = statusDev == 'development' || statusDev == 'test'  ? {
     host: '103.152.118.236',
     user: 'gugus',
     password: 'gugus$111$g',
