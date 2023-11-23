@@ -13,8 +13,6 @@ export default function LoadData(props) {
   const { data } = useSWR('/pages/api/produk?limit=21&start=0', fetcher)
   const [dataListing, setDataListing] = useState([]);
 
-  console.log(process.env)
-
   useEffect(() => {
     document.getElementById('search').value = '';
     (async function () {

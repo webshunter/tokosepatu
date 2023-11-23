@@ -2,8 +2,11 @@
 const { SessionProvider } = require("next-auth/react");
 
 import React, { useEffect } from "react";
+import { statusConfig } from "../library/configDatabase";
 
 const Providers = ({children}) => {
+
+    console.log(statusConfig)
 
     useEffect(()=>{
         // if(p==='production'){

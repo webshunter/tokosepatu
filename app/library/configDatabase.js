@@ -14,7 +14,7 @@ if(fs.existsSync(file)){
     }
 }
 
-export const DB_CONF = !statusConfig  ? {
+const DB_CONF = !statusConfig  ? {
     host: '103.152.118.236',
     user: 'gugus',
     password: 'gugus$111$g',
@@ -27,3 +27,5 @@ export const DB_CONF = !statusConfig  ? {
     database: 'rjo',
     multipleStatements: true
 };
+
+export { DB_CONF, statusConfig }
