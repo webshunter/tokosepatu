@@ -85,7 +85,7 @@ export default function Login() {
                                     <p className="w-full whitespace-nowrap text-gray-500 text-[14px]">Atau gunakan dengan akun</p>
                                     <hr className="border-b w-full" />
                                 </div>
-                                    <button type='button' onClick={() => signIn()} className="rounded-lg w-full text-[16px] mb-[16px] md:mb-[8px] lg:mb-[16px] h-10 flex relative items-center text-center px-4 border border-slate-400 cursor-pointer">
+                                    <button type='button' onClick={() => signIn('google')} className="rounded-lg w-full text-[16px] mb-[16px] md:mb-[8px] lg:mb-[16px] h-10 flex relative items-center text-center px-4 border border-slate-400 cursor-pointer">
                                     <span className="flex absolute items-center mr-[.25rem]">
                                         <Image src="https://storage.googleapis.com/core-asset/static/images/assets/icon-google.svg" width={24} height={24} alt="Login with Google" />
                                     </span>
