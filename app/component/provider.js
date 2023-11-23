@@ -8,7 +8,7 @@ const Providers = ({children}) => {
     let p = process.env.NODE_ENV
 
     useEffect(()=>{
-        // console.log(p);
+        console.log(p);
         // if(p==='production'){
         //     if (window.location.protocol.indexOf('http:') != -1 && window.location.hostname === 'rumahjo.com'){
         //         window.location.href = 'https://rumahjo.com/';
