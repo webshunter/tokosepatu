@@ -16,7 +16,7 @@ export default function LoadData(props) {
   useEffect(() => {
     document.getElementById('search').value = '';
     (async function () {
-      let data = await fetch(`/pages/api/produk?limit=21&start=0`);
+      let data = await fetch(`/pages/api/produk?limit=21&start=0&approval=1`);
       data = await data.json();
     })()
   }, [setDataListing])

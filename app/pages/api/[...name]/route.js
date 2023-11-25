@@ -50,7 +50,7 @@ export async function GET(req, Response) {
             if (d.length > 0) {
                 return ` WHERE ${d.map((c) => {
                     return ` ${c} = "${params.condition[c]}" `;
-                }).join(' OR ')}  `
+                }).join(' AND ')}  `
             }
             return "";
         })()}
