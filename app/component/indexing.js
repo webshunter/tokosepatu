@@ -23,13 +23,7 @@ const Indexing = () => {
 
     if(pathName){
         return <>
-        {nn ? nn == 0 ?
-            <meta name="robots" content="noindex, nofollow" />
-            :
             <meta name="robots" content="index, follow" />
-            :
-            <meta name="robots" content="noindex, nofollow" />
-        }
         </>
     }
     return <></>
