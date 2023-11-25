@@ -231,7 +231,6 @@ export default function PostListing() {
 
         let b64Data = btoa(JSON.stringify(formProps));
 
-
         // validasi
         let fileds = ["prov", "kota", "kec"];
         let cek = 0;

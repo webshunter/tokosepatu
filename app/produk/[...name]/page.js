@@ -24,6 +24,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
                         images: ['https://app.rumahjo.com/' + getData.image],
                     },
                 }
+            }else{
+                return {
+                    title: 'Halman tidak tersedia - RumahJo',
+                    description: 'halman tidak untuk saat ini',
+                    openGraph: {
+                    },
+                }
             }
         }
 }
@@ -38,10 +45,12 @@ export default async function Produk({params}) {
     const [data] = await connection.query(query);
     // [latitude,longitude]
     return (<>
-        {data?
+        {data && data.length > 0?
         <ProdukDetail data={data} />
         :<> 
-        
+            <div className="py-[50px]">
+                <div className="text-2xl text-center">Halaman tidak di temukan</div>
+            </div>
         </>
         }
     </>)

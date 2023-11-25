@@ -14,10 +14,10 @@ function paramsToObject(req) {
     let limitation = {}
     let condition = {}
     let having = {}
-    Object.keys(result).forEach((s,i)=>{
-        if(s == 'limit' || s == 'start'){
+    Object.keys(result).forEach((s, i) => {
+        if (s == 'limit' || s == 'start') {
             limitation[s] = result[s];
-        }else if(s == 'd' ){
+        } else if (s == 'd') {
             having['judul'] = result[s];
             having['deskrisi'] = result[s];
         } else {
@@ -37,36 +37,40 @@ export async function GET(req, Response) {
     // create the connection to database
     let params = await paramsToObject(req);
 
-    let {limit, start} = params.limitation;
-    
+    let { limit, start } = params.limitation;
+
     const connection = await mysql.createConnection(DB_CONF);
-    try{
-        const query = `SELECT a.*, b.image, c.fullname, c.telp phone FROM listing a
-        LEFT JOIN user c ON c.email = a.email
-        LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
-        ${(function(){
-            let d = Object.keys(params.condition);
-            if(d.length > 0){
-                return ` WHERE ${d.map((c)=>{
-                    return ` ${c} = "${params.condition[c]}" `;
-                }).join(' OR ')} LIMIT 1 `
-            }
-            return ""; 
-        })()}`
+    try {
+        const query = `
+        SELECT ifnull((
+        SELECT sum(total) FROM (
+        SELECT 1 total FROM listing a
+        ${(function () {
+                let d = Object.keys(params.condition);
+                if (d.length > 0) {
+                    return ` WHERE ${d.map((c) => {
+                        return ` ${c} = "${params.condition[c]}" `;
+                    }).join(' OR ')}  `
+                }
+                return "";
+            })()}
+        GROUP BY uniqid ${(function () {
+                let d = Object.keys(params.having);
+                if (d.length > 0) {
+                    return ` HAVING ${d.map((c) => {
+                        return ` ${c} LIKE "%${params.having[c]}%" `;
+                    }).join(' OR ')}  `
+                }
+                return "";
+            })()}
+            ) a ),0) total`
         const value = [];
+        console.log(query)
         const [data] = await connection.query(query);
-        const [dataRender] = data;
-        let dataimg = [];
-        if(dataRender){
-            let uniqid = dataRender.uniqid;
-            let getImage = `SELECT * FROM gallery WHERE uid_listing = "${uniqid}"`;
-            let [getData] = await connection.query(getImage);
-            dataimg = getData;
-        }
         connection.end();
-        return NextResponse.json({ message: [dataimg, data] });
-    }catch(error){
-        return NextResponse.json({ status:500,message: error.message });
+        return NextResponse.json({ message: data });
+    } catch (error) {
+        return NextResponse.json({ status: 500, message: error.message });
     }
 }
 
