@@ -46,7 +46,12 @@ export default async function Produk({params}) {
     // [latitude,longitude]
     return (<>
         {data && data.length > 0?
-        <ProdukDetail data={data} />
+        data[0].approval == 1 ?
+            <ProdukDetail data={data} />
+        :
+            <div className="py-[50px]">
+                <div className="text-2xl text-center">Halaman tidak di temukan</div>
+            </div>
         :<> 
             <div className="py-[50px]">
                 <div className="text-2xl text-center">Halaman tidak di temukan</div>
