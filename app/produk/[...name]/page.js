@@ -50,11 +50,11 @@ export default async function Produk({params}) {
             <ProdukDetail data={data} />
         :
             <div className="py-[50px]">
-                <div className="text-2xl text-center">Halaman tidak di temukan</div>
+                <div className="text-2xl text-center">Iklan tidak aktif</div>
             </div>
         :<> 
             <div className="py-[50px]">
-                <div className="text-2xl text-center">Halaman tidak di temukan</div>
+                <div className="text-2xl text-center">Iklan tidak aktif</div>
             </div>
         </>
         }
