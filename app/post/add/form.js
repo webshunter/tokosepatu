@@ -30,6 +30,7 @@ export const FormPost = () => {
     const [dataResponse, setDataresponse] = useState(null);
     const [uid, setUid] = useState(null);
     const [email, setEmail] = useState(null);
+    const [apar, setApar] = useState(null);
     const { data: session } = useSession();
 
     if (!dataResponse) {
@@ -72,6 +73,9 @@ export const FormPost = () => {
                         name="type"
                         value="0"
                         className="hidden peer"
+                        onChange={()=>{
+                            setApar(null);
+                        }}
                         required />
                     <label htmlFor="apartement" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div className="block">
@@ -86,6 +90,9 @@ export const FormPost = () => {
                         name="type"
                         value="1"
                         className="hidden peer"
+                        onChange={() => {
+                            setApar(1);
+                        }}
                     />
                     <label
                         htmlFor="rumah"
@@ -117,15 +124,17 @@ export const FormPost = () => {
         </div>
 
         {/* luas tanah */}
-        <div data-shows="bangunan,tanah,rumah" style={{display:'none'}}>
+        <div data-shows="bangunan,tanah,rumah" style={{ display: 'none'}}>
             <label htmlFor="ltanah" className="text-gray-500 font-light mt-8 dark:text-gray-50">
                 Luas Tanah<span className="text-red-500 dark:text-gray-50">*</span>
             </label>
             <input type="number"
                 value={ltanah}
+                disabled={!apar?true:false}
                 onChange={(e) => {
                     setLTanah(e.target.value);
                 }}
+                style={{backgroundColor: !apar?"#ddd":"#fff"}}
                 name="ltanah"
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
