@@ -64,6 +64,7 @@ export async function GET(req, Response) {
             return ""; 
             })()} ORDER BY uniqid DESC  LIMIT ${start}, ${limit}`
         const value = [];
+        console.log(query);
         const [data] = await connection.query(query);
         connection.end();
         return NextResponse.json({ message: data });
