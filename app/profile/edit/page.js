@@ -90,7 +90,7 @@ export default function EditProfile() {
             </Modal.Footer>
         </Modal>
         <div className="grid grid-cols-6 gap-4">
-            <div className="col-start-auto md:col-start-2 col-span-6 md:col-span-4 mt-5">
+            <div className="col-start-auto lg:col-start-2 col-span-6 lg:col-span-4 mt-5">
                 <div className="bg-white shadow-md md:mb-2 px-5 md:p-5 rounded-xm">
                     <div className="hidden md:block pb-[16px]">
                         <h3 className="text-[20px] font-bold text-gray-800">Edit Profil</h3>
@@ -138,7 +138,7 @@ export default function EditProfile() {
                                     </div>
                                     <div className="hidden md:block basis-[45%] pr-2"></div>
                                 </div>
-                                <div className="basis-[72.5%] md:basis-[60%] pl-[16px] md:pl-0 flex flex-row items-start flex-wrap">
+                                <div className="basis-[72.5%] md:basis-[45%] pl-[16px] md:pl-0 flex flex-row items-start flex-wrap">
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                             <input type="text"
@@ -160,6 +160,22 @@ export default function EditProfile() {
                                             <textarea rows="4" onChange={(e)=>{
                                                 setAbout(e.target.value)
                                             }} value={about?about:''} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tentang saya (opsional)"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="static md:absolute lg:fixed md:right-[16px] md:top-[85px] bg-white md:bg-[#F9CC0B] border-0 md:border rounded-b-xl">
+                                <div className="w-full md:w-[350px] float-none md:float-right">
+                                    <div className="justify-center">
+                                        <div className="max-w-full text-center text-[15px] leading-[20px] md:mt-[20px]">
+                                            <span className="max-w-full text-center font-bold leading-[20px]">Donasi sekarang dan bantu kami mewujudkan impian Anda</span>
+                                            <center>
+                                                <img className="max-w-[125px] mt-4" src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png" />
+                                                <img className="max-w-[200px] mt-1" src="/qr.svg"></img>
+                                            </center>
+                                            <h2 className="text-xl">BANK BCA</h2>
+                                            <h3 className="text-2xl">12345678900</h3>
+                                            <h2 className="text-xl pb-3">RUMAHJODOTCOM</h2>
                                         </div>
                                     </div>
                                 </div>

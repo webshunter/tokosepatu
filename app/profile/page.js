@@ -28,8 +28,8 @@ export default function Profile() {
     <ValidasiLogin>
         <div className='my-5 bg-white'>
             <div className="pt-5 mx-[20px] xl:mx-[60px]">
-                <div className="grid grid-cols-4 gap-4">
-                    <div className="col-span-4 md:col-span-1">
+                <div className="grid grid-cols-5 lg:grid-cols-4 gap-4">
+                    <div className="col-span-5 md:col-span-2 lg:col-span-1">
                         <div className="block w-full">
                             <div className="flex md:block ml-auto mr-auto w-full md:w-[50%]">
                                 <div className="relative " style={{width:"fit-content"}}>
@@ -84,6 +84,16 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className="justify-center flex">
+                                <div className="max-w-full text-center text-[15px] leading-[20px] mt-[20px]">
+                                    <span className="max-w-full text-center leading-[20px]">Donasi sekarang dan bantu kami mewujudkan impian Anda</span>
+                                    <img className="max-w-[100%] px-[100px] md:px-[75px] lg:px-[75px] mt-4" src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png" />
+                                    <img className="max-w-[100%] px-[50px] md:px-[30px] lg:px-[20px]" src="/qr.svg"></img>
+                                    <h2 className="text-xl md:text-2xl">BANK BCA</h2>
+                                    <h3 className="text-2xl md:text-3xl">12345678900</h3>
+                                    <h2 className="text-xl md:text-2xl">RUMAHJODOTCOM</h2>
+                                </div>
+                            </div>
+                            <div className="justify-center flex">
                                 <div className="max-w-full text-[14px] leading-[20px] mt-[26px] text-yellow-400">
                                     <button className="pb-0 capitalize border-b-2 border-yellow-400 h-auto inline-flex justify-center items-center box-border font-bold cursor-pointer relative overflow-hidden">
                                         <span>Bagikan profil</span>
@@ -92,7 +102,7 @@ export default function Profile() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-4 md:col-span-3">
+                    <div className="col-span-5 md:col-span-3 lg:col-span-3">
                         
                     </div>
                 </div>
