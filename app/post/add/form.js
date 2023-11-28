@@ -109,7 +109,7 @@ export const FormPost = ({ hidetanah }) => {
         </div>
 
         {/* property baru */}
-        <div className="my-2 mx-2" data-shows="bangunan,rumah" style={{display:'none'}}>
+        <div className="my-2 mx-2" data-shows="rumah" style={{display:'none'}}>
             <label for="baru">
                 <input checked={propertyBaru == 1? true:false} type="checkbox" id="baru" name="baru"
                 onChange={(e)=>{
