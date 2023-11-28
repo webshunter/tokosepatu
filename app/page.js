@@ -75,7 +75,7 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Premium</h2>
           <p className="font-medium text-sm mb-4">Cek rekomendasi properti premium dari kami serta informasi terlengkapnya.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href='dsds'>
+          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
             <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
           </a>
         </div>
@@ -96,7 +96,7 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terpopuler</h2>
           <p className="font-medium text-sm mb-4">Properti terpopuler yang paling banyak dilihat pengunjung.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href='dsds'>
+          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
             <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
           </a>
         </div>
@@ -117,7 +117,7 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terbaru</h2>
           <p className="font-medium text-sm mb-4">Iklan properti yang baru diposting.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href='dsds'>
+          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
             <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
           </a>
         </div>
