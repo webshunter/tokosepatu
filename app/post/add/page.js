@@ -24,11 +24,12 @@ export default function PostListing() {
     const [kota, setKota] = useState([]);
     const [kecamatan, setKecamatan] = useState([]);
     const [properti, setProperti] = useState("Dijual: Rumah & Apartement")
+    
+    const [hideTanah, setHideTanah] = useState(null)
 
     const provinsiChange = function(event){
         let getVal = event.target.value;
         let DataKota = wilayah.getGroupKota(getVal);
-        console.log(DataKota)
         setKota(DataKota);
     }
 
@@ -103,6 +104,11 @@ export default function PostListing() {
     }
 
     const hiddenForm = function(v){
+        if(v.nilai.toLowerCase().indexOf('rumah') == -1){
+            setHideTanah(1)
+        }else{
+            setHideTanah(null)
+        };
         Array.from(document.querySelectorAll('div[data-shows]'))
         .forEach((dom)=>{
             dom.dataset.shows.indexOf(v.form) != -1 ? dom.style.display = 'block' : dom.style.display = 'none';
@@ -131,13 +137,10 @@ export default function PostListing() {
 
         let cek = 0;
         fileds.forEach((data)=>{
-            console.log('fields ',data)
-            console.log(formProps[data])
             if(formProps[data] == ""){
                 cek++;
             }
         });
-        console.log(cek)
         if(cek > 0){
             backFunc(3);
             Array.from(document.querySelectorAll(".info-danger"))
@@ -328,7 +331,7 @@ export default function PostListing() {
                         </button><h1 className='inline-block px-2'>Include Some Details</h1>
                     </div>
                     <div className='px-5'>
-                        <FormPost />
+                        <FormPost hidetanah={hideTanah} />
                         <button onClick={(w) => {
                             backFunc(4);
                         }} type='button' className='w-full bg-gray-950 text-white py-3 rounded-md'>Next</button>

@@ -17,7 +17,7 @@ export const dataStatus = [
     },
 ];
 
-export const FormPost = () => {
+export const FormPost = ({ hidetanah }) => {
     const [lbangun, setLBangun] = useState("");
     const [ltanah, setLTanah] = useState("");
     const [ktidur, setKTidur] = useState("");
@@ -31,6 +31,7 @@ export const FormPost = () => {
     const [uid, setUid] = useState(null);
     const [email, setEmail] = useState(null);
     const [apar, setApar] = useState(null);
+    const [propertyBaru, setPropertiBaru] = useState(0);
     const { data: session } = useSession();
 
     if (!dataResponse) {
@@ -107,6 +108,18 @@ export const FormPost = () => {
             <p className="info-danger mb-2 text-red-700 px-2 italic hidden">This field is mandatory.</p>
         </div>
 
+        {/* property baru */}
+        <div className="my-2 mx-2" data-shows="bangunan,rumah" style={{display:'none'}}>
+            <label for="baru">
+                <input checked={propertyBaru == 1? true:false} type="checkbox" id="baru" name="baru"
+                onChange={(e)=>{
+                    e.target.checked ? setPropertiBaru(1):setPropertiBaru(0);
+                }}
+                value={propertyBaru} />
+                <span className="cursor-pointer inline-block ml-4 text-gray-500">Property Baru</span> 
+            </label>
+        </div>
+
         {/* luas bangunan */}
         <div data-shows="bangunan,rumah" style={{display:'none'}}>
             <label htmlFor="lbangun" className="text-gray-500 font-light mt-8 dark:text-gray-50">
@@ -130,11 +143,11 @@ export const FormPost = () => {
             </label>
             <input type="number"
                 value={ltanah}
-                disabled={!apar?true:false}
+                disabled={ !hidetanah? !apar?true:false : false}
                 onChange={(e) => {
                     setLTanah(e.target.value);
                 }}
-                style={{backgroundColor: !apar?"#ddd":"#fff"}}
+                style={{ backgroundColor: !hidetanah ? !apar?"#ddd":"#fff" : "#fff"}}
                 name="ltanah"
                 className="bg-transparent border-b py-2 pl-4 focus:outline-none focus:rounded-md focus:ring-1 ring-green-500 font-light text-gray-500"
             />
