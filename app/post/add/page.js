@@ -252,7 +252,7 @@ export default function PostListing() {
 
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
             setVisible(visible);
-            route.push("/");
+            route.push("/support-us");
         });
         // here unnecessary - just for testing if it can be read from local storage
     }
