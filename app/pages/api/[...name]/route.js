@@ -11,22 +11,26 @@ function paramsToObject(req) {
     for (const [key, value] of entries) { // each 'entry' is a [key, value] tupple
         result[key] = value;
     }
+    let ordering = {}
     let limitation = {}
     let condition = {}
     let having = {}
     Object.keys(result).forEach((s,i)=>{
         if(s == 'limit' || s == 'start'){
             limitation[s] = result[s];
-        }else if(s == 'd' ){
+        } else if (s == 'order' || s == 'ascdesc') {
+            ordering[s] = result[s];
+        } else if(s == 'd' ){
             having['judul'] = result[s];
             having['deskrisi'] = result[s];
-        } else {
+        }else {
             condition[s] = result[s];
         }
     })
 
     return {
         limitation: limitation,
+        ordering: ordering,
         condition: condition,
         having: having
     };
@@ -38,6 +42,8 @@ export async function GET(req, Response) {
     let params = await paramsToObject(req);
 
     let {limit, start} = params.limitation;
+
+    let {order, ascdesc} = params.ordering;
 
     const connection = await mysql.createConnection(DB_CONF);
     try{
@@ -62,7 +68,7 @@ export async function GET(req, Response) {
                 }).join(' OR ')}  `
             }
             return ""; 
-            })()} ORDER BY uniqid DESC  LIMIT ${start}, ${limit}`
+            })()} ORDER BY ${order} ${ascdesc}  LIMIT ${start}, ${limit}`
         const value = [];
         const [data] = await connection.query(query);
         connection.end();
