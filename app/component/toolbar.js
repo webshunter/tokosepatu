@@ -1,9 +1,18 @@
 "use client"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+const  CommentTag = ({text}) => {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current.outerHTML = `<!--${text}-->`;
+    }, [text]);
+    return (<script ref={ref} type="text/placeholder" />);
+};
+
 export const Toolbar = function () {
 
     useEffect(() => {
@@ -50,7 +59,8 @@ export const Toolbar = function () {
                                     <span className="text-white">Cari</span>
                                 </button>
                             </div>
-                        </div>                        
+                        </div>
+                        <CommentTag text="googleoff: index" />
                         <div className="grid grid-cols-5 gap-4 items-center pt-2 text-white">
                             <div>
                                 <Link href="/1" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
@@ -83,6 +93,7 @@ export const Toolbar = function () {
                                 </Link>
                             </div>
                         </div>
+                        <CommentTag text="googleon: index" />
                     </div>
                 </div>
             </div>
