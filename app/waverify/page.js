@@ -7,11 +7,9 @@ import { useRouter } from "next/navigation";
 import { Header } from "@/app/component/header";
 import { useEffect, useState } from "react";
 import OtpInput from 'react-otp-input';
-import { useAlert } from 'react-alert';
 
 
 export default function Login() {
-    const alert = useAlert()
     const { data: session } = useSession();
     const route = useRouter();
     const [showForm, setShowForm] = useState(null);
@@ -76,7 +74,7 @@ export default function Login() {
                                     onChange={setValue} />
                                 <button onClick={async () => {
                                     if (!value) {
-                                        alert.show('Please insert number')
+                                        alert('Please insert number')
                                         throw false;
                                     }
                                     let data = await fetch('https://app.rumahjo.com/token/request/' + value.replace(/\+/g,""))
@@ -85,7 +83,7 @@ export default function Login() {
                                         setCountDown(60);
                                         setHidden(true);
                                     }else{
-                                        alert.show('Please insert right phone number')
+                                        alert('Please insert right phone number')
                                     }
                                 }} className='w-full bg-blue-900 text-white p-1 rounded'>Request Token</button>
                             </div>
@@ -111,7 +109,7 @@ export default function Login() {
                                                 if(dataJson.status){
                                                     setVerified(true);
                                                 }else{
-                                                    alert.show('Pastikan token sudah sesuai')
+                                                    alert('Pastikan token sudah sesuai')
                                                 }
                                             }
                                         }} className='w-full bg-blue-900 text-white p-1 rounded mb-2'>Submit</button>

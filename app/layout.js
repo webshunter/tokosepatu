@@ -21,13 +21,11 @@ export default function RootLayout({ children }) {
       <Indexing />
       <link rel="icon" href="/icon.png" type='png' sizes="any" />
       <body style={{overflowX:'hidden'}} className="pt-[40px] md:pt-[60px] bg-gray-50">
-        <AlertContain>
           <Providers>
             <Header />
               {children}
             <Footer />
           </Providers>
-        </AlertContain>
       </body>
     </html>
   )

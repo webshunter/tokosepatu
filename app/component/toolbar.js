@@ -5,18 +5,48 @@ import { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-const  CommentTag = ({text}) => {
-    const ref = useRef();
-    useEffect(() => {
-        ref.current.outerHTML = `<!--${text}-->`;
-    }, [text]);
-    return (<script ref={ref} type="text/placeholder" />);
-};
+// const  CommentTag = ({text, children}) => {
+//     const ref = useRef();
+//     useEffect(() => {
+//         let d = document.createElement('div')
+//         let g = ref.current
+//         console.log(g)
+//     }, [text]);
+//     return (<>
+//     <div ref={ref}>
+//         <div className="container-panel">
+//             {children}
+//         </div>
+//     </div>
+//     </>
+//     );
+// };
+
+export default function HTMLComment({ children }) {
+    return (<>
+        <div className="tag-off"></div>
+        {children}
+        <div className="tag-on"></div>
+    </>)
+}
 
 export const Toolbar = function () {
 
     useEffect(() => {
-
+        (function callingBack(){
+            let timeout = document.querySelector('.tag-off');
+            let timein = document.querySelector('.tag-on');
+            if(timein){
+                if(timeout){
+                    timeout.outerHTML = '<!--googleoff: index-->'
+                    timein.outerHTML = '<!--googleon: index-->'
+                }
+            }else{
+                setTimeout(()=>{
+                    callingBack();
+                },500)
+            }
+        })()
     })
 
     return(<>
@@ -60,40 +90,40 @@ export const Toolbar = function () {
                                 </button>
                             </div>
                         </div>
-                        <CommentTag text="googleoff: index" />
-                        <div className="grid grid-cols-5 gap-4 items-center pt-2 text-white">
-                            <div>
-                                <Link href="/1" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                    <Image className="relative" src="/toolbar/carikan-properti.svg" alt="Cari Properti di Rumahjo" width={30} height={30} />
-                                    <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
-                                </Link>
+                        <HTMLComment>
+                            <div className="grid grid-cols-5 gap-4 items-center pt-2 text-white">
+                                <div>
+                                    <Link href="/1" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                        <Image className="relative" src="/toolbar/carikan-properti.svg" alt="Cari Properti di Rumahjo" width={30} height={30} />
+                                        <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href="/2" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                        <Image className="relative" src="/toolbar/cari-agen.svg" alt="Cari Agen di Rumahjo" width={30} height={30} />
+                                        <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Agen</span>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href="/3" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                        <Image className="relative" src="/toolbar/simulasi-kpr.svg" alt="Simulasi KPR di Rumahjo" width={30} height={30} />
+                                        <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Simulasi KPR</span>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href="/3" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                        <Image className="relative" src="/toolbar/explore-area.svg" alt="Explore Area di Rumahjo" width={30} height={30} />
+                                        <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Explore Area</span>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link href="/4" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                        <Image className="relative" src="/toolbar/quick-menu-others-icon.svg" alt="Lainnya di Rumahjo" width={30} height={30} />
+                                        <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Lainnya</span>
+                                    </Link>
+                                </div>
                             </div>
-                            <div>
-                                <Link href="/2" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                    <Image className="relative" src="/toolbar/cari-agen.svg" alt="Cari Agen di Rumahjo" width={30} height={30} />
-                                    <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Agen</span>
-                                </Link>
-                            </div>
-                            <div>
-                                <Link href="/3" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                    <Image className="relative" src="/toolbar/simulasi-kpr.svg" alt="Simulasi KPR di Rumahjo" width={30} height={30} />
-                                    <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Simulasi KPR</span>
-                                </Link>
-                            </div>
-                            <div>
-                                <Link href="/3" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                    <Image className="relative" src="/toolbar/explore-area.svg" alt="Explore Area di Rumahjo" width={30} height={30} />
-                                    <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Explore Area</span>
-                                </Link>
-                            </div>
-                            <div>
-                                <Link href="/4" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                    <Image className="relative" src="/toolbar/quick-menu-others-icon.svg" alt="Lainnya di Rumahjo" width={30} height={30} />
-                                    <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Lainnya</span>
-                                </Link>
-                            </div>
-                        </div>
-                        <CommentTag text="googleon: index" />
+                        </HTMLComment>
                     </div>
                 </div>
             </div>

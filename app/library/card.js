@@ -10,7 +10,6 @@ export const ProdukCard = function({data, type}){
     let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota, userlog, klik } = data
     const dataKecamatan = wilayah.getKecamatan(kec);
     const dataKota = wilayah.getKota(kota);
-    console.log(type);
     return (<>
         <div key={key} className="relative bg-gray-200 w-full">
             <button className="p-1 md:p-2 z-10 shadow-md rounded-[50%] inline-block absolute bg-white top-4 right-4">
