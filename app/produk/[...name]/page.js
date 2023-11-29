@@ -46,17 +46,11 @@ export default async function Produk({params}) {
     // [latitude,longitude]
     return (<>
         {data && data.length > 0?
-        data[0].approval == 1 ?
             <ProdukDetail data={data} />
         :
             <div className="py-[50px]">
                 <div className="text-2xl text-center">Iklan tidak aktif</div>
             </div>
-        :<> 
-            <div className="py-[50px]">
-                <div className="text-2xl text-center">Iklan tidak aktif</div>
-            </div>
-        </>
         }
     </>)
 }

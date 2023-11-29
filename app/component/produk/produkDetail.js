@@ -1,6 +1,6 @@
 "use client"
 import { Carousel } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { formatRupiah } from "@/app/library/rupiah";
 import Map from 'react-map-gl';
 import { dataWilayah } from "@/app/library/loadJson";
@@ -11,6 +11,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Iframe from "react-iframe";
 import StickyButton from "@/app/component/sticky";
+import { LoaderJo } from "@/app/component/loader";
 
 const wilayah = dataWilayah();
 
@@ -32,6 +33,14 @@ String.prototype.capitalize = function () {
 }
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
+const  CommentTag = ({text}) => {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current.outerHTML = `<!--${text}-->`;
+    }, [text]);
+    return (<script ref={ref} type="text/placeholder" />);
+};
 
 export default function ProdukDetail(props) {
     const [visible, setVisible] = useState()
@@ -125,6 +134,7 @@ export default function ProdukDetail(props) {
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
     const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
     log = data.userlog;
+    console.log(data.approval);
     return (<>
         <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background: "rgba(0, 0, 0, 0.5)" }}>
             <div className="absolute rounded bg-white z-[9] cursor-pointer top-5 right-5 md:top-[40px] md:right-[40px]">
@@ -155,7 +165,25 @@ export default function ProdukDetail(props) {
                 </Carousel>
             </div>
         </div>
-        <div className="grid px-0 md:px-10 grid-cols-3 gap-2">
+        {data.approval=='0' ? 
+        <>
+        <CommentTag text="googleoff: index" />
+        <div className="mt-[68px] md:mt-[25px] lg:mt-[25px]">            
+            <div className="fixed w-screen h-screen bg-white/90" style={{zIndex:"99999"}}>
+                <div className="absolute top-[40%] md:top-[42.5%] left-[50%] mr-[-50%]" style={{transform:"translate(-50%, -50%)"}}>
+                    <div className="text-center">
+                        <img width={"200"} src="/rumahjobundar.png"></img>
+                        <h1 className="pt-4 text-2xl text-indigo-950 underline">IKLAN INI TIDAK AKTIF</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <CommentTag text="googleon: all" />
+        </>
+         : 
+        <div></div>
+        }
+        <div className="grid px-0 lg:px-10 lg:pt-[25px] grid-cols-3 gap-2">
             <div className="col-span-3 md:col-span-2 bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
                 <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
