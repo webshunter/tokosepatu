@@ -15,15 +15,15 @@ function paramsToObject(req) {
     let limitation = {}
     let condition = {}
     let having = {}
-    Object.keys(result).forEach((s,i)=>{
-        if(s == 'limit' || s == 'start'){
+    Object.keys(result).forEach((s, i) => {
+        if (s == 'limit' || s == 'start') {
             limitation[s] = result[s];
         } else if (s == 'order' || s == 'ascdesc') {
             ordering[s] = result[s];
-        } else if(s == 'd' ){
+        } else if (s == 'd') {
             having['judul'] = result[s];
             having['deskrisi'] = result[s];
-        }else {
+        } else {
             condition[s] = result[s];
         }
     })
@@ -41,41 +41,41 @@ export async function GET(req, Response) {
     // create the connection to database
     let params = await paramsToObject(req);
 
-    let {limit, start} = params.limitation;
+    let { limit, start } = params.limitation;
 
-    let {order, ascdesc} = params.ordering;
+    let { order, ascdesc } = params.ordering;
 
     const connection = await mysql.createConnection(DB_CONF);
-    try{
+    try {
         const query = `
         SELECT a.*, b.image, c.fullname FROM listing a
         LEFT JOIN user c ON c.email = a.email
         LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
         ${(function () {
-            let d = Object.keys(params.condition);
-            if (d.length > 0) {
-                return ` WHERE ${d.map((c) => {
-                    return ` ${c} = "${params.condition[c]}" `;
-                }).join(' AND ')}  `
-            }
-            return "";
-        })()}
-        GROUP BY uniqid ${(function(){
-            let d = Object.keys(params.having);
-            if(d.length > 0){
-                return ` HAVING ${d.map((c)=>{
-                    return ` ${c} LIKE "%${params.having[c]}%" `;
-                }).join(' OR ')}  `
-            }
-            return ""; 
-            })()} ${order?`ORDER BY`:''} ${order ? order : ''} ${ascdesc ? ascdesc:''}  LIMIT ${start}, ${limit}`
-            console.log(query);
+                let d = Object.keys(params.condition);
+                if (d.length > 0) {
+                    return ` WHERE ${d.map((c) => {
+                        return ` ${c} = "${params.condition[c]}" `;
+                    }).join(' AND ')}  `
+                }
+                return "";
+            })()}
+        GROUP BY uniqid ${(function () {
+                let d = Object.keys(params.having);
+                if (d.length > 0) {
+                    return ` HAVING ${d.map((c) => {
+                        return ` ${c} LIKE "%${params.having[c]}%" `;
+                    }).join(' OR ')}  `
+                }
+                return "";
+            })()} ${order ? `ORDER BY` : ''} ${order ? order : ''} ${ascdesc ? ascdesc : ''}  LIMIT ${start}, ${limit}`
+        console.log(query);
         const value = [];
         const [data] = await connection.query(query);
         connection.end();
         return NextResponse.json({ message: data });
-    }catch(error){
-        return NextResponse.json({ status:500,message: error.message });
+    } catch (error) {
+        return NextResponse.json({ status: 500, message: error.message });
     }
 }
 
