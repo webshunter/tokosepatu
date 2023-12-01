@@ -68,7 +68,8 @@ export async function GET(req, Response) {
                 }).join(' OR ')}  `
             }
             return ""; 
-            })()} ORDER BY ${order} ${ascdesc}  LIMIT ${start}, ${limit}`
+            })()} ${order?`ORDER BY`:''} ${order ? order : ''} ${ascdesc ? ascdesc:''}  LIMIT ${start}, ${limit}`
+            console.log(query);
         const value = [];
         const [data] = await connection.query(query);
         connection.end();

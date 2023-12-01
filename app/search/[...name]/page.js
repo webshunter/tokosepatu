@@ -15,17 +15,25 @@ export default function Search({params}) {
     const [card, addCard] = useState([]);
 
     useEffect(() => {
-        let seachSlug = slug.shift();
-        let [status, getSlug] = seachSlug.split('q-');
-        console.log(slug);
-        let search = decodeURI(getSlug).replace(/\-/g, ' ');
-        document.getElementById('search').value = search;
-        setNama(capitalize(search));
-        (async function () {
-            let data = await fetch(`/pages/api/produk?limit=21&start=0&kmandi=4&d=${search}`);
-            data = await data.json();
-            setDataListing(data.message);
-        })()
+        const loadData = function (dataSlug){
+            const slug = [].concat(dataSlug)
+            if(slug){
+                let seachSlug = slug.shift();
+                let [status, getSlug] = seachSlug.split('q-');
+                if(seachSlug){
+                    let search = decodeURI(getSlug).replace(/\-/g, ' ');
+                    document.getElementById('search').value = search;
+                    setNama(capitalize(search));
+                    (async function () {
+                        let data = await fetch(`/pages/api/produk?limit=21&start=0&kmandi=4&d=${search}`);
+                        data = await data.json();
+                        console.log(data)
+                        setDataListing(data.message);
+                    })()
+                }
+            }
+        }
+        loadData(slug);
     }, [setDataListing, setNama, slug])
 
     let yh = [];
@@ -36,9 +44,7 @@ export default function Search({params}) {
     }
 
     const [visibility, setFilter] = useState("hidden");
-    console.log(visibility);
     const changeFilter = () => {
-        console.log(visibility);
         if (visibility !== "hidden") {
             setFilter("hidden");
         } else {
@@ -318,14 +324,14 @@ export default function Search({params}) {
                                         <h1 className='text-2xl'>Rekomendasi baru</h1>
                                     </div>
                                     <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
-                                        {dataListing.map((y, i) => {
+                                        {dataListing? Array.isArray(dataListing)?dataListing.map((y, i) => {
                                             y.key = i;
                                             return (
                                                 <li className="list-none" key={i}>
                                                     <ProdukCard data={y} />
                                                 </li>
                                             )
-                                        })}
+                                        }): <>{dataListing}</> :null}
                                     </div>
                                     <div className='text-center mt-10 mb-5'>
                                         <button className='border-[2px] border-black px-5 py-2 rounded-md'>Muat Lainnya</button>
