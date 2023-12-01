@@ -53,8 +53,8 @@ export const Toolbar = function () {
     <div className="px-4 md:px-10 mb-2 md:mb-4">
         <div className="flex justify-center items-center h-full">
             <div className="rounded-lg bg-indigo-950 md:bg-indigo-950/[.9] overflow-hidden shadow-lg w-full md:w-[750px]">
-                <div className="my-3">
-                    <div id="tablist">
+                <div className="my-3 pt-1">
+                    <div id="tablist" className="hidden">
                         <div className="tabs-home flex flex-nowrap h-[33px] overflow-x-auto overflow-y-hidden whitespace-nowrap justify-center">
                             <button role="tab" aria-selected="true" aria-controls="sale" id="sale" tabIndex="0" className="tabs-home__button button--active">Dijual</button>
                             <button role="tab" aria-selected="false" aria-controls="rent" id="rent" tabIndex="1" className="tabs-home__button">Disewa</button>
