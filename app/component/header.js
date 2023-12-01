@@ -56,7 +56,9 @@ const ButtonLogin = ({verify,props}) => {
                         :
                         <></>
                     }
-                    <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Iklan Saya</button>
+                    <button onClick={()=>{
+                        route.push('/iklan')
+                    }} className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Iklan Saya</button>
                     <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Beli Paket Bisnis</button>
                     <button className="border-2 mt-2 text-left rounded-md w-full border-indigo-950 p-2">Paket yang Dibeli & Penagihan</button>
                     <button onClick={() => signOut()} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Log Out</button>
