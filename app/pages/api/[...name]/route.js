@@ -69,7 +69,6 @@ export async function GET(req, Response) {
                 }
                 return "";
             })()} ORDER BY ${order ? order : 'uniqid'} ${ascdesc ? ascdesc : 'DESC'}  LIMIT ${start}, ${limit}`
-        console.log(query);
         const value = [];
         const [data] = await connection.query(query);
         connection.end();

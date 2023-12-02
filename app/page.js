@@ -1,6 +1,3 @@
-
-
-
 "use client"
 import useSWR, { SWRConfig } from 'swr'
 import Image from 'next/image';
@@ -10,42 +7,29 @@ import { Carousel } from "flowbite-react";
 import { Toolbar } from "./component/toolbar";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
-  // const { data } = useSWR('/pages/api/produk?limit=21&start=0', fetcher)
-  // const [dataListing, setDataListing] = useState([]);
+  const { data : dPremium } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
+  const { data : dPopuler } = useSWR(`/pages/api/produk?order=klik&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
+  const { data: dBaru } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
 
-  // useEffect(() => {
-  //   document.getElementById('search').value = '';
-  //   (async function () {
-  //     let data = await fetch(`/pages/api/produk?limit=21&start=0&approval=1`);
-  //     data = await data.json();
-  //   })()
-  // }, [setDataListing])
   const [dataPremium, setPremium] = useState([]);
   const [dataPopuler, setPopuler] = useState([]);
   const [dataTerbaru, setTerbaru] = useState([]);
   const [showHome, setShowHome] = useState(null);
 
   useEffect(() => {
-    async function getPremium() {
-      const Premium = await fetch(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`);
-      const ress1 = await Premium.json();
-      setPremium(ress1.message);
+    if(dPremium){
+      setPremium(dPremium.message)
     }
-    async function getPopuler() {
-      const Populer = await fetch(`/pages/api/produk?order=klik&ascdesc=DESC&limit=8&start=0&approval=1`);
-      const ress2 = await Populer.json();
-      setPopuler(ress2.message);
+    if(dPopuler){
+      setPopuler(dPopuler.message)
     }
-    async function getTerbaru() {
-      const Terbaru = await fetch(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`);
-      const ress3 = await Terbaru.json();
-      setTerbaru(ress3.message);
-      setShowHome(true);
+    if(dBaru){
+      setTerbaru(dBaru.message)
     }
-    getPremium();
-    getPopuler();
-    getTerbaru();
-  }, []);
+    if (dPremium != undefined && dPopuler != undefined && dBaru != undefined){
+      setShowHome(true)
+    }
+  }, [dPremium,dPopuler, dBaru]);
 
   return(<>
   {!showHome?

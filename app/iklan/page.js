@@ -1,10 +1,12 @@
 "use client"
 import { Header } from "@/app/component/header";
 import { useEffect, useState } from "react";
-import { ProdukCard } from '@/app/library/card2';
+import { ProdukCard } from '@/app/library/cardedit';
 import { JoinDate } from '@/app/library/joinDate';
+import { useRouter } from "next/navigation";
 
 export default function Profile({ params }) {
+    const route = useRouter();
     const [nama, setNama] = useState(null);
     const [about, setAbout] = useState(null);
     const [avatar, setAvatar] = useState(null);
