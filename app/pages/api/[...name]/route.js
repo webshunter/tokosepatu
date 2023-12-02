@@ -48,9 +48,7 @@ export async function GET(req, Response) {
     const connection = await mysql.createConnection(DB_CONF);
     try {
         const query = `
-        SELECT a.*, b.image, c.fullname FROM listing a
-        LEFT JOIN user c ON c.email = a.email
-        LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
+        SELECT * FROM v_listing
         ${(function () {
                 let d = Object.keys(params.condition);
                 if (d.length > 0) {

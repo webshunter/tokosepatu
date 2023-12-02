@@ -9,7 +9,7 @@ export const ProdukCard = function ({ data }) {
     return (<>
         <div key={key} className="relative bg-gray-200 w-full">
             <button onClick={()=>{
-                route.push('/')
+                route.push('/post/update/'+uniqid)
             }} className="p-1 md:p-2 z-10 shadow-md rounded-[50%] inline-block absolute bg-white top-4 right-4">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
