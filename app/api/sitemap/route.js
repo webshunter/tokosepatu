@@ -142,7 +142,7 @@ ${getData.map(function (m) {
     return `
     <url>
         <loc>https://rumahjo.com/${m.url}</loc>
-        <lastmod>${ubahFormatTanggal(m.log)}</lastmod>
+        <lastmod>${ubahFormatTanggal(new Date())}</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
