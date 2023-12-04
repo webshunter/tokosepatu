@@ -65,7 +65,6 @@ export async function GET(req, Response) {
             })()}
             ) a ),0) total`
         const value = [];
-        console.log(query)
         const [data] = await connection.query(query);
         connection.end();
         return NextResponse.json({ message: data });
@@ -76,5 +75,6 @@ export async function GET(req, Response) {
 
 // Handles POST requests to /api
 export async function POST(req) {
+    
     return NextResponse.json({ message: "Hello World" });
 }

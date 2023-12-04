@@ -134,7 +134,6 @@ export default function ProdukDetail(props) {
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
     const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
     log = data.userlog;
-    console.log(data.approval);
     return (<>
         <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background: "rgba(0, 0, 0, 0.5)" }}>
             <div className="absolute rounded bg-white z-[9] cursor-pointer top-5 right-5 md:top-[40px] md:right-[40px]">

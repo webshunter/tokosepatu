@@ -126,21 +126,16 @@ export default function PostListing({params}) {
         const formid = document.getElementById("formid");
         const formData = new FormData(formid);
         const formProps = Object.fromEntries(formData);
-
         let fileds = ["lbangun","ltanah", "ktidur", "kmandi" ,"hadap", "judul", "deskrisi"];
-        
         if(formProps.slug2.toLowerCase().indexOf("tanah") != -1){
             fileds = ["ltanah", "judul", "deskrisi"];
         }
-
         if(formProps.slug2.toLowerCase().indexOf("bangunan") != -1){
             fileds = ["lbangun", "judul", "hadap", "deskrisi"];
         }
-
         if(formProps.slug2.toLowerCase().indexOf("indekos") != -1){
             fileds = ["lbangun", "kmandi", "judul", "deskrisi"];
         }
-
         let cek = 0;
         fileds.forEach((data)=>{
             if(formProps[data] == ""){
@@ -188,16 +183,16 @@ export default function PostListing({params}) {
                     return r;
                 }
             })
-                .map(function (r) {
-                    return {
-                        form: r.form,
-                        nilai: r.text,
-                        status: r.status
-                    }
-                });
+            .map(function (r) {
+                return {
+                    form: r.form,
+                    nilai: r.text,
+                    status: r.status
+                }
+            });
     
             let newProperty = getData.length > 0 ? getData[0] : null;
-            console.log(newProperty)
+            backFunc(3, 6, newProperty)
         }
     }, [Listing]);
 

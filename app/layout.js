@@ -6,6 +6,7 @@ import { Header } from './component/header';
 import { Footer } from './component/footer';
 import AlertContain from './component/provideralert';
 import Indexing from './component/indexing';
+import Viewers from './component/viewers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
       <body style={{overflowX:'hidden'}} className="pt-[40px] md:pt-[60px] bg-gray-50">
           <Providers>
             <Header />
-              {children}
+              <Viewers>
+                  {children}
+              </Viewers>
             <Footer />
           </Providers>
       </body>

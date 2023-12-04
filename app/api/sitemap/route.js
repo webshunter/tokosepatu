@@ -111,7 +111,6 @@ export async function GET(req, Response) {
         `
         const [parentData] = await connection.query(query);
         const [parent, xmldata] = parentData;
-        console.log(xmldata);
         const pathLoc = path.join('public','sitemap.xml');
         let parentXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
