@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise';
 import useSWR, { SWRConfig } from 'swr';
 import ProdukDetail from "@/app/component/produk/produkDetail";
 import { DB_CONF } from "@/app/library/configDatabase";
+import Head from "next/head";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -46,7 +47,17 @@ export default async function Produk({params}) {
     // [latitude,longitude]
     return (<>
         {data && data.length > 0?
-            <ProdukDetail data={data} />
+            <>
+                <Head>
+                    <title>{data.judul + ' - RumahJo'}</title>
+                    <link
+                        rel="canonical"
+                        href={"/produk/"+data.slug}
+                        key="canonical"
+                    />
+                </Head>
+                <ProdukDetail data={data} />
+            </>
         :
             <div className="py-[50px]">
                 <div className="text-2xl text-center">Iklan tidak aktif</div>
