@@ -1,16 +1,17 @@
 "use client"
 import useSWR, { SWRConfig } from 'swr'
-import Image from 'next/image';
 import { ProdukCard } from './library/card';
 import { useEffect, useState } from 'react';
 import { Carousel } from "flowbite-react";
 import { Toolbar } from "./component/toolbar";
+import { useRouter } from "next/navigation";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
   const { data : dPremium } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const { data : dPopuler } = useSWR(`/pages/api/produk?order=klik&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const { data: dBaru } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
-
+  const route = useRouter();
+  
   const [dataPremium, setPremium] = useState([]);
   const [dataPopuler, setPopuler] = useState([]);
   const [dataTerbaru, setTerbaru] = useState([]);
@@ -59,9 +60,11 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Premium</h2>
           <p className="font-medium text-sm mb-4">Cek rekomendasi properti premium dari kami serta informasi terlengkapnya.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
-            <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
-          </a>
+              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={() => {
+                route.push('/listing/premium')
+              }}>
+            <span className="text-white text-sm px-5 py-1" >Selengkapnya</span>
+          </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
           {dataPremium.map((x, i) => {
@@ -80,9 +83,11 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terpopuler</h2>
           <p className="font-medium text-sm mb-4">Properti terpopuler yang paling banyak dilihat pengunjung.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
+          <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={()=>{
+            route.push('/listing/populer')
+          }}>
             <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
-          </a>
+          </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
           {dataPopuler.map((y, j) => {
@@ -101,9 +106,11 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terbaru</h2>
           <p className="font-medium text-sm mb-4">Iklan properti yang baru diposting.</p>
-          <a className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" href=''>
+              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={() => {
+                route.push('/listing/terbaru')
+              }}>
             <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
-          </a>
+              </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
           {dataTerbaru.map((z, k) => {
