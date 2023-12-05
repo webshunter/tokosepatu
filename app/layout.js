@@ -7,6 +7,7 @@ import { Footer } from './component/footer';
 import AlertContain from './component/provideralert';
 import Indexing from './component/indexing';
 import Viewers from './component/viewers';
+import Analitic from './component/analitics';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
               </Viewers>
             <Footer />
           </Providers>
+          <Analitic/>
       </body>
     </html>
   )
