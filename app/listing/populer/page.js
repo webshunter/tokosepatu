@@ -7,7 +7,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const DaftarPremium = () => {
   const [count, setCount] = useState(0);
-  const { data: dPremium, mutate } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=50&start=${count}&approval=1`, fetcher)
+  const { data: dPremium, mutate } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=24&start=${count}&approval=1`, fetcher)
 
   return <>
     <section className="block mt-10 px-4 md:px-10 my-[16px]">
@@ -26,7 +26,7 @@ const DaftarPremium = () => {
           <button className="p-2 bg-blue-700 text-white rounded mt-10 cursor-pointer"
             onClick={() => {
               if (count != 0) {
-                setCount(count - 8);
+                setCount(count - 24);
                 mutate();
               }
             }}
@@ -34,7 +34,7 @@ const DaftarPremium = () => {
           <button className="ml-2 p-2 bg-blue-700 text-white rounded mt-10 cursor-pointer"
             onClick={() => {
               let cn = dPremium ? dPremium.message.length : 0;
-              setCount(count + 8);
+              setCount(count + 24);
               mutate();
             }}
           >Listing Selanjutnya</button>
