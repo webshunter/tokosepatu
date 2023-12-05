@@ -37,6 +37,7 @@ const DaftarPremium = () =>{
               if(count != 0){
                 setCount(count-24);
                 mutate();
+                window.scrollTo(0, 0)
               }
             }}
           >Listing Sebelumnya</button>
@@ -45,6 +46,7 @@ const DaftarPremium = () =>{
                 let cn = dPremium ? dPremium.message.length:0;
                 setCount(count+24);
                 mutate();
+                window.scrollTo(0, 0)
             }}
           >Listing Selanjutnya</button>
         </div>
