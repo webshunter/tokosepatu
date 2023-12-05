@@ -37,7 +37,7 @@ export const ProdukCard = function({data, type}){
                         <img className="max-h-full block m-auto w-full object-cover" src={`https://app.rumahjo.com/` + images}></img>
                     </figure>
                     <div style={{ backgroundSize:'cover', backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundColor:'black', backgroundImage: `url("https://app.rumahjo.com/${images}")` }} className="p-2 relative flex items-center  justify-center h-[111px] md:h-[250px] lg:h-[150px] xl:h-[200px] overflow-hidden">
-                        <label style={{fontWeight:'bold', color:`rgba(255,255,255,0.5)`, boxShadow:`0 0 5px rgba(0,0,0,0.5)`}} className="text-2xl absolute">RUMAHJO</label>
+                        <label style={{fontWeight:'bold', color:`rgba(255,255,255,0.5)`, textShadow:`0 0 5px rgba(0,0,0,0.5)`}} className="text-2xl absolute">RUMAHJO</label>
                     </div>
                     <div className="bg-yellow-400 mt-2">
                         <div className="bg-white">
