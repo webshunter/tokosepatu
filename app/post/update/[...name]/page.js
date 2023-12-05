@@ -163,9 +163,13 @@ export default function PostListing({params}) {
                 propertiChange(v, nilai)
             }
             if(a == v){
-                _id('kategori' + v).style.display = 'block';
+                if (_id('kategori' + v)){
+                    _id('kategori' + v).style.display = 'block';
+                }
             }else{
-                _id('kategori' + v).style.display = 'none';
+                if (_id('kategori' + v)){
+                    _id('kategori' + v).style.display = 'none';
+                }
             }
         }
         if(activeBefore == 4){
@@ -278,9 +282,15 @@ export default function PostListing({params}) {
         // here unnecessary - just for testing if it can be read from local storage
     }
     if(!Listing){
-        return <></>
+        return <>
+            <div className='px-[50px] pt-[50px] h-screen'>
+                <div className="loader">Rumahjo
+                    <span></span>
+                </div>
+            </div>
+        </>
     } else{
-        
+        const [listingData] = Listing.message; 
         return (
             <ValidasiLogin>
                 <form id="formid" onSubmit={simpanData} className="rounded-lg shadow-xl flex flex-col px-8 py-8 bg-white dark:bg-blue-500">
@@ -355,7 +365,7 @@ export default function PostListing({params}) {
                             </button><h1 className='inline-block px-2'>Include Some Details</h1>
                         </div>
                         <div className='px-5'>
-                            <FormPost hidetanah={hideTanah} />
+                            <FormPost edit={listingData} hidetanah={hideTanah} />
                             <button onClick={(w) => {
                                 backFunc(4);
                             }} type='button' className='w-full bg-gray-950 text-white py-3 rounded-md'>Next</button>

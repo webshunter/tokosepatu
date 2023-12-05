@@ -12,7 +12,8 @@ const DaftarPremium = () =>{
     if (dPremium) {
       setPremium(dPremium.message)
     }
-  }, [dPremium])
+  }, [dPremium]);
+  
   return <>
     <section className="block mt-10 px-4 md:px-10 my-[16px]">
       <div className="w-full">

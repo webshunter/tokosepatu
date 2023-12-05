@@ -394,6 +394,6 @@ export default function ProdukDetail(props) {
                 </div>
             </div>
         </div>
-        <StickyButton />
+        <StickyButton data={props} />
     </>)
 }

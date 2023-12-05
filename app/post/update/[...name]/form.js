@@ -17,7 +17,7 @@ export const dataStatus = [
     },
 ];
 
-export const FormPost = ({ hidetanah }) => {
+export const FormPost = ({ edit, hidetanah }) => {
     const [lbangun, setLBangun] = useState("");
     const [ltanah, setLTanah] = useState("");
     const [ktidur, setKTidur] = useState("");
@@ -56,7 +56,29 @@ export const FormPost = ({ hidetanah }) => {
     useEffect(()=>{
         document.querySelector('input#apartement').click();
         document.getElementById('cert1').click();
-    }, [])
+         console.log(edit)
+        setPropertiBaru(edit.baru?1:0);
+        setApar(edit.type);
+        setLBangun(edit.lbangun)
+        setLTanah(edit.ltanah)
+        setKTidur(edit.ktidur)
+        setKMandi(edit.kmandi)
+        setHadap(edit.hadap)
+        setLantai(edit.lantai)
+        setAlamat(edit.alamat)
+        setJudul(edit.judul)
+        setDeskrisi(edit.deskrisi)
+
+        Array.from(document.querySelectorAll('input[name="cert"]'))
+        .forEach(function(q){
+            q.checked = q.value == edit.cert? true : false;
+        })
+        Array.from(document.querySelectorAll('input[name="facility"]'))
+        .forEach(function(q){
+            q.checked = edit.facility.split(',').indexOf(q.value) != -1? true : false;
+        })
+
+    }, [edit])
 
     return (<>
         <input type='hidden' name='uniqid' className='none' defaultValue={'produk-' + Date.now()}></input>
@@ -71,6 +93,7 @@ export const FormPost = ({ hidetanah }) => {
                         id="apartement"
                         name="type"
                         value="0"
+                        checked={apar == '0' ? true : false}
                         className="hidden peer"
                         onChange={()=>{
                             setApar(null);
@@ -88,6 +111,7 @@ export const FormPost = ({ hidetanah }) => {
                         id="rumah"
                         name="type"
                         value="1"
+                        checked={apar == '1'?true:false}
                         className="hidden peer"
                         onChange={() => {
                             setApar(1);
@@ -249,7 +273,13 @@ export const FormPost = ({ hidetanah }) => {
             <label htmlFor="cert" className="text-gray-500 font-light mt-8 dark:text-gray-50">Sertifikat</label>
             <ul className="grid w-full gap-3 md:grid-cols-3">
                 <li>
-                    <input type="radio" id="cert1" name="cert" value="1" className="hidden peer" required />
+                    <input 
+                        type="radio" 
+                        id="cert1" 
+                        name="cert" 
+                        value="1" 
+                        className="hidden peer" 
+                        required />
                     <label htmlFor="cert1" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div className="block">
                             <div className="w-full">SHM - Sertifikat Hak Milik</div>
@@ -257,7 +287,12 @@ export const FormPost = ({ hidetanah }) => {
                     </label>
                 </li>
                 <li>
-                    <input type="radio" id="cert2" name="cert" value="2" className="hidden peer" />
+                    <input 
+                        type="radio" 
+                        id="cert2" 
+                        name="cert" 
+                        value="2" 
+                        className="hidden peer" />
                     <label htmlFor="cert2" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div className="block">
                             <div className="w-full">HGB - Hak Guna Bangun</div>
@@ -265,7 +300,12 @@ export const FormPost = ({ hidetanah }) => {
                     </label>
                 </li>
                 <li>
-                    <input type="radio" id="cert3" name="cert" value="3" className="hidden peer" />
+                    <input 
+                        type="radio" 
+                        id="cert3" 
+                        name="cert" 
+                        value="3" 
+                        className="hidden peer" />
                     <label htmlFor="cert3" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div className="block">
                             <div className="w-full">Lainnya (PPJB, Girik, Adat, dll)</div>
@@ -370,6 +410,7 @@ export const FormPost = ({ hidetanah }) => {
             <textarea
                 name="deskrisi"
                 value={deskrisi}
+                style={{minHeight:'200px'}}
                 onChange={(e) => {
                     setDeskrisi(e.target.value);
                 }}

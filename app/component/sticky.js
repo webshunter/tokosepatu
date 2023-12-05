@@ -3,6 +3,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StickyButton = (props) => {
+    const {data:dataRender} = props.data
+    let data = [];
+    if(dataRender.length > 0){
+        data = dataRender[0];
+    }
+    console.log(data.phone)
     return (<>
 <div style={{boxShadow: '0px 0px 2px #333'}} className="fixed grid grid-cols-2 bg-white bottom-0 w-full h-50px">
             <button>
@@ -26,7 +32,7 @@ const StickyButton = (props) => {
                 </div> 
              </button>
             <button onClick={()=>{
-                location.href = `https://wa.me/1XXXXXXXXXX?text=I'm%20interested%20in%20your%20car%20for%20sale`
+                location.href = `https://wa.me/${data.phone}?text=I'm%20interested%20in%20your%20car%20for%20sale`
             }}>
                 <div className="text-left text-white flex justify-center items-center p-3 m-2 rounded-xl bg-green-600">
                     <svg
