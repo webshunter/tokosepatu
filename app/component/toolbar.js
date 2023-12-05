@@ -99,7 +99,7 @@ export const Toolbar = function () {
                                     </Link>
                                 </div>
                                 <div>
-                                    <Link href="/2" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                    <Link href="/cari-agen" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
                                         <Image className="relative" src="/toolbar/cari-agen.svg" alt="Cari Agen di Rumahjo" width={30} height={30} />
                                         <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Agen</span>
                                     </Link>
