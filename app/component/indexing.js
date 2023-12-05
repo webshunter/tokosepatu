@@ -1,32 +1,10 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import React from "react";
 
 const Indexing = () => {
-    const pathName = usePathname();
-    const [nn, setNn] = useState(null);
-
-    useEffect(()=>{
-        const getStatus = async function(){
-            if (pathName.indexOf('/produk/') != -1) {
-                let q = pathName.split('/produk/')[1];
-                let data = await fetch('/api/indexing/produk?slug='+q);
-                let dataJSON = await data.json();
-                let [dataMessage] = dataJSON.message;
-                setNn(Number(dataMessage.total))
-            }else{
-                setNn(Number(1))
-            }
-        }
-        getStatus();
-    }, [pathName])
-
-    if(pathName){
-        return <>
-            <meta name="robots" content="index, follow" />
-        </>
-    }
-    return <></>
+    return <>
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="jual beli properti, rumah dijual, rumah disewa, rumah dikontrakkan, properti indonesia, real estate indonesia, apartemen dijual, apartemen disewa, ruko dijual, ruko disewa, tanah dijual, ruang kantor disewa"></meta>
+    </>
 }
 
 export default Indexing;
