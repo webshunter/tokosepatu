@@ -10,6 +10,15 @@ const DaftarPremium = () =>{
   const { data: dPremium, mutate } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=24&start=${count}&approval=1`, fetcher)
 
   return <>
+  {!dPremium ? 
+    <>
+          <div className='px-[50px] pt-[50px] h-screen'>
+            <div className="loader">Rumahjo
+              <span></span>
+            </div>
+          </div>
+    </>
+    :
     <section className="block mt-10 px-4 md:px-10 my-[16px]">
       <div className="w-full">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
@@ -41,6 +50,7 @@ const DaftarPremium = () =>{
         </div>
       </div>
     </section>
+  }
   </>
 }
 
