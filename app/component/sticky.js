@@ -3,8 +3,10 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const StickyButton = (props) => {
+    const route = useRouter();
     const { data: session } = useSession();
     const { data: dataRender } = props.data
     const pathname = usePathname();
@@ -36,8 +38,12 @@ const StickyButton = (props) => {
                 </div> 
              </button>
             <button onClick={()=>{
-                let text = `Hai, saya ${session.user.name} tertarik dengan informasi mengenai ${data.judul} Mohon informasi terkait unit tersebut: ${`https://rumahjo.com`+pathname}`
-                location.href = `https://wa.me/${data.phone}?text=`+text
+                if(session){
+                    let text = `Hai, saya ${session.user.name} tertarik dengan informasi mengenai ${data.judul} Mohon informasi terkait unit tersebut: ${`https://rumahjo.com`+pathname}`
+                    window.open('https://api.whatsapp.com/send?phone=' + data.phone + '&text=' + text, '_blank');
+                }else{
+                    route.push('/login')
+                }
             }}>
                 <div className="text-left text-white flex justify-center items-center p-3 m-2 rounded-xl bg-green-600">
                     <svg
