@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 export const ProdukCard = function ({ data }) {
     const route = useRouter();
-    let { key, uniqid, price, judul, image: images, slug } = data
+    let { key, uniqid, price, judul, image: images, slug , laku } = data
     return (<>
         <div key={key} className="relative bg-gray-200 w-full">
             <button onClick={()=>{
@@ -24,7 +24,7 @@ export const ProdukCard = function ({ data }) {
                 <img className="my-[2px] mr-[8px] inline-block w-[6px] h-[10px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
                 <span className="text-[8px] md:text-[14px]">Highlight</span>
             </label>
-            <Link href={"/produk/" + slug} className="w-full">
+            <div className="w-full">
                 <div style={{ border: '1px solid #aaa' }} className="flex md:block rounded bg-white overflow-hidden shadow-lg relative">
                     <div className="w-[120px] min-w-[120px] max-w-[120px] md:min-w-full md:max-w-full md:w-full p-2 flex items-start justify-center h-[100px] md:h-[180px] lg:h-[150px] xl:h-[140px] overflow-hidden">
                         <img className="w-full w-auto block " src={`https://app.rumahjo.com/` + images} alt="Sunset in the mountains"></img>
@@ -41,10 +41,30 @@ export const ProdukCard = function ({ data }) {
                                 <p className="inline-block float-right w-[50px] md:w-[80px] text-right">HARI INI</p>
                                 <p className="max-w-[calc(100%-50px)] md:max-w-[calc(100%-80px)]  truncate ...">Pasar Minggu, Jakarta Selatan</p>
                             </div>
+                            <div>
+                                <div className="p-2">
+                                    <div style={{ gridGap:'10px', display:'grid', gridTemplateColumns : 'auto 50px'}} className="py-2">
+                                        <div style={{border:'1px solid #ddd', padding:'5px', borderRadius:'10px', textAlign:'center'}}>{laku == '1'? `Listing Sudah Terjual`: `Listing Belum Terjual`}</div>
+                                        <button style={{ border: '1px solid #ddd', padding: '5px', borderRadius: '10px', textAlign: 'center' }} className="flex justify-center items-center">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="14"
+                                                height="14"
+                                                viewBox="0 0 16 16"
+                                            >
+                                                <path d="M12.527 7.473l-4-4L1 11v4h4zM11.172.828l-1.065 1.065 4 4 1.065-1.065a2.83 2.83 0 00-4-4z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <button onClick={()=>{
+                                        route.push("/produk/" + slug)
+                                    }} className="text-white rounded text-center w-full p-2 bg-indigo-950">Lihat Property</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </Link>
+            </div>
         </div>
     </>)
 }

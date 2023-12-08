@@ -21,12 +21,5 @@ const formatDate = (dateString) => {
 }
 
 export function JoinDate(dateString) {
-    const [joinDate, setJoinDate] = useState('');
-
-    useEffect(() => {
-        const label = formatDate(dateString);
-        setJoinDate(label);
-    }, [dateString]);
-
-    return joinDate;
+    return formatDate(dateString);
 }
