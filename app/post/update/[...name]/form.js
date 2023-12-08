@@ -56,7 +56,6 @@ export const FormPost = ({ edit, hidetanah }) => {
     useEffect(()=>{
         document.querySelector('input#apartement').click();
         document.getElementById('cert1').click();
-         console.log(edit)
         setPropertiBaru(edit.baru?1:0);
         setApar(edit.type);
         setLBangun(edit.lbangun)

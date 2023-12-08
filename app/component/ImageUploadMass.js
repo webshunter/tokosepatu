@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
+import useSWR, { SWRConfig } from 'swr';
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 function convertToWebP(file, maxWidth, maxHeight) {
   return new Promise((resolve, reject) => {
@@ -66,10 +69,15 @@ function blobToBase64(blob) {
   });
 }
 
-export const ImageUpload = () => {
+export const ImageUpload = ({data}) => {
+        const [dataListing] =  data.message?data.message: [];
+        const linkImage = `/api/galery?uid_listing=`+(dataListing?dataListing.uniqid:null);
+        const { data: dataImages } = useSWR(linkImage, fetcher)
+
         const [selectedImages, setSelectedImages] = useState([]);
-      
+
         const handleImageChange = async (e) => {
+
           const files = Array.from(e.target.files);
 
           function getBase64(file) {
@@ -108,6 +116,25 @@ export const ImageUpload = () => {
           updatedImages.splice(index, 1);
           setSelectedImages(updatedImages);
         };
+
+        useEffect(()=>{
+          (async function(){
+            if (dataImages){
+              let arrayOfImages = dataImages.message ? dataImages.message : null;
+              let filesbaru = [];
+              for await(const files of arrayOfImages){
+                let dataFile = await fetch('https://app.rumahjo.com/'+files.image);
+                let blobdata = await dataFile.blob();
+                let imageRender = await blobToBase64(blobdata);
+                let imgaeBase64 = 'data:image/webp;base64,'+imageRender;
+                filesbaru.push(imgaeBase64)
+              }
+              if (selectedImages.length + filesbaru.length <= 20) {
+                setSelectedImages([...selectedImages, ...filesbaru]);
+              }
+            }
+          })();
+        }, [dataImages, selectedImages])
       
         return (
           <div className='pt-4'>

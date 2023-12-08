@@ -17,10 +17,27 @@ Helper();
 const wilayah = dataWilayah();
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
+function logTimestamp() {
+    const now = new Date();
+
+    // Get the components of the date
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const day = now.getDate().toString().padStart(2, '0');
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    // Create the timestamp string
+    const timestamp = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+    // Log the timestamp
+    return timestamp;
+}
+
 export default function PostListing({params}) {
     const [uniqid] = params.name;
-    const { data: Listing } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1&uniqid=${uniqid}`, fetcher)
-    
+    const { data: Listing } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&uniqid=${uniqid}`, fetcher)
     const route = useRouter();
     const [price, setPrice] = useState("");
 
@@ -97,7 +114,9 @@ export default function PostListing({params}) {
                 dataHidden.forEach((c)=>{
                     c.style.display = 'none';
                 })
-                document.getElementById(text).click();
+                if (document.getElementById(text)){
+                    document.getElementById(text).click();
+                }
             }else{
                 let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
                 dataHidden.forEach((c)=>{
@@ -180,23 +199,56 @@ export default function PostListing({params}) {
     useEffect(()=>{
         if (Listing){
             const [dataListing] = Listing.message;
-    
-            let getType = dataListing.slug2;
-            let getData = data.filter(function (r) {
-                if (r.text == getType) {
-                    return r;
+            if(dataListing){
+                let prov = dataListing.prov;
+                let kota = dataListing.kota;
+                let kec = dataListing.kec;
+
+                const dprovinsiChange = function (val) {
+                    let getVal = val;
+                    let DataKota = wilayah.getGroupKota(getVal);
+                    setKota(DataKota);
                 }
-            })
-            .map(function (r) {
-                return {
-                    form: r.form,
-                    nilai: r.text,
-                    status: r.status
+
+                const dkotaChange = function (val) {
+                    let getVal = val;
+                    let dataKecamatan = wilayah.getGroupKecamatan(getVal);
+                    setKecamatan(dataKecamatan);
                 }
-            });
-    
-            let newProperty = getData.length > 0 ? getData[0] : null;
-            backFunc(3, 6, newProperty)
+
+                if(document.querySelector('select[name="prov"]')){
+                    let nProv = document.querySelector('select[name="prov"]');
+                    let nKota = document.querySelector('select[name="kota"]');
+                    let nKec = document.querySelector('select[name="kec"]');
+                    dprovinsiChange(prov)
+                    dkotaChange(kota)
+                    nProv.value = prov; 
+                    setTimeout(function(){
+                        nKota.value = kota; 
+                        nKec.value = kec; 
+                    },1000)
+                }
+
+                setPrice(dataListing.price ? dataListing.price:0);
+                let getType = dataListing.slug2;
+                let getData = data.filter(function (r) {
+                    if (r.text == getType) {
+                        return r;
+                    }
+                })
+                .map(function (r) {
+                    return {
+                        form: r.form,
+                        nilai: r.text,
+                        status: r.status
+                    }
+                });
+        
+                let newProperty = getData.length > 0 ? getData[0] : null;
+                backFunc(3, 6, newProperty)
+
+            }
+
         }
     }, [Listing]);
 
@@ -257,6 +309,14 @@ export default function PostListing({params}) {
             }
         })
 
+        if(Listing.message){
+            let [dataListing] = Listing.message.length > 0 ? Listing.message : [];
+            formProps.uniqid = dataListing.uniqid;
+            formProps.update = true;
+            formProps.userlog = logTimestamp();
+            formProps.approval = 0;
+        }
+
         let b64Data = btoa(JSON.stringify(formProps));
 
         // validasi
@@ -274,12 +334,10 @@ export default function PostListing({params}) {
         }
 
         setVisible(!visible);
-
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
             setVisible(visible);
-            route.push("/support-us");
+            window.history.back()
         });
-        // here unnecessary - just for testing if it can be read from local storage
     }
     if(!Listing){
         return <>
@@ -383,7 +441,7 @@ export default function PostListing({params}) {
                             </button><h1 className='inline-block px-2'>Upload Your Photos</h1>
                         </div>
                         <div className='px-5'>
-                            <ImageUpload />
+                            <ImageUpload data={Listing} />
                         </div>
                         <div className='w-full fixed bottom-0'>
                             <button onClick={(w) => {
@@ -405,7 +463,7 @@ export default function PostListing({params}) {
                         <div className='px-5'>
                             <h1 className="text-sm dark:text-gray-50 pt-8">Price</h1>
                             <input
-                                value={price.number(2).currency()}
+                                value={Number(price).currency()}
                                 onChange={(e) => {
                                     let h = e.target.value.number().toString();
                                     setPrice(h);
