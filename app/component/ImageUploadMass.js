@@ -75,7 +75,7 @@ export const ImageUpload = ({data}) => {
           const [dataListings] =  data.message?data.message: [];
           dataListing = dataListings;
         }
-        const linkImage = !dataListing ? `/api/galery?uid_listing=`+(dataListing?dataListing.uniqid:null) : null;
+        const linkImage = dataListing ? `/api/galery?uid_listing=`+(dataListing?dataListing.uniqid:null) : null;
         let dataImages;
         if (linkImage){
           const { data: dataImagess } = useSWR(linkImage, fetcher)
