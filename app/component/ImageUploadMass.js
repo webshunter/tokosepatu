@@ -83,6 +83,7 @@ export const ImageUpload = ({data}) => {
         }
 
         const [selectedImages, setSelectedImages] = useState([]);
+        const [updateStatus, setUpdateStatus] = useState(null);
 
         const handleImageChange = async (e) => {
 
@@ -127,22 +128,25 @@ export const ImageUpload = ({data}) => {
 
         useEffect(()=>{
           (async function(){
-        if(data){
-          if (dataImages) {
-              let arrayOfImages = dataImages.message ? dataImages.message : null;
-              let filesbaru = [];
-              for await(const files of arrayOfImages){
-                let dataFile = await fetch('https://app.rumahjo.com/'+files.image);
-                let blobdata = await dataFile.blob();
-                let imageRender = await blobToBase64(blobdata);
-                let imgaeBase64 = 'data:image/webp;base64,'+imageRender;
-                filesbaru.push(imgaeBase64)
-              }
-              if (selectedImages.length + filesbaru.length <= 20) {
-                setSelectedImages([...selectedImages, ...filesbaru]);
-              }
+            if(data){
+              if (dataImages) {
+                  if (!updateStatus){
+                    let arrayOfImages = dataImages.message ? dataImages.message : null;
+                    let filesbaru = [];
+                    for await(const files of arrayOfImages){
+                      let dataFile = await fetch('https://app.rumahjo.com/'+files.image);
+                      let blobdata = await dataFile.blob();
+                      let imageRender = await blobToBase64(blobdata);
+                      let imgaeBase64 = 'data:image/webp;base64,'+imageRender;
+                      filesbaru.push(imgaeBase64)
+                    }
+                    if (selectedImages.length + filesbaru.length <= 20) {
+                      setSelectedImages([...selectedImages, ...filesbaru]);
+                    }
+                    setUpdateStatus(true);
+                  }
+                }
             }
-          }
           })();
         }, [data,dataImages, selectedImages])
       
