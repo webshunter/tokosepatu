@@ -202,7 +202,7 @@ export const Header = function(){
         <nav style={{borderBottom:'2px solid #F9CC0B'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-slate-50 text-white px-4 md:px-10 py-2">
             <div className="flex flex-wrap items-center justify-between mx-auto">
                 <Link className="flex md:justify-center md:items-center md:block" href="/">
-                    <img src="/Logo.png" alt="Rumahjo - Rumah Jasa Online" className="h-[50px] md:h-[70px] pt-0 md:pt-1"></img>
+                    <img src="/logo-h.png" alt="Rumahjo - Rumah Jasa Online" className="h-[50px] md:h-[70px] pt-0 md:pt-1"></img>
                 </Link>
                 <div className="md:hidden " id="menuLocation" style={{flexGrow:"1", maxWidth:"calc(100% - 100px)"}}>
                     <div className="flex" style={{justifyContent:"flex-end"}}>
