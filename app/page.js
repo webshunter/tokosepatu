@@ -42,14 +42,13 @@ export default function LoadData(props) {
   :
   <>
     <div className='my-6 md:px-10 lg:px-[100px]'>
-      <Carousel className="w-full h-[23vw] md:h-[21vw] lg:h-[19vw]">
-        <div className=" lg:rounded-b-[25px]"
+      <Carousel className="w-full h-[50vw] md:h-[21vw] lg:h-[19vw]">
+        <div className=" lg:rounded-b-[25px] bg-[url('/bannerrumahjo.com_brown.png')] md:bg-[url('/mobilerumahjo.com.png')]"
           style={{
             width:'100%',
             height:'100%',
             backgroundRepeat:'no-repeat',
-            backgroundSize: 'cover',
-            backgroundImage: 'url("/banner-rumahjo.png")'
+            backgroundSize: 'cover'
           }}
         />
       </Carousel>
@@ -60,10 +59,10 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Premium</h2>
           <p className="font-medium text-sm mb-4">Cek rekomendasi properti premium dari kami serta informasi terlengkapnya.</p>
-              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={() => {
+              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-[#db9233] rounded-lg" onClick={() => {
                 route.push('/listing/premium')
               }}>
-            <span className="text-white text-sm px-5 py-1" >Selengkapnya</span>
+            <span className="text-white font-semibold text-sm px-5 py-1" >Selengkapnya</span>
           </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
@@ -83,10 +82,10 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terpopuler</h2>
           <p className="font-medium text-sm mb-4">Properti terpopuler yang paling banyak dilihat pengunjung.</p>
-          <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={()=>{
+          <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-[#db9233] rounded-lg" onClick={()=>{
             route.push('/listing/populer')
           }}>
-            <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
+            <span className="text-white font-semibold text-sm px-5 py-1">Selengkapnya</span>
           </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
@@ -106,10 +105,10 @@ export default function LoadData(props) {
         <div className="relative">
           <h2 className="font-semibold text-2xl mb-2">Properti Terbaru</h2>
           <p className="font-medium text-sm mb-4">Iklan properti yang baru diposting.</p>
-              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-yellow-400 rounded-lg" onClick={() => {
+              <button className="absolute items-center inline-flex h-[2rem] right-0 top-0 md:top-4 bg-[#db9233] rounded-lg" onClick={() => {
                 route.push('/listing/terbaru')
               }}>
-            <span className="text-white text-sm px-5 py-1">Selengkapnya</span>
+            <span className="text-white font-semibold text-sm px-5 py-1">Selengkapnya</span>
               </button>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
