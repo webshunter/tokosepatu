@@ -70,9 +70,17 @@ function blobToBase64(blob) {
 }
 
 export const ImageUpload = ({data}) => {
-        const [dataListing] =  data.message?data.message: [];
-        const linkImage = `/api/galery?uid_listing=`+(dataListing?dataListing.uniqid:null);
-        const { data: dataImages } = useSWR(linkImage, fetcher)
+        let dataListing;
+        if(data){
+          const [dataListings] =  data.message?data.message: [];
+          dataListing = dataListings;
+        }
+        const linkImage = !dataListing ? `/api/galery?uid_listing=`+(dataListing?dataListing.uniqid:null) : null;
+        let dataImages;
+        if (linkImage){
+          const { data: dataImagess } = useSWR(linkImage, fetcher)
+          dataImages = dataImagess;
+        }
 
         const [selectedImages, setSelectedImages] = useState([]);
 
@@ -119,7 +127,8 @@ export const ImageUpload = ({data}) => {
 
         useEffect(()=>{
           (async function(){
-            if (dataImages){
+        if(data){
+          if (dataImages) {
               let arrayOfImages = dataImages.message ? dataImages.message : null;
               let filesbaru = [];
               for await(const files of arrayOfImages){
@@ -133,8 +142,9 @@ export const ImageUpload = ({data}) => {
                 setSelectedImages([...selectedImages, ...filesbaru]);
               }
             }
+          }
           })();
-        }, [dataImages, selectedImages])
+        }, [data,dataImages, selectedImages])
       
         return (
           <div className='pt-4'>

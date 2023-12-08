@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { ProdukCard } from '@/app/library/cardedit';
 import { JoinDate } from '@/app/library/joinDate';
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Profile({ params }) {
+    const pathname = usePathname();
     const route = useRouter();
     const [nama, setNama] = useState(null);
     const [about, setAbout] = useState(null);
@@ -19,6 +21,7 @@ export default function Profile({ params }) {
     let src = ""
 
     useEffect(() => {
+        console.log(pathname);
         fetch('/api/user?uniqid=ID-USER-1698900322534')
             .then((res) => {
                 return res.json()
@@ -40,7 +43,7 @@ export default function Profile({ params }) {
             localStorage.setItem('produkstart', JSON.stringify(data));
             setDataListing(data.message);
         })();
-    }, [setDataListing])
+    }, [setDataListing, pathname])
 
     let yh = [];
     for (let index = 0; index < 12; index++) {
