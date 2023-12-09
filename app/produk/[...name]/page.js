@@ -21,6 +21,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
                 return {
                     title: getData.judul +' - RumahJo',
                     description: getData.deskrisi,
+                    metadataBase: new URL('https://rumahjo.com'),
+                    alternates: {
+                        canonical: '/produk/' + getData.slug,
+                    },
                     openGraph: {
                         images: ['https://app.rumahjo.com/' + getData.image],
                     },
