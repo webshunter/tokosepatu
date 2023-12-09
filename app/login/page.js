@@ -52,7 +52,7 @@ export default function Login() {
                         <div className="px-0 md:px-10 lg:px-[111px] py-0 md:py-10 grid grid-cols-7 gap-6">
                             <div className="hidden md:block col-span-4">
                                 <div className="block w-full h-full rounded">
-                                    <img className="block h-full w-full rounded-[20px]" src="/banner rumahjo.com_04.png" ></img>
+                                    <img className="block h-full w-full rounded-[20px]" src="/loginrumahjo.com_brown.png" ></img>
                                 </div>
                             </div>
                             <div className="col-span-7 md:col-span-3 shadow-none md:shadow-lg rounded-none md:rounded-[20px] p-0 md:p-[16px] lg:p-[32px]">
