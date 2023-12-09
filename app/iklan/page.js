@@ -27,7 +27,6 @@ export default function Profile({ params }) {
     let src = ""
 
     useEffect(() => {
-        console.log(pathname);
         fetch('/api/user')
             .then((res) => {
                 return res.json()
@@ -78,12 +77,12 @@ export default function Profile({ params }) {
                         <div className="block w-full">
                             <div className="flex md:block ml-auto mr-auto w-full md:w-[50%]">
                                 <div className="relative " style={{ width: "fit-content" }}>
-                                    {avatar ?
+                                    {user.avatar ?
                                         (
                                             <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('https://ui-avatars.com/api/?name=${user?user.fullname:null}&bold=true&background=1e1b4b&color=ffe50c&size=250')` }}></figure>
                                         ) :
                                         (
-                                                <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('https://ui-avatars.com/api/?name=${user ? user.fullname : null}&bold=true&background=1e1b4b&color=ffe50c&size=250')` }}></figure>
+                                                <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('${session.user.image}')` }}></figure>
                                         )}
                                 </div>
                             </div>

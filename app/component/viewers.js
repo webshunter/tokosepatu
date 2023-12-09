@@ -136,7 +136,6 @@ const Viewers = function({children}){
             return res.json()
         })
         .then(function(r){
-            console.log('success')
         })
         .catch(function(r){
             console.log(r)
