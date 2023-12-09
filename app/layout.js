@@ -4,19 +4,23 @@ import { Inter } from 'next/font/google'
 import Providers from './component/provider'
 import { Header } from './component/header';
 import { Footer } from './component/footer';
-import AlertContain from './component/provideralert';
 import Indexing from './component/indexing';
 import Viewers from './component/viewers';
 import Analitic from './component/analitics';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata = {
   title: 'RumahJo',
-  description: 'Cari properti impian anda.'
-}
+  description: 'Cari properti impian anda.',
+  metadataBase: new URL('https://rumahjo.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    images: '/logo-h.png',
+  },
+};
 
-export default function RootLayout({ children }) {
+const RootLayout = function({ children }) {
 
   return (
     <html lang="en">
@@ -35,3 +39,5 @@ export default function RootLayout({ children }) {
     </html>
   )
 }
+
+export default RootLayout;

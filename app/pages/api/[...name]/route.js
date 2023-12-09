@@ -15,16 +15,22 @@ function paramsToObject(req) {
     let limitation = {}
     let condition = {}
     let having = {}
+    let notlike = []
     Object.keys(result).forEach((s, i) => {
         if (s == 'limit' || s == 'start') {
             limitation[s] = result[s];
         } else if (s == 'order' || s == 'ascdesc') {
             ordering[s] = result[s];
-        } else if (s == 'd') {
+        } 
+        else if (s == 'd') {
             having['judul'] = result[s];
             having['deskrisi'] = result[s];
-        } else {
-            condition[s] = result[s];
+        } 
+        else if (s == 'n') {
+            notlike = JSON.parse(atob(result[s]));
+        } 
+        else {
+            condition[s] = result[s].replace(/\~/g,'&');
         }
     })
 
@@ -32,6 +38,7 @@ function paramsToObject(req) {
         limitation: limitation,
         ordering: ordering,
         condition: condition,
+        notlike: notlike,
         having: having
     };
 }
@@ -54,7 +61,11 @@ export async function GET(req, Response) {
                 if (d.length > 0) {
                     return ` WHERE ${d.map((c) => {
                         return ` ${c} = "${params.condition[c]}" `;
-                    }).join(' AND ')}  `
+                    }).join(' AND ')} ${params.notlike.length>0? `
+                    AND (${params.notlike.map(function(c){
+                        return ` \`${c[0]}\` <> "${c[1]}" `
+                    }).join(' AND ')})
+                    `:``} `
                 }
                 return "";
             })()}

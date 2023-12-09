@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Iframe from "react-iframe";
 import StickyButton from "@/app/component/sticky";
 import { LoaderJo } from "@/app/component/loader";
+import IklanTerkait from "./iklanterkait";
 
 const wilayah = dataWilayah();
 
@@ -387,9 +388,12 @@ export default function ProdukDetail(props) {
                 </div>
             </div>
             <div className="col-span-3 md:col-span-2 gap-2 md:gap-[50px] mt-5">
-                <div className="bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
+                <div className="md:mb-2 md:p-5 rounded-xm">
                     <div className="pb-[16px]">
-                        <h3 className="text-[20px] font-bold text-gray-800">Iklan Terkait</h3>
+                        <h3 className="text-[20px] font-bold text-gray-800 mb-5">Iklan Terkait</h3>
+                        <div>
+                            <IklanTerkait data={props} />
+                        </div>
                     </div>
                 </div>
             </div>
