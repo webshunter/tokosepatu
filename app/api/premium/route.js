@@ -49,7 +49,7 @@ export async function GET(req, Response) {
                 SELECT uniqid FROM (
                     SELECT a.uniqid, COUNT(b.uniqid) AS listing FROM user a LEFT JOIN listing b ON b.uid_user=a.uniqid GROUP BY a.uniqid HAVING listing>0 ORDER BY listing DESC LIMIT 4
                 ) AS data
-            ) ORDER BY RAND() LIMIT 8
+            ) ORDER BY RAND() LIMIT 24
         ) a LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY a.uniqid ORDER BY b.id`
         const value = [];
         const [data] = await connection.query(query);
