@@ -83,7 +83,7 @@ export default function Profile() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="justify-center flex">
+                            <div className="hidden justify-center flex">
                                 <div className="max-w-full text-center text-[15px] leading-[20px] mt-[20px]">
                                     <span className="max-w-full text-center leading-[20px]">Donasi sekarang dan bantu kami mewujudkan impian Anda</span>
                                     <img className="max-w-[100%] px-[100px] md:px-[75px] lg:px-[75px] mt-4" src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png" />

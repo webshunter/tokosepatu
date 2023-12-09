@@ -6,6 +6,7 @@ import { Button, Modal } from 'flowbite-react';
 import ValidasiLogin from '@/app/component/loginvalidasi';
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
+    const [avatar, setAvatar] = useState("");
     const [fullname, setName] = useState("");
     const [email, setEmail] = useState("");
     const [about, setAbout] = useState("");
@@ -35,6 +36,7 @@ export default function EditProfile() {
             , fullname: fullname
             , about: about
             , uniqid: uniqId
+            , avatar: avatar
         }
         fetch('/api/update/profile', {
             method: 'POST',
@@ -55,7 +57,8 @@ export default function EditProfile() {
     if (!dataResponse){
         if(session){
             let email = session.user.email;
-            console.log(session);
+            //console.log(session);
+            setAvatar(session.user.image);
             setDataresponse(1);
             fetch('/api/user?email='+email)
                 .then((res)=>{
@@ -69,6 +72,9 @@ export default function EditProfile() {
                     setAbout(data.about)
                     setPassword(data.password)
                     setTelp(data.telp)
+                    if (data.avatar!=='' && data.avatar!==null) {
+                        setAvatar(data.avatar)
+                    }
                 })
         }
     }
@@ -90,7 +96,7 @@ export default function EditProfile() {
             </Modal.Footer>
         </Modal>
         <div className="grid grid-cols-6 gap-4">
-            <div className="col-start-auto lg:col-start-2 col-span-6 lg:col-span-4 mt-5">
+            <div className="col-start-auto lg:col-start-2 col-span-6 lg:col-span-4 mt-14 md:mt-5">
                 <div className="bg-white shadow-md md:mb-2 px-5 md:p-5 rounded-xm">
                     <div className="hidden md:block pb-[16px]">
                         <h3 className="text-[20px] font-bold text-gray-800">Edit Profil</h3>
@@ -99,46 +105,48 @@ export default function EditProfile() {
                         <div className="text-[16px] leading-[24px] font-bold py-[8px] text-gray-800 border-0 md:border-t border-gray-400">Informasi Dasar</div>
                         <div className="pb-[16px]">
                             <div className="flex items-center md:flex-row md:justify-start box-border flex-wrap">
-                                <div style={{display:"none"}}>
-                                    <div className="basis-[27.5%] md:basis-[15%]">
-                                        <figure className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]">
-                                            <div onClick={openPopUp} className="flex md:hidden absolute bottom-0 left-0 right-0 bg-[rgba(0,47,52,.7)] h-[32px] justify-center items-center cursor-pointer">
-                                                <svg className="w-[24px] h-[24px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M670.72 128l42.667 128h182.613l42.667 42.667v554.667l-42.667 42.667h-768l-42.667-42.667v-554.667l42.667-42.667h182.613l42.667-128h317.44zM609.28 213.333h-194.56l-42.667 128h-201.387v469.333h682.667v-469.333h-201.387l-42.667-128zM512 341.333c117.632 0 213.333 95.701 213.333 213.333s-95.701 213.333-213.333 213.333-213.333-95.701-213.333-213.333 95.701-213.333 213.333-213.333zM512 426.667c-70.613 0-128 57.387-128 128s57.387 128 128 128 128-57.387 128-128-57.387-128-128-128z"></path></svg>
-                                            </div>
-                                        </figure>
-                                    </div>
-                                    <div className="hidden md:block basis-[22.5%] pr-2">
-                                        <div className="relative">
-                                            <div className="flex flex-row flex-wrap items-start relative">
-                                                <div className="items-center flex w-full">
-                                                    <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
-                                                        <span>Unggah</span>
-                                                    </button>
-                                                </div>
-                                            </div>
+                                <div className="basis-[27.5%] md:basis-[15%]">
+                                    <input 
+                                        type="hidden"
+                                        value={avatar?avatar:''}
+                                        onChange={(e) => {
+                                            setName(e.target.value);
+                                        }}
+                                        name="avatar"
+                                    />
+                                    <figure 
+                                    style={{
+                                        backgroundImage: "url("+`${avatar}`+")"
+                                    }}
+                                    className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0">
+                                        <div onClick={openPopUp} className="flex md:hidden absolute bottom-0 left-0 right-0 bg-[rgba(0,47,52,.7)] h-[32px] justify-center items-center cursor-pointer">
+                                            <svg className="w-[24px] h-[24px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M670.72 128l42.667 128h182.613l42.667 42.667v554.667l-42.667 42.667h-768l-42.667-42.667v-554.667l42.667-42.667h182.613l42.667-128h317.44zM609.28 213.333h-194.56l-42.667 128h-201.387v469.333h682.667v-469.333h-201.387l-42.667-128zM512 341.333c117.632 0 213.333 95.701 213.333 213.333s-95.701 213.333-213.333 213.333-213.333-95.701-213.333-213.333 95.701-213.333 213.333-213.333zM512 426.667c-70.613 0-128 57.387-128 128s57.387 128 128 128 128-57.387 128-128-57.387-128-128-128z"></path></svg>
                                         </div>
-                                    </div>
-                                    <div className="hidden md:block basis-[22.5%] pl-2">
-                                        <div className="relative">
-                                            <div className="flex flex-row flex-wrap items-start relative">
-                                                <div className="items-center flex w-full">
-                                                    <button className="border-2 h-[48px] border-red-500 bg-red-500 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
-                                                        <span>Hapus</span>
-                                                    </button>
-                                                </div>
+                                    </figure>
+                                </div>
+                                <div className="hidden md:block basis-[22.5%] pr-2">
+                                    <div className="relative">
+                                        <div className="flex flex-row flex-wrap items-start relative">
+                                            <div className="items-center flex w-full">
+                                                <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                                    <span>Unggah</span>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="" note="Nanti di hapus kalau sudah bisa upload foto">
-                                    <div className="basis-[27.5%] md:basis-[15%]">
-                                        <figure className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]">
-                                            
-                                        </figure>
+                                <div className="hidden md:block basis-[22.5%] pl-2">
+                                    <div className="relative">
+                                        <div className="flex flex-row flex-wrap items-start relative">
+                                            <div className="items-center flex w-full">
+                                                <button className="border-2 h-[48px] border-red-500 bg-red-500 text-white w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                                    <span>Hapus</span>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="hidden md:block basis-[45%] pr-2"></div>
                                 </div>
-                                <div className="basis-[72.5%] md:basis-[45%] pl-[16px] md:pl-0 flex flex-row items-start flex-wrap">
+                                <div className="basis-[72.5%] md:basis-[60%] pl-[16px] md:pl-0 flex flex-row items-start flex-wrap">
                                     <div className="flex w-full items-center">
                                         <div className="grow">
                                             <input type="text"
@@ -164,7 +172,7 @@ export default function EditProfile() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="static md:absolute lg:fixed md:right-[16px] md:top-[85px] bg-white md:bg-[#F9CC0B] border-0 md:border rounded-b-xl">
+                            <div className="static md:absolute lg:fixed hidden md:right-[16px] md:top-[85px] bg-white md:bg-[#F9CC0B] border-0 md:border rounded-b-xl">
                                 <div className="w-full md:w-[350px] float-none md:float-right">
                                     <div className="justify-center">
                                         <div className="max-w-full text-center text-[15px] leading-[20px] md:mt-[20px]">

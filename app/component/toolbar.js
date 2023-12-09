@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 // const  CommentTag = ({text, children}) => {
 //     const ref = useRef();
@@ -31,6 +32,22 @@ export default function HTMLComment({ children }) {
 }
 
 export const Toolbar = function () {
+    const route = useRouter();
+
+    const searchButton = function(){
+        goSeach(document.getElementById("cari").value);
+    }
+
+    const goSeach = function(value){
+        value = encodeURI( value.toLowerCase().replace(/\ /g, '-') )
+        route.push('/search/q-'+value)
+    }
+
+    const keyDownAction = function(event){
+        if (event.code == 'NumpadEnter' || event.code == 'Enter'){
+            goSeach(event.target.value);
+        }
+    }
 
     useEffect(() => {
         (function callingBack(){
@@ -80,12 +97,12 @@ export const Toolbar = function () {
                                     <div className="flex flex-row flex-wrap overflow-hidden" style={{maxWidth:"calc(100% - 10px)"}}>
                                         <div className="h-full w-full relative flex justify-between">
                                             <div className="h-full relative items-center flex border-0 w-full gap-2 flex-wrap" style={{minHeight:"unset",padding:"4px 5px !important"}}>
-                                                <input className="h-[30px] border-0 mb-[5px] focus:ring-0 focus:ring-offset-0 focus:outline-[0] border-0" type="text" placeholder="Lokasi, keyword, area, project, developer"></input>
+                                                <input id="cari" onKeyDown={keyDownAction} className="h-[30px] border-0 mb-[5px] focus:ring-0 focus:ring-offset-0 focus:outline-[0] border-0" type="text" placeholder="Lokasi, keyword, area, project, developer"></input>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button className="ui-atomic-button px-1 md:px-[50px] bg-[#db9233]">
+                                <button onClick={searchButton} className="ui-atomic-button px-1 md:px-[50px] bg-[#db9233]">
                                     <span className="text-white font-semibold">Cari</span>
                                 </button>
                             </div>

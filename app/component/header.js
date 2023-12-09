@@ -43,7 +43,7 @@ const ButtonLogin = ({verify,props}) => {
                         <h1 className="flex items-center text-[20px] font-bold my-2">{session.user.name}</h1>
                     </div>
                     <button onClick={()=>{
-                        route.push('/profile');
+                        route.push('/profile/edit');
                         setVisible(null)
                     }} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Lihat dan Edit Profil</button>
                     {!verify ?
@@ -199,7 +199,7 @@ export const Header = function(){
     }
 
     return (<>
-        <nav style={{borderBottom:'2px solid #F9CC0B'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-slate-50 text-white px-4 md:px-10 py-2">
+        <nav style={{borderBottom:'2px solid #F9CC0B'}} className="shadow-lg fixed top-0 z-[999] md:h-[85px] w-[100vw] bg-slate-50 text-white px-4 md:px-2 lg:px-10 py-2">
             <div className="flex flex-wrap items-center justify-between mx-auto">
                 <Link className="flex md:justify-center md:items-center md:block" href="/">
                     <img src="/logo-h.png" alt="Rumahjo - Rumah Jasa Online" className="h-[50px] md:h-[70px] pt-0 md:pt-1"></img>
@@ -213,9 +213,9 @@ export const Header = function(){
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] h-[auto] top-[10px]">
+            <div className="w-full md:w-[calc(100vw-250px)] lg:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] md:right-[0px] lg:right-[30px] h-[auto] top-[10px]">
                 <div className={hiddenSearch?`hidden`:`flex justify-end overflow-hidden rounded-md`}>
-                    <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700 border-2 rounded-l-md border-[#db9233]" />
+                    <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] md:w-[37vw] lg:w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700 border-2 rounded-l-md border-[#db9233]" />
                     <button onClick={searchButton} className="px-4 font-semibold py-2 h-[45px] bg-[#db9233]">GO</button>
                 </div>
                 <div className="hidden md:flex min-w-[200px] w-[200px] justify-center items-center">
