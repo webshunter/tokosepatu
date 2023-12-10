@@ -7,7 +7,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const DaftarPremium = () => {
   const [count, setCount] = useState(0);
-  const { data: dPremium, mutate } = useSWR(`/api/premium`, fetcher)
+  const { data: dPremium, mutate } = useSWR(`/api/premium?limit=24`, fetcher)
 
   return <>
     {!dPremium ?

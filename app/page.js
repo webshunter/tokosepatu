@@ -7,7 +7,7 @@ import { Toolbar } from "./component/toolbar";
 import { useRouter } from "next/navigation";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
-  const { data : dPremium } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
+  const { data : dPremium } = useSWR(`/api/premium?limit=8`, fetcher)
   const { data : dPopuler } = useSWR(`/pages/api/produk?order=klik&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const { data: dBaru } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const route = useRouter();

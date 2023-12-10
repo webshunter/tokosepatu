@@ -179,7 +179,36 @@ export default function Profile({ params }) {
                                 </>
                             : <>
                             <div>
-                                <h1 className="text-center py-10">Anda belum memiliki listing untuk di promosikan silahkan buat listing baru</h1>
+                                <div className="flex justify-center">
+                                    <div role="status" className="hidden md:block rotate-[-22deg] lg:rotate-[-27deg] mt-10 ml-8 max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                                        <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                                            <img width={100} src="/3107697-200.png"/>
+                                        </div>
+                                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                    <div role="status" className="rotate-[6deg] mt-4 max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                                        <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                                            <img width={100} src="/3107697-200.png"/>
+                                        </div>
+                                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                    <div role="status" className="hidden lg:block rotate-[25deg] mt-10 mr-10 max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+                                        <div className="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
+                                            <img width={100} src="/3107697-200.png"/>
+                                        </div>
+                                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                                        <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                                <h1 className="text-center py-10 text-[111%]">Anda belum memiliki listing untuk di promosikan silahkan buat listing baru</h1>
                             </div>
                             </>
                             : <></>}
