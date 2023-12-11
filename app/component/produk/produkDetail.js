@@ -15,6 +15,7 @@ import { LoaderJo } from "@/app/component/loader";
 import IklanTerkait from "./iklanterkait";
 import ShareButton from "./sharebutton";
 import WaButton from "@/app/library/button/waButton";
+import { useSession } from "next-auth/react";
 
 
 const wilayah = dataWilayah();
@@ -47,6 +48,7 @@ const  CommentTag = ({text}) => {
 };
 
 export default function ProdukDetail(props) {
+    const { data: session } = useSession();
     const [visible, setVisible] = useState()
     const ref = useOutsideClick(() => {
         setVisible(null)
@@ -55,6 +57,7 @@ export default function ProdukDetail(props) {
     const [data, SetData] = useState({});
     const [youtube, setYoutube] = useState(null);
     const [maps, setMaps] = useState(null);
+    const [tampilkanNumber, setTampilkanNumber] = useState(null);
     // [latitude,longitude]
     let log = new Date().toString();
 
@@ -351,8 +354,14 @@ export default function ProdukDetail(props) {
                         <span className="mx-[8px]">
                             <svg className="w-[26px] h-[26px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M784.555 852.395c-331.435-14.635-598.315-281.515-612.949-612.949l149.973-59.989 91.691 183.424-70.997 35.499v26.453c0 141.653 115.243 256.896 256.896 256.896h26.453l11.861-23.637 23.68-47.36 183.381 91.733-59.989 149.931zM918.101 643.456l-256.939-128.469-57.472 19.2-30.037 60.032c-74.069-11.093-132.736-69.803-143.872-143.872l60.075-30.037 19.157-57.429-128.427-256.939-54.187-20.608-214.187 85.632-26.88 39.808c0 401.365 326.571 727.893 727.936 727.893l39.765-26.88 85.632-214.187-20.608-54.187z"></path></svg>
                         </span>
-                        <div>** *** ****</div>
-                        <button className="mx-[8px] cursor-pointer" style={{ color: "#6c99ff", textDecoration: "underline" }}>Tampilkan nomor</button>
+                        <div>{tampilkanNumber?data.phone:'*** *** ***'}</div>
+                        <button onClick={()=>{
+                            if (session) {
+                                tampilkanNumber?setTampilkanNumber(null):setTampilkanNumber(true);
+                            } else {
+                                route.push('/login')
+                            }
+                        }} className="mx-[8px] cursor-pointer" style={{ color: "#6c99ff", textDecoration: "underline" }}>{tampilkanNumber ? 'Sembunyikan nomor': 'Tampilkan nomor'}</button>
                     </div>
                 </div>
                 <div className="mt-2 md:mt-5 rounded-sm  md:rounded-md shadow-xl bg-white w-full md-w-[400px] px-5 py-3 ">
