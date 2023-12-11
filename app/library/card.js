@@ -18,13 +18,13 @@ export const ProdukCard = function({data, type}){
                 </svg>
             </button>
             {type=='premium'?
-            <label className="align-items-center px-[12px] flex items-center text-[#d30000] font-bold bg-[#fbb03b] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+            <label className="align-items-center px-[12px] flex items-center text-[#d30000] font-semibold bg-[#fbb03b] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                 <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d30000]"></div>
                 <span className="text-[12px] md:text-[14px]">Premium</span>
             </label>
             :
             type=='populer'?
-            <label className="align-items-center px-[12px] flex items-center text-[#fbb03b] font-bold bg-[#2951A3] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+            <label className="align-items-center px-[12px] flex items-center text-[#fbb03b] font-semibold bg-[#2951A3] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                 <div className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px] popular bg-[#fbb03b]"></div>
                 <span className="text-[12px] md:text-[14px]">Populer</span>
             </label>
