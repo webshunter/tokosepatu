@@ -19,7 +19,7 @@ const StickyButton = (props) => {
 <div style={{boxShadow: '0px 0px 2px #333', zIndex: '999'}} className="fixed grid grid-cols-2 bg-white bottom-0 w-full h-50px">
             <button onClick={()=>{
                 if (session) {
-                    window.open('tel:+' + data.phone );
+                    window.open('tel:' + data.phone );
                 } else {
                     route.push('/login')
                 }
