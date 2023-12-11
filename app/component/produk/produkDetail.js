@@ -14,6 +14,8 @@ import StickyButton from "@/app/component/sticky";
 import { LoaderJo } from "@/app/component/loader";
 import IklanTerkait from "./iklanterkait";
 import ShareButton from "./sharebutton";
+import WaButton from "@/app/library/button/waButton";
+
 
 const wilayah = dataWilayah();
 
@@ -341,7 +343,9 @@ export default function ProdukDetail(props) {
                         </div>
                     </div>
                     <div>
-                        <button className="p-2 mt-3 mb-2 text-center w-full" style={{ borderRadius: '8px', border: "2px solid #333" }}>Chat Dengan Penjual</button>
+                        <WaButton className="w-full" phone={data.phone}>
+                            <div className="p-2 mt-3 mb-2 text-center w-full" style={{ borderRadius: '8px', border: "2px solid #333" }}>Chat Dengan Penjual</div>
+                        </WaButton>
                     </div>
                     <div className="flex h-[16px] leading-[18px] text-gray-800 text-[12px] justify-center items-center py-[28px]">
                         <span className="mx-[8px]">

@@ -17,7 +17,13 @@ const StickyButton = (props) => {
     }
     return (<>
 <div style={{boxShadow: '0px 0px 2px #333', zIndex: '999'}} className="fixed grid grid-cols-2 bg-white bottom-0 w-full h-50px">
-            <button>
+            <button onClick={()=>{
+                if (session) {
+                    window.open('tel:+' + data.phone );
+                } else {
+                    route.push('/login')
+                }
+            }}>
                 <div className="text-left flex justify-center border-2 border-indigo-950 items-center p-3 m-2 rounded-xl bg-white bg-indigo-950">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
