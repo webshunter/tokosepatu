@@ -18,14 +18,14 @@ export const ProdukCard = function({data, type}){
                 </svg>
             </button>
             {type=='premium'?
-            <label className="align-items-center px-[12px] flex items-center text-black bg-yellow-300 text-[12px] mt-[18px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
-                <img className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px]" src="/premium.png" alt="Premium" />
+            <label className="align-items-center px-[12px] flex items-center text-[#d30000] font-bold bg-[#fbb03b] text-[12px] mt-[18px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d30000]"></div>
                 <span className="text-[12px] md:text-[14px]">Premium</span>
             </label>
             :
             type=='populer'?
-            <label className="align-items-center px-[12px] flex items-center text-black bg-sky-300 text-[12px] mt-[18px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
-                <img className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px]" src="/popular.png" alt="Populer" />
+            <label className="align-items-center px-[12px] flex items-center text-[#fbb03b] font-bold bg-[#2951A3] text-[12px] mt-[18px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                <div className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px] popular bg-[#fbb03b]"></div>
                 <span className="text-[12px] md:text-[14px]">Populer</span>
             </label>
             :

@@ -378,3 +378,13 @@ select{
 	  transform: rotate(405deg);
 	}
   }
+
+.premium {
+	-webkit-mask:url("/premium.png") center/contain;
+    mask:url("/premium.png") center/contain;
+}
+
+.popular {
+	-webkit-mask:url("/popular.png") center/contain;
+    mask:url("/popular.png") center/contain;
+}
