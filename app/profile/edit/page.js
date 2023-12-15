@@ -172,18 +172,17 @@ export default function EditProfile() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="static md:absolute lg:fixed hidden md:right-[16px] md:top-[85px] bg-white md:bg-[#F9CC0B] border-0 md:border rounded-b-xl">
-                                <div className="w-full md:w-[350px] float-none md:float-right">
-                                    <div className="justify-center">
+                            <div className="flex items-center md:flex-row md:justify-start box-border flex-wrap">
+                                <div className="basis-[0%] md:basis-[60%] flex flex-row items-start flex-wrap my-4">
+                                    
+                                </div>
+                                <div className="basis-[100%] md:basis-[40%] md:h-[10px] flex flex-row items-start flex-wrap">
+                                    <div className="md:relative md:bottom-[465px] justify-center m-0 md:ml-[8px]">
                                         <div className="max-w-full text-center text-[15px] leading-[20px] md:mt-[20px]">
-                                            <span className="max-w-full text-center font-bold leading-[20px]">Donasi sekarang dan bantu kami mewujudkan impian Anda</span>
-                                            <center>
-                                                <img className="max-w-[125px] mt-4" src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png" />
-                                                <img className="max-w-[200px] mt-1" src="/qr.svg"></img>
+                                        <span className="max-w-full text-center font-bold leading-[20px]">Donasi sekarang dan bantu kami mewujudkan impian Anda</span>
+                                            <center className="md:pt-14 lg:pt-7">
+                                                <img className="w-[75%]" src="/qris.jpeg" />
                                             </center>
-                                            <h2 className="text-xl">BANK BCA</h2>
-                                            <h3 className="text-2xl">12345678900</h3>
-                                            <h2 className="text-xl pb-3">RUMAHJODOTCOM</h2>
                                         </div>
                                     </div>
                                 </div>
