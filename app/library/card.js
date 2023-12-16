@@ -18,16 +18,26 @@ export const ProdukCard = function({data, type}){
                 </svg>
             </button>
             {type=='premium'?
-            <label className="align-items-center px-[12px] flex items-center text-[#d50000] font-semibold bg-amber-500 text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
-                <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d50000]"></div>
-                <span className="text-[12px] md:text-[14px]">Premium</span>
-            </label>
+            <div>
+                <div className="absolute z-10 left-2 top-2">
+                    <img src="/3.png" width={40} style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
+                </div>
+                <label className="hidden align-items-center px-[12px] flex items-center text-[#d50000] font-semibold bg-amber-500 text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                    <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d50000]"></div>
+                    <span className="text-[12px] md:text-[14px]">Premium</span>
+                </label>
+            </div>
             :
             type=='populer'?
-            <label className="align-items-center px-[12px] flex items-center text-[#fff] font-semibold bg-[#34a853] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
-                <div className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px] popular bg-[#fff]"></div>
-                <span className="text-[12px] md:text-[14px]">Populer</span>
-            </label>
+            <div>
+                <div className="absolute z-10 left-2 top-2">
+                    <img src="/2.png" width={40} style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
+                </div>
+                <label className="hidden align-items-center px-[12px] flex items-center text-[#fff] font-semibold bg-[#34a853] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                    <div className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px] popular bg-[#fff]"></div>
+                    <span className="text-[12px] md:text-[14px]">Populer</span>
+                </label>
+            </div>
             :
             ''
             }

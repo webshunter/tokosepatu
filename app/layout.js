@@ -16,7 +16,7 @@ export const metadata = {
     canonical: '/',
   },
   openGraph: {
-    images: '/logo-h.png',
+    images: '/rumahjo.png',
   },
 };
 
@@ -25,7 +25,7 @@ const RootLayout = function({ children }) {
   return (
     <html lang="en">
       <Indexing />
-      <link rel="icon" href="/icon.png" type='png' sizes="any" />
+      <link rel="icon" href="/rumahjo.png" type='png' sizes="any" />
       <body style={{overflowX:'hidden'}} className="pt-[40px] md:pt-[60px] bg-gray-50">
           <Providers>
             <Header />
