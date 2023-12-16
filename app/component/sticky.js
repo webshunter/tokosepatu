@@ -16,7 +16,7 @@ const StickyButton = (props) => {
         data = dataRender[0];
     }
     return (<>
-<div style={{boxShadow: '0px 0px 2px #333', zIndex: '999'}} className="fixed grid grid-cols-2 bg-white bottom-0 w-full h-50px">
+<div style={{boxShadow: '0px 0px 2px #333', zIndex: '999'}} className="fixed px-4 lg:px-[15%] grid grid-cols-2 bg-white bottom-0 w-full h-50px">
             <button onClick={()=>{
                 if (session) {
                     window.open('tel:' + data.phone );
@@ -24,11 +24,11 @@ const StickyButton = (props) => {
                     route.push('/login')
                 }
             }}>
-                <div className="text-left flex justify-center border-2 border-indigo-950 items-center p-3 m-2 rounded-xl bg-white bg-indigo-950">
+                <div className="text-left flex justify-center border-2 border-indigo-950 items-center p-3 my-2 mx-4 lg:mx-[10%] rounded-xl bg-white bg-indigo-950">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
+                        width="24"
+                        height="24"
                         fill="none"
                         viewBox="0 0 24 24"
                     >
@@ -50,11 +50,11 @@ const StickyButton = (props) => {
                     route.push('/login')
                 }
             }}>
-                <div className="text-left text-white flex justify-center items-center p-3 m-2 rounded-xl bg-green-600">
+                <div className="text-left text-white flex border-2 border-green-600 justify-center items-center p-3 my-2 mx-4 lg:mx-[10%] rounded-xl bg-green-600">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="30"
-                        height="30"
+                        width="24"
+                        height="24"
                         fill="#fff"
                         version="1.1"
                         viewBox="0 0 308 308"
