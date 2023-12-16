@@ -19,8 +19,8 @@ export const ProdukCard = function({data, type}){
             </button>
             {type=='premium'?
             <div>
-                <div className="absolute z-10 left-2 top-2">
-                    <img src="/3.png" width={40} style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
+                <div className="absolute z-10 left-1 md:left-2 top-1 md:top-2">
+                    <img className="w-[27.5px] md:w-[40px]" src="/3.png" style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
                 </div>
                 <label className="hidden align-items-center px-[12px] flex items-center text-[#d50000] font-semibold bg-amber-500 text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d50000]"></div>
@@ -30,8 +30,8 @@ export const ProdukCard = function({data, type}){
             :
             type=='populer'?
             <div>
-                <div className="absolute z-10 left-2 top-2">
-                    <img src="/2.png" width={40} style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
+                <div className="absolute z-10 left-1 md:left-2 top-1 md:top-2">
+                    <img className="w-[27.5px] md:w-[40px]" src="/2.png" style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
                 </div>
                 <label className="hidden align-items-center px-[12px] flex items-center text-[#fff] font-semibold bg-[#34a853] text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <div className="my-[2px] mr-[8px] inline-block w-[12px] h-[12px] popular bg-[#fff]"></div>
