@@ -388,3 +388,16 @@ select{
 	-webkit-mask:url("/popular.png") center/contain;
     mask:url("/popular.png") center/contain;
 }
+
+.bg-primary {
+	background-color: #F49619;
+}
+
+.primary {
+	color: #F49619;
+}
+
+.btn-primary {
+	background-color: #c30000;
+	color: #fff;
+}

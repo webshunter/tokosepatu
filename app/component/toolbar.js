@@ -69,7 +69,7 @@ export const Toolbar = function () {
     return(<>
     <div className="px-4 md:px-10 mb-2 md:mb-4">
         <div className="flex justify-center items-center h-full">
-            <div className="rounded-lg bg-amber-500 overflow-hidden shadow-lg w-full md:w-[750px]">
+            <div className="rounded-lg bg-primary overflow-hidden shadow-lg w-full md:w-[750px]">
                 <div className="my-3 pt-1">
                     <div id="tablist" className="hidden">
                         <div className="tabs-home flex flex-nowrap h-[33px] overflow-x-auto overflow-y-hidden whitespace-nowrap justify-center">
@@ -102,7 +102,7 @@ export const Toolbar = function () {
                                         </div>
                                     </div>
                                 </div>
-                                <button onClick={searchButton} className="ui-atomic-button px-1 md:px-[50px] bg-[#db9233]">
+                                <button onClick={searchButton} className="ui-atomic-button px-1 md:px-[50px] btn-primary">
                                     <span className="text-white font-semibold">Cari</span>
                                 </button>
                             </div>

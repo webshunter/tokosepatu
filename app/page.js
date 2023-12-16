@@ -42,10 +42,8 @@ export default function LoadData(props) {
     </div>
   :
   <>
-    {/* bannner */}
     <HomeBanner />
     
-    {/* toolbar */}
     <Toolbar />
 
     <section className="block px-4 md:px-10 my-[16px]">
