@@ -2,9 +2,10 @@
 import useSWR, { SWRConfig } from 'swr'
 import { ProdukCard } from './library/card';
 import { useEffect, useState } from 'react';
-import { Carousel } from "flowbite-react";
 import { Toolbar } from "./component/toolbar";
 import { useRouter } from "next/navigation";
+import HomeBanner from './component/banner/homeBanner';
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
   const { data : dPremium } = useSWR(`/api/premium?limit=8`, fetcher)
@@ -41,19 +42,12 @@ export default function LoadData(props) {
     </div>
   :
   <>
-    <div className='my-6 md:px-10 lg:px-[100px]'>
-      <Carousel className="w-full h-[50vw] md:h-[21vw] lg:h-[19vw]">
-        <div className=" lg:rounded-b-[25px] bg-[url('/banner-mobile.png')] md:bg-[url('/banner-dekstop.png')]"
-          style={{
-            width:'100%',
-            height:'100%',
-            backgroundRepeat:'no-repeat',
-            backgroundSize: 'cover'
-          }}
-        />
-      </Carousel>
-    </div>
+    {/* bannner */}
+    <HomeBanner />
+    
+    {/* toolbar */}
     <Toolbar />
+
     <section className="block px-4 md:px-10 my-[16px]">
       <div className="w-full">
         <div className="relative">
