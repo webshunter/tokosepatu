@@ -43,7 +43,7 @@ export default function LoadData(props) {
   <>
     <div className='my-6 md:px-10 lg:px-[100px]'>
       <Carousel className="w-full h-[50vw] md:h-[21vw] lg:h-[19vw]">
-        <div className=" lg:rounded-b-[25px] bg-[url('/banner-mobile.png')] md:bg-[url('/banner-dekstop.png')]"
+        <div className=" lg:rounded-b-[25px] bg-[url('/bannermobilerumahjo.png')] md:bg-[url('/bannerdekstoprumahjo.png')]"
           style={{
             width:'100%',
             height:'100%',
