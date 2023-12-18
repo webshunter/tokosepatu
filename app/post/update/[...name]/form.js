@@ -66,7 +66,7 @@ export const FormPost = ({ edit, hidetanah }) => {
             q.checked = edit.facility.split(',').indexOf(q.value) != -1? true : false;
         });
 
-        Array.from(document.querySelectorAll('.peer'))
+        Array.from(document.querySelectorAll('.status-data'))
         .forEach(function(q){
             let v = q.value;
             v == edit.status ? q.click() : null; 
@@ -334,7 +334,7 @@ export const FormPost = ({ edit, hidetanah }) => {
                         id="dijual"
                         name="status"
                         value="1"
-                        className="hidden peer"
+                        className="hidden peer status-data"
                         required />
                     <label htmlFor="dijual" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div className="block">
@@ -348,7 +348,7 @@ export const FormPost = ({ edit, hidetanah }) => {
                         id="disewakan"
                         name="status"
                         value="2"
-                        className="hidden peer"
+                        className="hidden peer status-data"
                     />
                     <label
                         htmlFor="disewakan"
@@ -365,7 +365,7 @@ export const FormPost = ({ edit, hidetanah }) => {
                         id="indekos"
                         name="status"
                         value="0"
-                        className="hidden peer"
+                        className="hidden peer status-data"
                     />
                     <label
                         htmlFor="indekos"
