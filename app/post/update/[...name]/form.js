@@ -29,26 +29,11 @@ export const FormPost = ({ edit, hidetanah }) => {
     const [deskrisi, setDeskrisi] = useState("");
     const [dataResponse, setDataresponse] = useState(null);
     const [uid, setUid] = useState(null);
+    const [uniqid, setUniqid] = useState(null);
     const [email, setEmail] = useState(null);
     const [apar, setApar] = useState(null);
     const [propertyBaru, setPropertiBaru] = useState(0);
     const { data: session } = useSession();
-
-    if (!dataResponse) {
-        if (session) {
-            let email = session.user.email;
-            setDataresponse(1);
-            fetch('/api/user?email=' + email)
-                .then((res) => {
-                    return res.json()
-                })
-                .then((res) => {
-                    let [data] = res.message;
-                    setUid(data.uniqid)
-                    setEmail(data.email)
-                })
-        }
-    }
 
     var rows = [], i = 0, len = 10;
     while (++i <= len) rows.push(i);
@@ -67,6 +52,9 @@ export const FormPost = ({ edit, hidetanah }) => {
         setAlamat(edit.alamat)
         setJudul(edit.judul)
         setDeskrisi(edit.deskrisi)
+        setEmail(edit.email)
+        setUid(edit.uid_user)
+        setUniqid(edit.uniqid)
 
         Array.from(document.querySelectorAll('input[name="cert"]'))
         .forEach(function(q){
@@ -80,7 +68,7 @@ export const FormPost = ({ edit, hidetanah }) => {
     }, [edit])
 
     return (<>
-        <input type='hidden' name='uniqid' className='none' defaultValue={'produk-' + Date.now()}></input>
+        <input type='hidden' name='uniqid' className='none' defaultValue={uniqid?uniqid:""}></input>
         <input type='hidden' name='uid_user' className='none' value={uid?uid:""}></input>
         <input type='hidden' name='email' className='none' value={email?email:""}></input>
 
