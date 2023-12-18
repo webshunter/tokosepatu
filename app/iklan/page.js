@@ -45,7 +45,7 @@ export default function Profile({ params }) {
         (async function (user) {
             if(user){
                 console.log(user)
-                let data = await fetch('/pages/api/produk?limit=21&start=0&uid_user=' + user.uniqid + ``);
+                let data = await fetch('/pages/api/produk?limit=100&start=0&uid_user=' + user.uniqid + ``);
                 data = await data.json();
                 localStorage.setItem('produkstart', JSON.stringify(data));
                 setDataListing(data.message);
