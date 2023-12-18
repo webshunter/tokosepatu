@@ -108,6 +108,8 @@ export default function PostListing({params}) {
     const propertiChange = function(kode, data){
         if(data){
             let cek = dataStatus.cond(data.status, 'val');
+            console.log(dataStatus);
+            console.log(data.status);
             if(cek.length > 0){
                 let {text} = cek[0];
                 let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
@@ -120,8 +122,9 @@ export default function PostListing({params}) {
             }else{
                 let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
                 dataHidden.forEach((c)=>{
-                    c.style.display = 'block';
-                })
+                    console.log(c);
+                    c.style.display = 'none';
+                });
             }
             setProperti(data.nilai)
             hiddenForm(data)
@@ -245,6 +248,8 @@ export default function PostListing({params}) {
                 });
         
                 let newProperty = getData.length > 0 ? getData[0] : null;
+                console.log(newProperty)
+                console.log(`newProperty`)
                 backFunc(3, 6, newProperty)
 
             }
