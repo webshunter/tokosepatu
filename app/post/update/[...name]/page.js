@@ -421,14 +421,12 @@ export default function PostListing({params}) {
                     </div>
                     <div id="kategori3" style={{paddingTop:'60px',display:"none", overflowY:'scroll'}} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
                         <div className='fixed top-0 bg-white w-full py-2 h-[50px] flex items-center' style={{ borderBottom: '1px solid #ddd' }}>
-                            <button onClick={(w) => {
-                                backFunc(2);
-                            }} type="button" className='px-5' style={{ fontSize: '16px' }}>
+                            <Link href={'/iklan'} type="button" className='px-5' style={{ fontSize: '16px' }}>
                                 <FontAwesomeIcon
-                                    icon={faChevronLeft}
+                                    icon={faTimes}
                                     style={{ fontSize: 20, color: "black" }}
                                 />
-                            </button><h1 className='inline-block px-2'>Include Some Details</h1>
+                            </Link><h1 className='inline-block px-2'>Include Some Details</h1>
                         </div>
                         <div className='px-5'>
                             <FormPost edit={listingData} hidetanah={hideTanah} />
