@@ -5,6 +5,7 @@ import { ProdukCard } from '@/app/library/card2';
 import { JoinDate } from '@/app/library/joinDate';
 import ShareButton from "@/app/component/produk/sharebutton";
 import { usePathname } from "next/navigation";
+import { LoaderJo } from "@/app/component/loader";
 
 export default function Profile({params}) {
     let [slug] = params.name;  
@@ -13,10 +14,12 @@ export default function Profile({params}) {
     const [about, setAbout] = useState(null);
     const [avatar, setAvatar] = useState(null);
     const [dataListing, setDataListing] = useState([]);
+    const [showHome, setShowHome] = useState(null);
+    const [join, setJoin] = useState(new Date().toString());
 
     const [card, addCard] = useState([]);
 
-    let join = new Date().toString();
+    //let join = new Date().toString();
 
     let src = ""
 
@@ -32,7 +35,7 @@ export default function Profile({params}) {
                 setAbout(data.about);
                 
                 setAvatar(data.avatar);
-                join = data.tgldaftar;
+                setJoin(data.tgldaftar);
             })
 
         if (localStorage.getItem('produkstart') != undefined) {
@@ -44,16 +47,17 @@ export default function Profile({params}) {
             data = await data.json();
             localStorage.setItem('produkstart', JSON.stringify(data));
             setDataListing(data.message);
-        })()
-    }, [setDataListing])
 
-    let yh = [];
-    for (let index = 0; index < 12; index++) {
-        yh.push({
-            data: index
-        })
-    }
+        })()
+        if (dataListing != undefined) {
+            setShowHome(true)
+        }
+    }, [setDataListing, setShowHome])
+    
     return (<>
+    {!showHome && !nama ?
+    <LoaderJo/>
+    :
     <div className='my-5 bg-white'>
         <div className="pt-5 mx-[20px] xl:mx-[60px]">
             <div className="grid grid-cols-4 gap-4">
@@ -63,10 +67,10 @@ export default function Profile({params}) {
                             <div className="relative " style={{width:"fit-content"}}>
                                 { avatar ? 
                                 (
-                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('https://ui-avatars.com/api/?name=${nama}&bold=true&background=1e1b4b&color=ffe50c&size=250')`}}></figure>
+                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('${avatar}')`}}></figure>
                                 ) :
                                 (
-                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('https://ui-avatars.com/api/?name=${nama}&bold=true&background=1e1b4b&color=ffe50c&size=250')`}}></figure>
+                                    <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{backgroundImage:`url('https://ui-avatars.com/api/?name=${nama}&bold=true&background=F49619&color=FFF&size=250')`}}></figure>
                                 ) }
                             </div>
                         </div>
@@ -146,5 +150,6 @@ export default function Profile({params}) {
             </div>
         </div>
     </div>
+    }
     </>)
 }
