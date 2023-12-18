@@ -39,13 +39,6 @@ String.prototype.capitalize = function () {
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
-const  CommentTag = ({text}) => {
-    const ref = useRef();
-    useEffect(() => {
-        ref.current.outerHTML = `<!--${text}-->`;
-    }, [text]);
-    return (<script ref={ref} type="text/placeholder" />);
-};
 
 export default function ProdukDetail(props) {
     const { data: session } = useSession();
@@ -173,18 +166,16 @@ export default function ProdukDetail(props) {
         </div>
         {data.approval=='0' ? 
         <>
-        <CommentTag text="googleoff: index" />
-        <div className="mt-[68px] md:mt-[25px] lg:mt-[25px]">            
-            <div className="fixed w-screen h-screen bg-white/90" style={{zIndex:"99999"}}>
-                <div className="absolute top-[40%] md:top-[42.5%] left-[50%] mr-[-50%]" style={{transform:"translate(-50%, -50%)"}}>
-                    <div className="text-center">
-                        <img width={"200"} src="/rumahjobundar.png"></img>
-                        <h1 className="pt-4 text-2xl text-indigo-950 underline">IKLAN INI TIDAK AKTIF</h1>
+        <div data-nosnippet="true" className="mt-[68px] md:mt-[25px] lg:mt-[25px]">            
+            <div data-nosnippet="true" className="fixed w-screen h-screen bg-white/90" style={{zIndex:"99999"}}>
+                <div data-nosnippet="true" className="absolute top-[40%] md:top-[42.5%] left-[50%] mr-[-50%]" style={{transform:"translate(-50%, -50%)"}}>
+                    <div data-nosnippet="true" className="text-center">
+                        <img data-nosnippet="true" width={"200"} src="/rumahjo-PNG.png"></img>
+                        <h1 data-nosnippet="true" className="text-2xl primary underline">IKLAN INI TIDAK AKTIF</h1>
                     </div>
                 </div>
             </div>
         </div>
-        <CommentTag text="googleon: all" />
         </>
          : 
         <div></div>
@@ -337,7 +328,15 @@ export default function ProdukDetail(props) {
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
                                 <a href={"/profile/" + data.uid_user}>
-                                    <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800 h-[25px]">{data.fullname}</div>
+                                    <div>
+                                        <div className="flex secondary gap-1 font-semibold mb-1">
+                                            <svg className="w-[18px] " focusable="false" aria-hidden="true" viewBox="0 0 24 24" fill="#c30000">
+                                                <path d="m23 12-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82L8.6 22.5l3.4-1.47 3.4 1.46 1.89-3.19 3.61-.82-.34-3.69L23 12zm-12.91 4.72-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"></path>
+                                            </svg>
+                                            Verified Agen
+                                        </div>
+                                        <div className="font-bold text-[20px] overflow-hidden whitespace-nowrap text-ellipsis text-gray-800 h-[25px]">{data.fullname}</div>
+                                    </div>                                    
                                     <span className="absolute top-[50%] right-0" style={{ transform: "translateY(-50%)" }}>
                                         <svg className="w-[18px] h-[18px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M277.333 85.333v60.331l366.336 366.336-366.336 366.336v60.331h60.331l409.003-408.981v-35.307l-409.003-409.045z"></path></svg>
                                     </span>

@@ -397,6 +397,10 @@ select{
 	color: #F49619;
 }
 
+.secondary {
+	color: #c30000;
+}
+
 .btn-primary {
 	background-color: #c30000;
 	color: #fff;
