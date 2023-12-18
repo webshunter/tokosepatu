@@ -185,18 +185,20 @@ export default function PostListing() {
         const formProps = Object.fromEntries(formData);
         const image = Array.from(e.target.querySelectorAll('img'))
         let dataImage = [];
+
         if (formProps.judul === ""){
             alert("judul tidak boleh kosong");
         } 
         if (formProps.judul === ""){
             alert("judul tidak boleh kosong");
         } 
+
         image.map(function(w){
             dataImage.push({
                 data: w.src,
                 nama: w.alt
             });
-        })
+        });
         
         let di = [];
         
@@ -231,6 +233,14 @@ export default function PostListing() {
                 dfacility.push(o.value);
             }
         })
+
+        let validNumber = ['lbangun', 'ltanah', 'ktidur', 'kmandi', 'lantai', 'cert'];
+
+        validNumber.forEach(function(s){
+            if(formProps[s] == ""){
+                formProps[s] = 0;
+            }
+        });
 
         let b64Data = btoa(JSON.stringify(formProps));
 
