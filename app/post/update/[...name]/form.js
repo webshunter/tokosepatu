@@ -59,11 +59,18 @@ export const FormPost = ({ edit, hidetanah }) => {
         Array.from(document.querySelectorAll('input[name="cert"]'))
         .forEach(function(q){
             q.checked = q.value == edit.cert? true : false;
-        })
+        });
+
         Array.from(document.querySelectorAll('input[name="facility"]'))
         .forEach(function(q){
             q.checked = edit.facility.split(',').indexOf(q.value) != -1? true : false;
-        })
+        });
+
+        Array.from(document.querySelectorAll('.peer'))
+        .forEach(function(q){
+            let v = q.value;
+            v == edit.status ? q.click() : null; 
+        });
 
     }, [edit])
 
@@ -71,7 +78,6 @@ export const FormPost = ({ edit, hidetanah }) => {
         <input type='hidden' name='uniqid' className='none' defaultValue={uniqid?uniqid:""}></input>
         <input type='hidden' name='uid_user' className='none' value={uid?uid:""}></input>
         <input type='hidden' name='email' className='none' value={email?email:""}></input>
-
         {/* pilihan property */}
         <div data-shows="rumah" style={{display:'none'}}>
             <ul className="p-3 grid w-full gap-6 grid-cols-2">
