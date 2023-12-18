@@ -121,18 +121,18 @@ export default function PostListing() {
         const formData = new FormData(formid);
         const formProps = Object.fromEntries(formData);
 
-        let fileds = ["lbangun","ltanah", "ktidur", "kmandi" ,"hadap", "judul", "deskrisi"];
+        let fileds = ["lbangun", "ltanah", "ktidur", "kmandi", "hadap", "alamat", "judul", "deskrisi"];
         
         if(formProps.slug2.toLowerCase().indexOf("tanah") != -1){
-            fileds = ["ltanah", "judul", "deskrisi"];
+            fileds = ["ltanah", "alamat", "judul", "deskrisi"];
         }
 
         if(formProps.slug2.toLowerCase().indexOf("bangunan") != -1){
-            fileds = ["lbangun", "judul", "hadap", "deskrisi"];
+            fileds = ["lbangun", "alamat", "judul", "hadap", "deskrisi"];
         }
 
-        if(formProps.slug2.toLowerCase().indexOf("indekos") != -1){
-            fileds = ["lbangun", "kmandi", "judul", "deskrisi"];
+        if(formProps.slug2.toLowerCase().indexOf("indekos") != -1) {
+            fileds = ["kmandi", "alamat", "judul", "deskrisi"];
         }
 
         let cek = 0;
