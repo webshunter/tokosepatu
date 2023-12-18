@@ -366,7 +366,7 @@ export default function PostListing({params}) {
                     </label>
                     <div id="kategori1" style={{ paddingTop: '60px', overflowY: 'scroll' }} className="fixed w-[100%] h-full bg-white top-0 z-[2000] left-0">
                         <div className='fixed w-full top-0 py-2 h-[50px] flex items-center' style={{borderBottom: '1px solid #ddd'}}>
-                            <Link href={'/'} type="button" className='px-5' style={{fontSize: '16px'}}>
+                            <Link href={'/iklan'} type="button" className='px-5' style={{fontSize: '16px'}}>
                                 <FontAwesomeIcon
                                     icon={faTimes}
                                     style={{ fontSize: 20, color: "black" }}
