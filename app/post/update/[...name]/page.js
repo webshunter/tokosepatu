@@ -317,6 +317,14 @@ export default function PostListing({params}) {
             formProps.approval = 0;
         }
 
+        let validNumber = ['lbangun', 'ltanah', 'ktidur', 'kmandi', 'lantai', 'cert'];
+
+        validNumber.forEach(function (s) {
+            if (formProps[s] == "") {
+                formProps[s] = 0;
+            }
+        });
+
         let b64Data = btoa(JSON.stringify(formProps));
 
         // validasi
