@@ -22,6 +22,8 @@ export default function Profile({ params }) {
 
     const [card, addCard] = useState([]);
 
+    const [filterValue, setFilterValue] = useState('all');
+
     let join = new Date().toString();
 
     let src = ""
@@ -52,6 +54,9 @@ export default function Profile({ params }) {
             }
         })(user);
     }, [setDataListing, pathname, user])
+
+    const filteredData = filterValue === 'all' ? dataListing : dataListing.filter(item => item.approval === filterValue);
+    
 
     let yh = [];
     for (let index = 0; index < 12; index++) {
@@ -163,9 +168,22 @@ export default function Profile({ params }) {
                             {Array.isArray(dataListing) ? 
                             dataListing.length > 0 ?
                                 <>
+                                    <div className="mt-[10px] grid grid-cols-4 md:grid-cols-3">
+                                        <select id="filter" className="border p-2" 
+                                            value={filterValue} 
+                                            onChange={(e) => {
+                                                setFilterValue(e.target.value);
+                                            }}
+                                        >
+                                            <option value="all">Semua</option>
+                                            <option value="1">Tayang</option>
+                                            <option value="0">Tertunda</option>
+                                            <option value="2">Ditolak</option>
+                                        </select>
+                                    </div>
                                     <div className="mt-[10px] grid grid-cols-1 md:grid-cols-1">
                                         {
-                                            dataListing.map((y, i) => {
+                                            filteredData.map((y, i) => {
                                                 y.key = i;
                                                 return (
                                                     <li className="list-none" key={i}>
