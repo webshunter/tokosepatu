@@ -213,48 +213,71 @@ export default function ProdukDetail(props) {
                         <h3 className="text-[20px] font-bold text-gray-800">Detail</h3>
                         <div className="relative my-[16px]">
                             <div className="flex w-[100%] flex-wrap justify-between">
+                                {data.slug2 === 'Dijual: Rumah & Apartement' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Tipe</span>
                                         <span className="basis-[50%] text-left text-gray-800">{(data.type === '1' ? 'Rumah' : 'Apartemen')}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.slug2 === 'Disewakan: Rumah & Apartement' && (
+                                <div className="basis-[100%] md:basis-[50%]">
+                                    <div className="flex mb-[8px] w-[100%] justify-between">
+                                        <span className="max-w-[50%] text-gray-500">Tipe</span>
+                                        <span className="basis-[50%] text-left text-gray-800">{(data.type === '1' ? 'Rumah' : 'Apartemen')}</span>
+                                    </div>
+                                </div>
+                                )}
+                                {data.lbangun > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Luas Bangunan</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.lbangun}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.ltanah > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Luas Tanah</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.ltanah}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.ktidur > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Kamar Tidur</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.ktidur}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.kmandi > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Kamar Mandi</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.kmandi}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.hadap !== '' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Hadap</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.hadap ? data.hadap : "-"}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.lantai > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Lantai</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.lantai}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.facility !== '' && (
                                 <div className="basis-[100%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <div className="basis-[50%] md:basis-[25%]">
@@ -269,18 +292,23 @@ export default function ProdukDetail(props) {
                                         </div>
                                     </div>
                                 </div>
+                                )}
+                                {data.cert > '0' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Sertifikasi</span>
                                         <span className="basis-[50%] text-left text-gray-800">{(data.cert === 1 ? 'SHM - Sertifikat Hak Milik' : (data.cert === 2 ? 'HGB - Hak Guna Bangun' : 'Lainnya (PPJB, Girik, Adat, dll)'))}</span>
                                     </div>
                                 </div>
+                                )}
+                                {data.alamat !== '' && (
                                 <div className="basis-[100%] md:basis-[50%]">
                                     <div className="flex mb-[8px] w-[100%] justify-between">
                                         <span className="max-w-[50%] text-gray-500">Alamat Lokasi</span>
                                         <span className="basis-[50%] text-left text-gray-800">{data.alamat}</span>
                                     </div>
                                 </div>
+                                )}
                             </div>
                         </div>
                         <h3 className="text-[20px] font-bold text-gray-800 pt-[20px] border-t border-gray-400">Deskripsi</h3>

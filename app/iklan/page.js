@@ -55,7 +55,7 @@ export default function Profile({ params }) {
         })(user);
     }, [setDataListing, pathname, user])
 
-    const filteredData = filterValue === 'all' ? dataListing : dataListing.filter(item => item.approval === filterValue);
+    const filteredData = filterValue === 'all' ? dataListing : filterValue === 'laku' ? dataListing.filter(item => item.laku === '1') : dataListing.filter(item => item.approval === filterValue);
     
 
     let yh = [];
@@ -177,6 +177,7 @@ export default function Profile({ params }) {
                                         >
                                             <option value="all">Semua</option>
                                             <option value="1">Tayang</option>
+                                            <option value="laku">Terjual</option>
                                             <option value="0">Tertunda</option>
                                             <option value="2">Ditolak</option>
                                         </select>
