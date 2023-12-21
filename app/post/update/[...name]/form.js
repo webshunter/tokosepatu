@@ -403,7 +403,7 @@ export const FormPost = ({ edit, hidetanah }) => {
             <textarea
                 name="deskrisi"
                 value={deskrisi}
-                style={{minHeight:'200px'}}
+                style={{minHeight:'400px'}}
                 onChange={(e) => {
                     setDeskrisi(e.target.value);
                 }}

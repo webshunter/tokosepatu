@@ -372,6 +372,9 @@ export const FormPost = ({ hidetanah }) => {
             <textarea
                 name="deskrisi"
                 value={deskrisi}
+                style={{
+                    minHeight: '400px'
+                }}
                 onChange={(e) => {
                     setDeskrisi(e.target.value);
                 }}
