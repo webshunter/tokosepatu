@@ -411,6 +411,5 @@ export const FormPost = ({ edit, hidetanah }) => {
             ></textarea>
             <p className="info-danger mb-2 text-red-700 px-2 italic hidden">Panjang minimum harus 20 karakter harap edit kolom.</p>
         </div>
-        
     </>)
 }

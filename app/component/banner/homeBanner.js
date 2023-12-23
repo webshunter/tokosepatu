@@ -20,7 +20,7 @@ const HomeBanner = ({data}) => {
             </Carousel>
             <style jsx>{`
                 ${data.map(function(o){
-                    return `
+                    return ` 
 #data-${o.kode}{
     background-image: url("${o.img1}");
 }
