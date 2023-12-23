@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import { dataWilayah } from "@/app/library/loadJson";
-import CariProperti from "./cariProperti/cariProperti";
 import PhoneInput from "react-phone-number-input";
 
 const wilayah = dataWilayah();
