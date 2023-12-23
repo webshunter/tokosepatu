@@ -9,6 +9,7 @@ import HomeBanner from './component/banner/homeBanner';
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export default function LoadData(props) {
   const { data : dPremium } = useSWR(`/api/premium?limit=8`, fetcher)
+  const { data : banner } = useSWR(`/api/banner`, fetcher)
   const { data : dPopuler } = useSWR(`/pages/api/produk?order=klik&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const { data: dBaru } = useSWR(`/pages/api/produk?order=uniqid&ascdesc=DESC&limit=8&start=0&approval=1`, fetcher)
   const route = useRouter();
@@ -16,6 +17,7 @@ export default function LoadData(props) {
   const [dataPremium, setPremium] = useState([]);
   const [dataPopuler, setPopuler] = useState([]);
   const [dataTerbaru, setTerbaru] = useState([]);
+  const [dataBanner, setDataBanner] = useState([]);
   const [showHome, setShowHome] = useState(null);
 
   useEffect(() => {
@@ -28,10 +30,13 @@ export default function LoadData(props) {
     if(dBaru){
       setTerbaru(dBaru.message)
     }
+    if(banner){
+      setDataBanner(banner.message)
+    }
     if (dPremium != undefined && dPopuler != undefined && dBaru != undefined){
       setShowHome(true)
     }
-  }, [dPremium,dPopuler, dBaru]);
+  }, [dPremium,dPopuler, dBaru, banner]);
 
   return(<>
   {!showHome?
@@ -42,7 +47,7 @@ export default function LoadData(props) {
     </div>
   :
   <>
-    <HomeBanner />
+        <HomeBanner data={dataBanner} />
     
     <Toolbar />
 
