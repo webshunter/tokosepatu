@@ -1,11 +1,17 @@
 "use client"
-import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect, useState } from 'react';
+import useSWR, { SWRConfig } from 'swr'
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const Footer = function () {
-
-    useEffect(() => {
-
-    })
+    const { data: dPremium } = useSWR(`/api/footer`, fetcher);
+    const [populer, setPopuler] = useState([]);
+    
+    useEffect(()=>{
+        if (dPremium){
+            let [pop] = dPremium.message;
+            setPopuler(pop);
+        }
+    }, [dPremium])
 
     return (<>
         <footer className="bg-white dark:bg-gray-900">
@@ -14,18 +20,11 @@ export const Footer = function () {
                     <div>
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">KATEGORI POPULER</h2>
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
-                            <li className="mb-1">
-                                <a href="#" className=" hover:underline">Rumah KPR Malang</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah KPR Surabaya</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah KPR Jogja</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah KPR Banyuwangi</a>
-                            </li>
+                            {populer.map((q,i)=>
+                                <li key={i} className="mb-1">
+                                    <a href="#" className=" hover:underline">{q.name}</a>
+                                </li>
+                            )}
                         </ul>
                     </div>
                     <div>

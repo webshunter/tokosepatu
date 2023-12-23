@@ -26,13 +26,17 @@ function paramsToObject(req) {
             having['judul'] = result[s];
             having['deskrisi'] = result[s];
         } 
+        else if (s == 'q') {
+            having['judul'] = result[s];
+            having['deskrisi'] = result[s];
+        } 
         else if (s == 'n') {
             notlike = JSON.parse(atob(result[s]));
         } 
         else {
             condition[s] = result[s].replace(/\~/g,'&');
         }
-    })
+    });
 
     return {
         limitation: limitation,

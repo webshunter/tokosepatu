@@ -9,7 +9,6 @@ import { DateLabel } from "@/app/library/dateLabel";
 const wilayah = dataWilayah();
 
 export const ProdukCard = function ({ data }) {
-    console.log(data);
     let { key, uniqid, price, judul, image: images, slug, kec, kota, kmandi, ktidur, lbangun, userlog, klik } = data
     const dataKecamatan = wilayah.getKecamatan(kec);
     const dataKota = wilayah.getKota(kota);

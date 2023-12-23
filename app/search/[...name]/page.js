@@ -1,4 +1,5 @@
 "use client"
+import useSWR, { SWRConfig } from 'swr'
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Carousel } from "flowbite-react";
@@ -8,15 +9,23 @@ import Link from 'next/link';
 import MultiRangeSlider from '@/app/component/multiRangeSlider/MultiRangeSlider';
 import RadioSelect from '@/app/component/radioSelect/RadioSelect';
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
 export default function Search({ params }) {
     let slug = params.name;
+    let seachParam = slug.map(function(c){
+        let [a,b] = c.split('-');
+        return `${a}=${b}`
+    }).join("&");
+
+    const { data: produkSeach } = useSWR(`/pages/api/produk?limit=500&start=0&approval=1&` + seachParam, fetcher)
+    console.log(produkSeach)
     const [nama, setNama] = useState('');
     const [dataListing, setDataListing] = useState([]);
     const [card, addCard] = useState([]);
-
     useEffect(() => {
         const loadData = function (dataSlug) {
-            const slug = [].concat(dataSlug)
+            const slug = [].concat(dataSlug);
             if (slug) {
                 let seachSlug = slug.shift();
                 let [status, getSlug] = seachSlug.split('q-');
@@ -24,17 +33,14 @@ export default function Search({ params }) {
                     let search = decodeURI(getSlug).replace(/\-/g, ' ');
                     document.getElementById('search').value = search;
                     setNama(capitalize(search));
-                    (async function () {
-                        let data = await fetch(`/pages/api/produk?limit=21&start=0&kmandi=4&d=${search}`);
-                        data = await data.json();
-                        console.log(data)
-                        setDataListing(data.message);
-                    })()
+                    if (produkSeach) {
+                        setDataListing(produkSeach.message);
+                    }
                 }
             }
         }
         loadData(slug);
-    }, [setDataListing, setNama, slug])
+    }, [produkSeach,setDataListing, setNama, slug])
 
     let yh = [];
     for (let index = 0; index < 12; index++) {
@@ -323,7 +329,7 @@ export default function Search({ params }) {
                                         <div className='mx-[20px] xl:mx-[60px]'>
                                             <h1 className='text-2xl'>Rekomendasi baru</h1>
                                         </div>
-                                        <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+                                        <div className="mx-[20px] mt-[10px] md:mx-[60px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
                                             {dataListing ? Array.isArray(dataListing) ? dataListing.map((y, i) => {
                                                 y.key = i;
                                                 return (
