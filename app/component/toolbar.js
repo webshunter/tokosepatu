@@ -433,7 +433,7 @@ export const Toolbar = function () {
                     <>
                         <div className='flex my-4 justify-center py-3'>
                             <div className='w-full text-center border-2 border-indigo-950 p-10 shadow-md'>
-                                <div className="inline-block">
+                                <div className="token inline-block">
                                     <OtpInput
                                         className="text-gray-700 "
                                         value={otp}
@@ -510,6 +510,9 @@ export const Toolbar = function () {
             }
             .PhoneInputInput {
 
+            }
+            .token input{
+                min-width: 40px;
             }
         `}
     </style>
