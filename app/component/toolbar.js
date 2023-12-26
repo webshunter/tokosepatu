@@ -455,7 +455,7 @@ export const Toolbar = function () {
                                         .then(function(res){
                                             console.log(res)
                                         })
-                                    }} className='w-full bg-blue-900 text-white p-1 rounded mb-2'>Submit</button>
+                                    }} className='w-full btn-primary text-white p-1 rounded mb-2'>Submit</button>
                                     :
                                     <></>
                                 }
@@ -476,7 +476,7 @@ export const Toolbar = function () {
                             <img src="/logo-h.png" className="w-full pt-2"></img>
                             <button onClick={()=>{
                                     setShowWa(false),setshowSuc(false),setOpenModal(false)
-                                }} className="w-full bg-blue-900 text-white p-1 rounded mb-2">Kembali</button>
+                                }} className="w-full btn-primary text-white p-1 rounded mb-2">Kembali</button>
                         </div>
                     </>
                 }
