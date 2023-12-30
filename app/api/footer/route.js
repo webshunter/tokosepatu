@@ -46,7 +46,9 @@ export async function GET(req, Response) {
         const query = `
             SELECT sum(l.klik) klik, l.kota, k.name FROM listing l
             LEFT JOIN kabupaten k ON k.id = l.kota GROUP BY kota HAVING kota <> '' ORDER BY klik DESC LIMIT 5
-            ; SELECT 1=1 total
+            ; 
+            SELECT slug2, sum(klik) total FROM listing GROUP BY slug2 ORDER BY total DESC
+            ;SELECT 1=1 total
             `
         const value = [];
         const [data] = await connection.query(query);

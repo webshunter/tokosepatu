@@ -1,5 +1,6 @@
 
 import './globals.css'
+import './fontawesome-free-6.5.1-web/css/all.css';
 import { Inter } from 'next/font/google'
 import Providers from './component/provider'
 import { Header } from './component/header';

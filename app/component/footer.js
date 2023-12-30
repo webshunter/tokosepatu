@@ -5,11 +5,13 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const Footer = function () {
     const { data: dPremium } = useSWR(`/api/footer`, fetcher);
     const [populer, setPopuler] = useState([]);
+    const [kat, setKat] = useState([]);
     
     useEffect(()=>{
         if (dPremium){
-            let [pop] = dPremium.message;
+            let [pop, kat] = dPremium.message;
             setPopuler(pop);
+            setKat(kat);
         }
     }, [dPremium])
 
@@ -22,7 +24,7 @@ export const Footer = function () {
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
                             {populer.map((q,i)=>
                                 <li key={i} className="mb-1">
-                                    <a href="#" className=" hover:underline">{q.name}</a>
+                                    <a href={`/search/kota-${q.kota}`} className=" hover:underline">{q.name}</a>
                                 </li>
                             )}
                         </ul>
@@ -30,51 +32,18 @@ export const Footer = function () {
                     <div>
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">PENCARIAN POPULER</h2>
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah Malang</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah Malang Wagir</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah Solo</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumah Cempaka</a>
-                            </li>
+                            {kat.map((q, i) =>
+                                <li key={i} className="mb-1">
+                                    <a href={`/search/slug2-${q.slug2}`} className=" hover:underline">{q.slug2}</a>
+                                </li>
+                            )}
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">RUMAHJO INDONESIA</h2>
+                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Sosmed</h2>
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
                             <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumahjo Karir</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumahjo News</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Jual Rumah Instant</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">RUMAHJO</h2>
-                        <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Pusat Bantuan</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Peta Situs</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Kebijakan Privasi</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Tips Aman</a>
-                            </li>
-                            <li className="mb-1">
-                                <a href="#" className="hover:underline">Rumahjo KPR</a>
+                                <a href="https://www.instagram.com/rumahjo.com88/" className="hover:underline"> <i className='fab fa-instagram'></i> Instagram</a>
                             </li>
                         </ul>
                     </div>
