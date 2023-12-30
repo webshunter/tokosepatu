@@ -22,7 +22,7 @@ export const NotFound = function() {
                                     <a className="font-bold underline" href="rent">Disewakan</a>
                                 </li>
                                 <li className="pb-2">
-                                    <a className="font-bold underline" href="indekost">Indekos</a>
+                                    <a className="font-bold underline" href="indekos">Indekos</a>
                                 </li>
                                 <li className="pb-2">
                                     <a className="font-bold underline" href="cari-agen">Cari Agen</a>

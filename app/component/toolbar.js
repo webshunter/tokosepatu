@@ -139,7 +139,7 @@ export const Toolbar = function () {
                         <div className="tabs-home flex flex-nowrap h-[33px] overflow-x-auto overflow-y-hidden whitespace-nowrap justify-center">
                             <button onClick={() => findClick("sale")} role="tab" id="sale" tabIndex="0" className={`tabs-home__button ${find==='sale' ? 'button--active' : ''}`}>Dijual</button>
                             <button onClick={() => findClick("rent")} role="tab" id="rent" tabIndex="1" className={`tabs-home__button ${find==='rent' ? 'button--active' : ''}`}>Disewa</button>
-                            <button onClick={() => findClick("indekost")} role="tab" id="indekost" tabIndex="2" className={`tabs-home__button ${find==='indekost' ? 'button--active' : ''}`}>Indekost</button>
+                            <button onClick={() => findClick("indekos")} role="tab" id="indekos" tabIndex="2" className={`tabs-home__button ${find==='indekos' ? 'button--active' : ''}`}>Indekos</button>
                         </div>
                     </div>
                 </div>
