@@ -11,7 +11,7 @@ import { capitalize } from '@/app/library/global';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Search({ params }) {
-    const Allowed = ['sale', 'rent', 'indekost'];
+    const Allowed = ['sale', 'rent', 'indekos'];
     let slug = params.name;
     const pageAllow = slug.some((url) => Allowed.includes(url));
     if (!pageAllow) {
