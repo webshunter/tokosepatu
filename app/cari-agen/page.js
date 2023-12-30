@@ -78,7 +78,7 @@ export default function CariAgen() {
                                                     marginRight:"calc(5px + 0.5vw)"
                                                 }
                                             }></div>
-                                            <div className="overflow-hidden leading-tight" style={{flex:"1 1 0%"}}>
+                                            <div className="overflow-hidden leading-tight" style={{flex:"1 1 0%",width:"0"}}>
                                                 <div className="text-[110%] font-semibold truncate ..." style={{marginBottom:"calc(2px + 0.2vw)"}}>{x.fullname}</div>
                                                 <div className="text-[80%] font-medium truncate ..." style={{marginBottom:"calc(2px + 0.1vw)"}}>Anggota Sejak {JoinDate(x.tgldaftar)}</div>
                                             </div>
