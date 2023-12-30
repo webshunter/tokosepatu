@@ -12,11 +12,11 @@ export const ProdukCard = function({data, type}){
     const dataKota = wilayah.getKota(kota);
     return (<>
         <div key={key} className="relative bg-gray-200 w-full">
-            <button className="p-1 md:p-2 z-10 shadow-md rounded-[50%] inline-block absolute bg-white top-4 right-4">
+            {/* <button className="p-1 md:p-2 z-10 shadow-md rounded-[50%] inline-block absolute bg-white top-4 right-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 fill-current hover:text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
-            </button>
+            </button> */}
             {type=='premium'?
             <div>
                 <div className="absolute z-10 left-1 md:left-2 top-1 md:top-2">
