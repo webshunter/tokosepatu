@@ -214,7 +214,7 @@ export const Header = function(){
                 </div>
             </div>
             <div className="w-full md:w-[calc(100vw-250px)] lg:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] md:right-[0px] lg:right-[30px] h-[auto] top-[10px]">
-                <div className={hiddenSearch?`hidden`:`flex justify-end overflow-hidden rounded-md`}>
+                <div className={hiddenSearch?`hidden`:`hidden flex justify-end overflow-hidden rounded-md`}>
                     <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] md:w-[37vw] lg:w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700 border-2 rounded-l-md border-[#db9233]" />
                     <button onClick={searchButton} className="px-4 font-semibold py-2 h-[45px] bg-[#db9233]">GO</button>
                 </div>

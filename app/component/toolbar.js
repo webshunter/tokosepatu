@@ -39,6 +39,7 @@ export default function HTMLComment({ children }) {
 }
 
 export const Toolbar = function () {
+    const [find, setfind] = useState("sale");
     const [fTipe, setfTipe] = useState("rumah");
     const [fJual, setfJual] = useState(0);
     const [fMin, setfMin] = useState("0");
@@ -46,7 +47,7 @@ export const Toolbar = function () {
     const [fLokasi, setfLokasi] = useState("");
     const [fNama, setfNama] = useState("");
     const [fHP, setfHP] = useState("");
-    const [fKPR, setfKPR] = useState(false);
+    const [fKPR, setfKPR] = useState(0);
     const [openModal, setOpenModal] = useState(false);
     const route = useRouter();
     const [showWa, setShowWa] = useState(false);
@@ -59,9 +60,17 @@ export const Toolbar = function () {
     }
 
     const goSeach = function(value){
-        value = encodeURI( value.toLowerCase().replace(/\ /g, '-') )
-        route.push('/search/q-'+value)
+        value = encodeURI( value.toLowerCase().replace(/\ /g, '-') );
+        if (value!=='') {
+            route.push('/'+find+'?keyword='+value);
+        } else {
+            route.push('/'+find);
+        }
     }
+
+    const findClick = (label) => {
+        setfind(label);
+    };
 
     const keyDownAction = function(event){
         if (event.code == 'NumpadEnter' || event.code == 'Enter'){
@@ -124,13 +133,13 @@ export const Toolbar = function () {
     return(<>
     <div className="px-4 md:px-10 mb-2 md:mb-4">
         <div className="flex justify-center items-center h-full">
-            <div className="rounded-lg bg-primary overflow-hidden shadow-lg w-full md:w-[750px]">
+            <div className="rounded-lg bg-[#2951a3] overflow-hidden shadow-lg w-full md:w-[750px]">
                 <div className="my-3 pt-1">
-                    <div id="tablist" className="hidden">
+                    <div id="tablist" className="">
                         <div className="tabs-home flex flex-nowrap h-[33px] overflow-x-auto overflow-y-hidden whitespace-nowrap justify-center">
-                            <button role="tab" aria-selected="true" aria-controls="sale" id="sale" tabIndex="0" className="tabs-home__button button--active">Dijual</button>
-                            <button role="tab" aria-selected="false" aria-controls="rent" id="rent" tabIndex="1" className="tabs-home__button">Disewa</button>
-                            <button role="tab" aria-selected="false" aria-controls="newLaunch" id="newLaunch" tabIndex="2" className="tabs-home__button">Properti Baru</button>
+                            <button onClick={() => findClick("sale")} role="tab" id="sale" tabIndex="0" className={`tabs-home__button ${find==='sale' ? 'button--active' : ''}`}>Dijual</button>
+                            <button onClick={() => findClick("rent")} role="tab" id="rent" tabIndex="1" className={`tabs-home__button ${find==='rent' ? 'button--active' : ''}`}>Disewa</button>
+                            <button onClick={() => findClick("indekost")} role="tab" id="indekost" tabIndex="2" className={`tabs-home__button ${find==='indekost' ? 'button--active' : ''}`}>Indekost</button>
                         </div>
                     </div>
                 </div>
@@ -417,9 +426,10 @@ export const Toolbar = function () {
                             </div>
                             <div className="pt-2 flex items-center">
                                 <input 
+                                    checked={fKPR == 1? true:false}
                                     value={fKPR}
-                                    onChange={(e) => {
-                                        setfKPR(e.target.value);
+                                    onChange={(e)=>{
+                                        e.target.checked ? setfKPR(1):setfKPR(0);
                                     }}
                                     id="link-checkbox" type="checkbox" className="w-4 h-4 ml-[4px] mt-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
                                 <label htmlFor="link-checkbox" className="ms-3 font-medium text-gray-900 dark:text-gray-300">Saya tertarik untuk KPR.</label>
