@@ -108,7 +108,7 @@ export default function CariAgen() {
                                                         if(session){
                                                             window.open('https://api.whatsapp.com/send?phone=' + x.telp, '_blank');
                                                         }else{
-                                                            route.push('/login')
+                                                            router.push('/login')
                                                         }
                                                     }} className="w-full bg-[#50bf31] text-white p-3 rounded mb-2"><i className="fa-brands fa-whatsapp"></i> WhatsApp</button>
                                         :
