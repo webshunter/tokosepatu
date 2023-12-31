@@ -152,11 +152,9 @@ export default function ProdukDetail(props) {
                         return (
                             <li key={i}>
                                 <div className="flex justify-center items-center ">
-                                    <img
-                                        className="h-[100%]"
-                                        alt="..."
-                                        src={'https://app.rumahjo.com/' + s.image}
-                                    />
+                                    <div style={{ pointerEvents:'none',backgroundSize:'contain', backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundColor:'black', backgroundImage: `url("https://app.rumahjo.com/${s.image}")` }} className="p-2 relative flex items-center  justify-center h-[100vh] w-[100vw] overflow-hidden">
+                                        <label style={{fontWeight:'bold', color:`rgba(255,255,255,0.5)`, textShadow:`0 0 5px rgba(0,0,0,0.5)`}} className="text-3xl absolute">RUMAHJO</label>
+                                    </div>
                                 </div>
                             </li>
                         )
@@ -182,27 +180,26 @@ export default function ProdukDetail(props) {
         }
         <div className="grid px-0 lg:px-10 lg:pt-[25px] grid-cols-3 gap-2">
             <div className="col-span-3 md:col-span-2 bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
-                <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                {/* <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
                     <span>Highlight</span>
-                </label>
+                </label> */}
                 <Carousel onClick={(index) => {
                     if (index.target.tagName == "DIV") {
                         let indexKey = index.target.dataset.key;
                         setVisible(index);
                     }
-                }} className="h-[50vh] bg-black">
+                }} className="h-[60vh] bg-black">
                     {arrImage.map((s, i) => {
                         return (
                             <li className="image-click"
                                 key={i}>
-                                <div style={{ backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundSize:'contain', backgroundImage: `url("https://app.rumahjo.com/` + s.image +`")`}} className="flex h-[50vh] justify-center items-center ">
-                                    <img
-                                        data-key={i}
-                                        className="hidden"
-                                        alt="..."
-                                        src={'https://app.rumahjo.com/' + s.image}
-                                    />
+                                <div
+                                    onContextMenu={(e) => {
+                                        e.preventDefault();
+                                      }} 
+                                    style={{ backgroundPosition:'center center', backgroundRepeat:'no-repeat', backgroundSize:'contain', backgroundImage: `url("https://app.rumahjo.com/` + s.image +`")`}} className="flex h-[60vh] justify-center items-center ">
+                                    <label style={{fontWeight:'bold', color:`rgba(255,255,255,0.5)`, textShadow:`0 0 5px rgba(0,0,0,0.5)`}} className="text-2xl absolute">RUMAHJO</label>
                                 </div>
                             </li>
                         )
@@ -330,9 +327,9 @@ export default function ProdukDetail(props) {
                         <span className="flex text-[20px] md:text-[2rem] font-bold">{data.price != undefined ? formatRupiah(data.price) : "Rp 0"}</span>
                         <div className="flex">
                             <ShareButton data={props} />
-                            <button className="inline-flex w-[40px] h-[40px]" style={{ borderRadius: "50%", justifyContent: "center", alignItems: "center", cursor: "pointer" }}>
+                            {/* <button className="inline-flex w-[40px] h-[40px]" style={{ borderRadius: "50%", justifyContent: "center", alignItems: "center", cursor: "pointer" }}>
                                 <svg className="w-[24px] h-[24px]" viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M830.798 448.659l-318.798 389.915-317.828-388.693c-20.461-27.171-31.263-59.345-31.263-93.033 0-85.566 69.605-155.152 155.152-155.152 72.126 0 132.752 49.552 150.051 116.364h87.777c17.299-66.812 77.905-116.364 150.051-116.364 85.547 0 155.152 69.585 155.152 155.152 0 33.687-10.802 65.862-30.293 91.811zM705.939 124.121c-80.853 0-152.204 41.425-193.939 104.204-41.736-62.778-113.086-104.204-193.939-104.204-128.33 0-232.727 104.378-232.727 232.727 0 50.657 16.194 98.948 47.806 140.897l328.766 402.133h100.189l329.716-403.355c30.662-40.727 46.856-89.018 46.856-139.675 0-128.349-104.398-232.727-232.727-232.727z"></path></svg>
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                     <span className="hidden md:block text-gray-800">{data.ktidur} KT - {data.kmandi} KM - {data.lbangun} m2</span>

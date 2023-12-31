@@ -101,14 +101,6 @@ const ShareButton = ({ data, url, deskripsi, children }) => {
                 >
                     <LinkedinIcon size={32} round />
                 </LinkedinShareButton>
-                <PinterestShareButton
-                    className='mx-[5px]'
-                    url={url?url:'https://rumahjo.com/produk/'+properti.slug}
-                    quote={deskripsi?deskripsi: properti? properti.deskrisi: ''}
-                    hashtag="#muo"
-                >
-                    <PinterestIcon size={32} round />
-                </PinterestShareButton>
             </div>
         </div>
     </>
