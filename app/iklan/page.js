@@ -13,7 +13,7 @@ export default function Profile({ params }) {
     const pathname = usePathname();
     const { data: session } = useSession();
     const { data: dataUser } = useSWR(`/api/user?email=`+(session? session.user.email : ''), fetcher)
-    let user = dataUser?dataUser.message[0]:null;
+    let user = dataUser.status != 500 ?dataUser.message[0]:null;
     const route = useRouter();
     const [nama, setNama] = useState(null);
     const [about, setAbout] = useState(null);
@@ -71,7 +71,7 @@ export default function Profile({ params }) {
         })
     }
 
-
+    console.log(user);
    
     return (<>
     {!user? (
