@@ -33,7 +33,7 @@ export default function Profile({ params }) {
 
         const cndt = setTimeout(() => {
             setLd(true);
-        }, 1000);
+        }, 3000);
 
         fetch('/api/user')
             .then((res) => {
@@ -76,19 +76,18 @@ export default function Profile({ params }) {
     return (<>
     {!user? (
          !ld? 
-            <div className='px-[50px] pt-[50px] h-screen'>
-                <div className="loader">Rumahjo
-                    <span></span>
-                </div>
-            </div>
-            :
-            <>
-                <div className='px-[50px] pt-[50px] h-screen'>
-                    <div className="loader">Rumahjo
-                        <span></span>
+                <>
+                    <div className='px-[50px] pt-[50px] h-screen'>
+                        <div className="loader">Rumahjo
+                            <span></span>
+                        </div>
                     </div>
-                </div>
-            </>
+                </>
+            :
+            <div className="my-[50px] text-center">
+                <h1 className="block text-2xl mb-5">Silakan login atau daftar</h1>
+                <p class="block">Anda harus login atau daftar terlebih dahulu untuk melanjutkan.</p>
+            </div>
     )
         :
         <div className='my-5 bg-white'>
