@@ -10,9 +10,6 @@ const DropdownIlkan = ({data}) => {
 
     const route = useRouter();
 
-    console.log('approval : '+data[1]);
-    console.log('laku : '+data[2]);
-
     return (
         <>
             <div className="relative inline-block text-left">
