@@ -21,6 +21,7 @@ export default function Profile({ params }) {
     const [dataListing, setDataListing] = useState([]);
 
     const [card, addCard] = useState([]);
+    const [ld, setLd] = useState(null);
 
     const [filterValue, setFilterValue] = useState('all');
 
@@ -29,6 +30,11 @@ export default function Profile({ params }) {
     let src = ""
 
     useEffect(() => {
+
+        const cndt = setTimeout(() => {
+            setLd(true);
+        }, 1000);
+
         fetch('/api/user')
             .then((res) => {
                 return res.json()
@@ -64,6 +70,27 @@ export default function Profile({ params }) {
             data: index
         })
     }
+
+
+    if(user){
+        if (!ld){
+            return <>
+                <div className='px-[50px] pt-[50px] h-screen'>
+                    <div className="loader">Rumahjo
+                        <span></span>
+                    </div>
+                </div>
+            </>
+        }else{
+            return <>
+            <div className="my-[50px] text-center">
+                <h1 className="block text-2xl mb-5">Silakan login atau daftar</h1>
+                <p class="block">Anda harus login atau daftar terlebih dahulu untuk melanjutkan.</p>
+            </div>
+            </>
+        }   
+    }else{
+
     return (<>
     {!dataUser? 
             <>
@@ -236,5 +263,7 @@ export default function Profile({ params }) {
         </div>
     }
     </>)
+
+    }
     
 }
