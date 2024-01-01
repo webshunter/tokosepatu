@@ -72,27 +72,16 @@ export default function Profile({ params }) {
     }
 
 
-    if(!user){
-        if (!ld){
-            return <>
-                <div className='px-[50px] pt-[50px] h-screen'>
-                    <div className="loader">Rumahjo
-                        <span></span>
-                    </div>
-                </div>
-            </>
-        }else{
-            return <>
-            <div className="my-[50px] text-center">
-                <h1 className="block text-2xl mb-5">Silakan login atau daftar</h1>
-                <p class="block">Anda harus login atau daftar terlebih dahulu untuk melanjutkan.</p>
-            </div>
-            </>
-        }   
-    }else{
-
+   
     return (<>
-    {!user? 
+    {!user? (
+         !ld? 
+            <div className='px-[50px] pt-[50px] h-screen'>
+                <div className="loader">Rumahjo
+                    <span></span>
+                </div>
+            </div>
+            :
             <>
                 <div className='px-[50px] pt-[50px] h-screen'>
                     <div className="loader">Rumahjo
@@ -100,6 +89,7 @@ export default function Profile({ params }) {
                     </div>
                 </div>
             </>
+    )
         :
         <div className='my-5 bg-white'>
             <div className="pt-5 mx-[20px] xl:mx-[60px]">
@@ -263,7 +253,5 @@ export default function Profile({ params }) {
         </div>
     }
     </>)
-
-    }
     
 }
