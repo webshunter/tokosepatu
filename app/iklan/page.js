@@ -72,7 +72,7 @@ export default function Profile({ params }) {
     }
 
 
-    if(user){
+    if(!user){
         if (!ld){
             return <>
                 <div className='px-[50px] pt-[50px] h-screen'>
