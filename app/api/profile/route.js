@@ -68,16 +68,16 @@ export async function POST(req) {
     const data = await req.formData();
     const content = data.get('content');
     const uniq = data.get('uniq');
-    if (!fs.existsSync('public/user')){
-        fs.mkdirSync('public/user', 0o777);
+    if (!fs.existsSync('../apirumahjo/public/user')){
+        fs.mkdirSync('../apirumahjo/public/user', 0o777);
     }
     let update = [
         {
             uniqid : uniq,
-            avatar : '/user/'+uniq+'.webp'
+            avatar: 'https://app.rumahjo.com/user/'+uniq+'.webp'
         }
     ].ToUpdate('user',['uniqid']);
-    fs.writeFileSync('public/user/' + uniq + '.webp', content, 'base64', { mode: 0o777 })
+    fs.writeFileSync('../apirumahjo/public/user/' + uniq + '.webp', content, 'base64', { mode: 0o777 })
     const connection = await mysql.createConnection(DB_CONF);
     const [datares] = await connection.query(update);
     return NextResponse.json({ message: datares });
