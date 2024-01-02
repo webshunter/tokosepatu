@@ -174,7 +174,7 @@ export const Toolbar = function () {
                         <HTMLComment>
                             <div className="grid grid-cols-3 gap-4 items-center pt-2 text-white">
                                 <div>
-                                    <a onClick={() => setOpenModal(true)} className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
+                                    <a onClick={() => setOpenModal(true)} className="cursor-pointer flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
                                         <Image className="relative" src="/toolbar/cariproperti.png" alt="Cari Properti di Rumahjo" width={40} height={40} />
                                         <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
                                     </a>
