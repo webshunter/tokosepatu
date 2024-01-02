@@ -48,6 +48,7 @@ export async function GET(req, Response) {
         kode
         , concat('https://app.rumahjo.com/gallery/',image1) img1
         , concat('https://app.rumahjo.com/gallery/',image2) img2
+        , backlink
         FROM banner`
         const value = [];
         const [data] = await connection.query(query);

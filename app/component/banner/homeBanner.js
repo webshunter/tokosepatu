@@ -22,7 +22,7 @@ const HomeBanner = ({data}) => {
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover'
                         }}
-                    />
+                    ></li>
                 })}
             </Carousel>
             <style jsx>{`
