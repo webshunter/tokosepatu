@@ -78,6 +78,12 @@ export default function EditProfile() {
                 })
         }
     }
+
+    const uploadChange = function(e){
+        let el = e.target.files[0];
+        console.log(el);
+    }
+
     return (<>
         <ValidasiLogin>
         <Modal dismissible show={props.openModal === 'dismissible'} onClose={() => props.setOpenModal(undefined)}>
@@ -128,7 +134,11 @@ export default function EditProfile() {
                                     <div className="relative">
                                         <div className="flex flex-row flex-wrap items-start relative">
                                             <div className="items-center flex w-full">
-                                                <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
+                                                <input id="upload-profile" onChange={uploadChange} className='hidden' type='file'></input>
+                                                <button onClick={()=>{
+                                                        let imageProfile = document.getElementById('upload-profile');
+                                                        imageProfile.click();
+                                                }} className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md">
                                                     <span>Unggah</span>
                                                 </button>
                                             </div>

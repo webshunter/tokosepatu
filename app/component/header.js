@@ -188,8 +188,7 @@ export const Header = function(){
                 uniqid: 'ID-USER-'+Date.now(),
                 data: session
             })
-            .then(function(res){
-                let [data] = res;
+            .then(function(data){
                 if(data.telp && data.telp != ""){
                     setPhoneVerified(1);
                 }else{
