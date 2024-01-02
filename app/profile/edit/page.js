@@ -4,6 +4,74 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { getFips } from 'crypto';
 import { Button, Modal } from 'flowbite-react';
 import ValidasiLogin from '@/app/component/loginvalidasi';
+
+
+function convertToWebP(file, maxWidth, maxHeight) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            const img = new Image();
+            img.onload = function () {
+                let width = img.width;
+                let height = img.height;
+
+                // Mengatur ukuran gambar
+                if (width > maxWidth || height > maxHeight) {
+                    const aspectRatio = width / height;
+
+                    if (width > maxWidth) {
+                        width = maxWidth;
+                        height = width / aspectRatio;
+                    }
+
+                    if (height > maxHeight) {
+                        height = maxHeight;
+                        width = height * aspectRatio;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Konversi ke format WebP
+                canvas.toBlob(function (blob) {
+                    if (!blob) {
+                        reject(new Error('Konversi ke format WebP gagal'));
+                    } else {
+                        resolve(blob);
+                    }
+                }, 'image/webp', 0.8); // Kualitas gambar, dalam hal ini, 0.8
+            };
+
+            img.src = event.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    });
+}
+
+function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            const base64String = reader.result.split(',')[1]; // Mengambil bagian base64 saja
+            resolve(base64String);
+        };
+
+        reader.onerror = function (error) {
+            reject(error);
+        };
+
+        reader.readAsDataURL(blob);
+    });
+}
+
 export default function EditProfile() {
     const [popupVisible, setPopUpVisible] = useState(false);
     const [avatar, setAvatar] = useState("");
@@ -79,9 +147,22 @@ export default function EditProfile() {
         }
     }
 
-    const uploadChange = function(e){
+    const uploadChange = async function(e){
         let el = e.target.files[0];
-        console.log(el);
+        let webp = await convertToWebP(el, 720, 720);
+        let base64 = await blobToBase64(webp);
+        const formData = new FormData();
+        formData.append("content", base64);
+        formData.append("uniq", uniqId);
+        fetch("/api/profile", { method: 'POST', body: formData })
+        .then(function(r){
+            return r.json()
+        }).then(function(r){
+            window.location.reload();
+        })
+        .catch(function(o){
+            console.log(o)
+        })
     }
 
     return (<>

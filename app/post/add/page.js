@@ -19,11 +19,10 @@ const wilayah = dataWilayah();
 export default function PostListing() {
     const route = useRouter();
     const [price, setPrice] = useState("");
-
     const [visible, setVisible] = useState("");
     const [kota, setKota] = useState([]);
     const [kecamatan, setKecamatan] = useState([]);
-    const [properti, setProperti] = useState("Dijual: Rumah & Apartement")
+    const [properti, setProperti] = useState("Dijual: Rumah & Apartement");
     
     const [hideTanah, setHideTanah] = useState(null)
 
