@@ -183,6 +183,7 @@ export const Header = function(){
     if(session){
         if(!callUser){
             setCallUser(1);
+            console.log(session)
             postData(ori() +'/data/simpan/user', {
                 uniqid: 'ID-USER-'+Date.now(),
                 data: session

@@ -18,6 +18,9 @@
 # production
 /public/banner
 
+# user image
+/public/user
+
 # misc
 .DS_Store
 *.pem
