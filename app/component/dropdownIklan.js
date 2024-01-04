@@ -3,6 +3,42 @@ import { useRouter } from "next/navigation";
 
 const DropdownIlkan = ({data}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [uniqId, setUniqId] = useState(data[0]);
+    const [laku, setLaku] = useState(0);
+    const [tgllaku, setTgllaku] = useState(null);
+    const [approval, setApproval] = useState(null);
+
+    const listingUpdate = function(app, uniq, sold, date) {
+        let data = {
+            laku: sold
+            ,approval: app
+            , tgllaku: date
+            , uniqid: uniq
+        }
+        fetch('/api/update/listing', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then((res)=>{
+            location.reload();
+        })
+    };
+
+    const initUpdate = (approval, uniqId, laku = '0', tgllaku = null) => {
+        setApproval(approval);
+        setUniqId(uniqId);
+        setLaku(laku);
+        setTgllaku(tgllaku);
+        const userConfirmed = window.confirm('Yakin ingin merubah listing?');
+        if (userConfirmed) {
+            listingUpdate();
+        } else {
+            return false;
+        }        
+    };
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -36,11 +72,11 @@ const DropdownIlkan = ({data}) => {
                             }} className="pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                         EDIT
                         </a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                        HAPUS
+                        <a href="#" onClick={() => listingUpdate('3', data[0], '0', null) } className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                        NON AKTIF
                         </a>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
-                        TANDAI SEBAGAI TERJUAL
+                        <a href="#" onClick={() => listingUpdate('4', data[0], '1', 'now') } className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                        TANDAI SUDAH LAKU
                         </a>
                     </div>
                 </div>

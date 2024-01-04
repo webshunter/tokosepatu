@@ -23,7 +23,15 @@ export const ProdukCard = function ({ data }) {
                     ?
                         <span className="bg-blue-600 h-full absolute w-[5px]" style={{borderRadius:"4px 0 0 4px"}}></span>
                     :
+                    approval=='2'
+                    ?
                         <span className="bg-red-500 h-full absolute w-[5px]" style={{borderRadius:"4px 0 0 4px"}}></span>
+                    :
+                    approval=='3'
+                    ?
+                        <span className="bg-neutral-400 h-full absolute w-[5px]" style={{borderRadius:"4px 0 0 4px"}}></span>
+                    :
+                        <span className="bg-green-700 h-full absolute w-[5px]" style={{borderRadius:"4px 0 0 4px"}}></span>
                 :
                     <span className="bg-green-700 h-full absolute w-[5px]" style={{borderRadius:"4px 0 0 4px"}}></span>
                 }
@@ -78,7 +86,16 @@ export const ProdukCard = function ({ data }) {
                                 ?
                                     <label className="bg-blue-600 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Tayang</label>
                                 :
+                                approval=="2"
+                                ?
                                     <label className="bg-red-500 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Ditolak</label>
+                                :
+                                approval=="3"
+                                ?
+                                    <label className="bg-neutral-400 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Non Aktif</label>
+                                :
+                                    <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Terjual</label>
+
                             :
                                 <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Terjual</label>
                             }

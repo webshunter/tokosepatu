@@ -31,8 +31,8 @@ export default function CariAgen() {
                     </div>
                     <div className="w-full rounded" style={{backgroundColor:"rgba(0, 0, 0, 0.6)",padding:"calc(8px + 0.4vw) calc(16px + 0.8vw)"}}>
                         <div className="flex items-center" style={{marginBottom:"calc(5px + .5vw)",marginTop:"calc(5px + 0.5vw)"}}>
-                            <div className="flex items-center bg-white rounded max-h-[40.8px] md:max-h-[55.5px]" style={{flex:"1 1 0%",maxWidth:"calc(100% - 110px - 7vw)"}}>
-                                <div className="h-full flex items-center pl-2 md:pl-4" style={{ width:"calc(35px + 1vw)", color:"rgba(0, 0, 0, 0.25)",fontSize:"120%" }}>
+                            <div className="flex items-center bg-white rounded max-h-[40.8px] md:max-h-[55.5px] max-w-[100%] md:max-w-[90%]" style={{flex:"1 1 0%"}}>
+                                <div className="hidden md:block h-full flex items-center pl-2 md:pl-4" style={{ width:"calc(35px + 1vw)", color:"rgba(0, 0, 0, 0.25)",fontSize:"120%" }}>
                                     <FontAwesomeIcon className=""
                                         icon={faSearch}/>
                                 </div>
@@ -40,10 +40,16 @@ export default function CariAgen() {
                                     <input onChange={handleChange} value={name} type="text" className="h-[33px] md:h-auto outline-none border-0 placeholder-shown:text-ellipsis" placeholder="Cari lokasi, nama agen, kata kunci lainnya"></input>
                                 </div>
                             </div>
-                            <div className="w-full" style={{maxWidth:"calc(50px + 9vw)",marginLeft:"calc(5px + 0.5vw)"}}>
+                            <div className="w-auto" style={{marginLeft:"calc(5px + 0.5vw)"}}>
                                 <button onClick={() => {
                                     router.push(pathname + '?search=' + name);
-                                }} className="w-full text-white text-[90%] md:text-[105%] rounded bg-yellow-400" style={{padding:"calc(7px + 0.5vw) calc(12px + 1.2vw)",minWidth:"calc(100px + 7vw)"}}>Cari</button>
+                                }} className="block md:hidden w-full text-white text-[90%] md:text-[105%] rounded bg-yellow-400" style={{padding:"calc(7px + 0.5vw) calc(12px + 1.2vw)"}}>
+                                    <FontAwesomeIcon className=""
+                                        icon={faSearch}/>
+                                </button>
+                                <button onClick={() => {
+                                    router.push(pathname + '?search=' + name);
+                                }} className="hidden md:block w-full text-white text-[90%] md:text-[105%] rounded bg-yellow-400" style={{padding:"calc(7px + 0.5vw) calc(12px + 1.2vw)",minWidth:"calc(100px + 7vw)"}}>Cari</button>
                             </div>
                         </div>
                     </div>

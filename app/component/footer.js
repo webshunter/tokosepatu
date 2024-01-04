@@ -75,6 +75,7 @@ export const Footer = function () {
                                 <a href="mailto:rumahjo.com@gmail.com" className="hover:underline"> <i className="fa-solid fa-envelope"></i> rumahjo.com@gmail.com</a>
                             </li>
                         </ul>
+                        <a href="support-us" className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-whitehover:underline">Dukung Kami</a>
                     </div>
                 </div>
                 <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
