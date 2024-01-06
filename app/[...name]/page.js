@@ -67,7 +67,7 @@ export default function Search({ params }) {
                     <div className="box-border">
                         <div className="bg-[url('/bgcari.jpg')] bg-cover bg-center h-[calc(30vw)] max-h-[calc(30vw)] min-h-[320px] mb-[20px] flex justify-start flex-col items-center py-[0px] px-[6%]">
                             <div className="flex items-start whitespace-nowrap w-full" style={{marginTop:"calc(20px + 4vw)",marginBottom:"calc(8px + 0.8vw)"}}>
-                                <h1 className="text-[220%] font-normal text-white leading-tight" style={{textShadow:"rgba(0, 0, 0, 0.6) 0px 2px 4px"}}>Cari Properti {slug[0]==='sale' ? 'Dijual' : slug[0]==='rent' ? 'Disewa' : 'Indekost'}</h1>
+                                <h1 className="text-[220%] font-normal text-white leading-tight" style={{textShadow:"rgba(0, 0, 0, 0.6) 0px 2px 4px"}}>Cari Properti {slug[0]==='sale' ? 'Dijual' : slug[0]==='rent' ? 'Disewa' : 'Indekos'}</h1>
                             </div>
                             <div className="w-full rounded" style={{backgroundColor:"rgba(0, 0, 0, 0.6)",padding:"calc(8px + 0.4vw) calc(16px + 0.8vw)"}}>
                                 <div className="block md:flex items-center" style={{marginBottom:"calc(5px + .5vw)",marginTop:"calc(5px + 0.5vw)"}}>
@@ -82,9 +82,11 @@ export default function Search({ params }) {
                                                     onChange={(e) => {
                                                         setKeyword(e.target.value);
                                                     }}
-                                                    value={Keyword.replace(/\-/g, ' ')} type="text" className="h-[33px] md:h-auto outline-none border-0 placeholder-shown:text-ellipsis" placeholder="Cari properti"></input>
+                                                    value={Keyword.replace(/\-/g, ' ')} type="text" className="h-[33px] md:h-auto outline-none border-0 placeholder-shown:text-ellipsis focus:ring-0 focus:ring-offset-0 focus:outline-[0] border-0" placeholder="Cari properti"></input>
                                             </div>
                                         </div>
+                                        {slug[0]!=='indekos'
+                                        ?
                                         <div className="flex flex-wrap">
                                             <ul className="flex w-full">
                                                 <li className="w-full">
@@ -105,6 +107,9 @@ export default function Search({ params }) {
                                                 </li>
                                             </ul>
                                         </div>
+                                        :
+                                        <div className=''>&nbsp;</div>
+                                        }
                                     </div>
                                     <div id="btn-search" className="w-full">
                                         <button onClick={searchButton} className="w-full text-white text-[90%] md:text-[105%] rounded bg-yellow-400" style={{padding:"calc(7px + 0.5vw) calc(12px + 1.2vw)",minWidth:"calc(100px + 7vw)"}}>Cari</button>

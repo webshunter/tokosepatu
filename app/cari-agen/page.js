@@ -37,7 +37,7 @@ export default function CariAgen() {
                                         icon={faSearch}/>
                                 </div>
                                 <div className="flex flex-wrap" style={{flex:"1 1 0%",fontSize:"115%",lineHeight:"1", outline:"none",width:"83%"}}>
-                                    <input onChange={handleChange} value={name} type="text" className="h-[33px] md:h-auto outline-none border-0 placeholder-shown:text-ellipsis" placeholder="Cari lokasi, nama agen, kata kunci lainnya"></input>
+                                    <input onChange={handleChange} value={name} type="text" className="h-[33px] md:h-auto outline-none border-0 placeholder-shown:text-ellipsis focus:ring-0 focus:ring-offset-0 focus:outline-[0] border-0" placeholder="Cari lokasi, nama agen, kata kunci lainnya"></input>
                                 </div>
                             </div>
                             <div className="w-auto" style={{marginLeft:"calc(5px + 0.5vw)"}}>
