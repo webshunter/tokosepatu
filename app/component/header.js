@@ -45,7 +45,7 @@ const ButtonLogin = ({verify,props}) => {
                     visible? setVisible(null) : setVisible(1);
                 }} className="h-[50px] mx-2 overflow-hidden rounded-[50px]">
                     {session?
-                        <img src={si ? (si.avatar ? 'https://app.rumahjo.com/'+si.avatar+`?v=${Date.now()}` : session.user.image ) : session.user.image} alt="" width={50} height={50} /> 
+                        <img src={si ? (si.avatar ? si.avatar+`?v=${Date.now()}` : session.user.image ) : session.user.image} alt="" width={50} height={50} /> 
                             :
                         <></>
                     }

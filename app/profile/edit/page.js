@@ -141,7 +141,7 @@ export default function EditProfile() {
                     setPassword(data.password)
                     setTelp(data.telp)
                     if (data.avatar!=='' && data.avatar!==null) {
-                        setAvatar('https://app.rumahjo.com/'+data.avatar)
+                        setAvatar(data.avatar)
                     }
                 })
         }
