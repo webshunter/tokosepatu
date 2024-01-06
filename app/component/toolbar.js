@@ -133,7 +133,7 @@ export const Toolbar = function () {
     return(<>
     <div className="px-4 md:px-10 mb-2 md:mb-4">
         <div className="flex justify-center items-center h-full">
-            <div className="rounded-lg bg-[#2951a3] overflow-hidden shadow-lg w-full md:w-[750px]">
+            <div className="rounded-lg bg-[#2951a3]/95 overflow-hidden shadow-lg w-full md:w-[750px]">
                 <div className="my-3 pt-1">
                     <div id="tablist" className="">
                         <div className="tabs-home flex flex-nowrap h-[33px] overflow-x-auto overflow-y-hidden whitespace-nowrap justify-center">
@@ -175,19 +175,19 @@ export const Toolbar = function () {
                             <div className="grid grid-cols-3 gap-4 items-center pt-2 text-white">
                                 <div>
                                     <a onClick={() => setOpenModal(true)} className="cursor-pointer flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                        <Image className="relative" src="/toolbar/cariproperti.png" alt="Cari Properti di Rumahjo" width={40} height={40} />
+                                        <Image className="relative" src="/toolbar/search-house.png" alt="Cari Properti di Rumahjo" width={40} height={40} />
                                         <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Carikan Properti</span>
                                     </a>
                                 </div>
                                 <div>
                                     <Link href="/cari-agen" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                        <Image className="relative" src="/toolbar/cariagen.png" alt="Cari Agen di Rumahjo" width={40} height={40} />
+                                        <Image className="relative" src="/toolbar/certficate.png" alt="Cari Agen di Rumahjo" width={40} height={40} />
                                         <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Cari Agen</span>
                                     </Link>
                                 </div>
                                 <div>
                                     <Link href="/simulasi-kpr" className="flex flex-col md:flex-row gap-3 h-[88px] md:h-[50px] no-underline items-center px-[4px] md:px-0 py-[16px] md:py-0">
-                                        <Image className="relative" src="/toolbar/calculation.png" alt="Simulasi KPR di Rumahjo" width={40} height={40} />
+                                        <Image className="relative" src="/toolbar/home.png" alt="Simulasi KPR di Rumahjo" width={40} height={40} />
                                         <span className="font-bold text-center md:text-left leading-4 text-[12px] md:text-[14px]">Simulasi KPR</span>
                                     </Link>
                                 </div>
