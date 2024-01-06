@@ -78,7 +78,7 @@ export const Footer = function () {
                                 <span> <i className="fa-solid fa-location-dot"></i> Apartement Gading Nias D/21 Kelapa Gading, Jakarta Utara</span>
                             </li>
                         </ul>
-                        <a href="support-us" className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-whitehover:underline">Dukung Kami</a>
+                        <a href="support-us" className="mt-4 text-sm font-semibold text-gray-900 uppercase dark:text-whitehover:underline">Dukung Kami</a>
                     </div>
                 </div>
                 <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
