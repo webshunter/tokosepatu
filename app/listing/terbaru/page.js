@@ -3,6 +3,7 @@ import React from "react";
 import useSWR, { SWRConfig } from 'swr'
 import { useEffect, useState } from 'react';
 import { ProdukCard } from "@/app/library/card";
+import { LoaderJo } from "@/app/component/loader";
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const DaftarPremium = () =>{
@@ -12,11 +13,7 @@ const DaftarPremium = () =>{
   return <>
   {!dPremium ? 
     <>
-          <div className='px-[50px] pt-[50px] h-screen'>
-            <div className="loader">Rumahjo
-              <span></span>
-            </div>
-          </div>
+      <LoaderJo/>
     </>
     :
     <section className="block mt-10 px-4 md:px-10 my-[16px]">

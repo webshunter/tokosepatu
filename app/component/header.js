@@ -64,7 +64,7 @@ const ButtonLogin = ({verify,props}) => {
                     <button onClick={() => signOut()} className="block rounded bg-indigo-950 w-full text-white p-2 my-4">Log Out</button>
                 </div>
             </div>
-            <Link href="/post/add" className="relative flex items-center justify-center">
+            <Link href="/post/add" className="relative hidden md:flex items-center justify-center">
                 <svg width="104" height="45" className="_20oLV" viewBox="0 0 1603 768">
                     <path
                         d="M434.442 16.944h718.82c202.72 0 367.057 164.337 367.057 367.058s-164.337 367.057-367.057 367.057h-718.82c-202.721 0-367.058-164.337-367.058-367.058S231.721 16.943 434.442 16.943z"
@@ -72,15 +72,15 @@ const ButtonLogin = ({verify,props}) => {
                     ></path>
                     <path
                         d="M427.241 669.489c-80.917 0-158.59-25.926-218.705-73.004l-.016-.014C139.407 542.352 99.766 464.914 99.766 383.997c0-41.07 9.776-80.712 29.081-117.797 25.058-48.139 64.933-89.278 115.333-118.966l-52.379-67.581c-64.73 38.122-115.955 90.98-148.159 152.845C18.8 280.243 6.201 331.224 6.201 383.997c0 104.027 50.962 203.61 139.799 273.175h.016c77.312 60.535 177.193 93.887 281.22 93.887h299.699l25.138-40.783-25.138-40.783H427.237z"
-                        fill="#ffaaaa"
+                        fill="#c30000"
                     ></path>
                     <path
                         d="M1318.522 38.596c-45.72-14.369-93.752-21.658-142.762-21.658H427.249c-84.346 0-165.764 21.683-235.441 62.713l3.118 51.726 49.245 15.865c54.16-31.895 117.452-48.739 183.073-48.739h748.511c38.159 0 75.52 5.657 111.029 16.829 44.91 14.111 86.594 37.205 120.526 66.792l66.163-57.68c-43.616-38.01-97.197-67.703-154.957-85.852z"
-                        fill="#aaffaa"
+                        fill="#2951a3"
                     ></path>
                     <path
                         d="M1473.479 124.453l-55.855 9.91-10.307 47.76c61.844 53.929 95.92 125.617 95.92 201.88a251.85 251.85 0 01-11.214 74.363c-38.348 124.311-168.398 211.129-316.262 211.129H726.949l25.121 40.783-25.121 40.783h448.812c190.107 0 357.303-111.638 406.613-271.498a323.69 323.69 0 0014.423-95.559c0-98.044-43.805-190.216-123.317-259.551z"
-                        fill="#aaaaff"
+                        fill="#F49619"
                     ></path>
                 </svg>
                 <svg
@@ -204,35 +204,35 @@ export const Header = function(){
                 <Link className="flex md:justify-center md:items-center md:block" href="/">
                     <img src="/logo-h.png" alt="Rumahjo - Rumah Jasa Online" className="h-[50px] md:h-[70px] pt-0 md:pt-1"></img>
                 </Link>
-                <div className="md:hidden " id="menuLocation" style={{flexGrow:"1", maxWidth:"calc(100% - 100px)"}}>
+                {/* <div className="md:hidden " id="menuLocation" style={{flexGrow:"1", maxWidth:"calc(100% - 100px)"}}>
                     <div className="flex" style={{justifyContent:"flex-end"}}>
                         <div style={{margin: "0 8px 0 0", display: "inline-block", maxWidth: "calc(100% - 28px)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap"}}>Malang</div>
                         <svg width="19px" height="19px" fill="#fff" viewBox="0 0 1024 1024" data-aut-id="icon" className="text-white" fillRule="evenodd">
                             <path className="rui-w4DG7" d="M512 85.333c211.755 0 384 172.267 384 384 0 200.576-214.805 392.341-312.661 469.333v0h-142.656c-97.856-76.992-312.683-268.757-312.683-469.333 0-211.733 172.267-384 384-384zM512 170.667c-164.672 0-298.667 133.973-298.667 298.667 0 160.021 196.885 340.523 298.453 416.597 74.816-56.725 298.88-241.323 298.88-416.597 0-164.693-133.973-298.667-298.667-298.667zM512.006 298.66c94.101 0 170.667 76.565 170.667 170.667s-76.565 170.667-170.667 170.667c-94.101 0-170.667-76.565-170.667-170.667s76.565-170.667 170.667-170.667zM512.006 383.994c-47.061 0-85.333 38.272-85.333 85.333s38.272 85.333 85.333 85.333c47.061 0 85.333-38.272 85.333-85.333s-38.272-85.333-85.333-85.333z"></path>
                         </svg>
                     </div>
-                </div>
-            </div>
-            <div className="w-full md:w-[calc(100vw-250px)] lg:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] md:right-[0px] lg:right-[30px] h-[auto] top-[10px]">
-                <div className={hiddenSearch?`hidden`:`hidden flex justify-end overflow-hidden rounded-md`}>
-                    <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] md:w-[37vw] lg:w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700 border-2 rounded-l-md border-[#db9233]" />
-                    <button onClick={searchButton} className="px-4 font-semibold py-2 h-[45px] bg-[#db9233]">GO</button>
-                </div>
-                <div className="hidden md:flex min-w-[200px] w-[200px] justify-center items-center">
-                    <ButtonLogin verify={phoneVerified} props={props} />
+                </div> */}
+                <div className="md:w-full md:w-[calc(100vw-250px)] lg:w-[calc(100vw-320px)] flex items-center justify-end md:absolute right-[30px] md:right-[0px] lg:right-[30px] h-[auto] top-[10px]">
+                    <div className={hiddenSearch?`hidden`:`hidden flex justify-end overflow-hidden rounded-md`}>
+                        <input id="search" placeholder="Search..." onKeyDown={keyDownAction} className="p-0 m-0 inline-block w-[100vw] md:w-[37vw] lg:w-[100vw] h-[45px] px-2 text-[1.3rem] text-gray-700 border-2 rounded-l-md border-[#db9233]" />
+                        <button onClick={searchButton} className="px-4 font-semibold py-2 h-[45px] bg-[#db9233]">GO</button>
+                    </div>
+                    <div className="flex md:min-w-[200px] md:w-[200px] justify-center items-center">
+                        <ButtonLogin verify={phoneVerified} props={props} />
+                    </div>
                 </div>
             </div>
         </nav>
         {!hiddenMenus?
         <div className="fixed md:hidden z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
-            <div className="grid h-full max-w-lg grid-cols-5 mx-auto">
+            <div className="grid h-full max-w-lg grid-cols-3 mx-auto">
                 <Link href="/" data-tooltip-target="tooltip-home" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                     </svg>
                     <span className="sr-only">Home</span>
                 </Link>
-                <button data-tooltip-target="tooltip-wallet" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                {/* <button data-tooltip-target="tooltip-wallet" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" preserveAspectRatio="xMidYMid meet">
                         <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
                             <path d="M575 2351 c-60 -10 -125 -50 -163 -101 l-35 -45 829 -5 829 -5 56 -26 c76 -36 129 -86 170 -161 l34 -63 3 -578 3 -577 28 14 c47 25 99 91 116 149 14 48 15 130 13 633 l-3 579 -30 54 c-32 57 -67 90 -131 118 -36 17 -96 18 -859 19 -451 1 -838 -1 -860 -5z"/>
@@ -240,20 +240,24 @@ export const Header = function(){
                         </g>
                     </svg>
                     <span className="sr-only">Obrolan</span>
-                </button>
+                </button> */}
                 <div className="flex items-center justify-center">
                     <AddMenu props={props} />
                 </div>
-                <button data-tooltip-target="tooltip-settings" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                {/* <button data-tooltip-target="tooltip-settings" type="button" className="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <svg className="w-6 h-6 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
                     <span className="sr-only">Favorit</span>
-                </button>
-                <button data-tooltip-target="tooltip-profile" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                    <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
-                    </svg>
+                </button> */}
+                <button onClick={()=>{ route.push('/profile/edit') }} data-tooltip-target="tooltip-profile" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                    {session ?
+                        <img className="rounded-full" src={session.user.image} alt="" width={27.25} height={27.25} />
+                        :
+                        <svg className="w-5 h-5 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-yellow-400 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                        </svg>
+                    }
                     <span className="sr-only">Profile</span>
                 </button>
             </div>
