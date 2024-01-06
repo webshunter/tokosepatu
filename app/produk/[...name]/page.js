@@ -10,7 +10,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 export async function generateMetadata({ params, searchParams }, parent) {
     let [slug] = params.name; 
     const connection = await mysql.createConnection(DB_CONF);
-    const query = `SELECT a.*, b.image, c.fullname, c.telp phone FROM listing a
+    const query = `SELECT a.*, b.image, c.fullname, c.telp phone, c.avatar FROM listing a
         LEFT JOIN user c ON c.email = a.email
         LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
         WHERE a.slug = '${slug}'`;

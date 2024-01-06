@@ -46,6 +46,7 @@ export default function ProdukDetail(props) {
     const ref = useOutsideClick(() => {
         setVisible(null)
     });
+    const [avatar, SetAvatar] = useState([]);
     const [arrImage, SetArrImage] = useState([]);
     const [data, SetData] = useState({});
     const [youtube, setYoutube] = useState(null);
@@ -53,6 +54,7 @@ export default function ProdukDetail(props) {
     const [tampilkanNumber, setTampilkanNumber] = useState(null);
     // [latitude,longitude]
     let log = new Date().toString();
+
 
     useEffect(() => {
 
@@ -104,6 +106,7 @@ export default function ProdukDetail(props) {
 
         const loadData = async function () {
             const produk = props.data;
+            console.log(produk)
                 let dataArray;
                 if(produk.length > 0){
                     dataArray = produk[0];
@@ -128,7 +131,7 @@ export default function ProdukDetail(props) {
                 setMaps(mapsRender.join(","))
         }
         loadData();
-    }, [setYoutube, props]);
+    }, [setYoutube, props, SetAvatar]);
 
     const kec = (wilayah.getKecamatan(data.kec) === null ? "" : wilayah.getKecamatan(data.kec).nama);
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
@@ -349,7 +352,7 @@ export default function ProdukDetail(props) {
                     <div className="flex flex-col">
                         <div className="flex w-[calc(100%-40px)] items-center">
                             <a href={"/profile/" + data.uid_user} className="relative">
-                                <figure className="relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0 bg-[url('https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg')]"></figure>
+                                <figure className={`relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0 bg-[url('${data.avatar ? data.avatar : `https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg`}')]`}></figure>
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
                                 <a href={"/profile/" + data.uid_user}>
