@@ -59,7 +59,7 @@ export const Footer = function () {
                             </li>
                         </ul>
                     </div>
-                    <div className="float-right text-right">
+                    <div className="md:float-right md:text-right">
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Hubungi Kami</h2>
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
                             <li className="mb-1">
@@ -74,8 +74,12 @@ export const Footer = function () {
                             <li  className="mb-1">
                                 <a href="mailto:rumahjo.com@gmail.com" className="hover:underline"> <i className="fa-solid fa-envelope"></i> rumahjo.com@gmail.com</a>
                             </li>
+                            <li  className="mb-1">
+                                <span> <i className="fa-solid fa-location-dot"></i> Apartement Gading Nias D/21 Kelapa Gading, Jakarta Utara</span>
+                            </li>
                         </ul>
-                        <a href="support-us" className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-whitehover:underline">Dukung Kami</a>
+                        <br/>
+                        <a href="/support-us" className="mt-4 text-sm font-semibold text-gray-900 uppercase dark:text-whitehover:underline">Dukung Kami</a>
                     </div>
                 </div>
                 <div className="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
