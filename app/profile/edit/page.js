@@ -141,7 +141,7 @@ export default function EditProfile() {
                     setPassword(data.password)
                     setTelp(data.telp)
                     if (data.avatar!=='' && data.avatar!==null) {
-                        setAvatar(data.avatar)
+                        setAvatar('https://app.rumahjo.com/'+data.avatar)
                     }
                 })
         }
@@ -203,7 +203,7 @@ export default function EditProfile() {
                                     />
                                     <figure 
                                     style={{
-                                        backgroundImage: "url("+`${avatar}`+")"
+                                        backgroundImage: "url("+`${avatar+'?v='+Date.now()}`+")"
                                     }}
                                     className="relative overflow-hidden w-[96px] md:w-[120px] h-[96px] md:h-[120px] bg-[50%] bg-cover rounded-full m-0">
                                         <div onClick={openPopUp} className="flex md:hidden absolute bottom-0 left-0 right-0 bg-[rgba(0,47,52,.7)] h-[32px] justify-center items-center cursor-pointer">

@@ -1,5 +1,6 @@
 "use client"
 import Link from "next/link"
+import useSWR, { SWRConfig } from 'swr'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from "react"
 import { Button, Checkbox, Label, Modal, TextInput } from 'flowbite-react';
@@ -10,14 +11,32 @@ import { useRouter } from "next/navigation";
 import { useOutsideClick } from "../library/outclick";
 import { usePathname } from 'next/navigation'
 import WaVerify from "./verifikasi/waverify";
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const ButtonLogin = ({verify,props}) => {
+    
     const route = useRouter();
     const ref = useOutsideClick(() => {
         setVisible(null)
     });
+
+    const [si, setI] = useState({});
+
     const { data: session } = useSession();
+
     const [visible, setVisible] = useState();
+
+    const { data: userData } = useSWR(`/api/user?email=` + (session ? session.user.email:''), fetcher)
+    // let [userDataW] = userData? userData:[];
+
+    useEffect(() => {
+        if(userData){
+            let [c] = userData.message;
+            setI(c?c:{});
+            console.log(si);
+        }
+    }, [userData, si]);
+
 
     if(session && session.user){
         return (<>
@@ -26,7 +45,7 @@ const ButtonLogin = ({verify,props}) => {
                     visible? setVisible(null) : setVisible(1);
                 }} className="h-[50px] mx-2 overflow-hidden rounded-[50px]">
                     {session?
-                        <img src={session.user.image} alt="" width={50} height={50} /> 
+                        <img src={si ? (si.avatar ? 'https://app.rumahjo.com/'+si.avatar : session.user.image ) : session.user.image} alt="" width={50} height={50} /> 
                             :
                         <></>
                     }
