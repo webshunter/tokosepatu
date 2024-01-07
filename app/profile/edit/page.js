@@ -154,6 +154,7 @@ export default function EditProfile() {
         const formData = new FormData();
         formData.append("content", base64);
         formData.append("uniq", uniqId);
+        formData.append("time", Date.now());
         fetch("/api/profile", { method: 'POST', body: formData })
         .then(function(r){
             return r.json()

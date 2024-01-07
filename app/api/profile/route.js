@@ -68,13 +68,14 @@ export async function POST(req) {
     const data = await req.formData();
     const content = data.get('content');
     const uniq = data.get('uniq');
+    const time = data.get('time');
     if (!fs.existsSync('../apirumahjo/public/user')){
         fs.mkdirSync('../apirumahjo/public/user', 0o777);
     }
     let update = [
         {
             uniqid : uniq,
-            avatar: 'https://app.rumahjo.com/user/'+uniq+'.webp'
+            avatar: 'https://app.rumahjo.com/user/' + uniq + '.webp?v=' + time
         }
     ].ToUpdate('user',['uniqid']);
     fs.writeFileSync('../apirumahjo/public/user/' + uniq + '.webp', content, 'base64', { mode: 0o777 })
