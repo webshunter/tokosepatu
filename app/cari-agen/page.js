@@ -73,7 +73,7 @@ export default function CariAgen() {
                                         <div className="flex items-center w-full">
                                             <div style={
                                                 {
-                                                    backgroundImage:"url('https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg')",
+                                                    backgroundImage: "url('" + (x.avatar ? x.avatar :`https://ui-avatars.com/api/?size=200&background=25D366&name=`+(x.fullname?x.fullname:'').split(' ').join('+') )+"')",
                                                     minWidth:"calc(50px + 1.5vw)",
                                                     width:"calc(50px + 1.5vw)",
                                                     height:"calc(50px + 1.5vw)",
