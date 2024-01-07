@@ -352,7 +352,9 @@ export default function ProdukDetail(props) {
                     <div className="flex flex-col">
                         <div className="flex w-[calc(100%-40px)] items-center">
                             <a href={"/profile/" + data.uid_user} className="relative">
-                                <div className={`relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0 bg-[url('${data.avatar ? data.avatar : `https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg`}')]`}></div>
+                                <div style={{
+                                    backgroundImage: 'url("' + (data.avatar ? data.avatar : `https://ui-avatars.com/api/?size=200&background=25D366&name=`+(data.fullname?data.fullname:'').split(' ').join('+'))+'")'
+                                }} className={`relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0`}></div>
                             </a>
                             <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
                                 <a href={"/profile/" + data.uid_user}>
