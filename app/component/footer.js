@@ -91,5 +91,12 @@ export const Footer = function () {
                 </div>
             </div>
         </footer>
+        <script src='https://www.googletagmanager.com/gtag/js?id=G-W4DJ46CELW'></script>
+        <script dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W4DJ46CELW');` }}/>
     </>)
 }
