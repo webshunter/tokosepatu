@@ -54,7 +54,7 @@ const ButtonLogin = ({verify,props}) => {
                     <div style={{gridGap:'10px', display:'grid', gridTemplateColumns:'80px auto'}}>
                         <div style={{overflow:'hidden', borderRadius:'50%', display:'inline-block'}}>
                             {session ?
-                                <img src={session.user.image} alt="" width={80} height={80} />
+                                <img src={si ? (si.avatar ? si.avatar + `?v=${Date.now()}` : session.user.image) : session.user.image} alt="" width={80} height={80} />
                                 :
                                 <></>
                             }

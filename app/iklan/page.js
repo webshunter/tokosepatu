@@ -14,6 +14,7 @@ export default function Profile({ params }) {
     const { data: session } = useSession();
     const { data: dataUser } = useSWR(`/api/user?email=`+(session? session.user.email : ''), fetcher)
     let user = dataUser?(dataUser.status != 500 ?dataUser.message[0]:null):null;
+    console.log(user)
     const route = useRouter();
     const [nama, setNama] = useState(null);
     const [about, setAbout] = useState(null);
@@ -99,7 +100,7 @@ export default function Profile({ params }) {
                                 <div className="relative " style={{ width: "fit-content" }}>
                                     {user? (user.avatar ?
                                         (
-                                            <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('https://ui-avatars.com/api/?name=${user?user.fullname:null}&bold=true&background=1e1b4b&color=ffe50c&size=250')` }}></figure>
+                                                <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('${user.avatar ? user.avatar : `https://ui-avatars.com/api/?size=200&background=25D366&name=` + (user.fullname ? user.fullname : '').split(' ').join('+') }')` }}></figure>
                                         ) :
                                         (
                                                 <figure className="w-[56px] md:w-[106px] h-[56px] md:h-[106px] bg-[50%] bg-cover rounded-full m-0" style={{ backgroundImage: `url('${session? session.user.image:``}')` }}></figure>
