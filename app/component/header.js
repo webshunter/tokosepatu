@@ -33,7 +33,7 @@ const ButtonLogin = ({verify,props}) => {
         if(userData){
             let [c] = userData.message;
             setI(c?c:{});
-            console.log(si);
+            // console.log(si);
         }
     }, [userData, si]);
 
@@ -146,12 +146,12 @@ const AddMenu = ({props}) => {
         </>)
     } else {
         return (<>
-            <button onClick={() => signIn()  } data-tooltip-target="tooltip-new" type="button" className="inline-flex items-center justify-center w-10 h-10 font-medium bg-[#2951a3] rounded-full group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+            <Link href="/login" data-tooltip-target="tooltip-new" type="button" className="inline-flex items-center justify-center w-10 h-10 font-medium bg-[#2951a3] rounded-full group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
                 <svg className="w-4 h-4 text-[#56cced] hover:text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
                 </svg>
                 <span className="sr-only">New item</span>
-            </button>
+            </Link>
         </>)
     }
 }
@@ -276,7 +276,13 @@ export const Header = function(){
                     </svg>
                     <span className="sr-only">Favorit</span>
                 </button> */}
-                <button onClick={()=>{ route.push('/profile/edit') }} data-tooltip-target="tooltip-profile" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                <button onClick={()=>{ 
+                    session
+                    ?
+                        route.push('/profile/edit') 
+                    :
+                        route.push('/login')
+                    }} data-tooltip-target="tooltip-profile" type="button" className="inline-flex flex-col items-center justify-center px-5 rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     {session ?
                         <img className="rounded-full" src={session.user.image} alt="" width={27.25} height={27.25} />
                         :
