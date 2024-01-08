@@ -50,8 +50,8 @@ export async function GET(req, Response) {
     const connection = await mysql.createConnection(DB_CONF);
     try {
         const query = `
-        SELECT a.*, b.image FROM (
-            SELECT * FROM listing WHERE approval>=1 AND 
+        SELECT a.*, b.image, c.reg FROM (
+            SELECT * FROM listing  WHERE approval>=1 AND 
             status='${status}' AND slug2 LIKE '%${type}%' AND 
             (
                 judul LIKE '%${keyword=='' ? type : keyword}%' OR 
@@ -59,7 +59,8 @@ export async function GET(req, Response) {
                 alamat LIKE '%${keyword=='' ? type : keyword}%'
             )
             LIMIT 500
-        ) a LEFT JOIN gallery b ON a.uniqid = b.uid_listing GROUP BY a.uniqid
+        ) a LEFT JOIN gallery b ON a.uniqid = b.uid_listing
+        LEFT JOIN user c ON c.uniqid=a.uid_user GROUP BY a.uniqid
         ORDER BY 
             ${order=='' ? `klik DESC` : order<'3' ? ` price ` + (order=='1' ? `DESC` : `ASC`) : ` userlog ` + (order=='3' ? `DESC` : `ASC`)}
         `

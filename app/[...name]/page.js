@@ -145,9 +145,15 @@ export default function Search({ params }) {
                             {dataListing.map((z, k) => {
                                 z.key = k;
                                 return (
-                                <li className="list-none" key={k}>
-                                    <ProdukCard data={z} />
-                                </li>
+                                    z.reg==='1'
+                                    ?
+                                    <li className="list-none" key={k}>
+                                        <ProdukCard data={z} type={"premium"} />
+                                    </li>
+                                    :
+                                    <li className="list-none" key={k}>
+                                        <ProdukCard data={z} />
+                                    </li>
                                 )
                             })}
                             </div>
