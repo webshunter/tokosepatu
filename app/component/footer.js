@@ -75,7 +75,7 @@ export const Footer = function () {
                                 <a href="mailto:rumahjo.com@gmail.com" className="hover:underline"> <i className="fa-solid fa-envelope"></i> rumahjo.com@gmail.com</a>
                             </li>
                             <li  className="mb-1">
-                                <span> <i className="fa-solid fa-location-dot"></i> Apartement Gading Nias D/21 Kelapa Gading, Jakarta Utara</span>
+                                <span> <i className="fa-solid fa-location-dot"></i> Kelapa Gading, Jakarta Utara</span>
                             </li>
                         </ul>
                         <br/>
