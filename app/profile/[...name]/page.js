@@ -125,14 +125,14 @@ export default function Profile({params}) {
                                 </ShareButton>
                             </div>
                         </div>
-                        <div className="w-full h-[48px] my-[16px]">
+                        {/* <div className="w-full h-[48px] my-[16px]">
                             <button className="border-2 h-[48px] border-yellow-400 w-full inline-flex justify-center items-center box-border cursor-pointer relative overflow-hidden rounded-md" style={{color:"rgb(250 204 21)"}}>
                                 <div className="flex mr-[8px]">
                                     <svg className="w-[22px] h-[22px]" style={{fill:"rgb(250 204 21)"}} viewBox="0 0 1024 1024" fillRule="evenodd"><path d="M127.979 106.667L85.333 149.334V874.686L127.979 917.354L170.647 874.686V618.679H579.681L622.349 661.347H895.448L938.666 618.679V190.187L895.448 149.334H572.343L529.675 106.667H127.979ZM170.647 192.002H494.325L536.992 234.67H853.352V576.012H657.678L615.01 533.344H170.647V192.002Z"></path></svg>
                                 </div>
                                 <span>Laporkan pengguna</span>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="col-span-4 md:col-span-3">
