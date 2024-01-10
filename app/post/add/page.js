@@ -292,18 +292,12 @@ export default function PostListing() {
                             <button data-nilai="0" onClick={(w)=>{
                                 backFunc(2);
                             }} type="button" className='text-center p-2 shadow-md'>
-                                <FontAwesomeIcon
-                                    icon={faBuilding}
-                                    style={{ fontSize: 25, color: "black" }}
-                                />
-                                <h1 className='text-[16px] mt-2 mb-3'>Properti</h1>
+                                <img className='w-[80px] inline-block' src='/icon/property.svg'></img>
+                                <h1 className='text-[18px] mt-2 mb-3'>Properti</h1>
                             </button>
                             <button data-nilai="1" type="button" className='text-center bg-white p-2 shadow-md'>
-                                <FontAwesomeIcon
-                                    icon={faBuilding}
-                                    style={{ fontSize: 25, color: "black" }}
-                                />
-                                <h1 className='text-[16px] mt-2 mb-3'>Bahan Bangunan (Coming Soon)</h1>
+                                <img className='w-[80px] inline-block' src='/icon/bahan-bangunan.svg'></img>
+                                <h1 className='text-[18px] mt-2 mb-3'>Bahan Bangunan (Coming Soon)</h1>
                             </button>
                         </div>
                     </div>
