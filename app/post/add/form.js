@@ -231,6 +231,12 @@ export const FormPost = ({ hidetanah }) => {
 
         {/* fasilitas */}
         <div data-shows="rumah,bangunan,indekos" style={{display:'none'}}>
+            <div className="float-right hidden sm:hidden md:flex w-[calc(100vw-280px)] h-full py-10 justify-center items-center">
+                <img src="/rumahjo-PNG.png" style={{
+                    width: '80%',
+                    maxWidth: '420px',
+                }} width="80%"></img>
+            </div>
             <label htmlFor="facility" className="text-gray-500 font-light mt-8 dark:text-gray-50">Fasilitas</label>
             <ul className="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                 {facility.data.map((d, i) => {

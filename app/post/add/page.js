@@ -280,10 +280,15 @@ export default function PostListing() {
                                 icon={faTimes}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </Link><h1 className='inline-block px-2'>Mau jual apa hari ini?</h1>
+                        </Link><h1 className='inline-block  text-[20px] px-2'>Mau jual apa hari ini?</h1>
                     </div>
-                    <div className='h-[calc(100vh-50px)]'>
-                        <div className="grid gap-5 p-10 grid-cols-1 md:grid-cols-2">
+                    <div style={{ 
+                        backgroundImage:`url("/rumahjo-PNG.png")`
+                        ,backgroundRepeat:`no-repeat`
+                        ,backgroundSize:`280px 280px`
+                        ,backgroundPosition:`center calc(100vh - 360px)`
+                    }} className='h-[calc(100vh-50px)]'>
+                        <div className="grid gap-5 p-10 bg-white grid-cols-1 md:grid-cols-2">
                             <button data-nilai="0" onClick={(w)=>{
                                 backFunc(2);
                             }} type="button" className='text-center p-2 shadow-md'>
@@ -291,14 +296,14 @@ export default function PostListing() {
                                     icon={faBuilding}
                                     style={{ fontSize: 25, color: "black" }}
                                 />
-                                <h1 className='text-[12px] mt-2 mb-3'>Properti</h1>
+                                <h1 className='text-[16px] mt-2 mb-3'>Properti</h1>
                             </button>
-                            <button data-nilai="1" type="button" className='text-center p-2 shadow-md'>
+                            <button data-nilai="1" type="button" className='text-center bg-white p-2 shadow-md'>
                                 <FontAwesomeIcon
                                     icon={faBuilding}
                                     style={{ fontSize: 25, color: "black" }}
                                 />
-                                <h1 className='text-[12px] mt-2 mb-3'>Bahan Bangunan (Coming Soon)</h1>
+                                <h1 className='text-[16px] mt-2 mb-3'>Bahan Bangunan (Coming Soon)</h1>
                             </button>
                         </div>
                     </div>
@@ -313,7 +318,7 @@ export default function PostListing() {
                                 icon={faChevronLeft}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </button><h1 className='inline-block px-2'>Properti</h1>
+                        </button><h1 className='inline-block  text-[20px] px-2'>Properti</h1>
                     </div>
                     <div className='h-[calc(100vh-50px)]'>
                         <div className="grid p-5 grid-cols-1 md:grid-cols-1">
@@ -337,7 +342,7 @@ export default function PostListing() {
                                 icon={faChevronLeft}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </button><h1 className='inline-block px-2'>Include Some Details</h1>
+                        </button><h1 className='inline-block  text-[20px] px-2'>Include Some Details</h1>
                     </div>
                     <div className='px-5'>
                         <FormPost hidetanah={hideTanah} />
@@ -355,7 +360,7 @@ export default function PostListing() {
                                 icon={faChevronLeft}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </button><h1 className='inline-block px-2'>Upload Your Photos</h1>
+                        </button><h1 className='inline-block  text-[20px] px-2'>Upload Your Photos</h1>
                     </div>
                     <div className='px-5'>
                         <ImageUpload />
@@ -375,7 +380,7 @@ export default function PostListing() {
                                 icon={faChevronLeft}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </button><h1 className='inline-block px-2'>Set Your Price</h1>
+                        </button><h1 className='inline-block  text-[20px] px-2'>Set Your Price</h1>
                     </div>
                     <div className='px-5'>
                         <h1 className="text-sm dark:text-gray-50 pt-8">Price</h1>
@@ -405,7 +410,7 @@ export default function PostListing() {
                                 icon={faChevronLeft}
                                 style={{ fontSize: 20, color: "black" }}
                             />
-                        </button><h1 className='inline-block px-2'>Confirm Your Location</h1>
+                        </button><h1 className='inline-block  text-[20px] px-2'>Confirm Your Location</h1>
                     </div>
                     <div className='px-5'>
                         <select name='prov' onChange={provinsiChange}>
