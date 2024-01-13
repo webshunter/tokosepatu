@@ -75,7 +75,7 @@ const DropdownIlkan = ({data}) => {
                         <a href="#" onClick={() => listingUpdate('3', data[0], '0', null) } className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                         NON AKTIF
                         </a>
-                        <a href="#" onClick={() => listingUpdate('4', data[0], '1', 'now') } className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
+                        <a href="#" onClick={() => listingUpdate(data[1], data[0], '1', 'now') } className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">
                         TANDAI SUDAH LAKU
                         </a>
                     </div>

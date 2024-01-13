@@ -94,15 +94,20 @@ export const ProdukCard = function ({ data }) {
                                 ?
                                     <label className="bg-neutral-400 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Non Aktif</label>
                                 :
-                                    <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Terjual</label>
+                                    <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Laku</label>
 
                             :
-                                <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Terjual</label>
+                                <label className="bg-green-700 text-white font-semibold rounded-[4px] w-fit min-w-[88px] h-[25px] px-[4px] py-2 inline-flex flex-col justify-center text-center">Laku</label>
                             }
                             </div>
+                            {laku=='0'
+                            ?
                             <div className="flex self-end mt-[8px] md:mt-[12px] pb-4 md:pb-0 gap-4">
                                 <DropdownIlkan data={[uniqid, approval, laku]} />
                             </div>
+                            :
+                            <></>
+                            }
                         </div>
                     </div>
                 </div>

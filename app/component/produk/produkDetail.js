@@ -54,6 +54,7 @@ export default function ProdukDetail(props) {
     const [tampilkanNumber, setTampilkanNumber] = useState(null);
     // [latitude,longitude]
     let log = new Date().toString();
+    let tgllaku = new Date().toString();
 
 
     useEffect(() => {
@@ -137,6 +138,8 @@ export default function ProdukDetail(props) {
     const kota = (wilayah.getKota(data.kota) === null ? "" : wilayah.getKota(data.kota).nama);
     const prov = (wilayah.getProvinsi(data.prov) === null ? "" : wilayah.getProvinsi(data.prov).nama);
     log = data.userlog;
+    tgllaku = DateLabel(data.laku=='' ? tgllaku : data.tgllaku);
+    console.log(tgllaku);
     return (<>
         <div className="flex justify-center items-center fixed w-[100vw] h-[100vh] top-0 left-0 z-[1500]" style={{ visibility: visible ? 'visible' : 'hidden', background: "rgba(0, 0, 0, 0.5)" }}>
             <div className="absolute rounded bg-white z-[9] cursor-pointer top-5 right-5 md:top-[40px] md:right-[40px]">
@@ -179,10 +182,38 @@ export default function ProdukDetail(props) {
         </div>
         </>
          : 
+        data.laku=='1'
+        ?
+        <div className="fixed w-screen h-screen bg-white/70 mt-7 md:mt-5" style={{zIndex:"99999"}}>
+            <div className="absolute w-[50%] md:w-[30%] lg:w-[20%] flex items-center justify-center capitalize" style={{top:'40%',left:'50%',transform:'translate(-50%,-50%)'}}>
+                <div className="flex flex-col justify-center items-center w-[100%] border-[3px] border-green-700 rounded-xl text-green-700 text-[20px]" style={{transform:"rotate(15deg) translateY(15px)",opacity:"0.8",backgroundColor:'rgba(255,255,255,.8)'}}>
+                    <div className="text-[120%] font-bold">SOLD!</div>
+                    <div className="h-[2px] w-[98%] bg-green-700"></div>
+                    <div className="text-[75%]">{tgllaku}</div>
+                    <div className="h-[2px] w-[98%] bg-green-700"></div>
+                    <div className="text-[100%] font-bold text-[#c30000]">RUMAHJO.COM</div>
+                </div>
+            </div>
+        </div>
+        :
         <div></div>
         }
-        <div className="grid px-0 lg:px-10 lg:pt-[25px] grid-cols-3 gap-2">
+        <div className="grid px-0 lg:px-10 pt-[35px] lg:pt-[25px] grid-cols-3 gap-2">
             <div className="col-span-3 md:col-span-2 bg-white shadow-md md:mb-2 md:p-5 rounded-xm">
+                {data.reg=='1'
+                ?
+                    <div>
+                        <div className="absolute z-10 pl-2 pt-2">
+                            <img className="w-[50px] md:w-[60px]" src="/3.png" style={{filter:"drop-shadow(2px 4px 8px hsla(0deg, 0%, 0%, 0.5))"}} />
+                        </div>
+                        <label className="hidden align-items-center px-[12px] flex items-center text-[#d50000] font-semibold bg-amber-500 text-[12px] mt-[18px] width-[96px]" style={{ height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
+                            <div className="premium my-[2px] mr-[8px] inline-block w-[12px] h-[12px] bg-[#d50000]"></div>
+                            <span className="text-[12px] md:text-[14px]">Premium</span>
+                        </label>
+                    </div>
+                :
+                    <></>
+                }
                 {/* <label className="align-items-center px-[12px] flex text-black bg-yellow-300 text-[12px] mt-[24px] width-[96px]" style={{ fontWeight: "400", height: "20px", justifyContent: "center", position: "absolute", textTransform: "uppercase", zIndex: "2", letterSpacing: ".5504px" }}>
                     <img className="my-[2px] mr-[8px] width-[6px]" src="https://statics.olx.co.id/external/base/img/featured.png" alt="Featured" />
                     <span>Highlight</span>
@@ -350,13 +381,13 @@ export default function ProdukDetail(props) {
                 </div>
                 <div className="mt-2 md:mt-5 rounded-sm  md:rounded-md shadow-xl bg-white w-full  md-w-[400px] px-5 py-3 ">
                     <div className="flex flex-col">
-                        <div className="flex w-[calc(100%-40px)] items-center">
+                        <div className="flex w-[calc(100%-10px)] items-center">
                             <a href={"/profile/" + data.uid_user} className="relative">
                                 <div style={{
                                     backgroundImage: 'url("' + (data.avatar ? data.avatar : `https://ui-avatars.com/api/?size=200&background=25D366&name=`+(data.fullname?data.fullname:'').split(' ').join('+'))+'")'
                                 }} className={`relative overflow-hidden w-[70px] h-[70px] bg-[50%] bg-cover rounded-full m-0`}></div>
                             </a>
-                            <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden">
+                            <div className="relative font-normal not-italic text-[14px] leading-[20px] basis-[100%] overflow-hidden ml-4">
                                 <a href={"/profile/" + data.uid_user}>
                                     <div>
                                         <div className="flex secondary gap-1 font-semibold mb-1">

@@ -7,7 +7,7 @@ import { DateLabel } from "@/app/library/dateLabel";
 const wilayah = dataWilayah();
 
 export const ProdukCard = function({data, type}){
-    let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota, userlog, klik } = data
+    let { hightlight, key, uniqid, price, judul, image:images, slug, kec, kota, userlog, klik, laku, tgllaku } = data
     const dataKecamatan = wilayah.getKecamatan(kec);
     const dataKota = wilayah.getKota(kota);
     return (<>
@@ -64,6 +64,22 @@ export const ProdukCard = function({data, type}){
                             </div>
                         </div>
                     </div>
+                    {laku=='1'
+                    ?
+                    <>
+                        <div className="absolute w-[75%] flex items-center justify-center capitalize" style={{top:'45%',left:'50%',transform:'translate(-50%,-50%)'}}>
+                            <div className="flex flex-col justify-center items-center w-[100%] border-[3px] border-green-700 rounded-xl text-green-700 text-[20px]" style={{transform:"rotate(15deg) translateY(15px)",opacity:"0.8",backgroundColor:'rgba(255,255,255,.8)'}}>
+                                <div className="text-[120%] font-bold">SOLD!</div>
+                                <div className="h-[2px] w-[98%] bg-green-700"></div>
+                                <div className="text-[75%]">{DateLabel(tgllaku).toUpperCase()}</div>
+                                <div className="h-[2px] w-[98%] bg-green-700"></div>
+                                <div className="text-[100%] font-bold text-[#c30000]">RUMAHJO.COM</div>
+                            </div>
+                        </div>
+                    </>
+                    :
+                    <></>
+                    }
                 </div>
             </Link>
         </div>

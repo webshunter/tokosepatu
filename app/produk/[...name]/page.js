@@ -43,7 +43,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Produk({params}) {
     let [slug] = params.name; 
     const connection = await mysql.createConnection(DB_CONF);
-    const query = `SELECT a.*, b.image, c.fullname, c.telp phone, c.avatar FROM listing a
+    const query = `SELECT a.*, b.image, c.fullname, c.telp phone, c.avatar, c.reg FROM listing a
         LEFT JOIN user c ON c.email = a.email
         LEFT JOIN gallery b ON a.uniqid = b.uid_listing 
         WHERE a.slug = '${slug}'`;
