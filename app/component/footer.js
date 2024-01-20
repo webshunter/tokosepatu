@@ -63,7 +63,7 @@ export const Footer = function () {
                         <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Hubungi Kami</h2>
                         <ul className="text-gray-500 dark:text-gray-400 text-[12px]">
                             <li className="mb-1">
-                                <a href="https://www.instagram.com/rumahjo.com88/" className="hover:underline"> <i className='fab fa-instagram'></i> Instagram</a>
+                                <a href="https://www.instagram.com/rumahjo_indonesia" className="hover:underline"> <i className='fab fa-instagram'></i> Instagram</a>
                             </li>
                             <li  className="mb-1">
                                 <a href="tel:+62895367066866" className="hover:underline"> <i className="fa-solid fa-phone"></i> +62 895 3670 66866</a>
