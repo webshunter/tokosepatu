@@ -107,7 +107,7 @@ export async function GET(req, Response) {
     try{
         const query = `
         SELECT uid_user, concat('map-',uid_user,'.xml') url, min(userlog) log FROM listing GROUP BY uid_user;
-        SELECT uid_user, concat('produk/', slug) url, userlog log FROM listing WHERE email <> 'rumahjo123@gmail.com'
+        SELECT uid_user, concat('produk/', slug) url, userlog log FROM listing WHERE email <> 'rumahjo123@gmail.com AND approval=1'
         `
         const [parentData] = await connection.query(query);
         const [parent, xmldata] = parentData;
