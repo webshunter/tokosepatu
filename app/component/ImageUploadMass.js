@@ -134,6 +134,7 @@ export const ImageUpload = ({data}) => {
         };
 
         useEffect(()=>{
+          window.alert = function (e) { console.log(e) }
           (async function(){
             if(data){
               if (dataImages) {
