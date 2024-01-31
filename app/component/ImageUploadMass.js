@@ -114,7 +114,14 @@ export const ImageUpload = ({data}) => {
 
       
           if (selectedImages.length + files.length <= 20) {
-            setSelectedImages([...selectedImages, ...filesbaru]);
+            let getData = [...selectedImages, ...filesbaru];
+            let cover = document.getElementById('my-cover');
+            if(cover && !cover.src){
+              console.log(cover.src)
+              let cev = getData.shift();
+              cover.src = cev;
+            }
+            setSelectedImages(getData);
           } else {
             alert('Anda hanya dapat mengunggah maksimal 20 gambar.');
           }
@@ -141,7 +148,14 @@ export const ImageUpload = ({data}) => {
                       filesbaru.push(imgaeBase64)
                     }
                     if (selectedImages.length + filesbaru.length <= 20) {
-                      setSelectedImages([...selectedImages, ...filesbaru]);
+                      let getData = [...selectedImages, ...filesbaru];
+                      let cover = document.getElementById('my-cover');
+                      if (cover && !cover.src) {
+                        console.log(cover.src)
+                        let cev = getData.shift();
+                        cover.src = cev;
+                      }
+                      setSelectedImages(getData);
                     }
                     setUpdateStatus(true);
                   }
@@ -159,9 +173,45 @@ export const ImageUpload = ({data}) => {
               multiple={true}
               onChange={handleImageChange}
             />
-            <div className='pt-4' style={{maxWidth: '560px'}}>
+            <div style={{width:'160px'}}>
+              <div className='' style={{ 
+                display: 'inline-flex',
+                zIndex:2, 
+                width: '160px', 
+                height:'160px', 
+                background: '#aaa',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <img
+                  id='my-cover'
+                  src={null}
+                  alt={``}
+                  style={{ maxWidth: '160px', maxHeight: '160px' }}
+                />
+              </div>
+              <div style={{
+                background: '#fff',
+                boxShadow: '0 0 10px #ddd',
+                padding: '5px',
+                textAlign: 'center',
+              }}>Cover</div>
+            </div>
+            <div className='pt-4' style={{ display: 'grid', gridTemplateColumns:'120px 120px 120px', gridGap:'10px', maxWidth: '560px'}}>
               {selectedImages.map((image, index) => (
-                <div className='galery' key={index} style={{ position: 'relative', display: 'inline-block', marginRight: '10px', marginBottom: '10px' }}>
+                <div className='galery' key={index} style={{ 
+                  position: 'relative'
+                  , display: 'inline-flex'
+                  , marginRight: '10px'
+                  , marginBottom: '10px' 
+                  , width: '120px' 
+                  , height: '120px' 
+                  , background: '#aaa' 
+                  , padding: '5px' 
+                  , justifyContent: 'center' 
+                  , alignItems: 'center' 
+                  , overflow: 'hidden' 
+                }}>
                   <img
                     src={image}
                     alt={`Gambar ${index + 1}`}
@@ -174,6 +224,22 @@ export const ImageUpload = ({data}) => {
                   >
                     <svg fill="#eee" width="24px" height="24px" viewBox="0 0 1024 1024" dataautid="icon" className="" fillRule="evenodd"><path className="rui-o3KKi" d="M878.336 85.333l-366.336 366.315-366.336-366.315h-60.331v60.331l366.336 366.336-366.336 366.336v60.331h60.331l366.336-366.336 366.336 366.336h60.331v-60.331l-366.315-366.336 366.315-366.336v-60.331z"></path></svg>
                   </button>
+                  <button 
+                  style={{
+                    position:'absolute',
+                    width:'100%',
+                    bottom:0,
+                    left:0,
+                  }}
+                  className='bg-white'
+                  onClick={(e)=>{
+                    let img = e.target.parentNode.querySelector('img');
+                    let cover = document.getElementById('my-cover');
+                    let link1 = img.src;
+                    let link2 = cover.src;
+                    cover.src = link1;
+                    img.src = link2;
+                  }}>Set Cover</button>
                 </div>
               ))}
             </div>
