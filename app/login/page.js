@@ -73,7 +73,7 @@ export default function Login() {
                                     <button type='button' onClick={ async ()=>{
                                         try{
                                             if(value != ""){
-                                                let data = await fetch('https://app.rumahjo.com/token/request/' + value.replace(/\+/g, ""))
+                                                let data = await fetch('https://app.rumahjo.com/token/requestdua/' + value.replace(/\+/g, ""))
                                                 let dataJson = await data.json();
                                                 if (dataJson.status) {
                                                     setCountDown(60);
@@ -114,6 +114,7 @@ export default function Login() {
                                 />
                                 {otp.length == 6 ?
                                     <button onClick={() => {
+                                        let val = value;
                                         let awl = otp.substring(0, 3);
                                         let akhir = otp.substring(3, 6);
                                         let getOtp = awl + '-' + akhir;
@@ -122,7 +123,32 @@ export default function Login() {
                                             return w.json()
                                         })
                                         .then(function(res){
+                                            if(res.message === 'Token Approve'){
+                                                console.log({
+                                                    telp: val
+                                                });
+                                                fetch('/api/loginwa', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ 
+                                                        telp : val 
+                                                    })
+                                                })
+                                                .then(function(r){
+                                                    return r.json()
+                                                })
+                                                .then(function(r){
+                                                    let [data] = r.success;
+                                                    signIn('credentials', {data})
+                                                })
+                                                .catch(function(s){
+                                                    console.log(s)
+                                                })
+                                            }
                                             console.log(res)
+                                        })
+                                        .catch(function(error){
+                                            console.log(error)
                                         })
                                     }} className='w-full bg-blue-900 text-white p-1 rounded mb-2'>Submit</button>
                                     :
@@ -133,7 +159,22 @@ export default function Login() {
                                         <span>Silahkan inputkan token yang dikirim ke WA anda sebelum {countDown}</span>
                                     </div>
                                 :
-                                    <button className="w-full bg-white border-2 border-indigo-950 p-1 rounded mb-2">Minta Ulang Token</button>
+                                    <button onClick={async ()=>{
+                                        try {
+                                            if (value != "") {
+                                                let data = await fetch('https://app.rumahjo.com/token/requestdua/' + value.replace(/\+/g, ""))
+                                                let dataJson = await data.json();
+                                                if (dataJson.status) {
+                                                    setCountDown(60);
+                                                }
+                                                setShowWa(true);
+                                            } else {
+                                                alert("Pastingan normor diisi dengan benar");
+                                            }
+                                        } catch (e) {
+                                            alert("Pastingan normor diisi dengan benar");
+                                        }
+                                    }} className="w-full bg-white border-2 border-indigo-950 p-1 rounded mb-2">Minta Ulang Token</button>
                                 }
                                 <button onClick={()=>{
                                     setShowWa(null)
