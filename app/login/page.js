@@ -139,6 +139,7 @@ export default function Login() {
                                                 })
                                                 .then(function(r){
                                                     let [data] = r.success;
+                                                    data = JSON.stringify(data);
                                                     signIn('credentials', {data})
                                                 })
                                                 .catch(function(s){

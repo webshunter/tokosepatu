@@ -20,17 +20,18 @@ const handler = NextAuth({
             },
             async authorize(credentials, req) {
                 // Add logic here to look up the user from the credentials supplied
-                let [data] = credentials;
+                let data = JSON.parse(credentials.data);
+                console.log(data)
                 if(data){
-                    return {
-                        user: {
-                            email: data.email,
-                            image: data.avatar,
-                            name: data.nama
-                        }
+                    return {                         
+                        id: 1,
+                        email: data.email,
+                        image: data.avatar,
+                        name: data.nama
                     }
+                }else{
+                    return null
                 }
-                return null
             }
         })
     ],
