@@ -6,7 +6,7 @@ const HomeBanner = ({data}) => {
 
     return (<>
         <div className='my-6 md:px-10 lg:px-[100px]'>
-            <Carousel className="w-full h-[50vw] md:h-[21vw] lg:h-[19vw]">
+            <Carousel className="w-full h-[50vw] md:h-[21vw] lg:h-[21vw]">
                 {data.map((d,i) => {
                     return <li key={i} link={d.backlink} onClick={(e)=>{
                         let w = e.target.getAttribute('link');
