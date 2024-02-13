@@ -30,10 +30,12 @@ const HomeBanner = ({data}) => {
                     return ` 
 #data-${o.kode}{
     background-image: url("${o.img1}");
+    background-size: contain;
 }
 @media (min-width: 768px) {
   #data-${o.kode}{
-    background-image: url("${o.img2}")
+    background-image: url("${o.img2}");
+    background-size: contain;
   } 
 }
                     `
