@@ -24,7 +24,7 @@ const DropdownIlkan = ({data}) => {
     };
 
     const initUpdate = (approval, uniqId, laku = '0', tgllaku = null) => {
-        const userConfirmed = window.confirm('Yakin ingin merubah listing?'+(laku==='1' ? '\n\n'+toUnicodeVariant('Perhatian!!!', 'bold sans', 'bold')+'\n'+toUnicodeVariant('Listing yang sudah laku tidak dapat diubah lagi.', 'italic sans', 'italic') : ''));
+        const userConfirmed = window.confirm((laku==='1' ? 'Apa data listing properti ini benar sudah laku?\n\n'+toUnicodeVariant('Perhatian!!!', 'bold sans', 'bold')+'\n'+toUnicodeVariant('Listing yang sudah laku tidak dapat diubah lagi.', 'italic sans', 'italic') : 'Yakin ingin menonaktifkan listing properti ini?'));
         if (userConfirmed) {
             listingUpdate(approval, uniqId, laku, tgllaku);
         } else {
