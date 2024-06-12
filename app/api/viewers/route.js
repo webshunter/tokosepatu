@@ -53,12 +53,16 @@ Array.prototype.ToInsert = function (table = 'test', wht = '') {
 
 // Handles POST requests to /api
 export async function POST(req) {
-    let body = await req.json();
-    let insert = [body].ToInsert('views', ['id','slug', 'nilai'])
-    insert += `; UPDATE listing aa, (
-SELECT nilai, slug FROM views_listing
-) bb SET aa.klik = bb.nilai WHERE aa.slug = bb.slug`;
-    const connection = await mysql.createConnection(DB_CONF);
-    const [data] = await connection.query(insert);
-    return NextResponse.json({ message: data });
+    try{
+        let body = await req.json();
+        let insert = [body].ToInsert('views', ['id','slug', 'nilai'])
+        insert += `; UPDATE listing aa, (
+    SELECT nilai, slug FROM views_listing
+    ) bb SET aa.klik = bb.nilai WHERE aa.slug = bb.slug`;
+        const connection = await mysql.createConnection(DB_CONF);
+        const [data] = await connection.query(insert);
+        return NextResponse.json({ message: data });
+    }catch(e){
+        return NextResponse.json({ error: 'Something went wrong.', message: e.message, conf: DB_CONF });
+    }
 }
