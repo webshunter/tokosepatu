@@ -108,8 +108,6 @@ export default function PostListing({params}) {
     const propertiChange = function(kode, data){
         if(data){
             let cek = dataStatus.cond(data.status, 'val');
-            console.log(dataStatus);
-            console.log(data.status);
             if(cek.length > 0){
                 let {text} = cek[0];
                 let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
@@ -122,7 +120,6 @@ export default function PostListing({params}) {
             }else{
                 let dataHidden = Array.from(document.querySelectorAll('div[data-hidden]'));
                 dataHidden.forEach((c)=>{
-                    console.log(c);
                     c.style.display = 'none';
                 });
             }
@@ -248,8 +245,6 @@ export default function PostListing({params}) {
                 });
         
                 let newProperty = getData.length > 0 ? getData[0] : null;
-                console.log(newProperty)
-                console.log(`newProperty`)
                 backFunc(3, 6, newProperty)
 
             }
@@ -263,6 +258,7 @@ export default function PostListing({params}) {
 
     const simpanData = async function(e){
         e.preventDefault();
+        console.log("simpan")
         const formData = new FormData(e.target);
         const formProps = Object.fromEntries(formData);
         const image = Array.from(e.target.querySelectorAll('img'))
@@ -295,10 +291,10 @@ export default function PostListing({params}) {
         const ori = function () {
             let ori = location.host;
             if (ori == 'localhost:3000') {
-                return 'https://api-jo.indowebs.my.id/';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.vercel.app') {
-                return 'https://api-jo.indowebs.my.id/';
+                return 'https://app.rumahjo.com';
             }
             if (ori == 'rumahjo.com') {
                 return 'https://app.rumahjo.com';
@@ -348,8 +344,8 @@ export default function PostListing({params}) {
 
         setVisible(!visible);
         upload(ori() + '/data/simpan/posting', '', 'qr.data', b64Data, (a) => { }, (b) => {
+            route.push('/iklan');
             setVisible(visible);
-            window.history.back()
         });
     }
     if(!Listing){
