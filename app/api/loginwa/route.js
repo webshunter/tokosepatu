@@ -12,7 +12,7 @@ export async function POST(req){
       let data = await req.json();
       const connection = await mysql.createConnection(DB_CONF);
       const [dataResponse] = await connection.query(`SELECT * FROM user WHERE telp='${data.telp.replace(/\+/gi,'')}'`);
-      return NextResponse.json({ success: dataResponse });
+      return NextResponse.json({ success: dataResponse, qr: `SELECT * FROM user WHERE telp='${data.telp.replace(/\+/gi, '')}'` });
     }
     catch(e){
        if (e.type === 'CredentialsSignin') {

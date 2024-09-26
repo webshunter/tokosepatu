@@ -73,7 +73,7 @@ export default function Login() {
                                     <button type='button' onClick={ async ()=>{
                                         try{
                                             if(value != ""){
-                                                let data = await fetch('https://app.rumahjo.com/token/requesttiga/' + value.replace(/\+/g, ""))
+                                                let data = await fetch('https://app.rumahjo.com/token/requestdua/' + value.replace(/\+/g, ""))
                                                 let dataJson = await data.json();
                                                 if (dataJson.status) {
                                                     setCountDown(60);
@@ -141,7 +141,7 @@ export default function Login() {
                                                     let [data] = r.success;
                                                     data = JSON.stringify(data);
                                                     console.log(data)
-                                                    signIn('credentials', { credentials: { datares: data } })
+                                                    signIn('credentials', {data})
                                                 })
                                                 .catch(function(s){
                                                     console.log(s)
