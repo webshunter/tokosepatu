@@ -133,7 +133,7 @@ export default function Login() {
                                                     body: JSON.stringify({ 
                                                         telp : val 
                                                     })
-                                                })
+                                                }) 
                                                 .then(function(r){
                                                     return r.json()
                                                 })
